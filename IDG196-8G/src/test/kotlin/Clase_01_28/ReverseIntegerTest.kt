@@ -23,4 +23,25 @@ class ReverseIntegerTest {
         val actual = reverseInteger.reverseInteger(value)
         assertEquals(expected,actual)
     }
+
+    @Test
+    fun TestifReverseimpairDigitInt()
+    {
+        val value = 12534
+        val expected = 43521
+        val actual = reverseInteger.reverseInteger(value)
+        assertEquals(expected,actual)
+    }
+    @Test
+    fun TestifReverseInt()
+    {
+        val value = 202
+        val expected = 202
+        val actual = reverseInteger.reverseInteger(value)
+        assertEquals(expected,actual)
+    }
+
+
+
+
 }
