@@ -4,7 +4,8 @@
     <list default="true" id="149eded0-0408-4a51-8f14-fa92bfddce44" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../25-01-19/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/../25-01-19/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/Clase_01_28/ReverseIntegerTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/Clase_01_28/ReverseIntegerTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Tarea_02_08/Parentesis.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Tarea_02_08/Parentesis.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/Tarea_02_08/ParentesisTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/Tarea_02_08/ParentesisTest.kt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -31,20 +32,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/kotlin/Tarea_02_08/Parentesis.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="32" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
+            <state relative-caret-position="165">
+              <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/kotlin/Tarea_02_08/ParentesisTest.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="159">
-              <caret line="16" column="24" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
+            <state relative-caret-position="295">
+              <caret line="21" column="24" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
               <folding>
                 <element signature="e#21#66#0" expanded="true" />
               </folding>
@@ -84,8 +85,8 @@
         <option value="$PROJECT_DIR$/src/main/kotlin/Clase_02_01/Palindrome.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/Tarea_08_02/Parentesis.kt" />
         <option value="$PROJECT_DIR$/src/test/kotlin/Tarea_02_08/Parentesis_Test.kt" />
-        <option value="$PROJECT_DIR$/src/main/kotlin/Tarea_02_08/Parentesis.kt" />
         <option value="$PROJECT_DIR$/src/test/kotlin/Tarea_02_08/ParentesisTest.kt" />
+        <option value="$PROJECT_DIR$/src/main/kotlin/Tarea_02_08/Parentesis.kt" />
       </list>
     </option>
   </component>
@@ -210,7 +211,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549672119307" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549675805820" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -230,7 +231,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.ParentesisTest.returns false when start with closing parentesis">
+  <component name="RunManager" selected="JUnit.ParentesisTest.returns true when valid character">
     <configuration name="ParentesisTest.returns false when impair characters" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="mx.edu.cetys.garay.andrea.IDG196-8G.test" />
       <extension name="coverage">
@@ -313,10 +314,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ParentesisTest.returns false when start with closing parentesis" />
-        <item itemvalue="JUnit.ParentesisTest.returns false when wrong order" />
-        <item itemvalue="JUnit.ParentesisTest.returns false when impair characters" />
         <item itemvalue="JUnit.ParentesisTest.returns true when valid character" />
+        <item itemvalue="JUnit.ParentesisTest.returns false when wrong order" />
+        <item itemvalue="JUnit.ParentesisTest.returns false when start with closing parentesis" />
+        <item itemvalue="JUnit.ParentesisTest.returns false when impair characters" />
         <item itemvalue="JUnit.ParentesisTest.returns false when invalid character" />
       </list>
     </recent_temporary>
@@ -334,44 +335,44 @@
       <workItem from="1548728755290" duration="4282000" />
       <workItem from="1549065699860" duration="819000" />
       <workItem from="1549073979015" duration="5361000" />
-      <workItem from="1549662209740" duration="5766000" />
+      <workItem from="1549662209740" duration="8205000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ParentesisTest_returns_false_when_wrong_order - 2019.02.08 at 16h 09m 12s.xml">
+    <history-entry file="ParentesisTest_returns_false_when_start_with_closing_parentesis - 2019.02.08 at 17h 06m 58s.xml">
+      <configuration name="ParentesisTest.returns false when start with closing parentesis" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ParentesisTest_returns_false_when_start_with_closing_parentesis - 2019.02.08 at 17h 07m 07s.xml">
+      <configuration name="ParentesisTest.returns false when start with closing parentesis" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ParentesisTest_returns_false_when_wrong_order - 2019.02.08 at 17h 07m 51s.xml">
       <configuration name="ParentesisTest.returns false when wrong order" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ParentesisTest_returns_true_when_valid_character - 2019.02.08 at 16h 16m 55s.xml">
+    <history-entry file="ParentesisTest_returns_true_when_valid_character - 2019.02.08 at 17h 10m 50s.xml">
       <configuration name="ParentesisTest.returns true when valid character" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ParentesisTest_returns_true_when_valid_character - 2019.02.08 at 16h 17m 04s.xml">
+    <history-entry file="ParentesisTest_returns_true_when_valid_character - 2019.02.08 at 17h 10m 57s.xml">
       <configuration name="ParentesisTest.returns true when valid character" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ParentesisTest_returns_true_when_valid_character - 2019.02.08 at 16h 18m 01s.xml">
+    <history-entry file="ParentesisTest_returns_true_when_valid_character - 2019.02.08 at 17h 11m 17s.xml">
       <configuration name="ParentesisTest.returns true when valid character" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ParentesisTest - 2019.02.08 at 16h 22m 17s.xml">
-      <configuration name="ParentesisTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ParentesisTest_returns_false_when_invalid_character - 2019.02.08 at 16h 22m 21s.xml">
-      <configuration name="ParentesisTest.returns false when invalid character" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ParentesisTest_returns_true_when_valid_character - 2019.02.08 at 16h 22m 25s.xml">
+    <history-entry file="ParentesisTest_returns_true_when_valid_character - 2019.02.08 at 17h 26m 24s.xml">
       <configuration name="ParentesisTest.returns true when valid character" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ParentesisTest_returns_true_when_valid_character - 2019.02.08 at 16h 23m 33s.xml">
+    <history-entry file="ParentesisTest_returns_true_when_valid_character - 2019.02.08 at 17h 27m 31s.xml">
       <configuration name="ParentesisTest.returns true when valid character" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ParentesisTest_returns_false_when_impair_characters - 2019.02.08 at 16h 23m 37s.xml">
-      <configuration name="ParentesisTest.returns false when impair characters" configurationId="JUnit" />
+    <history-entry file="ParentesisTest_returns_true_when_valid_character - 2019.02.08 at 17h 28m 36s.xml">
+      <configuration name="ParentesisTest.returns true when valid character" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ParentesisTest_returns_false_when_wrong_order - 2019.02.08 at 16h 23m 42s.xml">
-      <configuration name="ParentesisTest.returns false when wrong order" configurationId="JUnit" />
+    <history-entry file="ParentesisTest_returns_true_when_valid_character - 2019.02.08 at 17h 28m 58s.xml">
+      <configuration name="ParentesisTest.returns true when valid character" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16228000" />
+    <option name="totallyTimeSpent" value="18667000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -384,7 +385,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="19" y="42" width="1400" height="837" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26067746" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -469,20 +469,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/kotlin/Clase_02_01/PalindromeTest.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" selection-start-line="3" selection-end-line="4" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/kotlin/Tarea_02_08/Parentesis.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="32" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/kotlin/Clase_01_28/ReverseInteger.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-72">
@@ -492,11 +478,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/kotlin/Tarea_02_08/ParentesisTest.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="16" column="24" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
+        <state relative-caret-position="295">
+          <caret line="21" column="24" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
           <folding>
             <element signature="e#21#66#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/kotlin/Clase_02_01/PalindromeTest.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="4" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/kotlin/Tarea_02_08/Parentesis.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
         </state>
       </provider>
     </entry>

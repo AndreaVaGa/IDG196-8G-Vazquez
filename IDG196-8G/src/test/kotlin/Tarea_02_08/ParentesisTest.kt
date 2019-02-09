@@ -19,7 +19,7 @@ class ParentesisTest {
     }
     @Test
     fun `returns true when valid character`() {
-        val string = "()"
+        val string = "{}"
         assertTrue(Parentesis.isAValidExpression(string))
     }
 
