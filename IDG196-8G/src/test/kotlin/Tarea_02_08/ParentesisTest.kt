@@ -13,22 +13,26 @@ class ParentesisTest {
         assertFalse(Parentesis.isAValidExpression(string))
     }
     @Test
+    fun `returns false when `() {
+        val string = ""
+        assertFalse(Parentesis.isAValidExpression(string))
+    }
+    @Test
     fun `returns false when start with closing parentesis`() {
         val string = ")("
         assertFalse(Parentesis.isAValidExpression(string))
     }
     @Test
-    fun `returns true when valid character`() {
-        val string = "{}"
-        assertTrue(Parentesis.isAValidExpression(string))
-    }
-
-
-    @Test
     fun `returns false when impair characters`() {
         val string = "}]}"
         assertFalse(Parentesis.isAValidExpression(string))
     }
+    @Test
+    fun `returns true when valid character`() {
+        val string = "()"
+        assertTrue(Parentesis.isAValidExpression(string))
+    }
+
     @Test
     fun `returns false when wrong order`() {
         val string = "([)]"
