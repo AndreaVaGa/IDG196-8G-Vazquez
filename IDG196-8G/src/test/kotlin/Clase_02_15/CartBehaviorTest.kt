@@ -43,10 +43,17 @@ class CartBehaviorTest {
         assertTrue(shoppingCartBehavior.addProduct(product))
     }
     @Test
-    fun `add a product if product exist`(){
+    fun `add a product that does not exist`(){
         val shoppingCartBehavior = ShoppingCartBehavior(cart)
         cart.products.add(product)
-        val sameProduct = Product("Chocolate", "298745631", 18, 4)
+        val nonExistingProduct = Product("Pastel", "132947827", 100,1)
+        assertTrue(shoppingCartBehavior.addProduct(nonExistingProduct))
+    }
+    @Test
+    fun `add a product that exist`(){
+        val shoppingCartBehavior = ShoppingCartBehavior(cart)
+        cart.products.add(product)
+        val sameProduct = Product("Chocolate", "298745631", 18, 2)
         assertTrue(shoppingCartBehavior.addProduct(sameProduct))
     }
 
