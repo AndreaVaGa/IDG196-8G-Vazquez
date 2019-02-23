@@ -4,6 +4,7 @@ data class Customer(
     val name: String,
     val email: String
 ) {
-    val payments: ArrayList<Payment> = arrayListOf()
+    var payments: ArrayList<Payment> = arrayListOf()
     var address: String = ""
+    var cart: ShoppingCart= ShoppingCart()
 }

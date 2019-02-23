@@ -16,6 +16,8 @@ class CustomerBehaviorTest {
         "John Wayne",
         "jwayne@example.com"
     )
+    private val cart = customer.cart
+    private val product = Product("Chocolate", "298745631", 18)
 
     @Before
     fun setup() {
@@ -31,7 +33,7 @@ class CustomerBehaviorTest {
     @Test
     fun `remove payment returns true if payments list is empty`() {
         val customerBehavior = CustomerBehavior(customer)
-       assertTrue(customerBehavior.removePayment(payment))
+        assertTrue(customerBehavior.removePayment(payment))
     }
 
     @Test
@@ -56,12 +58,14 @@ class CustomerBehaviorTest {
         val customerBehavior = CustomerBehavior(customer)
         assertTrue(customerBehavior.addPayment(payment))
     }
+
     @Test
     fun `can't add a payment that already exist`() {
         customer.payments.add(payment)
         val customerBehavior = CustomerBehavior(customer)
         assertFalse(customerBehavior.addPayment(payment))
     }
+
     @Test
     fun `can add a payment that does not exist`() {
         customer.payments.add(payment)
@@ -70,4 +74,13 @@ class CustomerBehaviorTest {
         val nonExistingPayment = Payment("10291019202920292", "132", "10/10")
         assertTrue(customerBehavior.addPayment(nonExistingPayment))
     }
+    @Test
+    fun `pay cart`(){
+        cart.products[product] = 4
+        val customerBehavior = CustomerBehavior(customer)
+        customer.payments.add(payment)
+        assertTrue(customerBehavior.pay(payment))
+
+    }
+
 }

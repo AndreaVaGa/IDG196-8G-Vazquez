@@ -6,11 +6,9 @@ class CustomerBehavior(private val customer: Customer) {
         if (customer.payments.isEmpty()) {
             return true
         }
-
         if (customer.payments.contains(payment)) {
             return customer.payments.remove(payment)
         }
-
         return false
     }
 
@@ -22,6 +20,15 @@ class CustomerBehavior(private val customer: Customer) {
             return customer.payments.add(payment)
         }
         return false
+    }
+
+    fun pay(payment: Payment):Boolean{
+        if(customer.payments.contains(payment)){
+            customer.cart.products.clear()
+            return  true
+        }
+        return false
+
     }
 
 }
