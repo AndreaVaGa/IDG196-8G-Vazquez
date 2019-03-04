@@ -4,6 +4,8 @@
     <list default="true" id="149eded0-0408-4a51-8f14-fa92bfddce44" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../25-01-19/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/../25-01-19/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/examen0301_2/MachineBehavior.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/examen0301_2/MachineBehavior.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/examen0301_2/MachineTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/examen0301_2/MachineTest.kt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -22,13 +24,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/kotlin/examen0301/MaquinaTest.kt">
+        <entry file="file://$PROJECT_DIR$/src/main/kotlin/examen0301_2/MachineBehavior.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-110">
-              <caret line="10" column="18" lean-forward="true" selection-start-line="9" selection-start-column="4" selection-end-line="10" selection-end-column="18" />
-              <folding>
-                <element signature="e#20#113#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="133">
+              <caret line="9" column="49" selection-start-line="9" selection-start-column="49" selection-end-line="9" selection-end-column="49" />
             </state>
           </provider>
         </entry>
@@ -36,50 +35,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/kotlin/examen0301_2/MachineTest.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="70" column="61" selection-start-line="70" selection-start-column="61" selection-end-line="70" selection-end-column="61" />
+            <state relative-caret-position="639">
+              <caret line="47" column="5" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
               <folding>
-                <element signature="e#22#146#0" expanded="true" />
+                <element signature="e#22#223#0" expanded="true" />
+                <element signature="n#!!block;n#return 32 when buying 1 chocolate and paying with 50 #0;n#!!block;n#MachineTest#0" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/kotlin/Clase_02_15/CustomerBehaviorTest.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-102">
-              <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
-              <folding>
-                <element signature="e#21#160#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/kotlin/examen0301_2/MachineBehavior.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="26" column="9" lean-forward="true" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/kotlin/Clase_02_15/CartBehaviorTest.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="26" column="8" lean-forward="true" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/kotlin/Clase_02_15/ShoppingCartBehavior.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="705">
-              <caret line="47" column="10" lean-forward="true" selection-start-line="45" selection-start-column="8" selection-end-line="47" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -133,20 +94,20 @@
         <option value="$PROJECT_DIR$/src/test/kotlin/Clase_02_15/CartBehaviorTest.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/Clase_02_15/Customer.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/Clase_02_15/CustomerBehavior.kt" />
-        <option value="$PROJECT_DIR$/src/test/kotlin/Clase_02_15/CustomerBehaviorTest.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/examen0301/Maquina.kt" />
         <option value="$PROJECT_DIR$/src/test/kotlin/examen0301/MaquinaTest.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/examen0301/MaquinaBehavior.kt" />
-        <option value="$PROJECT_DIR$/src/main/kotlin/examen0301_2/MachineBehavior.kt" />
+        <option value="$PROJECT_DIR$/src/test/kotlin/Clase_02_15/CustomerBehaviorTest.kt" />
         <option value="$PROJECT_DIR$/src/test/kotlin/examen0301_2/MachineTest.kt" />
+        <option value="$PROJECT_DIR$/src/main/kotlin/examen0301_2/MachineBehavior.kt" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="12" />
     <option name="y" value="23" />
-    <option name="width" value="1400" />
-    <option name="height" value="856" />
+    <option name="width" value="1406" />
+    <option name="height" value="860" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -156,7 +117,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -188,52 +149,12 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="kotlin" type="462c0819:PsiDirectoryNode" />
-              <item name="Clase_01_28" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="IDG196-8G" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IDG196-8G" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="kotlin" type="462c0819:PsiDirectoryNode" />
-              <item name="Clase_02_01" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="IDG196-8G" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IDG196-8G" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="kotlin" type="462c0819:PsiDirectoryNode" />
-              <item name="Clase_02_11" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="IDG196-8G" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IDG196-8G" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="kotlin" type="462c0819:PsiDirectoryNode" />
-              <item name="Clase_02_15" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="IDG196-8G" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IDG196-8G" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="kotlin" type="462c0819:PsiDirectoryNode" />
               <item name="examen0301_2" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="IDG196-8G" type="b2602c69:ProjectViewProjectNode" />
               <item name="IDG196-8G" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="kotlin" type="462c0819:PsiDirectoryNode" />
-              <item name="Tarea_02_08" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="IDG196-8G" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IDG196-8G" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
             </path>
             <path>
@@ -242,22 +163,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="kotlin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="IDG196-8G" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IDG196-8G" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="kotlin" type="462c0819:PsiDirectoryNode" />
-              <item name="Clase_02_15" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="IDG196-8G" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IDG196-8G" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="kotlin" type="462c0819:PsiDirectoryNode" />
-              <item name="examen0301" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="IDG196-8G" type="b2602c69:ProjectViewProjectNode" />
@@ -271,13 +176,13 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551500674109" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551735770673" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -304,8 +209,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.MachineTest.return 32 when buying 1 chocolate and paying with 50 ">
-    <configuration name="MachineTest.return 1 coin of 5 and 2 20 bills and 2 200 bills" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.MachineTest">
+    <configuration name="MachineTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="mx.edu.cetys.garay.andrea.IDG196-8G.test" />
       <extension name="coverage">
         <pattern>
@@ -315,13 +220,28 @@
       </extension>
       <option name="PACKAGE_NAME" value="examen0301_2" />
       <option name="MAIN_CLASS_NAME" value="examen0301_2.MachineTest" />
-      <option name="METHOD_NAME" value="return 1 coin of 5 and 2 20 bills and 2 200 bills" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MachineTest.return 10 when buying 5 chocolates and paying with 100 " type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mx.edu.cetys.garay.andrea.IDG196-8G.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="examen0301_2.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="examen0301_2" />
+      <option name="MAIN_CLASS_NAME" value="examen0301_2.MachineTest" />
+      <option name="METHOD_NAME" value="return 10 when buying 5 chocolates and paying with 100 " />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MachineTest.return 1 coin of 5 and 2 20 bills" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MachineTest.return 5 coins of 5" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="mx.edu.cetys.garay.andrea.IDG196-8G.test" />
       <extension name="coverage">
         <pattern>
@@ -331,13 +251,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="examen0301_2" />
       <option name="MAIN_CLASS_NAME" value="examen0301_2.MachineTest" />
-      <option name="METHOD_NAME" value="return 1 coin of 5 and 2 20 bills" />
+      <option name="METHOD_NAME" value="return 5 coins of 5" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MachineTest.return 10 " type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MachineTest.return empty hashMap if it does not have money" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="mx.edu.cetys.garay.andrea.IDG196-8G.test" />
       <extension name="coverage">
         <pattern>
@@ -347,13 +267,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="examen0301_2" />
       <option name="MAIN_CLASS_NAME" value="examen0301_2.MachineTest" />
-      <option name="METHOD_NAME" value="return 10 " />
+      <option name="METHOD_NAME" value="return empty hashMap if it does not have money" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MachineTest.return 3 coins of 10" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MachineTest.return empty if it does not have enough denominations" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="mx.edu.cetys.garay.andrea.IDG196-8G.test" />
       <extension name="coverage">
         <pattern>
@@ -363,23 +283,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="examen0301_2" />
       <option name="MAIN_CLASS_NAME" value="examen0301_2.MachineTest" />
-      <option name="METHOD_NAME" value="return 3 coins of 10" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MachineTest.return 32 when buying 1 chocolate and paying with 50 " type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="mx.edu.cetys.garay.andrea.IDG196-8G.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="examen0301_2.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="examen0301_2" />
-      <option name="MAIN_CLASS_NAME" value="examen0301_2.MachineTest" />
-      <option name="METHOD_NAME" value="return 32 when buying 1 chocolate and paying with 50 " />
+      <option name="METHOD_NAME" value="return empty if it does not have enough denominations" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -387,11 +291,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.MachineTest.return 32 when buying 1 chocolate and paying with 50 " />
-        <item itemvalue="JUnit.MachineTest.return 10 " />
-        <item itemvalue="JUnit.MachineTest.return 1 coin of 5 and 2 20 bills and 2 200 bills" />
-        <item itemvalue="JUnit.MachineTest.return 1 coin of 5 and 2 20 bills" />
-        <item itemvalue="JUnit.MachineTest.return 3 coins of 10" />
+        <item itemvalue="JUnit.MachineTest" />
+        <item itemvalue="JUnit.MachineTest.return 5 coins of 5" />
+        <item itemvalue="JUnit.MachineTest.return empty if it does not have enough denominations" />
+        <item itemvalue="JUnit.MachineTest.return empty hashMap if it does not have money" />
+        <item itemvalue="JUnit.MachineTest.return 10 when buying 5 chocolates and paying with 100 " />
       </list>
     </recent_temporary>
   </component>
@@ -413,44 +317,45 @@
       <workItem from="1550887112899" duration="415000" />
       <workItem from="1550890440878" duration="1758000" />
       <workItem from="1551420746220" duration="4372000" />
-      <workItem from="1551492153491" duration="8251000" />
+      <workItem from="1551492153491" duration="9294000" />
+      <workItem from="1551732117479" duration="3448000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="MachineTest_return_1_coin_of_5_and_2_20_bills - 2019.03.01 at 20h 06m 17s.xml">
-      <configuration name="MachineTest.return 1 coin of 5 and 2 20 bills" configurationId="JUnit" />
+    <history-entry file="MachineTest_return_10_when_buying_5_chocolates_and_paying_with_100_ - 2019.03.04 at 13h 26m 08s.xml">
+      <configuration name="MachineTest.return 10 when buying 5 chocolates and paying with 100 " configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MachineTest_return_1_coin_of_5_and_2_20_bills - 2019.03.01 at 20h 08m 03s.xml">
-      <configuration name="MachineTest.return 1 coin of 5 and 2 20 bills" configurationId="JUnit" />
+    <history-entry file="MachineTest_return_10_when_buying_5_chocolates_and_paying_with_100_ - 2019.03.04 at 13h 28m 17s.xml">
+      <configuration name="MachineTest.return 10 when buying 5 chocolates and paying with 100 " configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MachineTest_return_1_coin_of_5_and_2_20_bills - 2019.03.01 at 20h 08m 07s.xml">
-      <configuration name="MachineTest.return 1 coin of 5 and 2 20 bills" configurationId="JUnit" />
+    <history-entry file="MachineTest_return_10_when_buying_5_chocolates_and_paying_with_100_ - 2019.03.04 at 13h 30m 25s.xml">
+      <configuration name="MachineTest.return 10 when buying 5 chocolates and paying with 100 " configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MachineTest_return_1_coin_of_5_and_2_20_bills - 2019.03.01 at 20h 08m 19s.xml">
-      <configuration name="MachineTest.return 1 coin of 5 and 2 20 bills" configurationId="JUnit" />
+    <history-entry file="MachineTest_return_10_when_buying_5_chocolates_and_paying_with_100_ - 2019.03.04 at 13h 30m 37s.xml">
+      <configuration name="MachineTest.return 10 when buying 5 chocolates and paying with 100 " configurationId="JUnit" />
     </history-entry>
-    <history-entry file="MachineTest_return_1_coin_of_5_and_2_20_bills - 2019.03.01 at 20h 10m 45s.xml">
-      <configuration name="MachineTest.return 1 coin of 5 and 2 20 bills" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MachineTest_return_1_coin_of_5_and_2_20_bills - 2019.03.01 at 20h 10m 49s.xml">
-      <configuration name="MachineTest.return 1 coin of 5 and 2 20 bills" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MachineTest_return_1_coin_of_5_and_2_20_bills - 2019.03.01 at 20h 12m 09s.xml">
-      <configuration name="MachineTest.return 1 coin of 5 and 2 20 bills" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MachineTest_return_1_coin_of_5_and_2_20_bills - 2019.03.01 at 20h 12m 43s.xml">
-      <configuration name="MachineTest.return 1 coin of 5 and 2 20 bills" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MachineTest_return_1_coin_of_5_and_2_20_bills - 2019.03.01 at 20h 12m 47s.xml">
-      <configuration name="MachineTest.return 1 coin of 5 and 2 20 bills" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MachineTest_return_1_coin_of_5_and_2_20_bills_and_2_200_bills - 2019.03.01 at 20h 16m 00s.xml">
+    <history-entry file="MachineTest_return_1_coin_of_5_and_2_20_bills_and_2_200_bills - 2019.03.04 at 13h 31m 01s.xml">
       <configuration name="MachineTest.return 1 coin of 5 and 2 20 bills and 2 200 bills" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MachineTest_return_10_when_buying_5_chocolates_and_paying_with_100_ - 2019.03.04 at 13h 32m 19s.xml">
+      <configuration name="MachineTest.return 10 when buying 5 chocolates and paying with 100 " configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MachineTest_return_10_when_buying_5_chocolates_and_paying_with_100_ - 2019.03.04 at 13h 33m 03s.xml">
+      <configuration name="MachineTest.return 10 when buying 5 chocolates and paying with 100 " configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MachineTest_return_10_when_buying_5_chocolates_and_paying_with_100_ - 2019.03.04 at 13h 33m 37s.xml">
+      <configuration name="MachineTest.return 10 when buying 5 chocolates and paying with 100 " configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MachineTest_return_10_when_buying_5_chocolates_and_paying_with_100_ - 2019.03.04 at 13h 33m 54s.xml">
+      <configuration name="MachineTest.return 10 when buying 5 chocolates and paying with 100 " configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MachineTest_return_10_when_buying_5_chocolates_and_paying_with_100_ - 2019.03.04 at 13h 34m 17s.xml">
+      <configuration name="MachineTest.return 10 when buying 5 chocolates and paying with 100 " configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82008000" />
+    <option name="totallyTimeSpent" value="86499000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -462,10 +367,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="12" y="23" width="1400" height="856" extended-state="0" />
+    <frame x="12" y="23" width="1406" height="860" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22974963" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23167156" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -474,13 +379,13 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32853404" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.328125" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39921466" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32853404" />
       <window_info anchor="bottom" id="Build" order="7" weight="0.32885906" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32068062" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.2109375" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.32853404" />
@@ -509,12 +414,6 @@
           <line>7</line>
           <properties />
           <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/examen0301_2/MachineBehavior.kt</url>
-          <line>9</line>
-          <properties />
-          <option name="timeStamp" value="32" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -633,13 +532,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/kotlin/examen0301/Maquina.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/kotlin/examen0301/Maquina.kt" />
     <entry file="file://$PROJECT_DIR$/src/test/kotlin/Clase_02_01/PalindromeTest.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -714,16 +607,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/kotlin/examen0301/MaquinaTest.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-110">
-          <caret line="10" column="18" lean-forward="true" selection-start-line="9" selection-start-column="4" selection-end-line="10" selection-end-column="18" />
-          <folding>
-            <element signature="e#20#113#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/kotlin/Clase_01_28/ReverseInteger.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-26">
@@ -738,43 +621,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/kotlin/Clase_02_15/CustomerBehaviorTest.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-102">
-          <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
-          <folding>
-            <element signature="e#21#160#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/kotlin/Clase_02_15/ShoppingCartBehavior.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="705">
-          <caret line="47" column="10" lean-forward="true" selection-start-line="45" selection-start-column="8" selection-end-line="47" selection-end-column="10" />
+        <state relative-caret-position="442">
+          <caret line="47" column="10" selection-start-line="45" selection-start-column="8" selection-end-line="47" selection-end-column="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/kotlin/Clase_02_15/CartBehaviorTest.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
-          <caret line="26" column="8" lean-forward="true" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="34" />
+          <caret line="26" column="8" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/kotlin/Clase_02_15/CustomerBehaviorTest.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="79" column="57" selection-start-line="79" selection-start-column="57" selection-end-line="79" selection-end-column="57" />
+          <folding>
+            <element signature="e#21#160#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/kotlin/examen0301/MaquinaTest.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="10" column="18" selection-start-line="9" selection-start-column="4" selection-end-line="10" selection-end-column="18" />
+          <folding>
+            <element signature="e#20#113#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/kotlin/examen0301_2/MachineBehavior.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="9" lean-forward="true" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
+        <state relative-caret-position="133">
+          <caret line="9" column="49" selection-start-line="9" selection-start-column="49" selection-end-line="9" selection-end-column="49" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/kotlin/examen0301_2/MachineTest.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="70" column="61" selection-start-line="70" selection-start-column="61" selection-end-line="70" selection-end-column="61" />
+        <state relative-caret-position="639">
+          <caret line="47" column="5" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
           <folding>
-            <element signature="e#22#146#0" expanded="true" />
+            <element signature="e#22#223#0" expanded="true" />
+            <element signature="n#!!block;n#return 32 when buying 1 chocolate and paying with 50 #0;n#!!block;n#MachineTest#0" />
           </folding>
         </state>
       </provider>

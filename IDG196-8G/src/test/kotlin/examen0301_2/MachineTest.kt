@@ -26,10 +26,20 @@ class MachineTest {
     }
 
     @Test
+    fun `return empty hashMap if it does not have money`(){
+        assertEquals(cambio,(machineBehavior.charge(total, monto)))
+    }
+
+    @Test
     fun `return 3 coins of 10`() {
         machineBehavior.dinero.add(10)
         cambio[10] = 3
-        Assert.assertEquals(cambio, (machineBehavior.charge(total, monto)))
+        assertEquals(cambio, (machineBehavior.charge(total, monto)))
+    }
+    @Test
+    fun `return empty if it does not have enough denominations` (){
+        machineBehavior.dinero.add(10)
+        assertEquals(cambio, (machineBehavior.charge(48, monto)))
     }
 
     @Test

@@ -5,23 +5,27 @@ class MachineBehavior {
     fun charge(total: Int, monto: Int): HashMap<Int, Int> {
         var cuanto = monto - total
         val cambio: HashMap<Int, Int> = hashMapOf()
-        while (cuanto > 0) {
-            var mayor = 0
-            for (i in 0 until dinero.size) {
-                if (dinero[i] > mayor && dinero[i] <= cuanto) {
-                    mayor = dinero[i]
-                }
-            }
-            if (cuanto % mayor != 0) {
-                var tmp = cuanto % mayor
+        dinero.sortDescending()
+
+        if (monto < total) {
+            println("falta dinero")
+            return cambio
+        }
+        if (dinero.isEmpty()) {
+            println("caja vacía")
+            return cambio
+        }
+        if (cuanto % dinero[dinero.size - 1] != 0) {
+            println("no hay suficientes monedas")
+            return cambio
+        }
+
+        for (i in 0 until dinero.size) {
+            if (dinero[i] <= cuanto) {
+                var tmp = cuanto % dinero[i]
                 var cuantotemp = cuanto - tmp
-                cambio[mayor] = cuantotemp / mayor
-                cuanto -= mayor * (cuantotemp / mayor)
-
-            } else {
-                cambio[mayor] = cuanto / mayor
-                cuanto -= mayor * (cuanto / mayor)
-
+                cambio[dinero[i]] = cuantotemp / dinero[i]
+                cuanto -= dinero[i] * (cuantotemp / dinero[i])
             }
 
         }
