@@ -4,7 +4,6 @@
     <list default="true" id="149eded0-0408-4a51-8f14-fa92bfddce44" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../25-01-19/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/../25-01-19/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/examen0301_2/MachineBehavior.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/examen0301_2/MachineBehavior.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/kotlin/examen0301_2/MachineTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/examen0301_2/MachineTest.kt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -26,8 +25,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/kotlin/examen0301_2/MachineBehavior.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="9" column="49" selection-start-line="9" selection-start-column="49" selection-end-line="9" selection-end-column="49" />
+            <state relative-caret-position="540">
+              <caret line="36" column="1" selection-start-line="2" selection-end-line="36" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -35,11 +34,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/kotlin/examen0301_2/MachineTest.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="639">
-              <caret line="47" column="5" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
+            <state relative-caret-position="1215">
+              <caret line="81" column="12" selection-start-line="81" selection-start-column="12" selection-end-line="81" selection-end-column="12" />
               <folding>
                 <element signature="e#22#223#0" expanded="true" />
-                <element signature="n#!!block;n#return 32 when buying 1 chocolate and paying with 50 #0;n#!!block;n#MachineTest#0" />
               </folding>
             </state>
           </provider>
@@ -98,8 +96,8 @@
         <option value="$PROJECT_DIR$/src/test/kotlin/examen0301/MaquinaTest.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/examen0301/MaquinaBehavior.kt" />
         <option value="$PROJECT_DIR$/src/test/kotlin/Clase_02_15/CustomerBehaviorTest.kt" />
-        <option value="$PROJECT_DIR$/src/test/kotlin/examen0301_2/MachineTest.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/examen0301_2/MachineBehavior.kt" />
+        <option value="$PROJECT_DIR$/src/test/kotlin/examen0301_2/MachineTest.kt" />
       </list>
     </option>
   </component>
@@ -117,6 +115,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -176,13 +175,12 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551735770673" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551748297477" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -318,26 +316,14 @@
       <workItem from="1550890440878" duration="1758000" />
       <workItem from="1551420746220" duration="4372000" />
       <workItem from="1551492153491" duration="9294000" />
-      <workItem from="1551732117479" duration="3448000" />
+      <workItem from="1551732117479" duration="3834000" />
+      <workItem from="1551736049546" duration="83000" />
+      <workItem from="1551736603219" duration="505000" />
+      <workItem from="1551754224757" duration="28000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="MachineTest_return_10_when_buying_5_chocolates_and_paying_with_100_ - 2019.03.04 at 13h 26m 08s.xml">
-      <configuration name="MachineTest.return 10 when buying 5 chocolates and paying with 100 " configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MachineTest_return_10_when_buying_5_chocolates_and_paying_with_100_ - 2019.03.04 at 13h 28m 17s.xml">
-      <configuration name="MachineTest.return 10 when buying 5 chocolates and paying with 100 " configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MachineTest_return_10_when_buying_5_chocolates_and_paying_with_100_ - 2019.03.04 at 13h 30m 25s.xml">
-      <configuration name="MachineTest.return 10 when buying 5 chocolates and paying with 100 " configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MachineTest_return_10_when_buying_5_chocolates_and_paying_with_100_ - 2019.03.04 at 13h 30m 37s.xml">
-      <configuration name="MachineTest.return 10 when buying 5 chocolates and paying with 100 " configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MachineTest_return_1_coin_of_5_and_2_20_bills_and_2_200_bills - 2019.03.04 at 13h 31m 01s.xml">
-      <configuration name="MachineTest.return 1 coin of 5 and 2 20 bills and 2 200 bills" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="MachineTest_return_10_when_buying_5_chocolates_and_paying_with_100_ - 2019.03.04 at 13h 32m 19s.xml">
       <configuration name="MachineTest.return 10 when buying 5 chocolates and paying with 100 " configurationId="JUnit" />
     </history-entry>
@@ -353,9 +339,24 @@
     <history-entry file="MachineTest_return_10_when_buying_5_chocolates_and_paying_with_100_ - 2019.03.04 at 13h 34m 17s.xml">
       <configuration name="MachineTest.return 10 when buying 5 chocolates and paying with 100 " configurationId="JUnit" />
     </history-entry>
+    <history-entry file="MachineTest_return_empty_hashMap_if_it_does_not_have_money - 2019.03.04 at 13h 39m 32s.xml">
+      <configuration name="MachineTest.return empty hashMap if it does not have money" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MachineTest_return_empty_hashMap_if_it_does_not_have_money - 2019.03.04 at 13h 39m 46s.xml">
+      <configuration name="MachineTest.return empty hashMap if it does not have money" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MachineTest_return_empty_if_it_does_not_have_enough_denominations - 2019.03.04 at 13h 41m 47s.xml">
+      <configuration name="MachineTest.return empty if it does not have enough denominations" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MachineTest_return_5_coins_of_5 - 2019.03.04 at 13h 41m 55s.xml">
+      <configuration name="MachineTest.return 5 coins of 5" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MachineTest - 2019.03.04 at 13h 42m 02s.xml">
+      <configuration name="MachineTest" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="86499000" />
+    <option name="totallyTimeSpent" value="87501000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -368,9 +369,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="12" y="23" width="1406" height="860" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23167156" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2404692" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -379,13 +379,13 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.328125" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.328125" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39921466" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32853404" />
       <window_info anchor="bottom" id="Build" order="7" weight="0.32885906" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.2109375" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.2109375" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.32853404" />
@@ -657,18 +657,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/kotlin/examen0301_2/MachineBehavior.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="9" column="49" selection-start-line="9" selection-start-column="49" selection-end-line="9" selection-end-column="49" />
+        <state relative-caret-position="540">
+          <caret line="36" column="1" selection-start-line="2" selection-end-line="36" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/kotlin/examen0301_2/MachineTest.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="639">
-          <caret line="47" column="5" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
+        <state relative-caret-position="1215">
+          <caret line="81" column="12" selection-start-line="81" selection-start-column="12" selection-end-line="81" selection-end-column="12" />
           <folding>
             <element signature="e#22#223#0" expanded="true" />
-            <element signature="n#!!block;n#return 32 when buying 1 chocolate and paying with 50 #0;n#!!block;n#MachineTest#0" />
           </folding>
         </state>
       </provider>

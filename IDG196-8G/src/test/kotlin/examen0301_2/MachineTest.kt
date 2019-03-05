@@ -26,8 +26,8 @@ class MachineTest {
     }
 
     @Test
-    fun `return empty hashMap if it does not have money`(){
-        assertEquals(cambio,(machineBehavior.charge(total, monto)))
+    fun `return empty hashMap if it does not have money`() {
+        assertEquals(cambio, (machineBehavior.charge(total, monto)))
     }
 
     @Test
@@ -36,8 +36,9 @@ class MachineTest {
         cambio[10] = 3
         assertEquals(cambio, (machineBehavior.charge(total, monto)))
     }
+
     @Test
-    fun `return empty if it does not have enough denominations` (){
+    fun `return empty if it does not have enough denominations`() {
         machineBehavior.dinero.add(10)
         assertEquals(cambio, (machineBehavior.charge(48, monto)))
     }
@@ -55,44 +56,46 @@ class MachineTest {
         machineBehavior.dinero.add(5)
         machineBehavior.dinero.add(20)
         cambio[5] = 1
-        cambio[20]=2
+        cambio[20] = 2
         assertEquals(cambio, (machineBehavior.charge(5, monto)))
 
     }
+
     @Test
     fun `return 1 coin of 5 and 2 20 bills and 2 200 bills`() {
         machineBehavior.dinero.add(5)
         machineBehavior.dinero.add(200)
         machineBehavior.dinero.add(20)
         cambio[5] = 1
-        cambio[200]=2
-        cambio[20]=2
+        cambio[200] = 2
+        cambio[20] = 2
         assertEquals(cambio, (machineBehavior.charge(55, 500)))
 
     }
 
     @Test
-    fun `return 10 when buying 5 chocolates and paying with 100 `(){
+    fun `return 10 when buying 5 chocolates and paying with 100 `() {
         machineBehavior.dinero.add(5)
         machineBehavior.dinero.add(10)
         machineBehavior.dinero.add(200)
-        shoppingCartBehavior.addProduct(product,5)
-        val total= shoppingCartBehavior.getTotal()
+        shoppingCartBehavior.addProduct(product, 5)
+        val totalCarrito = shoppingCartBehavior.getTotal()
         cambio[10] = 1
-        assertEquals(cambio, (machineBehavior.charge(total, 100)))
+        assertEquals(cambio, (machineBehavior.charge(totalCarrito, 100)))
 
     }
+
     @Test
-    fun `return 32 when buying 1 chocolate and paying with 50 `(){
+    fun `return 32 when buying 1 chocolate and paying with 50 `() {
         machineBehavior.dinero.add(1)
         machineBehavior.dinero.add(10)
         machineBehavior.dinero.add(20)
-        shoppingCartBehavior.addProduct(product,1)
-        val total= shoppingCartBehavior.getTotal()
+        shoppingCartBehavior.addProduct(product, 1)
+        val totalCarrito = shoppingCartBehavior.getTotal()
         cambio[10] = 1
-        cambio[20]=1
-        cambio[1]=2
-        assertEquals(cambio, (machineBehavior.charge(total, 50)))
+        cambio[20] = 1
+        cambio[1] = 2
+        assertEquals(cambio, (machineBehavior.charge(totalCarrito, 50)))
 
 
     }
