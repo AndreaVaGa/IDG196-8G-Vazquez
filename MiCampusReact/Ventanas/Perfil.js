@@ -58,7 +58,7 @@ export default class Perfil extends React.Component {
       this.setState({ aprobadas: alumno.materias_aprobadas })
     }
   }
-
+  
   render() {
     return (
       <View>
