@@ -8,7 +8,8 @@ export default class Login extends React.Component {
     super(props);
     this.state = {
       usuario: '',
-      password: ''
+      password: '', 
+      host: 'http://10.12.20.188:8080'
     };
   }
   componentDidMount() {
@@ -27,7 +28,7 @@ export default class Login extends React.Component {
     var matriculatemp = this.state.usuario
     var matricula_numerica = matriculatemp.slice(matriculatemp.length * -1 + 1)
 
-    return fetch('https://api.appery.io/rest/1/apiexpress/api/alumnos/' + matricula_numerica + '/login?apiKey=1cf3dc27-64f0-4551-909d-a0227208414d&password=' + this.state.password)
+    return fetch(this.state.host + '/mc/alumno')
 
       .then((response) => response.json())
       .then((responseJson) => {

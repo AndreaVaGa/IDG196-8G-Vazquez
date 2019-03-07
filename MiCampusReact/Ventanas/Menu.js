@@ -7,6 +7,7 @@ export default class Menu extends React.Component {
     super(props);
     this.state = {
       matricula: '',
+      host:'http://10.12.20.188:8080'
     };
 
   }
@@ -23,7 +24,7 @@ export default class Menu extends React.Component {
   }
   _IraPerfil = () => {
 
-    return fetch('https://api.appery.io/rest/1/apiexpress/api/alumnos/' + this.state.matricula + '/perfil?apiKey=1cf3dc27-64f0-4551-909d-a0227208414d')
+    return fetch(this.state.host + '/mc/alumno')
       .then((response) => response.json())
       .then((responseJson) => {
         if (responseJson !== undefined) {
@@ -41,7 +42,7 @@ export default class Menu extends React.Component {
   }
   _getHistorial = () => {
 
-    fetch('https://api.appery.io/rest/1/apiexpress/api/alumnos/' + this.state.matricula + '/cursando?apiKey=1cf3dc27-64f0-4551-909d-a0227208414d')
+    fetch(this.state.host +'/mc/boleta')
 
       .then((response) => response.json())
       .then((responseJson) => {
@@ -52,7 +53,7 @@ export default class Menu extends React.Component {
       .catch((error) => {
         console.error(error);
       });
-    fetch('https://api.appery.io/rest/1/apiexpress/api/alumnos/' + this.state.matricula + '/aprobadas?apiKey=1cf3dc27-64f0-4551-909d-a0227208414d')
+    fetch(this.state.host +'/mc/aprobada')
 
       .then((response) => response.json())
       .then((responseJson) => {
@@ -63,7 +64,7 @@ export default class Menu extends React.Component {
       .catch((error) => {
         console.error(error);
       });
-    fetch('https://api.appery.io/rest/1/apiexpress/api/alumnos/' + this.state.matricula + '/cursar?apiKey=1cf3dc27-64f0-4551-909d-a0227208414d')
+    fetch(this.state.host +'/mc/porcursar')
 
       .then((response) => response.json())
       .then((responseJson) => {
@@ -74,7 +75,7 @@ export default class Menu extends React.Component {
       .catch((error) => {
         console.error(error);
       });
-    fetch('https://api.appery.io/rest/1/apiexpress/api/alumnos/' + this.state.matricula + '/promedio?apiKey=1cf3dc27-64f0-4551-909d-a0227208414d')
+    fetch(this.state.host +'/mc/promedioG')
 
       .then((response) => response.json())
       .then((responseJson) => {
@@ -92,7 +93,7 @@ export default class Menu extends React.Component {
 
   _getBoleta = () => {
 
-    return fetch('https://api.appery.io/rest/1/apiexpress/api/alumnos/' + this.state.matricula + '/boleta?apiKey=1cf3dc27-64f0-4551-909d-a0227208414d')
+    return fetch(this.state.host +'/mc/boleta')
       .then((response) => response.json())
       .then((responseJson) => {
         if (responseJson !== undefined) {
@@ -107,7 +108,7 @@ export default class Menu extends React.Component {
 
   _getHorario = () => {
 
-    return fetch('https://api.appery.io/rest/1/apiexpress/api/alumnos/' + this.state.matricula + '/horario?apiKey=1cf3dc27-64f0-4551-909d-a0227208414d')
+    return fetch(this.state.host +'/mc/horario')
 
       .then((response) => response.json())
       .then((responseJson) => {
