@@ -42,4 +42,39 @@ class ApplicationTest {
         }
     }
 
+    @Test
+    fun getBoleta(){
+        withTestApplication({ module(testing = true) }) {
+            handleRequest(HttpMethod.Get, "/mc/boleta").apply {
+                assertEquals(HttpStatusCode.OK, response.status())
+            }
+        }
+    }
+
+    @Test
+    fun getAprobada(){
+        withTestApplication({ module(testing = true) }) {
+            handleRequest(HttpMethod.Get, "/mc/aprobada").apply {
+                assertEquals(HttpStatusCode.OK, response.status())
+            }
+        }
+    }
+
+    @Test
+    fun getPorCursar(){
+        withTestApplication({ module(testing = true) }) {
+            handleRequest(HttpMethod.Get, "/mc/porcursar").apply {
+                assertEquals(HttpStatusCode.OK, response.status())
+            }
+        }
+    }
+
+    @Test
+    fun getHorario(){
+        withTestApplication({ module(testing = true) }) {
+            handleRequest(HttpMethod.Get, "/mc/horario").apply {
+                assertEquals(HttpStatusCode.OK, response.status())
+            }
+        }
+    }
 }

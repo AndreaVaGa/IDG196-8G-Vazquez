@@ -30,10 +30,59 @@ fun Application.module(testing: Boolean = false) {
         allowCredentials = true
     }
 
+    var boleta = Boleta()
+    var horario = Horario()
+
+    val materia = Materia(
+        "Redes",
+        "100",
+        "Moises",
+        "0",
+        "100",
+        "100",
+        "100",
+        "0",
+        "0",
+        "0"
+    )
+    val materia2 = Materia(
+        "Comercio Electrónico",
+        "100",
+        "Caldelas",
+        "2",
+        "100",
+        "0",
+        "0",
+        "2",
+        "0",
+        "0"
+    )
+    boleta.boleta.add(materia)
+    boleta.boleta.add(materia2)
+
+    val grupoHorario = GrupoHorario(
+        "IDGD-196",
+        "1",
+        "16:00",
+        "18:00",
+        materia
+    )
+    val grupoHorario2 = GrupoHorario(
+        "IDGD-195",
+        "1",
+        "18:00",
+        "20:00",
+        materia2
+    )
+
+    horario.horario.add(grupoHorario)
+    horario.horario.add(grupoHorario2)
+
     routing {
         get("/") {
             call.respondText("HELLO WORLD!", contentType = ContentType.Text.Plain)
         }
+
         get("/mc/alumno") {
             call.respond(
                 mapOf(
@@ -47,9 +96,11 @@ fun Application.module(testing: Boolean = false) {
                 )
             )
         }
+
         get("/mc/boleta") {
-            call.respond(mapOf("boleta" to "x"))
+            call.respond(mapOf("boleta" to boleta.boleta))
         }
+
         get("/mc/tutores") {
             call.respond(mapOf(
                 "Nombre_1_Padre" to "Jesús",
@@ -70,6 +121,22 @@ fun Application.module(testing: Boolean = false) {
                 "Email_Madre" to "mlupitacl@gmail.com",
                 "Direccion_Madre" to "Mediterraneo 10080",
                 "Colonia_Madre" to "Cerro de las abejas"))
+        }
+
+        get("/mc/aprobada") {
+            call.respond(mapOf("Materias" to boleta.boleta))
+        }
+
+        get("/mc/porcursar") {
+            call.respond(mapOf("Materias" to boleta.boleta))
+        }
+
+        get("/mc/promedioG") {
+            call.respond(mapOf("Promedio General" to "98"))
+        }
+
+        get("/mc/horario") {
+            call.respond(mapOf("Horario" to horario.horario))
         }
     }
 }
