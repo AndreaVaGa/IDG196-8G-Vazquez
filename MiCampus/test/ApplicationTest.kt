@@ -23,10 +23,20 @@ class ApplicationTest {
             }
         }
     }
+
     @Test
     fun getAlumno(){
         withTestApplication({ module(testing = true) }) {
             handleRequest(HttpMethod.Get, "/mc/alumno").apply {
+                assertEquals(HttpStatusCode.OK, response.status())
+            }
+        }
+    }
+
+    @Test
+    fun getTutores(){
+        withTestApplication({ module(testing = true) }) {
+            handleRequest(HttpMethod.Get, "/mc/tutores").apply {
                 assertEquals(HttpStatusCode.OK, response.status())
             }
         }
