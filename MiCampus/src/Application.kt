@@ -54,8 +54,8 @@ fun Application.module(testing: Boolean = false) {
             call.respond(mapOf(
                 "Nombre_1_Padre" to "Jesús",
                 "Nombre_2_Padre" to "",
-                "Apellido_Paterno" to "Macias",
-                "Apellido_Materno" to "Rojas",
+                "Apellido_Paterno_Padre" to "Macias",
+                "Apellido_Materno_Padre" to "Rojas",
                 "Telefono_Padre"  to "6641890067",
                 "Empresa_Padre" to "Poli",
                 "Email_Padre" to "jesus.macias@gmail.com",
