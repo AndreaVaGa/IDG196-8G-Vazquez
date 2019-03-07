@@ -132,7 +132,7 @@ fun Application.module(testing: Boolean = false) {
         }
 
         get("/mc/promedioG") {
-            call.respond(mapOf("Promedio General" to "98"))
+            call.respond(mapOf("PromedioGeneral" to "98"))
         }
 
         get("/mc/horario") {
