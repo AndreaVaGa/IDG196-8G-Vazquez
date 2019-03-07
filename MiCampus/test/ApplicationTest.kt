@@ -13,6 +13,7 @@ import kotlin.test.*
 import io.ktor.server.testing.*
 
 class ApplicationTest {
+
     @Test
     fun testRoot() {
         withTestApplication({ module(testing = true) }) {
@@ -22,22 +23,13 @@ class ApplicationTest {
             }
         }
     }
-
     @Test
-    fun GetBoleta() {
+    fun getAlumno(){
         withTestApplication({ module(testing = true) }) {
-            handleRequest(HttpMethod.Get, "/mc/get/boleta").apply {
+            handleRequest(HttpMethod.Get, "/mc/alumno").apply {
                 assertEquals(HttpStatusCode.OK, response.status())
             }
         }
     }
 
-    @Test
-    fun GetTutores() {
-        withTestApplication({ module(testing = true) }) {
-            handleRequest(HttpMethod.Get, "/mc/get/").apply {
-                assertEquals(HttpStatusCode.OK, response.status())
-            }
-        }
-    }
 }

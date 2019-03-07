@@ -25,23 +25,23 @@ fun Application.module(testing: Boolean = false) {
     }
 
     install(CORS) {
-        method(HttpMethod.Options)
-        method(HttpMethod.Put)
-        method(HttpMethod.Delete)
-        method(HttpMethod.Patch)
         header(HttpHeaders.Authorization)
         header("MyCustomHeader")
         allowCredentials = true
-        anyHost() // @TODO: Don't do this in production if possible. Try to limit it.
     }
 
     routing {
         get("/") {
             call.respondText("HELLO WORLD!", contentType = ContentType.Text.Plain)
         }
-
-        get("/json/jackson") {
-            call.respond(mapOf("hello" to "world"))
+        get("/mc/alumno") {
+            call.respond(mapOf("alumno" to "Andrea","matricula" to "21204"))
+        }
+        get("/mc/boleta") {
+            call.respond(mapOf("boleta" to "x"))
+        }
+        get("/mc/tutores") {
+            call.respond(mapOf("tutor" to "Armando"))
         }
     }
 }
