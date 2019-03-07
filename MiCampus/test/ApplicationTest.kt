@@ -77,4 +77,13 @@ class ApplicationTest {
             }
         }
     }
+
+    @Test
+    fun getPromedioG(){
+        withTestApplication({ module(testing = true) }) {
+            handleRequest(HttpMethod.Get, "/mc/promedioG").apply {
+                assertEquals(HttpStatusCode.OK, response.status())
+            }
+        }
+    }
 }
