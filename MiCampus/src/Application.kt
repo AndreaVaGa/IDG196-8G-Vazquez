@@ -35,7 +35,17 @@ fun Application.module(testing: Boolean = false) {
             call.respondText("HELLO WORLD!", contentType = ContentType.Text.Plain)
         }
         get("/mc/alumno") {
-            call.respond(mapOf("alumno" to "Andrea","matricula" to "21204"))
+            call.respond(
+                mapOf(
+                    "Nombre_1" to "Andrea" ,
+                            "Nombre_2" to "" ,
+                            "Matricula" to "021204" ,
+                            "Apellido_Paterno" to "Vazquez" ,
+                            "Apellido_Materno" to "Garay" ,
+                            "Nombre_Programa" to "IDGD" ,
+                            "materias_aprobadas" to "48"
+                )
+            )
         }
         get("/mc/boleta") {
             call.respond(mapOf("boleta" to "x"))
