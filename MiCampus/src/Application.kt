@@ -75,6 +75,20 @@ fun Application.module(testing: Boolean = false) {
         materia2
     )
 
+    val tutor1 = Tutor(
+        "Luis",
+        "(664) 450 6777",
+        "",
+        "luis@trabajo.com",
+        "Calle Magica 9999",
+        "Eduardo",
+        "",
+        "",
+        "",
+        ""
+    )
+
+
     horario.horario.add(grupoHorario)
     horario.horario.add(grupoHorario2)
 
@@ -121,6 +135,10 @@ fun Application.module(testing: Boolean = false) {
                 "Email_Madre" to "mlupitacl@gmail.com",
                 "Direccion_Madre" to "Mediterraneo 10080",
                 "Colonia_Madre" to "Cerro de las abejas"))
+        }
+
+        get("/mc/tutor") {
+            call.respond(mapOf("Tutores" to tutor1))
         }
 
         get("/mc/aprobada") {
