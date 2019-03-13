@@ -26,16 +26,16 @@ export default class Tutores extends React.Component {
     var value = await AsyncStorage.getItem('tutores');
     if (value !== null) {
       var alumno = JSON.parse(value)
-      this.setState({ nombre: alumno.Nombre_1_Padre + ' ' + alumno.Nombre_2_Padre + ' ' + alumno.Apellido_Paterno_Padre + ' ' + alumno.Apellido_Materno_Padre })
-      this.setState({ telefono: alumno.Telefono_Padre })
-      this.setState({ trabajo: alumno.Empresa_Padre })
-      this.setState({ correo: alumno.Email_Padre })
-      this.setState({ direccion: alumno.Direccion_Padre + ' ' + alumno.Colonia_Padre })
-      this.setState({ nombre2: alumno.Nombre_1_Madre + ' ' + alumno.Nombre_2_Madre + ' ' + alumno.Apellido_Paterno_Madre + ' ' + alumno.Apellido_Materno_Madre })
-      this.setState({ telefono2: alumno.Telefono_Madre })
-      this.setState({ trabajo2: alumno.Empresa_Madre })
-      this.setState({ correo2: alumno.Email_Madre })
-      this.setState({ direccion2: alumno.Direccion_Madre + ' ' + alumno.Colonia_Madre })
+      this.setState({ nombre: alumno.nombre_1_padre + ' ' + alumno.nombre_2_padre + ' ' + alumno.apellido_paterno_padre + ' ' + alumno.apellido_materno_padre })
+      this.setState({ telefono: alumno.telefono_padre })
+      this.setState({ trabajo: alumno.empresa_padre })
+      this.setState({ correo: alumno.email_padre })
+      this.setState({ direccion: alumno.direccion_padre + ' ' + alumno.colonia_padre })
+      this.setState({ nombre2: alumno.nombre_1_Madre + ' ' + alumno.nombre_2_madre + ' ' + alumno.apellido_paterno_madre + ' ' + alumno.apellido_materno_madre })
+      this.setState({ telefono2: alumno.telefono_madre })
+      this.setState({ trabajo2: alumno.empresa_madre })
+      this.setState({ correo2: alumno.email_madre })
+      this.setState({ direccion2: alumno.direccion_madre + ' ' + alumno.colonia_madre })
     }
   }
 

@@ -72,7 +72,7 @@ export default class Historial extends React.Component {
     var value = await AsyncStorage.getItem('PromedioGeneral');
     if (value !== null) {
       var promedio = JSON.parse(value)
-      this.setState({ promedio: promedio.PromedioGeneral })
+      this.setState({ promedio: promedio.promedio_general })
     }
   }
 
@@ -109,13 +109,13 @@ export default class Historial extends React.Component {
                     <View style={styles.fila}>
 
                       <View style={styles.materia}>
-                        <Text style={styles.headers}>{item.Nombre_Materia}</Text>
-                        <Text style={styles.texto}>{item.Nombre_Maestro}</Text>
+                        <Text style={styles.headers}>{item.nombre_materia}</Text>
+                        <Text style={styles.texto}>{item.nombre_maestro}</Text>
                       </View>
 
                       <View style={styles.faltas}>
                         <Text style={styles.headers}>H</Text>
-                        <Text style={styles.texto}>{item.Horas_Clase}</Text>
+                        <Text style={styles.texto}>{item.horas_clase}</Text>
                       </View>
 
                       <View style={styles.promedio2}>
@@ -158,13 +158,13 @@ export default class Historial extends React.Component {
                     <View style={styles.fila}>
 
                       <View style={styles.materia}>
-                        <Text style={styles.headers}>{item.Nombre_Materia}</Text>
+                        <Text style={styles.headers}>{item.nombre_materia}</Text>
                         <Text style={styles.texto}>Maestro Indefinido</Text>
                       </View>
 
                       <View style={styles.faltas}>
                         <Text style={styles.headers}>H</Text>
-                        <Text style={styles.texto}>{item.Horas_Clase}</Text>
+                        <Text style={styles.texto}>{item.horas_clase}</Text>
                       </View>
 
                       <View style={styles.promedio2}>
@@ -207,18 +207,18 @@ export default class Historial extends React.Component {
                     <View style={styles.fila}>
 
                       <View style={styles.materia}>
-                        <Text style={styles.headers}>{item.Nombre_Materia}</Text>
-                        <Text style={styles.texto}>{item.Nombre_Maestro}</Text>
+                        <Text style={styles.headers}>{item.nombre_materia}</Text>
+                        <Text style={styles.texto}>{item.nombre_maestro}</Text>
                       </View>
 
                       <View style={styles.faltas}>
                         <Text style={styles.headers}>H</Text>
-                        <Text style={styles.texto}>{item.Horas_Clase}</Text>
+                        <Text style={styles.texto}>{item.horas_clase}</Text>
                       </View>
 
                       <View style={styles.promedio2}>
                         <Text style={styles.headers}>P</Text>
-                        <Text style={styles.texto}>{item.Calificacion_Final}</Text>
+                        <Text style={styles.texto}>{item.calificacion_final}</Text>
                       </View>
 
                     </View>

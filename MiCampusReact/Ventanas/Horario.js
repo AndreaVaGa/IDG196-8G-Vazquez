@@ -83,11 +83,11 @@ class Horario extends React.Component {
     <HorarioRow
       onPressItem={this._onPressItem}
       matricula={item.matricula}
-      horaI={item.Hora_Inicio}
-      horaF={item.Hora_Final}
-      materia={item.Nombre_Materia}
-      salon={item.Lugar}
-      profesor={item.Nombre_Maestro}
+      horaI={item.hora_inicio}
+      horaF={item.Hora_final}
+      materia={item.nombre_materia}
+      salon={item.lugar}
+      profesor={item.nombre_maestro}
 
     />
 

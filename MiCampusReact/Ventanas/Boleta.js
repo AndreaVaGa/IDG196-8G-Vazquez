@@ -41,16 +41,16 @@ class ListViewDemo extends React.Component {
     <BoletaRow
       onPressItem={this._onPressItem}
       matricula={item.matricula}
-      materia={item.Nombre_Materia}
-      calif={item.Promedio}
-      profesor={item.Nombre_Maestro}
-      faltas={item.FaltasTotales}
-      calif1={item.Calificacion1}
-      calif2={item.Calificacion2}
-      calif3={item.Calificacion3}
-      faltas1={item.Faltas1}
-      faltas2={item.Faltas2}
-      faltas3={item.Faltas3}
+      materia={item.nombre_materia}
+      calif={item.promedio}
+      profesor={item.nombre_maestro}
+      faltas={item.faltas_totales}
+      calif1={item.calificacion1}
+      calif2={item.calificacion2}
+      calif3={item.calificacion3}
+      faltas1={item.faltas1}
+      faltas2={item.faltas2}
+      faltas3={item.faltas3}
     />
   );
 
