@@ -31,6 +31,9 @@ dependencies {
     compile("io.ktor:ktor-auth:$ktor_version")
     compile("io.ktor:ktor-auth-jwt:$ktor_version")
     compile("io.ktor:ktor-jackson:$ktor_version")
+    compile("com.github.jengelman.gradle.plugins:shadow:2.0.4")
+    compile("org.jetbrains.exposed:exposed:0.13.1")
+    compile("com.microsoft.sqlserver:mssql-jdbc:6.4.0.jre7")
     testCompile("io.ktor:ktor-server-tests:$ktor_version")
 }
 

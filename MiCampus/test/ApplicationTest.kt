@@ -13,6 +13,7 @@ import kotlin.test.*
 import io.ktor.server.testing.*
 
 class ApplicationTest {
+    val apiRoot = "/api/micampus"
 
     @Test
     fun testRoot() {
@@ -27,7 +28,7 @@ class ApplicationTest {
     @Test
     fun getAlumno(){
         withTestApplication({ module(testing = true) }) {
-            handleRequest(HttpMethod.Get, "/mc/alumno").apply {
+            handleRequest(HttpMethod.Get, "$apiRoot/public/v1/alumnos/buscarAlumno").apply {
                 assertEquals(HttpStatusCode.OK, response.status())
             }
         }
@@ -36,7 +37,7 @@ class ApplicationTest {
     @Test
     fun getTutores(){
         withTestApplication({ module(testing = true) }) {
-            handleRequest(HttpMethod.Get, "/mc/tutores").apply {
+            handleRequest(HttpMethod.Get, "$apiRoot/public/v1/alumnos/buscarTutores").apply {
                 assertEquals(HttpStatusCode.OK, response.status())
             }
         }
@@ -45,7 +46,7 @@ class ApplicationTest {
     @Test
     fun getBoleta(){
         withTestApplication({ module(testing = true) }) {
-            handleRequest(HttpMethod.Get, "/mc/boleta").apply {
+            handleRequest(HttpMethod.Get, "$apiRoot/public/v1/alumnos/buscarBoleta").apply {
                 assertEquals(HttpStatusCode.OK, response.status())
             }
         }
@@ -54,36 +55,20 @@ class ApplicationTest {
     @Test
     fun getAprobada(){
         withTestApplication({ module(testing = true) }) {
-            handleRequest(HttpMethod.Get, "/mc/aprobada").apply {
+            handleRequest(HttpMethod.Get, "$apiRoot/public/v1/alumnos/buscarAprobadas").apply {
                 assertEquals(HttpStatusCode.OK, response.status())
             }
         }
     }
 
-    @Test
-    fun getPorCursar(){
-        withTestApplication({ module(testing = true) }) {
-            handleRequest(HttpMethod.Get, "/mc/porcursar").apply {
-                assertEquals(HttpStatusCode.OK, response.status())
-            }
-        }
-    }
 
     @Test
     fun getHorario(){
         withTestApplication({ module(testing = true) }) {
-            handleRequest(HttpMethod.Get, "/mc/horario").apply {
+            handleRequest(HttpMethod.Get, "$apiRoot/public/v1/alumnos/buscarHorario").apply {
                 assertEquals(HttpStatusCode.OK, response.status())
             }
         }
     }
 
-    @Test
-    fun getPromedioG(){
-        withTestApplication({ module(testing = true) }) {
-            handleRequest(HttpMethod.Get, "/mc/promedioG").apply {
-                assertEquals(HttpStatusCode.OK, response.status())
-            }
-        }
-    }
 }
