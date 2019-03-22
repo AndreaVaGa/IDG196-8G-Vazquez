@@ -1,10 +1,7 @@
 package mx.edu.cetys.garay.andrea.exposed
 
 import mx.edu.cetys.garay.andrea.*
-import mx.edu.cetys.garay.andrea.dto.AprobadasDTO
-import mx.edu.cetys.garay.andrea.dto.HorarioDTO
-import mx.edu.cetys.garay.andrea.dto.PorCursarDTO
-import mx.edu.cetys.garay.andrea.dto.TutoresDTO
+import mx.edu.cetys.garay.andrea.dto.*
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.transactions.transaction
 
@@ -258,6 +255,27 @@ fun callBuscarPorCursarSP(user: String): List<PorCursarDTO> {
     return porcursar
 }
 
+fun callBuscarPromedioGeneralSP(user: String): Map<String, PromedioGeneralDTO> {
+    val storedProcedureRawSQL = "exec dbo.Promedio_General '$user'"
+    var promediogeneral = hashMapOf<String, PromedioGeneralDTO>()
 
+    Database.connect(
+        EXPOSED_CONNECTION_STRING,
+        EXPOSED_DRIVER,
+        EXPOSED_USER,
+        EXPOSED_PASSWORD
+    )
+
+    transaction {
+        execSp(storedProcedureRawSQL) {
+            if (it.next()) {
+                promediogeneral["promediogeneral"] = PromedioGeneralDTO(
+                    it.getString("PromedioGeneral")
+                )
+            }
+        }
+    }
+    return promediogeneral
+}
 
 

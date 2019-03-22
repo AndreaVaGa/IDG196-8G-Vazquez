@@ -103,7 +103,14 @@ fun Application.module(testing: Boolean = false) {
             val porcursar = callBuscarPorCursarSP(matricula)
             call.respond(porcursar)
         }
+        get("$apiRoot/public/v1/alumnos/buscarPromedioGeneral") {
+            val request = this.context.request
+            val queryParameters: Parameters = request.queryParameters
+            val matricula = queryParameters["matricula"] ?: ""
 
+            val promediogeneral = callBuscarPromedioGeneralSP(matricula)
+            call.respond(promediogeneral)
+        }
 
     }
 }
