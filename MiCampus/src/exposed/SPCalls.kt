@@ -47,7 +47,8 @@ fun callBuscarPerfilSP(user: String): Map<String, PerfilDTO> {
                     it.getString("Apellido_Paterno"),
                     it.getString("Apellido_Materno"),
                     it.getString("Nombre_Programa"),
-                    it.getString("Cve_Programa")
+                    it.getString("Cve_Programa"),
+                    it.getString("materias_aprobadas")
                 )
             }
         }
