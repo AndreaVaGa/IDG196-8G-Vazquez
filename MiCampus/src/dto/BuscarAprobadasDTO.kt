@@ -5,4 +5,5 @@ data class AprobadasDTO (
     val nombre_materia:String,
     val nombre_maestro: String,
     val horas_clase: String,
-    val calificacio_final: String)
+    val calificacion_final: String
+)

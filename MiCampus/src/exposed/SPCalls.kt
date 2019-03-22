@@ -141,6 +141,7 @@ fun callBuscarHorarioSP(user: String): List<HorarioDTO> {
                         it.getString("Nombre_Maestro"),
                         it.getString("Cve_Periodo"),
                         it.getString("Dia"),
+                        it.getString("Lugar"),
                         it.getString("Hora_Inicio"),
                         it.getString("Hora_Final")
                     )
@@ -245,6 +246,8 @@ fun callBuscarPorCursarSP(user: String): List<PorCursarDTO> {
             while (it.next()) {
                 porcursar.add(
                     PorCursarDTO(
+                        it.getString("Nombre_Materia"),
+                        it.getString("Horas_Clase"),
                         it.getString("Cve_Materia"),
                         it.getString("Cve_PlanEstudio")
                     )
