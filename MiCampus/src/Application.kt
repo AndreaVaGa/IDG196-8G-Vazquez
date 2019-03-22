@@ -95,9 +95,14 @@ fun Application.module(testing: Boolean = false) {
             val tutores = callBuscarTutoresSP(matricula)
             call.respond(tutores)
         }
+        get("$apiRoot/public/v1/alumnos/buscarPorCursar") {
+            val request = this.context.request
+            val queryParameters: Parameters = request.queryParameters
+            val matricula = queryParameters["matricula"] ?: ""
 
-
-
+            val porcursar = callBuscarPorCursarSP(matricula)
+            call.respond(porcursar)
+        }
 
 
     }

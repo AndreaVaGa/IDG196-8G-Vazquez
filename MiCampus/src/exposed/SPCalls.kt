@@ -3,6 +3,7 @@ package mx.edu.cetys.garay.andrea.exposed
 import mx.edu.cetys.garay.andrea.*
 import mx.edu.cetys.garay.andrea.dto.AprobadasDTO
 import mx.edu.cetys.garay.andrea.dto.HorarioDTO
+import mx.edu.cetys.garay.andrea.dto.PorCursarDTO
 import mx.edu.cetys.garay.andrea.dto.TutoresDTO
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.transactions.transaction
@@ -81,11 +82,9 @@ fun callBuscarBoletaSP(user: String): List<BoletaDTO> {
                         it.getString("Calificacion1"),
                         it.getString("Calificacion2"),
                         it.getString("Calificacion3"),
-                        it.getString("Calificacion4"),
                         it.getString("Faltas1"),
                         it.getString("Faltas2"),
                         it.getString("Faltas3"),
-                        it.getString("Faltas4"),
                         it.getString("Faltas_Tardias")
 
                     )
@@ -231,6 +230,34 @@ fun callBuscarTutoresSP(user: String): Map<String, TutoresDTO> {
     }
     return tutores
 }
+
+fun callBuscarPorCursarSP(user: String): List<PorCursarDTO> {
+    val storedProcedureRawSQL = "exec dbo.buscar_porcursar '$user'"
+    var porcursar = ArrayList<PorCursarDTO>()
+
+    Database.connect(
+        EXPOSED_CONNECTION_STRING,
+        EXPOSED_DRIVER,
+        EXPOSED_USER,
+        EXPOSED_PASSWORD
+
+    )
+
+    transaction {
+        execSp(storedProcedureRawSQL) {
+            while (it.next()) {
+                porcursar.add(
+                    PorCursarDTO(
+                        it.getString("Cve_Materia"),
+                        it.getString("Cve_PlanEstudio")
+                    )
+                )
+            }
+        }
+    }
+    return porcursar
+}
+
 
 
 
