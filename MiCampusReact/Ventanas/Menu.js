@@ -76,7 +76,7 @@ export default class Menu extends React.Component {
       .catch((error) => {
         console.error(error);
       });
-    fetch(this.state.host +'/mc/promedioG')
+    fetch(this.state.apiRoot +'/public/v1/alumnos/buscarPromedioGeneral?matricula='+ this.state.matricula)
 
       .then((response) => response.json())
       .then((responseJson) => {
