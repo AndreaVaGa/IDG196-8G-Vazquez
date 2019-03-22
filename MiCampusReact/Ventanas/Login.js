@@ -8,8 +8,7 @@ export default class Login extends React.Component {
     super(props);
     this.state = {
       usuario: '',
-      password: '', 
-      host: 'http://10.12.20.188:8080', 
+      password: '',
       apiRoot: "/api/micampus"
     };
   }
@@ -29,7 +28,7 @@ export default class Login extends React.Component {
     var matriculatemp = this.state.usuario
     var matricula_numerica = matriculatemp.slice(matriculatemp.length * -1 + 1)
 
-    return fetch(this.state.host + '/mc/alumno')
+    return fetch(this.state.apiRoot +'/public/v1/alumnos/buscarAlumno?matricula='+ this.state.matricula + '&password=' + this.state.password)
 
       .then((response) => response.json())
       .then((responseJson) => {

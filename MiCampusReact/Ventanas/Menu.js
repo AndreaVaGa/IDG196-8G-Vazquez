@@ -7,7 +7,6 @@ export default class Menu extends React.Component {
     super(props);
     this.state = {
       matricula: '',
-      host:'http://10.12.20.188:8080',
       apiRoot: "/api/micampus"
     };
 
@@ -44,7 +43,7 @@ export default class Menu extends React.Component {
   }
   _getHistorial = () => {
 
-    fetch(this.state.apiRoot +'/public/v1/alumnos/buscarCursando?matricula='+ this.state.matricula)
+    fetch(this.state.apiRoot +'/public/v1/alumnos/buscarAlumno?matricula='+ this.state.matricula + '&password=' + this.state.password)
 
       .then((response) => response.json())
       .then((responseJson) => {
