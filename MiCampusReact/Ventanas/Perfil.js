@@ -21,12 +21,13 @@ export default class Perfil extends React.Component {
       semestre: '',
       aprobadas: '',
       matricula: '', 
-      host:'http://10.12.20.188:8080'
+      host:'http://10.12.20.188:8080', 
+      apiRoot: "/api/micampus"
     };
   }
 
   _IraTutores = () => {
-    return fetch(this.state.host + '/mc/tutores')
+    return fetch(this.state.apiRoot +'/public/v1/alumnos/buscarTutores?matricula='+ this.state.matricula)
       .then((response) => response.json())
       .then((responseJson) => {
         if (responseJson !== undefined) {

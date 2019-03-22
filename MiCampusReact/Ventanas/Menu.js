@@ -7,10 +7,12 @@ export default class Menu extends React.Component {
     super(props);
     this.state = {
       matricula: '',
-      host:'http://10.12.20.188:8080'
+      host:'http://10.12.20.188:8080',
+      apiRoot: "/api/micampus"
     };
 
   }
+  
   componentDidMount() {
     this._loadInitionState().done();
   }
@@ -24,7 +26,7 @@ export default class Menu extends React.Component {
   }
   _IraPerfil = () => {
 
-    return fetch(this.state.host + '/mc/alumno')
+    return fetch(this.state.apiRoot +'/public/v1/alumnos/buscarPerfil?matricula='+ this.state.matricula)
       .then((response) => response.json())
       .then((responseJson) => {
         if (responseJson !== undefined) {
@@ -42,7 +44,7 @@ export default class Menu extends React.Component {
   }
   _getHistorial = () => {
 
-    fetch(this.state.host +'/mc/boleta')
+    fetch(this.state.apiRoot +'/public/v1/alumnos/buscarCursando?matricula='+ this.state.matricula)
 
       .then((response) => response.json())
       .then((responseJson) => {
@@ -53,7 +55,7 @@ export default class Menu extends React.Component {
       .catch((error) => {
         console.error(error);
       });
-    fetch(this.state.host +'/mc/aprobada')
+    fetch(this.state.apiRoot +'/public/v1/alumnos/buscarAprobadas?matricula='+ this.state.matricula)
 
       .then((response) => response.json())
       .then((responseJson) => {
@@ -64,7 +66,7 @@ export default class Menu extends React.Component {
       .catch((error) => {
         console.error(error);
       });
-    fetch(this.state.host +'/mc/porcursar')
+    fetch(this.state.apiRoot +'/public/v1/alumnos/buscarPorCursar?matricula='+ this.state.matricula)
 
       .then((response) => response.json())
       .then((responseJson) => {
@@ -93,7 +95,7 @@ export default class Menu extends React.Component {
 
   _getBoleta = () => {
 
-    return fetch(this.state.host +'/mc/boleta')
+    return fetch(this.state.apiRoot +'/public/v1/alumnos/buscarBoleta?matricula='+ this.state.matricula)
       .then((response) => response.json())
       .then((responseJson) => {
         if (responseJson !== undefined) {
@@ -108,7 +110,7 @@ export default class Menu extends React.Component {
 
   _getHorario = () => {
 
-    return fetch(this.state.host +'/mc/horario')
+    return fetch(this.state.apiRoot +'/public/v1/alumnos/buscarHorario?matricula='+ this.state.matricula)
 
       .then((response) => response.json())
       .then((responseJson) => {
