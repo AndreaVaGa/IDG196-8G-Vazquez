@@ -7,7 +7,7 @@ export default class Menu extends React.Component {
     super(props);
     this.state = {
       matricula: '',
-      apiRoot: "/api/micampus"
+      apiRoot: "http://0.0.0.0:8080/api/micampus"
     };
 
   }
@@ -20,7 +20,7 @@ export default class Menu extends React.Component {
     var value = await AsyncStorage.getItem('usuario');
     if (value !== null) {
       var alumno = JSON.parse(value)
-      this.setState({ matricula: alumno.Matricula })
+      this.setState({ matricula: alumno.alumno.matricula })
     }
   }
   _IraPerfil = () => {
@@ -43,7 +43,7 @@ export default class Menu extends React.Component {
   }
   _getHistorial = () => {
 
-    fetch(this.state.apiRoot +'/public/v1/alumnos/buscarAlumno?matricula='+ this.state.matricula + '&password=' + this.state.password)
+    fetch(this.state.apiRoot +'/public/v1/alumnos/buscarCursando?matricula='+ this.state.matricula)
 
       .then((response) => response.json())
       .then((responseJson) => {

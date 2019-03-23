@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Image, TouchableOpacity, TextInput, AsyncStorage, } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { isNull, isNullOrUndefined } from 'util';
 
 export default class Login extends React.Component {
 
@@ -9,7 +10,7 @@ export default class Login extends React.Component {
     this.state = {
       usuario: '',
       password: '',
-      apiRoot: "/api/micampus"
+      apiRoot: "http://0.0.0.0:8080/api/micampus"
     };
   }
   componentDidMount() {
@@ -28,11 +29,11 @@ export default class Login extends React.Component {
     var matriculatemp = this.state.usuario
     var matricula_numerica = matriculatemp.slice(matriculatemp.length * -1 + 1)
 
-    return fetch(this.state.apiRoot +'/public/v1/alumnos/buscarAlumno?matricula='+ this.state.matricula + '&password=' + this.state.password)
+    return fetch(this.state.apiRoot +'/public/v1/alumnos/buscarAlumno?matricula='+ matricula_numerica + '&password=' + this.state.password)
 
       .then((response) => response.json())
       .then((responseJson) => {
-        if (responseJson !== undefined) {
+        if (responseJson.alumno.matricula == matricula_numerica) {
           AsyncStorage.setItem('usuario', JSON.stringify(responseJson))
           this.props.navigation.navigate('Menu');
         }

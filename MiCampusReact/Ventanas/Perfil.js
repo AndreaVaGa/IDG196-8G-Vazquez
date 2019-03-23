@@ -21,8 +21,7 @@ export default class Perfil extends React.Component {
       semestre: '',
       aprobadas: '',
       matricula: '', 
-      host:'http://10.12.20.188:8080', 
-      apiRoot: "/api/micampus"
+      apiRoot: "http://10.12.20.188:8080/api/micampus"
     };
   }
 
@@ -52,11 +51,11 @@ export default class Perfil extends React.Component {
     var value = await AsyncStorage.getItem('perfil');
     if (value !== null) {
       var alumno = JSON.parse(value)
-      this.setState({ nombre: alumno.nombre_1 + alumno.nombre_2 })
-      this.setState({ matricula: alumno.matricula })
-      this.setState({ apellido: alumno.apellido_paterno + ' ' + alumno.apellido_materno })
-      this.setState({ carrera: alumno.nombre_programa })
-      this.setState({ aprobadas: alumno.materias_aprobadas })
+      this.setState({ nombre: alumno.perfil.nombre_1 + alumno.perfil.nombre_2 })
+      this.setState({ matricula: alumno.perfil.matricula })
+      this.setState({ apellido: alumno.perfil.apellido_paterno + ' ' + alumno.perfil.apellido_materno })
+      this.setState({ carrera: alumno.perfil.nombre_programa })
+      this.setState({ aprobadas: alumno.perfil.materias_aprobadas })
     }
   }
   

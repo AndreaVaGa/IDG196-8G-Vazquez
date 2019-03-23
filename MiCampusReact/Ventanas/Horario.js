@@ -39,23 +39,23 @@ class Horario extends React.Component {
     if (value !== null) {
       var horario = JSON.parse(value)
       horario.forEach(materia => {
-        if (materia.Dia == 1) {
+        if (materia.dia == 1) {
 
           this.state.lunes.push(materia)
         }
-        else if (materia.Dia == 2) {
+        else if (materia.dia == 2) {
 
           this.state.martes.push(materia)
         }
-        else if (materia.Dia == 3) {
+        else if (materia.dia == 3) {
 
           this.state.miercoles.push(materia)
         }
-        else if (materia.Dia == 4) {
+        else if (materia.dia == 4) {
 
           this.state.jueves.push(materia)
         }
-        else if (materia.Dia == 5) {
+        else if (materia.dia == 5) {
 
           this.state.viernes.push(materia)
         }
@@ -84,10 +84,10 @@ class Horario extends React.Component {
       onPressItem={this._onPressItem}
       matricula={item.matricula}
       horaI={item.hora_inicio}
-      horaF={item.Hora_final}
-      materia={item.nombre_materia}
+      horaF={item.hora_final}
+      materia={item.materia}
       salon={item.lugar}
-      profesor={item.nombre_maestro}
+      profesor={item.maestro}
 
     />
 
