@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, ScrollView, Text, View, ImageBackground, AsyncStorage, screenWidth, screenHeight, Image, TouchableOpacity } from 'react-native';
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 export default class Menu extends React.Component {
   constructor(props) {
@@ -11,7 +11,6 @@ export default class Menu extends React.Component {
     };
 
   }
-  
   componentDidMount() {
     this._loadInitionState().done();
   }
@@ -24,7 +23,6 @@ export default class Menu extends React.Component {
     }
   }
   _IraPerfil = () => {
-
     return fetch(this.state.apiRoot +'/public/v1/alumnos/buscarPerfil?matricula='+ this.state.matricula)
       .then((response) => response.json())
       .then((responseJson) => {
@@ -36,11 +34,8 @@ export default class Menu extends React.Component {
       .catch((error) => {
         console.error(error);
       });
-
   }
-  _IraHorario = () => {
-    this.props.navigation.navigate('Horario');
-  }
+  
   _getHistorial = () => {
 
     fetch(this.state.apiRoot +'/public/v1/alumnos/buscarCursando?matricula='+ this.state.matricula)
@@ -88,7 +83,6 @@ export default class Menu extends React.Component {
       .catch((error) => {
         console.error(error);
       });
-
   }
 
 
@@ -127,32 +121,32 @@ export default class Menu extends React.Component {
   render() {
     return (
       <ImageBackground style={styles.perfilContainer} source={require('../src/imgs/background.jpg')}>
-        <ScrollView>
-          <View style={styles.perfilContainer}>
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'flex-start', paddingRight: 10 }}>
-              <TouchableOpacity style={styles.Boton2} onPress={(this._IraPerfil)}>
-                <Image style={{ flex: 1, aspectRatio: .2, resizeMode: 'contain' }} source={require("../src/imgs/perfil.png")}></Image>
-              </TouchableOpacity>
-            </View>
-            <Text style={styles.title}>Académico</Text>
-
-            <View style={styles.container}>
-              <TouchableOpacity style={styles.Boton} onPress={(this._getBoleta)} title='Boleta'>
-                <Image source={require("../src/imgs/boleta.png")}></Image>
-                <Text style={styles.texto}>Boleta</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.Boton} onPress={(this._getHistorial)} title='Historial'>
-                <Image source={require("../src/imgs/historial.png")}></Image>
-                <Text style={styles.texto}>Historial</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.Boton} onPress={(this._getHorario)} title='Horario'>
-                <Image source={require("../src/imgs/horario.png")}></Image>
-                <Text style={styles.texto}>Horario</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.lineStyle} />
+      <ScrollView>
+      <View style={styles.perfilContainer}>
+          <View style={{ flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'flex-start', paddingRight: 10 }}>
+            <TouchableOpacity style={styles.Boton2} onPress={(this._IraPerfil)}>
+              <Image style={{ flex: 1, aspectRatio: .2, resizeMode: 'contain' }} source={require("../src/imgs/perfil.png")}></Image>
+            </TouchableOpacity>
           </View>
-        </ScrollView>
+          <Text style={styles.title}>Académico</Text>
+
+          <View style={styles.container}>
+            <TouchableOpacity style={styles.Boton} onPress={(this._getBoleta)} title='Boleta'>
+              <Image source={require("../src/imgs/boleta.png")}></Image>
+              <Text style={styles.texto}>Boleta</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.Boton} onPress={(this._getHistorial)} title='Historial'>
+              <Image source={require("../src/imgs/historial.png")}></Image>
+              <Text style={styles.texto}>Historial</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.Boton} onPress={(this._getHorario)} title='Horario'>
+              <Image source={require("../src/imgs/horario.png")}></Image>
+              <Text style={styles.texto}>Horario</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.lineStyle} />
+          </View>
+      </ScrollView>
       </ImageBackground>
     );
   }
@@ -174,7 +168,7 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     color: 'white',
     marginLeft: 15,
-    marginTop: 5,
+    marginTop:5,
     marginBottom: 5,
   },
   texto: {

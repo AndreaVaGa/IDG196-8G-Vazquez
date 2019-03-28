@@ -28,7 +28,7 @@ class ListViewDemo extends React.Component {
     var value = await AsyncStorage.getItem('boleta');
     if (value !== undefined) {
       var boleta = JSON.parse(value)
-      this.setState({ data: boleta })
+      this.setState({ data: boleta})
     }
   }
   //funcion que se define como atributo y se puede mandar 
@@ -39,18 +39,18 @@ class ListViewDemo extends React.Component {
 
   _renderItem = ({ item }) => (
     <BoletaRow
-      onPressItem={this._onPressItem}
-      matricula={item.matricula}
-      materia={item.nombre_materia}
-      calif={item.promedio}
-      profesor={item.nombre_maestro}
-      faltas={item.faltas_totales}
-      calif1={item.calificacion1}
-      calif2={item.calificacion2}
-      calif3={item.calificacion3}
-      faltas1={item.faltas1}
-      faltas2={item.faltas2}
-      faltas3={item.faltas3}
+    onPressItem={this._onPressItem}
+    matricula={item.matricula}
+    materia={item.nombre_materia}
+    calif={item.promedio}
+    profesor={item.nombre_maestro}
+    faltas={item.faltas_totales}
+    calif1={item.calificacion1}
+    calif2={item.calificacion2}
+    calif3={item.calificacion3}
+    faltas1={item.faltas1}
+    faltas2={item.faltas2}
+    faltas3={item.faltas3}
     />
   );
 
@@ -78,4 +78,3 @@ const styles = StyleSheet.create({
     alignContent: 'flex-end',
   }
 });
-
