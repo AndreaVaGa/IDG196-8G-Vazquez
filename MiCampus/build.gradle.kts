@@ -1,5 +1,6 @@
 import org.jetbrains.kotlin.gradle.dsl.Coroutines
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 val logback_version: String by project
 val ktor_version: String by project
@@ -8,9 +9,10 @@ val kotlin_version: String by project
 plugins {
     application
     kotlin("jvm") version "1.3.21"
+    id("com.github.johnrengelman.shadow") version "4.0.2"
 }
 
-group = "MiCampus"
+group = "mi-campus-api"
 version = "0.0.1-SNAPSHOT"
 
 application {
@@ -21,6 +23,7 @@ repositories {
     mavenLocal()
     jcenter()
     maven { url = uri("https://kotlin.bintray.com/ktor") }
+    maven { url = uri("https://plugins.gradle.org/m2/") }
 }
 
 dependencies {
@@ -37,8 +40,17 @@ dependencies {
     testCompile("io.ktor:ktor-server-tests:$ktor_version")
 }
 
+tasks {
+    named<ShadowJar>("shadowJar") {
+        baseName = "mi-campus-api"
+        classifier = ""
+        version = ""
+    }
+}
+
 kotlin.sourceSets["main"].kotlin.srcDirs("src")
 kotlin.sourceSets["test"].kotlin.srcDirs("test")
 
 sourceSets["main"].resources.srcDirs("resources")
 sourceSets["test"].resources.srcDirs("testresources")
+

@@ -1,9 +1,14 @@
 package mx.edu.cetys.garay.andrea.exposed
 
+import io.ktor.features.NotFoundException
+import io.ktor.server.engine.defaultExceptionStatusCode
 import mx.edu.cetys.garay.andrea.*
 import mx.edu.cetys.garay.andrea.dto.*
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.transactions.transaction
+import org.omg.CosNaming.NamingContextPackage.NotFound
+import sun.reflect.generics.reflectiveObjects.NotImplementedException
+import kotlin.reflect.jvm.internal.impl.load.java.lazy.descriptors.LazyJavaPackageScope
 
 fun callBuscarAlumnoSP(user: String, password: String): Map<String, AlumnoDTO> {
     val storedProcedureRawSQL = "exec dbo.buscar_alumno '$user','$password'"
@@ -17,7 +22,9 @@ fun callBuscarAlumnoSP(user: String, password: String): Map<String, AlumnoDTO> {
     )
 
     transaction {
+
         execSp(storedProcedureRawSQL) {
+
             if (it.next()) {
                 alumno["alumno"] = AlumnoDTO(it.getString("Matricula"))
             }
@@ -135,6 +142,7 @@ fun callBuscarHorarioSP(user: String): List<HorarioDTO> {
 
     transaction {
         execSp(storedProcedureRawSQL) {
+
             while (it.next()) {
                 horario.add(
                     HorarioDTO(
@@ -195,6 +203,7 @@ fun callBuscarTutoresSP(user: String): Map<String, TutoresDTO> {
 
     transaction {
         execSp(storedProcedureRawSQL) {
+
             if (it.next()) {
                 tutores["tutores"] = TutoresDTO(
                     it.getString("Nombre_1_Padre"),

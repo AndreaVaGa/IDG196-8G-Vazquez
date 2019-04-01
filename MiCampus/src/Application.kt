@@ -11,12 +11,14 @@ import io.ktor.jackson.*
 import io.ktor.features.*
 import mx.edu.cetys.garay.andrea.exposed.*
 
+
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
 @Suppress("unused") // Referenced in application.conf
 @kotlin.jvm.JvmOverloads
 fun Application.module(testing: Boolean = false) {
     val apiRoot = "/api/micampus"
+    val alumnoApi = AlumnoApi()
     install(Authentication) {
     }
 
@@ -43,8 +45,9 @@ fun Application.module(testing: Boolean = false) {
             val matricula = queryParameters["matricula"] ?: ""
             val password = queryParameters["password"] ?: ""
 
-            val alumno = callBuscarAlumnoSP(matricula, password)
-            call.respond(alumno)
+            val response = alumnoApi.getMatricula(matricula, password)
+
+            call.respond(response)
         }
         get("$apiRoot/public/v1/alumnos/buscarPerfil") {
             val request = this.context.request

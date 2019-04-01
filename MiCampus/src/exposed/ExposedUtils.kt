@@ -25,7 +25,6 @@ fun <T : Any> Transaction.execSp(stmt: String, transform: (ResultSet) -> T): T? 
         override fun PreparedStatement.executeInternal(transaction: Transaction): T? {
             executeQuery()
             return resultSet?.use { transform(it) }
-
         }
 
         override fun prepareSQL(transaction: Transaction): String = stmt
