@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.*
 import io.ktor.jackson.*
 import io.ktor.features.*
 import mx.edu.cetys.garay.andrea.exposed.*
+import mx.edu.cetys.garay.andrea.impl.PerfilApi
 
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
@@ -19,6 +20,7 @@ fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 fun Application.module(testing: Boolean = false) {
     val apiRoot = "/api/micampus"
     val alumnoApi = AlumnoApi()
+    val perfilApi = PerfilApi()
     install(Authentication) {
     }
 
@@ -53,9 +55,8 @@ fun Application.module(testing: Boolean = false) {
             val request = this.context.request
             val queryParameters: Parameters = request.queryParameters
             val matricula = queryParameters["matricula"] ?: ""
-
-            val perfil = callBuscarPerfilSP(matricula)
-            call.respond(perfil)
+            val response = perfilApi.getPerfil(matricula)
+            call.respond(response)
         }
         get("$apiRoot/public/v1/alumnos/buscarBoleta") {
             val request = this.context.request
