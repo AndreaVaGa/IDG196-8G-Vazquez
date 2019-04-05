@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.*
 import io.ktor.jackson.*
 import io.ktor.features.*
 import mx.edu.cetys.garay.andrea.exposed.*
+import mx.edu.cetys.garay.andrea.impl.BoletaApi
 import mx.edu.cetys.garay.andrea.impl.PerfilApi
 
 
@@ -21,6 +22,7 @@ fun Application.module(testing: Boolean = false) {
     val apiRoot = "/api/micampus"
     val alumnoApi = AlumnoApi()
     val perfilApi = PerfilApi()
+    val boletaApi = BoletaApi()
     install(Authentication) {
     }
 
@@ -63,7 +65,7 @@ fun Application.module(testing: Boolean = false) {
             val queryParameters: Parameters = request.queryParameters
             val matricula = queryParameters["matricula"] ?: ""
 
-            val boleta = callBuscarBoletaSP(matricula)
+            val boleta = boletaApi.getBoleta(matricula)
             call.respond(boleta)
         }
 

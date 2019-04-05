@@ -19,7 +19,7 @@ export default class Menu extends React.Component {
     var value = await AsyncStorage.getItem('usuario');
     if (value !== null) {
       var alumno = JSON.parse(value)
-      this.setState({ matricula: alumno.alumno.matricula })
+      this.setState({ matricula: alumno.matricula })
     }
   }
   _IraPerfil = () => {

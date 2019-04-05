@@ -32,7 +32,7 @@ export default class Login extends React.Component {
 
       .then((response) => response.json())
       .then((responseJson) => {
-        if (responseJson.alumno.matricula == matricula_numerica) {
+        if (responseJson.matricula == matricula_numerica) {
           AsyncStorage.setItem('usuario', JSON.stringify(responseJson))
           this.props.navigation.navigate('Menu');
         }

@@ -12,8 +12,8 @@ class GetPerfilQueryHandler : RequestHandler<GetPerfilQuery, GetPerfilQueryRespo
         require(message.matricula.isNotBlank())
         val perfil = spc.callBuscarPerfilSP(message.matricula)
 
-        //return perfil
-        return GetPerfilQueryResponse(
+        return perfil
+        /*return GetPerfilQueryResponse(
             perfil.matricula,
             perfil.nombre_1,
             perfil.nombre_2,
@@ -22,6 +22,6 @@ class GetPerfilQueryHandler : RequestHandler<GetPerfilQuery, GetPerfilQueryRespo
             perfil.nombre_programa,
             perfil.cve_programa,
             perfil.materias_aprobadas
-            )
+            )*/
     }
 }
