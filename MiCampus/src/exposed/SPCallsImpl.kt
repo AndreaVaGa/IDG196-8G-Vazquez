@@ -5,6 +5,7 @@ import mx.edu.cetys.garay.andrea.*
 import mx.edu.cetys.garay.andrea.application.Tutores.GetTutoresQueryResponse
 import mx.edu.cetys.garay.andrea.application.aprobadas.GetAprobadasQueryResponse
 import mx.edu.cetys.garay.andrea.application.boleta.GetBoletaQueryResponse
+import mx.edu.cetys.garay.andrea.application.cursando.GetCursandoQueryResponse
 import mx.edu.cetys.garay.andrea.application.perfiles.GetPerfilQueryResponse
 import mx.edu.cetys.garay.andrea.application.porcursar.GetPorCursarQueryResponse
 import mx.edu.cetys.garay.andrea.application.promediogeneral.GetPromGeneralQueryResponse
@@ -294,4 +295,34 @@ class SPCallsImpl : StoreProcedureCalls {
 
         return promediogeneral
     }
+
+    override fun callBuscarCursandoSP(matricula: String): List<GetCursandoQueryResponse> {
+        val storedProcedureRawSQL = "exec dbo.buscar_cursando '$matricula'"
+        val cursando = ArrayList<GetCursandoQueryResponse>()
+
+        Database.connect(
+            EXPOSED_CONNECTION_STRING,
+            EXPOSED_DRIVER,
+            EXPOSED_USER,
+            EXPOSED_PASSWORD
+        )
+
+        transaction {
+            execSp(storedProcedureRawSQL) {
+                while (it.next()) {
+                    cursando.add(
+                        GetCursandoQueryResponse(
+                            it.getString("Cve_Periodo"),
+                            it.getString("Nombre_Materia"),
+                            it.getString("Nombre_Maestro"),
+                            it.getString("Horas_Clase")
+
+                        )
+                    )
+                }
+            }
+        }
+        return cursando
+    }
+
 }

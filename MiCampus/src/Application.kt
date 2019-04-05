@@ -25,6 +25,7 @@ fun Application.module(testing: Boolean = false) {
     val aprobadasApi = AprobadasApi()
     val porcursarApi = PorCursarApi()
     val promeGeneralApi = PromGeneralApi()
+    val cursandoApi = CursandoApi()
     install(Authentication) {
     }
 
@@ -76,7 +77,7 @@ fun Application.module(testing: Boolean = false) {
             val queryParameters: Parameters = request.queryParameters
             val matricula = queryParameters["matricula"] ?: ""
 
-            val cursando = callBuscarCursandoSP(matricula)
+            val cursando = cursandoApi.getCursando(matricula)
             call.respond(cursando)
         }
         get("$apiRoot/public/v1/alumnos/buscarHorario") {
