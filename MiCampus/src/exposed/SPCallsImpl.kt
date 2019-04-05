@@ -40,7 +40,7 @@ class SPCallsImpl : StoreProcedureCalls {
 
     override fun callBuscarPerfilSP(matricula: String): GetPerfilQueryResponse {
         val storedProcedureRawSQL = "exec dbo.buscar_perfil '$matricula'"
-        var perfil: GetPerfilQueryResponse = GetPerfilQueryResponse(
+        var perfil = GetPerfilQueryResponse(
             "",
             "",
             "",
@@ -65,18 +65,18 @@ class SPCallsImpl : StoreProcedureCalls {
                         500 -> throw Exception("FAIL")
                         404 -> throw NotFoundException()
                     }
-                    if (it.next()) {
-                        perfil = GetPerfilQueryResponse(
-                            it.getString("Matricula"),
-                            it.getString("Nombre_1"),
-                            it.getString("Nombre_2"),
-                            it.getString("Apellido_Paterno"),
-                            it.getString("Apellido_Materno"),
-                            it.getString("Nombre_Programa"),
-                            it.getString("Cve_Programa"),
-                            it.getString("materias_aprobadas")
-                        )
-                    }
+
+                    perfil = GetPerfilQueryResponse(
+                        it.getString("Matricula"),
+                        it.getString("Nombre_1"),
+                        it.getString("Nombre_2"),
+                        it.getString("Apellido_Paterno"),
+                        it.getString("Apellido_Materno"),
+                        it.getString("Nombre_Programa"),
+                        it.getString("Cve_Programa"),
+                        it.getString("materias_aprobadas")
+                    )
+
                 }
             }
         }
@@ -122,10 +122,9 @@ class SPCallsImpl : StoreProcedureCalls {
     }
 
 
-
-    override fun callBuscarTutoresSP(matricula: String): GetTutoresQueryResponse{
+    override fun callBuscarTutoresSP(matricula: String): GetTutoresQueryResponse {
         val storedProcedureRawSQL = "exec dbo.buscar_tutores '$matricula'"
-        var tutores: GetTutoresQueryResponse = GetTutoresQueryResponse(
+        var tutores = GetTutoresQueryResponse(
             "",
             "",
             "",
@@ -168,36 +167,35 @@ class SPCallsImpl : StoreProcedureCalls {
                         500 -> throw Exception("FAIL")
                         404 -> throw NotFoundException()
                     }
-                    if (it.next()) {
-                        tutores = GetTutoresQueryResponse(
-                            it.getString("Nombre_1_Padre"),
-                            it.getString("Nombre_2_Padre"),
-                            it.getString("Apellido_Paterno_Padre"),
-                            it.getString("Apellido_Materno_Padre"),
-                            it.getString("Direccion_Padre"),
-                            it.getString("Colonia_Padre"),
-                            it.getString("Telefono_Padre"),
-                            it.getString("Email_Padre"),
-                            it.getString("Telefono_Celular_Pad"),
-                            it.getString("Empresa_Padre"),
-                            it.getString("Emp_Dir_Padre"),
-                            it.getString("Emp_Col_Padre"),
-                            it.getString("Emp_Tel_Padre"),
-                            it.getString("Nombre_1_Madre"),
-                            it.getString("Nombre_2_Madre"),
-                            it.getString("Apellido_Paterno_Madre"),
-                            it.getString("Apellido_Materno_Madre"),
-                            it.getString("Direccion_Madre"),
-                            it.getString("Colonia_Madre"),
-                            it.getString("Telefono_Madre"),
-                            it.getString("Email_Madre"),
-                            it.getString("Telefono_Celular_Madre"),
-                            it.getString("Empresa_Madre"),
-                            it.getString("Emp_Dir_Madre"),
-                            it.getString("Emp_Col_Madre"),
-                            it.getString("Emp_Tel_Madre")
-                        )
-                    }
+                    tutores = GetTutoresQueryResponse(
+                        it.getString("Nombre_1_Padre"),
+                        it.getString("Nombre_2_Padre"),
+                        it.getString("Apellido_Paterno_Padre"),
+                        it.getString("Apellido_Materno_Padre"),
+                        it.getString("Direccion_Padre"),
+                        it.getString("Colonia_Padre"),
+                        it.getString("Telefono_Padre"),
+                        it.getString("Email_Padre"),
+                        it.getString("Telefono_Celular_Pad"),
+                        it.getString("Empresa_Padre"),
+                        it.getString("Emp_Dir_Padre"),
+                        it.getString("Emp_Col_Padre"),
+                        it.getString("Emp_Tel_Padre"),
+                        it.getString("Nombre_1_Madre"),
+                        it.getString("Nombre_2_Madre"),
+                        it.getString("Apellido_Paterno_Madre"),
+                        it.getString("Apellido_Materno_Madre"),
+                        it.getString("Direccion_Madre"),
+                        it.getString("Colonia_Madre"),
+                        it.getString("Telefono_Madre"),
+                        it.getString("Email_Madre"),
+                        it.getString("Telefono_Celular_Madre"),
+                        it.getString("Empresa_Madre"),
+                        it.getString("Emp_Dir_Madre"),
+                        it.getString("Emp_Col_Madre"),
+                        it.getString("Emp_Tel_Madre")
+                    )
+
                 }
             }
         }
@@ -266,7 +264,7 @@ class SPCallsImpl : StoreProcedureCalls {
 
     override fun callBuscarPromedioGeneralSP(matricula: String): GetPromGeneralQueryResponse {
         val storedProcedureRawSQL = "exec dbo.Promedio_General '$matricula'"
-        var promediogeneral: GetPromGeneralQueryResponse = GetPromGeneralQueryResponse(
+        var promediogeneral = GetPromGeneralQueryResponse(
             ""
         )
         Database.connect(
@@ -284,11 +282,11 @@ class SPCallsImpl : StoreProcedureCalls {
                         500 -> throw Exception("FAIL")
                         404 -> throw NotFoundException()
                     }
-                    if (it.next()) {
-                        promediogeneral = GetPromGeneralQueryResponse(
-                            it.getString("PromedioGeneral")
-                        )
-                    }
+
+                    promediogeneral = GetPromGeneralQueryResponse(
+                        it.getString("PromedioGeneral")
+                    )
+
                 }
             }
         }

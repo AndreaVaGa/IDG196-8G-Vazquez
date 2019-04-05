@@ -11,6 +11,7 @@ class GetMatriculaQueryHandler : RequestHandler<GetMatriculaQuery, GetMatriculaQ
         require(message.matricula.isNotBlank())
         require(message.contrasena.isNotBlank())
 
+
         val alumno = spc.callBuscarAlumnoSP(message.matricula, message.contrasena)
 
         return GetMatriculaQueryResponse(alumno)

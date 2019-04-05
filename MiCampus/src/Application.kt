@@ -56,14 +56,14 @@ fun Application.module(testing: Boolean = false) {
 
             call.respond(response)
         }
-        get("$apiRoot/public/v1/alumnos/buscarPerfil") {
+        get("$apiRoot/public/v1/alumnos/Perfil") {
             val request = this.context.request
             val queryParameters: Parameters = request.queryParameters
             val matricula = queryParameters["matricula"] ?: ""
             val perfil = perfilApi.getPerfil(matricula)
             call.respond(perfil)
         }
-        get("$apiRoot/public/v1/alumnos/buscarBoleta") {
+        get("$apiRoot/public/v1/alumnos/Boleta") {
             val request = this.context.request
             val queryParameters: Parameters = request.queryParameters
             val matricula = queryParameters["matricula"] ?: ""
@@ -72,7 +72,7 @@ fun Application.module(testing: Boolean = false) {
             call.respond(boleta)
         }
 
-        get("$apiRoot/public/v1/alumnos/buscarCursando") {
+        get("$apiRoot/public/v1/alumnos/Cursando") {
             val request = this.context.request
             val queryParameters: Parameters = request.queryParameters
             val matricula = queryParameters["matricula"] ?: ""
@@ -80,7 +80,7 @@ fun Application.module(testing: Boolean = false) {
             val cursando = cursandoApi.getCursando(matricula)
             call.respond(cursando)
         }
-        get("$apiRoot/public/v1/alumnos/buscarHorario") {
+        get("$apiRoot/public/v1/alumnos/Horario") {
             val request = this.context.request
             val queryParameters: Parameters = request.queryParameters
             val matricula = queryParameters["matricula"] ?: ""
@@ -88,7 +88,7 @@ fun Application.module(testing: Boolean = false) {
             val horario = callBuscarHorarioSP(matricula)
             call.respond(horario)
         }
-        get("$apiRoot/public/v1/alumnos/buscarAprobadas") {
+        get("$apiRoot/public/v1/alumnos/Aprobadas") {
             val request = this.context.request
             val queryParameters: Parameters = request.queryParameters
             val matricula = queryParameters["matricula"] ?: ""
@@ -96,7 +96,7 @@ fun Application.module(testing: Boolean = false) {
             val aprobadas = aprobadasApi.getAprobadas(matricula)
             call.respond(aprobadas)
         }
-        get("$apiRoot/public/v1/alumnos/buscarTutores") {
+        get("$apiRoot/public/v1/alumnos/Tutores") {
             val request = this.context.request
             val queryParameters: Parameters = request.queryParameters
             val matricula = queryParameters["matricula"] ?: ""
@@ -104,7 +104,7 @@ fun Application.module(testing: Boolean = false) {
             val tutores = tutoresApi.getTutores(matricula)
             call.respond(tutores)
         }
-        get("$apiRoot/public/v1/alumnos/buscarPorCursar") {
+        get("$apiRoot/public/v1/alumnos/PorCursar") {
             val request = this.context.request
             val queryParameters: Parameters = request.queryParameters
             val matricula = queryParameters["matricula"] ?: ""
@@ -112,7 +112,7 @@ fun Application.module(testing: Boolean = false) {
             val porcursar = porcursarApi.getPorCursar(matricula)
             call.respond(porcursar)
         }
-        get("$apiRoot/public/v1/alumnos/buscarPromedioGeneral") {
+        get("$apiRoot/public/v1/alumnos/PromedioGeneral") {
             val request = this.context.request
             val queryParameters: Parameters = request.queryParameters
             val matricula = queryParameters["matricula"] ?: ""
