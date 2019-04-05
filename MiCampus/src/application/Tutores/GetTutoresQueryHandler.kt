@@ -9,7 +9,13 @@ class GetTutoresQueryHandler: RequestHandler<GetTutoresQuery, GetTutoresQueryRes
 
     override fun handle(message: GetTutoresQuery): GetTutoresQueryResponse {
         require(message.matricula.isNotBlank())
-        val tutores = spc.callBuscarTutoresSP(message.matricula)
+
+        var messageA = message.matricula.toUpperCase()
+        when (messageA[0]) {
+            'T', 'M', 'E' -> messageA = messageA.substring(1)
+        }
+
+        val tutores = spc.callBuscarTutoresSP(messageA)
 
         return tutores
     }

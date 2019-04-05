@@ -10,7 +10,13 @@ class GetCursandoQueryHandler: RequestHandler<GetPerfilQuery, List<GetCursandoQu
 
     override fun handle(message: GetPerfilQuery): List<GetCursandoQueryResponse> {
         require(message.matricula.isNotBlank())
-        val cursando = spc.callBuscarCursandoSP(message.matricula)
+
+        var messageA = message.matricula.toUpperCase()
+        when (messageA[0]) {
+            'T', 'M', 'E' -> messageA = messageA.substring(1)
+        }
+
+        val cursando = spc.callBuscarCursandoSP(messageA)
 
         return cursando
     }

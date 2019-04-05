@@ -10,7 +10,13 @@ class GetBoletaQueryHandler : RequestHandler<GetPerfilQuery, List<GetBoletaQuery
 
     override fun handle(message: GetPerfilQuery): List<GetBoletaQueryResponse> {
         require(message.matricula.isNotBlank())
-        val boleta = spc.callBuscarBoletaSP(message.matricula)
+
+        var messageA = message.matricula.toUpperCase()
+        when (messageA[0]) {
+            'T', 'M', 'E' -> messageA = messageA.substring(1)
+        }
+
+        val boleta = spc.callBuscarBoletaSP(messageA)
 
         return boleta
     }

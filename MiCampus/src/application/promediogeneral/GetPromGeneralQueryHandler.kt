@@ -10,7 +10,12 @@ class GetPromGeneralQueryHandler : RequestHandler<GetPromGeneralQuery, GetPromGe
     override fun handle(message: GetPromGeneralQuery): GetPromGeneralQueryResponse{
         require(message.matricula.isNotBlank())
 
-        val promediogeneral = spc.callBuscarPromedioGeneralSP(message.matricula)
+        var messageA = message.matricula.toUpperCase()
+        when (messageA[0]) {
+            'T', 'M', 'E' -> messageA = messageA.substring(1)
+        }
+
+        val promediogeneral = spc.callBuscarPromedioGeneralSP(messageA)
 
         return promediogeneral
     }

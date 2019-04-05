@@ -10,7 +10,13 @@ class GetPorCursarQueryHandler: RequestHandler<GetPerfilQuery, List<GetPorCursar
 
     override fun handle(message: GetPerfilQuery): List<GetPorCursarQueryResponse> {
         require(message.matricula.isNotBlank())
-        val porcursar = spc.callBuscarPorCusarSP(message.matricula)
+
+        var messageA = message.matricula.toUpperCase()
+        when (messageA[0]) {
+            'T', 'M', 'E' -> messageA = messageA.substring(1)
+        }
+
+        val porcursar = spc.callBuscarPorCusarSP(messageA)
 
         return porcursar
     }

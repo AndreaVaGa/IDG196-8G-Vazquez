@@ -10,7 +10,12 @@ class GetAprobadasQueryHandler : RequestHandler<GetPerfilQuery, List<GetAprobada
 
     override fun handle(message: GetPerfilQuery): List<GetAprobadasQueryResponse> {
         require(message.matricula.isNotBlank())
-        val aprobadas = spc.callBuscarAprobadasSP(message.matricula)
+        var messageA = message.matricula.toUpperCase()
+        when (messageA[0]) {
+            'T', 'M', 'E' -> messageA = messageA.substring(1)
+        }
+
+        val aprobadas = spc.callBuscarAprobadasSP(messageA)
 
         return aprobadas
     }

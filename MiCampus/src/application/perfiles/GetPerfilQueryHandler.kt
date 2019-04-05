@@ -10,7 +10,13 @@ class GetPerfilQueryHandler : RequestHandler<GetPerfilQuery, GetPerfilQueryRespo
 
     override fun handle(message: GetPerfilQuery): GetPerfilQueryResponse {
         require(message.matricula.isNotBlank())
-        val perfil = spc.callBuscarPerfilSP(message.matricula)
+
+        var messageA = message.matricula.toUpperCase()
+        when (messageA[0]) {
+            'T', 'M', 'E' -> messageA = messageA.substring(1)
+        }
+
+        val perfil = spc.callBuscarPerfilSP(messageA)
 
         return perfil
         /*return GetPerfilQueryResponse(
