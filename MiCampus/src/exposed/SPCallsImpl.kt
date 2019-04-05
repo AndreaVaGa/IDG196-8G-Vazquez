@@ -2,6 +2,7 @@ package mx.edu.cetys.garay.andrea.exposed
 
 import io.ktor.features.NotFoundException
 import mx.edu.cetys.garay.andrea.*
+import mx.edu.cetys.garay.andrea.application.Tutores.GetTutoresQueryResponse
 import mx.edu.cetys.garay.andrea.application.boleta.GetBoletaQueryResponse
 import mx.edu.cetys.garay.andrea.application.perfiles.GetPerfilQueryResponse
 import org.jetbrains.exposed.sql.Database
@@ -116,5 +117,88 @@ class SPCallsImpl : StoreProcedureCalls {
         return boleta
     }
 
+
+
+    override fun callBuscarTutoresSP(matricula: String): GetTutoresQueryResponse{
+        val storedProcedureRawSQL = "exec dbo.buscar_tutores '$matricula'"
+        var tutores: GetTutoresQueryResponse = GetTutoresQueryResponse(
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+        )
+        Database.connect(
+            EXPOSED_CONNECTION_STRING,
+            EXPOSED_DRIVER,
+            EXPOSED_USER,
+            EXPOSED_PASSWORD
+        )
+
+        transaction {
+            execSp(storedProcedureRawSQL) {
+                if (it.next()) {
+                    val statusCode = it.getInt("StatusCode")
+                    when (statusCode) {
+                        500 -> throw Exception("FAIL")
+                        404 -> throw NotFoundException()
+                    }
+                    if (it.next()) {
+                        tutores = GetTutoresQueryResponse(
+                            it.getString("Nombre_1_Padre"),
+                            it.getString("Nombre_2_Padre"),
+                            it.getString("Apellido_Paterno_Padre"),
+                            it.getString("Apellido_Materno_Padre"),
+                            it.getString("Direccion_Padre"),
+                            it.getString("Colonia_Padre"),
+                            it.getString("Telefono_Padre"),
+                            it.getString("Email_Padre"),
+                            it.getString("Telefono_Celular_Pad"),
+                            it.getString("Empresa_Padre"),
+                            it.getString("Emp_Dir_Padre"),
+                            it.getString("Emp_Col_Padre"),
+                            it.getString("Emp_Tel_Padre"),
+                            it.getString("Nombre_1_Madre"),
+                            it.getString("Nombre_2_Madre"),
+                            it.getString("Apellido_Paterno_Madre"),
+                            it.getString("Apellido_Materno_Madre"),
+                            it.getString("Direccion_Madre"),
+                            it.getString("Colonia_Madre"),
+                            it.getString("Telefono_Madre"),
+                            it.getString("Email_Madre"),
+                            it.getString("Telefono_Celular_Madre"),
+                            it.getString("Empresa_Madre"),
+                            it.getString("Emp_Dir_Madre"),
+                            it.getString("Emp_Col_Madre"),
+                            it.getString("Emp_Tel_Madre")
+                        )
+                    }
+                }
+            }
+        }
+
+        return tutores
+    }
 
 }

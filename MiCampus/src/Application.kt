@@ -12,6 +12,7 @@ import io.ktor.features.*
 import mx.edu.cetys.garay.andrea.exposed.*
 import mx.edu.cetys.garay.andrea.impl.BoletaApi
 import mx.edu.cetys.garay.andrea.impl.PerfilApi
+import mx.edu.cetys.garay.andrea.impl.TutoresApi
 
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
@@ -23,6 +24,7 @@ fun Application.module(testing: Boolean = false) {
     val alumnoApi = AlumnoApi()
     val perfilApi = PerfilApi()
     val boletaApi = BoletaApi()
+    val tutoresApi = TutoresApi()
     install(Authentication) {
     }
 
@@ -98,7 +100,7 @@ fun Application.module(testing: Boolean = false) {
             val queryParameters: Parameters = request.queryParameters
             val matricula = queryParameters["matricula"] ?: ""
 
-            val tutores = callBuscarTutoresSP(matricula)
+            val tutores = tutoresApi.getTutores(matricula)
             call.respond(tutores)
         }
         get("$apiRoot/public/v1/alumnos/buscarPorCursar") {
