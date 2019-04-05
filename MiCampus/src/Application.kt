@@ -2,7 +2,6 @@ package mx.edu.cetys.garay.andrea
 
 import io.ktor.application.*
 import io.ktor.response.*
-import io.ktor.request.*
 import io.ktor.routing.*
 import io.ktor.http.*
 import io.ktor.auth.*
@@ -10,9 +9,7 @@ import com.fasterxml.jackson.databind.*
 import io.ktor.jackson.*
 import io.ktor.features.*
 import mx.edu.cetys.garay.andrea.exposed.*
-import mx.edu.cetys.garay.andrea.impl.BoletaApi
-import mx.edu.cetys.garay.andrea.impl.PerfilApi
-import mx.edu.cetys.garay.andrea.impl.TutoresApi
+import mx.edu.cetys.garay.andrea.impl.*
 
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
@@ -25,6 +22,9 @@ fun Application.module(testing: Boolean = false) {
     val perfilApi = PerfilApi()
     val boletaApi = BoletaApi()
     val tutoresApi = TutoresApi()
+    val aprobadasApi = AprobadasApi()
+    val porcursarApi = PorCursarApi()
+    val promeGeneralApi = PromGeneralApi()
     install(Authentication) {
     }
 
@@ -59,8 +59,8 @@ fun Application.module(testing: Boolean = false) {
             val request = this.context.request
             val queryParameters: Parameters = request.queryParameters
             val matricula = queryParameters["matricula"] ?: ""
-            val response = perfilApi.getPerfil(matricula)
-            call.respond(response)
+            val perfil = perfilApi.getPerfil(matricula)
+            call.respond(perfil)
         }
         get("$apiRoot/public/v1/alumnos/buscarBoleta") {
             val request = this.context.request
@@ -92,7 +92,7 @@ fun Application.module(testing: Boolean = false) {
             val queryParameters: Parameters = request.queryParameters
             val matricula = queryParameters["matricula"] ?: ""
 
-            val aprobadas = callBuscarAprobadasSP(matricula)
+            val aprobadas = aprobadasApi.getAprobadas(matricula)
             call.respond(aprobadas)
         }
         get("$apiRoot/public/v1/alumnos/buscarTutores") {
@@ -108,7 +108,7 @@ fun Application.module(testing: Boolean = false) {
             val queryParameters: Parameters = request.queryParameters
             val matricula = queryParameters["matricula"] ?: ""
 
-            val porcursar = callBuscarPorCursarSP(matricula)
+            val porcursar = porcursarApi.getPorCursar(matricula)
             call.respond(porcursar)
         }
         get("$apiRoot/public/v1/alumnos/buscarPromedioGeneral") {
@@ -116,7 +116,7 @@ fun Application.module(testing: Boolean = false) {
             val queryParameters: Parameters = request.queryParameters
             val matricula = queryParameters["matricula"] ?: ""
 
-            val promediogeneral = callBuscarPromedioGeneralSP(matricula)
+            val promediogeneral = promeGeneralApi.getPromGeneral(matricula)
             call.respond(promediogeneral)
         }
 

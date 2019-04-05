@@ -3,8 +3,11 @@ package mx.edu.cetys.garay.andrea.exposed
 import io.ktor.features.NotFoundException
 import mx.edu.cetys.garay.andrea.*
 import mx.edu.cetys.garay.andrea.application.Tutores.GetTutoresQueryResponse
+import mx.edu.cetys.garay.andrea.application.aprobadas.GetAprobadasQueryResponse
 import mx.edu.cetys.garay.andrea.application.boleta.GetBoletaQueryResponse
 import mx.edu.cetys.garay.andrea.application.perfiles.GetPerfilQueryResponse
+import mx.edu.cetys.garay.andrea.application.porcursar.GetPorCursarQueryResponse
+import mx.edu.cetys.garay.andrea.application.promediogeneral.GetPromGeneralQueryResponse
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.transactions.transaction
 
@@ -201,4 +204,94 @@ class SPCallsImpl : StoreProcedureCalls {
         return tutores
     }
 
+    override fun callBuscarAprobadasSP(matricula: String): List<GetAprobadasQueryResponse> {
+        val storedProcedureRawSQL = "exec dbo.buscar_aprobadas '$matricula'"
+        val aprobdas = ArrayList<GetAprobadasQueryResponse>()
+
+        Database.connect(
+            EXPOSED_CONNECTION_STRING,
+            EXPOSED_DRIVER,
+            EXPOSED_USER,
+            EXPOSED_PASSWORD
+        )
+
+        transaction {
+            execSp(storedProcedureRawSQL) {
+                while (it.next()) {
+                    aprobdas.add(
+                        GetAprobadasQueryResponse(
+                            it.getString("Cve_Periodo"),
+                            it.getString("Nombre_Materia"),
+                            it.getString("Nombre_Maestro"),
+                            it.getString("Horas_Clase"),
+                            it.getString("Calificacion_Final")
+
+                        )
+                    )
+                }
+            }
+        }
+        return aprobdas
+    }
+
+    override fun callBuscarPorCusarSP(matricula: String): List<GetPorCursarQueryResponse> {
+        val storedProcedureRawSQL = "exec dbo.buscar_porcursar '$matricula'"
+        val porcursar = ArrayList<GetPorCursarQueryResponse>()
+
+        Database.connect(
+            EXPOSED_CONNECTION_STRING,
+            EXPOSED_DRIVER,
+            EXPOSED_USER,
+            EXPOSED_PASSWORD
+        )
+
+        transaction {
+            execSp(storedProcedureRawSQL) {
+                while (it.next()) {
+                    porcursar.add(
+                        GetPorCursarQueryResponse(
+                            it.getString("Nombre_Materia"),
+                            it.getString("Horas_Clase"),
+                            it.getString("Cve_Materia"),
+                            it.getString("Cve_PlanEstudio")
+                        )
+                    )
+                }
+            }
+        }
+        return porcursar
+    }
+
+
+    override fun callBuscarPromedioGeneralSP(matricula: String): GetPromGeneralQueryResponse {
+        val storedProcedureRawSQL = "exec dbo.Promedio_General '$matricula'"
+        var promediogeneral: GetPromGeneralQueryResponse = GetPromGeneralQueryResponse(
+            ""
+        )
+        Database.connect(
+            EXPOSED_CONNECTION_STRING,
+            EXPOSED_DRIVER,
+            EXPOSED_USER,
+            EXPOSED_PASSWORD
+        )
+
+        transaction {
+            execSp(storedProcedureRawSQL) {
+                if (it.next()) {
+                    val statusCode = it.getInt("StatusCode")
+                    when (statusCode) {
+                        500 -> throw Exception("FAIL")
+                        404 -> throw NotFoundException()
+                    }
+                    if (it.next()) {
+                        promediogeneral = GetPromGeneralQueryResponse(
+                            it.getString("PromedioGeneral")
+                        )
+                    }
+                }
+            }
+        }
+
+        return promediogeneral
+    }
 }
