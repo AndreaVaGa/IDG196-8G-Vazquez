@@ -46,76 +46,76 @@ fun Application.module(testing: Boolean = false) {
             call.respondText("HELLO WORLD!", contentType = ContentType.Text.Plain)
         }
 
-        get("$apiRoot/public/v1/alumnos/buscarAlumno") {
+        get("$apiRoot/public/v1/alumnos/{matricula}/login") {
             val request = this.context.request
             val queryParameters: Parameters = request.queryParameters
-            val matricula = queryParameters["matricula"] ?: ""
+            val matricula = call.parameters ["matricula"] ?: ""
             val password = queryParameters["password"] ?: ""
 
             val response = alumnoApi.getMatricula(matricula, password)
 
             call.respond(response)
         }
-        get("$apiRoot/public/v1/alumnos/Perfil") {
+        get("$apiRoot/public/v1/alumnos/{matricula}/Perfil") {
             val request = this.context.request
             val queryParameters: Parameters = request.queryParameters
-            val matricula = queryParameters["matricula"] ?: ""
+            val matricula = call.parameters ["matricula"] ?: ""
             val perfil = perfilApi.getPerfil(matricula)
             call.respond(perfil)
         }
-        get("$apiRoot/public/v1/alumnos/Boleta") {
+        get("$apiRoot/public/v1/alumnos/{matricula}/Boleta") {
             val request = this.context.request
             val queryParameters: Parameters = request.queryParameters
-            val matricula = queryParameters["matricula"] ?: ""
+            val matricula = call.parameters["matricula"] ?: ""
 
             val boleta = boletaApi.getBoleta(matricula)
             call.respond(boleta)
         }
 
-        get("$apiRoot/public/v1/alumnos/Cursando") {
+        get("$apiRoot/public/v1/alumnos/{matricula}/Cursando") {
             val request = this.context.request
             val queryParameters: Parameters = request.queryParameters
-            val matricula = queryParameters["matricula"] ?: ""
+            val matricula = call.parameters["matricula"] ?: ""
 
             val cursando = cursandoApi.getCursando(matricula)
             call.respond(cursando)
         }
-        get("$apiRoot/public/v1/alumnos/Horario") {
+        get("$apiRoot/public/v1/alumnos/{matricula}/Horario") {
             val request = this.context.request
             val queryParameters: Parameters = request.queryParameters
-            val matricula = queryParameters["matricula"] ?: ""
+            val matricula = call.parameters["matricula"] ?: ""
 
             val horario = callBuscarHorarioSP(matricula)
             call.respond(horario)
         }
-        get("$apiRoot/public/v1/alumnos/Aprobadas") {
+        get("$apiRoot/public/v1/alumnos/{matricula}/Aprobadas") {
             val request = this.context.request
             val queryParameters: Parameters = request.queryParameters
-            val matricula = queryParameters["matricula"] ?: ""
+            val matricula = call.parameters["matricula"] ?: ""
 
             val aprobadas = aprobadasApi.getAprobadas(matricula)
             call.respond(aprobadas)
         }
-        get("$apiRoot/public/v1/alumnos/Tutores") {
+        get("$apiRoot/public/v1/alumnos/{matricula}/Tutores") {
             val request = this.context.request
             val queryParameters: Parameters = request.queryParameters
-            val matricula = queryParameters["matricula"] ?: ""
+            val matricula = call.parameters["matricula"] ?: ""
 
             val tutores = tutoresApi.getTutores(matricula)
             call.respond(tutores)
         }
-        get("$apiRoot/public/v1/alumnos/PorCursar") {
+        get("$apiRoot/public/v1/alumnos/{matricula}/PorCursar") {
             val request = this.context.request
             val queryParameters: Parameters = request.queryParameters
-            val matricula = queryParameters["matricula"] ?: ""
+            val matricula = call.parameters["matricula"] ?: ""
 
             val porcursar = porcursarApi.getPorCursar(matricula)
             call.respond(porcursar)
         }
-        get("$apiRoot/public/v1/alumnos/PromedioGeneral") {
+        get("$apiRoot/public/v1/alumnos/{matricula}/PromedioGeneral") {
             val request = this.context.request
             val queryParameters: Parameters = request.queryParameters
-            val matricula = queryParameters["matricula"] ?: ""
+            val matricula = call.parameters["matricula"] ?: ""
 
             val promediogeneral = promeGeneralApi.getPromGeneral(matricula)
             call.respond(promediogeneral)
