@@ -26,7 +26,7 @@ export default class Perfil extends React.Component {
   }
 
   _IraTutores = () => {
-    return fetch(this.state.apiRoot +'/public/v1/alumnos/buscarTutores?matricula='+ this.state.matricula)
+    return fetch(this.state.apiRoot +'/public/v1/alumnos'+ this.state.matricula +'/Tutores')
       .then((response) => response.json())
       .then((responseJson) => {
         if (responseJson !== undefined) {

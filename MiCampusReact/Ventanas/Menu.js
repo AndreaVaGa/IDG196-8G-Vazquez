@@ -23,7 +23,7 @@ export default class Menu extends React.Component {
     }
   }
   _IraPerfil = () => {
-    return fetch(this.state.apiRoot +'/public/v1/alumnos/buscarPerfil?matricula='+ this.state.matricula)
+    return fetch(this.state.apiRoot +'/public/v1/alumnos'+ this.state.matricula +'/Perfil')
       .then((response) => response.json())
       .then((responseJson) => {
         if (responseJson !== undefined) {
@@ -38,7 +38,7 @@ export default class Menu extends React.Component {
   
   _getHistorial = () => {
 
-    fetch(this.state.apiRoot +'/public/v1/alumnos/buscarCursando?matricula='+ this.state.matricula)
+    fetch(this.state.apiRoot +'/public/v1/alumnos'+ this.state.matricula +'/Cursando')
 
       .then((response) => response.json())
       .then((responseJson) => {
@@ -49,7 +49,7 @@ export default class Menu extends React.Component {
       .catch((error) => {
         console.error(error);
       });
-    fetch(this.state.apiRoot +'/public/v1/alumnos/buscarAprobadas?matricula='+ this.state.matricula)
+    fetch(this.state.apiRoot +'/public/v1/alumnos'+ this.state.matricula +'/Aprobadas')
 
       .then((response) => response.json())
       .then((responseJson) => {
@@ -60,7 +60,7 @@ export default class Menu extends React.Component {
       .catch((error) => {
         console.error(error);
       });
-    fetch(this.state.apiRoot +'/public/v1/alumnos/buscarPorCursar?matricula='+ this.state.matricula)
+    fetch(this.state.apiRoot +'/public/v1/alumnos'+ this.state.matricula +'/PorCursar')
 
       .then((response) => response.json())
       .then((responseJson) => {
@@ -71,7 +71,7 @@ export default class Menu extends React.Component {
       .catch((error) => {
         console.error(error);
       });
-    fetch(this.state.apiRoot +'/public/v1/alumnos/buscarPromedioGeneral?matricula='+ this.state.matricula)
+    fetch(this.state.apiRoot +'/public/v1/alumnos'+ this.state.matricula +'/PromedioGeneral')
 
       .then((response) => response.json())
       .then((responseJson) => {
@@ -88,7 +88,7 @@ export default class Menu extends React.Component {
 
   _getBoleta = () => {
 
-    return fetch(this.state.apiRoot +'/public/v1/alumnos/buscarBoleta?matricula='+ this.state.matricula)
+    return fetch(this.state.apiRoot +'/public/v1/alumnos'+ this.state.matricula +'/Boleta')
       .then((response) => response.json())
       .then((responseJson) => {
         if (responseJson !== undefined) {
@@ -103,7 +103,7 @@ export default class Menu extends React.Component {
 
   _getHorario = () => {
 
-    return fetch(this.state.apiRoot +'/public/v1/alumnos/buscarHorario?matricula='+ this.state.matricula)
+    return fetch(this.state.apiRoot +'/public/v1/alumnos'+ this.state.matricula +'/Horario')
 
       .then((response) => response.json())
       .then((responseJson) => {

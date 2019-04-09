@@ -28,7 +28,7 @@ export default class Login extends React.Component {
     var matriculatemp = this.state.usuario
     var matricula_numerica = matriculatemp.slice(matriculatemp.length * -1 + 1)
 
-    return fetch(this.state.apiRoot + '/public/v1/alumnos/buscarAlumno?matricula=' + matricula_numerica + '&password=' + this.state.password)
+    return fetch(this.state.apiRoot + '/public/v1/alumnos/'+ matricula_numerica +'/login?password=' + this.state.password)
 
       .then((response) => response.json())
       .then((responseJson) => {
