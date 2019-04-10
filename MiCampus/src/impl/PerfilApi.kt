@@ -2,10 +2,11 @@ package mx.edu.cetys.garay.andrea.impl
 
 import mx.edu.cetys.garay.andrea.application.perfiles.GetPerfilQuery
 import mx.edu.cetys.garay.andrea.application.perfiles.GetPerfilQueryHandler
+import mx.edu.cetys.garay.andrea.exposed.SPCallsImpl
 
 
 class PerfilApi {
-    private val getPerfilQueryHandler = GetPerfilQueryHandler()
+    private val getPerfilQueryHandler = GetPerfilQueryHandler(SPCallsImpl())
 
     fun getPerfil(matricula: String): GetPerfilResponse {
         val response = getPerfilQueryHandler.handle(GetPerfilQuery(matricula))

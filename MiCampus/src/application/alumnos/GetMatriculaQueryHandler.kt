@@ -4,8 +4,8 @@ import mx.edu.cetys.garay.andrea.application.RequestHandler
 import mx.edu.cetys.garay.andrea.exposed.SPCallsImpl
 import mx.edu.cetys.garay.andrea.exposed.StoreProcedureCalls
 
-class GetMatriculaQueryHandler : RequestHandler<GetMatriculaQuery, GetMatriculaQueryResponse> {
-    private val spc: StoreProcedureCalls = SPCallsImpl()
+class GetMatriculaQueryHandler(private val spc: StoreProcedureCalls) :
+    RequestHandler<GetMatriculaQuery, GetMatriculaQueryResponse> {
 
     override fun handle(message: GetMatriculaQuery): GetMatriculaQueryResponse {
         require(message.matricula.isNotBlank())

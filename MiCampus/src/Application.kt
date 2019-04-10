@@ -8,6 +8,9 @@ import io.ktor.auth.*
 import com.fasterxml.jackson.databind.*
 import io.ktor.jackson.*
 import io.ktor.features.*
+import mx.edu.cetys.garay.andrea.application.alumnos.GetMatriculaQueryHandler
+import mx.edu.cetys.garay.andrea.application.boleta.GetBoletaQueryHandler
+import mx.edu.cetys.garay.andrea.application.perfiles.GetPerfilQueryHandler
 import mx.edu.cetys.garay.andrea.exposed.*
 import mx.edu.cetys.garay.andrea.impl.*
 
@@ -18,9 +21,11 @@ fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 @kotlin.jvm.JvmOverloads
 fun Application.module(testing: Boolean = false) {
     val apiRoot = "/api/micampus"
-    val alumnoApi = AlumnoApi()
-    val perfilApi = PerfilApi()
-    val boletaApi = BoletaApi()
+    val alumnoApi = AlumnoApi(
+        GetMatriculaQueryHandler(SPCallsImpl()),
+        GetPerfilQueryHandler(SPCallsImpl()),
+        GetBoletaQueryHandler(SPCallsImpl())
+    )
     val tutoresApi = TutoresApi()
     val aprobadasApi = AprobadasApi()
     val porcursarApi = PorCursarApi()
@@ -49,7 +54,7 @@ fun Application.module(testing: Boolean = false) {
         get("$apiRoot/public/v1/alumnos/{matricula}/login") {
             val request = this.context.request
             val queryParameters: Parameters = request.queryParameters
-            val matricula = call.parameters ["matricula"] ?: ""
+            val matricula = call.parameters["matricula"] ?: ""
             val password = queryParameters["password"] ?: ""
 
             val response = alumnoApi.getMatricula(matricula, password)
@@ -57,18 +62,14 @@ fun Application.module(testing: Boolean = false) {
             call.respond(response)
         }
         get("$apiRoot/public/v1/alumnos/{matricula}/Perfil") {
-            val request = this.context.request
-            val queryParameters: Parameters = request.queryParameters
-            val matricula = call.parameters ["matricula"] ?: ""
-            val perfil = perfilApi.getPerfil(matricula)
+            val matricula = call.parameters["matricula"] ?: ""
+            val perfil = alumnoApi.getPerfil(matricula)
             call.respond(perfil)
         }
         get("$apiRoot/public/v1/alumnos/{matricula}/Boleta") {
-            val request = this.context.request
-            val queryParameters: Parameters = request.queryParameters
             val matricula = call.parameters["matricula"] ?: ""
 
-            val boleta = boletaApi.getBoleta(matricula)
+            val boleta = alumnoApi.getBoleta(matricula)
             call.respond(boleta)
         }
 

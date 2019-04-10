@@ -84,10 +84,10 @@ class SPCallsImpl : StoreProcedureCalls {
         return perfil
     }
 
-    override fun callBuscarBoletaSP(matricula: String): List<GetBoletaQueryResponse> {
+    override fun callBuscarBoletaSP(matricula: String): GetBoletaQueryResponse {
         val storedProcedureRawSQL = "exec dbo.buscar_boleta '$matricula'"
-        val boleta = ArrayList<GetBoletaQueryResponse>()
 
+        val boleta = ArrayList<BoletaDTO>()
         Database.connect(
             EXPOSED_CONNECTION_STRING,
             EXPOSED_DRIVER,
@@ -99,7 +99,7 @@ class SPCallsImpl : StoreProcedureCalls {
             execSp(storedProcedureRawSQL) {
                 while (it.next()) {
                     boleta.add(
-                        GetBoletaQueryResponse(
+                        BoletaDTO(
                             it.getString("Cve_Periodo"),
                             it.getString("Nombre_Materia"),
                             it.getString("Nombre_Maestro"),
@@ -118,7 +118,8 @@ class SPCallsImpl : StoreProcedureCalls {
                 }
             }
         }
-        return boleta
+
+        return GetBoletaQueryResponse(boleta)
     }
 
 

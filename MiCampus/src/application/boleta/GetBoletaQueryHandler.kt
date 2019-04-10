@@ -5,10 +5,9 @@ import mx.edu.cetys.garay.andrea.application.perfiles.GetPerfilQuery
 import mx.edu.cetys.garay.andrea.exposed.SPCallsImpl
 import mx.edu.cetys.garay.andrea.exposed.StoreProcedureCalls
 
-class GetBoletaQueryHandler : RequestHandler<GetPerfilQuery, List<GetBoletaQueryResponse>> {
-    private val spc: StoreProcedureCalls = SPCallsImpl()
+class GetBoletaQueryHandler (private val spc: StoreProcedureCalls) : RequestHandler<GetPerfilQuery, GetBoletaQueryResponse> {
 
-    override fun handle(message: GetPerfilQuery): List<GetBoletaQueryResponse> {
+    override fun handle(message: GetPerfilQuery): GetBoletaQueryResponse {
         require(message.matricula.isNotBlank())
 
         var messageA = message.matricula.toUpperCase()

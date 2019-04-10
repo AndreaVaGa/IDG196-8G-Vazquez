@@ -72,7 +72,7 @@ export default class Historial extends React.Component {
     var value = await AsyncStorage.getItem('PromedioGeneral');
     if (value !== null) {
       var promedio = JSON.parse(value)
-      this.setState({ promedio: promedio.promediogeneral.promedio_general })
+      this.setState({ promedio: promedio.promedio_general })
     }
   }
 

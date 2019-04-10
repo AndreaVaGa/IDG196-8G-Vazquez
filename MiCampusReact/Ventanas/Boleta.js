@@ -28,7 +28,7 @@ class ListViewDemo extends React.Component {
     var value = await AsyncStorage.getItem('boleta');
     if (value !== undefined) {
       var boleta = JSON.parse(value)
-      this.setState({ data: boleta})
+      this.setState({ data: boleta.boleta})
     }
   }
   //funcion que se define como atributo y se puede mandar 

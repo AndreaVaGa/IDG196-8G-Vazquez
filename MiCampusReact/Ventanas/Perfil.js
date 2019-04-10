@@ -26,7 +26,7 @@ export default class Perfil extends React.Component {
   }
 
   _IraTutores = () => {
-    return fetch(this.state.apiRoot +'/public/v1/alumnos'+ this.state.matricula +'/Tutores')
+    return fetch(this.state.apiRoot +'/public/v1/alumnos/'+ this.state.matricula +'/Tutores')
       .then((response) => response.json())
       .then((responseJson) => {
         if (responseJson !== undefined) {
@@ -51,11 +51,11 @@ export default class Perfil extends React.Component {
     var value = await AsyncStorage.getItem('perfil');
     if (value !== null) {
       var alumno = JSON.parse(value)
-      this.setState({ nombre: alumno.perfil.nombre_1 + alumno.perfil.nombre_2 })
-      this.setState({ matricula: alumno.perfil.matricula })
-      this.setState({ apellido: alumno.perfil.apellido_paterno + ' ' + alumno.perfil.apellido_materno })
-      this.setState({ carrera: alumno.perfil.nombre_programa })
-      this.setState({ aprobadas: alumno.perfil.materias_aprobadas })
+      this.setState({ nombre: alumno.nombre_1 + alumno.nombre_2 })
+      this.setState({ matricula: alumno.matricula })
+      this.setState({ apellido: alumno.apellido_paterno + ' ' + alumno.apellido_materno })
+      this.setState({ carrera: alumno.nombre_programa })
+      this.setState({ aprobadas: alumno.materias_aprobadas })
     }
   }
   
