@@ -1,13 +1,11 @@
-package mx.edu.cetys.garay.andrea.application.aprobadas
+package mx.edu.cetys.garay.andrea.application.horario
 
 import mx.edu.cetys.garay.andrea.application.RequestHandler
 import mx.edu.cetys.garay.andrea.application.perfiles.GetPerfilQuery
-import mx.edu.cetys.garay.andrea.exposed.SPCallsImpl
 import mx.edu.cetys.garay.andrea.exposed.StoreProcedureCalls
 
-class GetAprobadasQueryHandler (private val spc: StoreProcedureCalls) : RequestHandler<GetPerfilQuery, GetAprobadasQueryResponse> {
-
-    override fun handle(message: GetPerfilQuery): GetAprobadasQueryResponse {
+class GetHorarioQueryHandler(private val spc: StoreProcedureCalls)  : RequestHandler<GetPerfilQuery, GetHorarioQueryResponse> {
+    override fun handle(message: GetPerfilQuery): GetHorarioQueryResponse {
         require(message.matricula.isNotBlank())
 
         var messageA = message.matricula.toUpperCase()
@@ -15,8 +13,8 @@ class GetAprobadasQueryHandler (private val spc: StoreProcedureCalls) : RequestH
             'T', 'M', 'E' -> messageA = messageA.substring(1)
         }
 
-        val aprobadas = spc.callBuscarAprobadasSP(messageA)
+        val horario = spc.callBuscarHorarioSP(messageA)
 
-        return aprobadas
+        return horario
     }
 }

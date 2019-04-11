@@ -1,8 +1,7 @@
 package mx.edu.cetys.garay.andrea.application.porcursar
 
+import mx.edu.cetys.garay.andrea.dto.PorCursarDTO
+
 data class GetPorCursarQueryResponse(
-    val nombre_materia: String,
-    val horas_clase: String,
-    val cve_materia:String,
-    val cve_planestudio: String
+    val porcursar: List<PorCursarDTO>
 )

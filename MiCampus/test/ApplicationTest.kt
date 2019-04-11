@@ -18,7 +18,7 @@ class ApplicationTest {
     @Test
     fun getAlumno(){
         withTestApplication({ module(testing = true) }) {
-            handleRequest(HttpMethod.Get, "$apiRoot/public/v1/alumnos/buscarAlumno?matricula=021204&password=123456").apply {
+            handleRequest(HttpMethod.Get, "$apiRoot/public/v1/alumnos/T021204/login?password=123456").apply {
                 assertEquals(HttpStatusCode.OK, response.status())
             }
         }
@@ -27,7 +27,7 @@ class ApplicationTest {
     @Test
     fun getTutores(){
         withTestApplication({ module(testing = true) }) {
-            handleRequest(HttpMethod.Get, "$apiRoot/public/v1/alumnos/Tutores?matricula=021204").apply {
+            handleRequest(HttpMethod.Get, "$apiRoot/public/v1/alumnos/T021204/Tutores").apply {
                 assertEquals(HttpStatusCode.OK, response.status())
             }
         }
@@ -36,7 +36,7 @@ class ApplicationTest {
     @Test
     fun getBoleta(){
         withTestApplication({ module(testing = true) }) {
-            handleRequest(HttpMethod.Get, "$apiRoot/public/v1/alumnos/Boleta?matricula=021204").apply {
+            handleRequest(HttpMethod.Get, "$apiRoot/public/v1/alumnos/T021204/Boleta").apply {
                 assertEquals(HttpStatusCode.OK, response.status())
             }
         }
@@ -45,7 +45,7 @@ class ApplicationTest {
     @Test
     fun getAprobada(){
         withTestApplication({ module(testing = true) }) {
-            handleRequest(HttpMethod.Get, "$apiRoot/public/v1/alumnos/Aprobadas?matricula=021204").apply {
+            handleRequest(HttpMethod.Get, "$apiRoot/public/v1/alumnos/T021204/Aprobadas").apply {
                 assertEquals(HttpStatusCode.OK, response.status())
             }
         }
@@ -55,7 +55,7 @@ class ApplicationTest {
     @Test
     fun getHorario(){
         withTestApplication({ module(testing = true) }) {
-            handleRequest(HttpMethod.Get, "$apiRoot/public/v1/alumnos/Horario?matricula=021204").apply {
+            handleRequest(HttpMethod.Get, "$apiRoot/public/v1/alumnos/T021204/Horario").apply {
                 assertEquals(HttpStatusCode.OK, response.status())
             }
         }
@@ -64,7 +64,7 @@ class ApplicationTest {
     @Test
     fun getPerfil(){
         withTestApplication({ module(testing = true) }) {
-            handleRequest(HttpMethod.Get, "$apiRoot/public/v1/alumnos/Perfil?matricula=021204").apply {
+            handleRequest(HttpMethod.Get, "$apiRoot/public/v1/alumnos/T021204/Perfil").apply {
                 assertEquals(HttpStatusCode.OK, response.status())
             }
         }
@@ -73,7 +73,7 @@ class ApplicationTest {
     @Test
     fun getCursando(){
         withTestApplication({ module(testing = true) }) {
-            handleRequest(HttpMethod.Get, "$apiRoot/public/v1/alumnos/Cursando?matricula=021204").apply {
+            handleRequest(HttpMethod.Get, "$apiRoot/public/v1/alumnos/T021204/Cursando").apply {
                 assertEquals(HttpStatusCode.OK, response.status())
             }
         }
@@ -82,7 +82,7 @@ class ApplicationTest {
     @Test
     fun getPromedioGeneral(){
         withTestApplication({ module(testing = true) }) {
-            handleRequest(HttpMethod.Get, "$apiRoot/public/v1/alumnos/PromedioGeneral?matricula=021204").apply {
+            handleRequest(HttpMethod.Get, "$apiRoot/public/v1/alumnos/T021204/PromedioGeneral").apply {
                 assertEquals(HttpStatusCode.OK, response.status())
             }
         }
@@ -91,7 +91,7 @@ class ApplicationTest {
     @Test
     fun getPorCursar(){
         withTestApplication({ module(testing = true) }) {
-            handleRequest(HttpMethod.Get, "$apiRoot/public/v1/alumnos/PorCursar?matricula=021204").apply {
+            handleRequest(HttpMethod.Get, "$apiRoot/public/v1/alumnos/T021204/PorCursar").apply {
                 assertEquals(HttpStatusCode.OK, response.status())
             }
         }

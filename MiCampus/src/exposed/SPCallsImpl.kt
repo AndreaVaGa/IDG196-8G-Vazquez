@@ -6,9 +6,13 @@ import mx.edu.cetys.garay.andrea.application.Tutores.GetTutoresQueryResponse
 import mx.edu.cetys.garay.andrea.application.aprobadas.GetAprobadasQueryResponse
 import mx.edu.cetys.garay.andrea.application.boleta.GetBoletaQueryResponse
 import mx.edu.cetys.garay.andrea.application.cursando.GetCursandoQueryResponse
+import mx.edu.cetys.garay.andrea.application.horario.GetHorarioQueryResponse
 import mx.edu.cetys.garay.andrea.application.perfiles.GetPerfilQueryResponse
 import mx.edu.cetys.garay.andrea.application.porcursar.GetPorCursarQueryResponse
 import mx.edu.cetys.garay.andrea.application.promediogeneral.GetPromGeneralQueryResponse
+import mx.edu.cetys.garay.andrea.dto.AprobadasDTO
+import mx.edu.cetys.garay.andrea.dto.HorarioDTO
+import mx.edu.cetys.garay.andrea.dto.PorCursarDTO
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.transactions.transaction
 
@@ -204,9 +208,42 @@ class SPCallsImpl : StoreProcedureCalls {
         return tutores
     }
 
-    override fun callBuscarAprobadasSP(matricula: String): List<GetAprobadasQueryResponse> {
+
+    override fun callBuscarHorarioSP(matricula: String): GetHorarioQueryResponse {
+        val storedProcedureRawSQL = "exec dbo.buscar_horario '$matricula'"
+
+        val horario = ArrayList<HorarioDTO>()
+        Database.connect(
+            EXPOSED_CONNECTION_STRING,
+            EXPOSED_DRIVER,
+            EXPOSED_USER,
+            EXPOSED_PASSWORD
+        )
+
+        transaction {
+            execSp(storedProcedureRawSQL) {
+                while (it.next()) {
+                    horario.add(
+                        HorarioDTO(
+                            it.getString("Nombre_Materia"),
+                            it.getString("Nombre_Maestro"),
+                            it.getString("Cve_Periodo"),
+                            it.getString("Dia"),
+                            it.getString("Lugar"),
+                            it.getString("Hora_Inicio"),
+                            it.getString("Hora_Final")
+                        )
+                    )
+                }
+            }
+        }
+
+        return GetHorarioQueryResponse(horario)
+    }
+
+    override fun callBuscarAprobadasSP(matricula: String): GetAprobadasQueryResponse {
         val storedProcedureRawSQL = "exec dbo.buscar_aprobadas '$matricula'"
-        val aprobdas = ArrayList<GetAprobadasQueryResponse>()
+        val aprobadas = ArrayList<AprobadasDTO>()
 
         Database.connect(
             EXPOSED_CONNECTION_STRING,
@@ -218,8 +255,8 @@ class SPCallsImpl : StoreProcedureCalls {
         transaction {
             execSp(storedProcedureRawSQL) {
                 while (it.next()) {
-                    aprobdas.add(
-                        GetAprobadasQueryResponse(
+                    aprobadas.add(
+                        AprobadasDTO(
                             it.getString("Cve_Periodo"),
                             it.getString("Nombre_Materia"),
                             it.getString("Nombre_Maestro"),
@@ -231,12 +268,12 @@ class SPCallsImpl : StoreProcedureCalls {
                 }
             }
         }
-        return aprobdas
+        return GetAprobadasQueryResponse(aprobadas)
     }
 
-    override fun callBuscarPorCusarSP(matricula: String): List<GetPorCursarQueryResponse> {
+    override fun callBuscarPorCusarSP(matricula: String): GetPorCursarQueryResponse {
         val storedProcedureRawSQL = "exec dbo.buscar_porcursar '$matricula'"
-        val porcursar = ArrayList<GetPorCursarQueryResponse>()
+        val porcursar = ArrayList<PorCursarDTO>()
 
         Database.connect(
             EXPOSED_CONNECTION_STRING,
@@ -249,7 +286,7 @@ class SPCallsImpl : StoreProcedureCalls {
             execSp(storedProcedureRawSQL) {
                 while (it.next()) {
                     porcursar.add(
-                        GetPorCursarQueryResponse(
+                        PorCursarDTO(
                             it.getString("Nombre_Materia"),
                             it.getString("Horas_Clase"),
                             it.getString("Cve_Materia"),
@@ -259,7 +296,7 @@ class SPCallsImpl : StoreProcedureCalls {
                 }
             }
         }
-        return porcursar
+        return GetPorCursarQueryResponse(porcursar)
     }
 
 

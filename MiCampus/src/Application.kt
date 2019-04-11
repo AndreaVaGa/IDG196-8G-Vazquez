@@ -9,8 +9,11 @@ import com.fasterxml.jackson.databind.*
 import io.ktor.jackson.*
 import io.ktor.features.*
 import mx.edu.cetys.garay.andrea.application.alumnos.GetMatriculaQueryHandler
+import mx.edu.cetys.garay.andrea.application.aprobadas.GetAprobadasQueryHandler
 import mx.edu.cetys.garay.andrea.application.boleta.GetBoletaQueryHandler
+import mx.edu.cetys.garay.andrea.application.horario.GetHorarioQueryHandler
 import mx.edu.cetys.garay.andrea.application.perfiles.GetPerfilQueryHandler
+import mx.edu.cetys.garay.andrea.application.porcursar.GetPorCursarQueryHandler
 import mx.edu.cetys.garay.andrea.exposed.*
 import mx.edu.cetys.garay.andrea.impl.*
 
@@ -24,11 +27,12 @@ fun Application.module(testing: Boolean = false) {
     val alumnoApi = AlumnoApi(
         GetMatriculaQueryHandler(SPCallsImpl()),
         GetPerfilQueryHandler(SPCallsImpl()),
-        GetBoletaQueryHandler(SPCallsImpl())
+        GetBoletaQueryHandler(SPCallsImpl()),
+        GetHorarioQueryHandler(SPCallsImpl()),
+        GetAprobadasQueryHandler(SPCallsImpl()),
+        GetPorCursarQueryHandler(SPCallsImpl())
     )
     val tutoresApi = TutoresApi()
-    val aprobadasApi = AprobadasApi()
-    val porcursarApi = PorCursarApi()
     val promeGeneralApi = PromGeneralApi()
     val cursandoApi = CursandoApi()
     install(Authentication) {
@@ -86,7 +90,7 @@ fun Application.module(testing: Boolean = false) {
             val queryParameters: Parameters = request.queryParameters
             val matricula = call.parameters["matricula"] ?: ""
 
-            val horario = callBuscarHorarioSP(matricula)
+            val horario = alumnoApi.getHorario(matricula)
             call.respond(horario)
         }
         get("$apiRoot/public/v1/alumnos/{matricula}/Aprobadas") {
@@ -94,7 +98,7 @@ fun Application.module(testing: Boolean = false) {
             val queryParameters: Parameters = request.queryParameters
             val matricula = call.parameters["matricula"] ?: ""
 
-            val aprobadas = aprobadasApi.getAprobadas(matricula)
+            val aprobadas = alumnoApi.getAprobadas(matricula)
             call.respond(aprobadas)
         }
         get("$apiRoot/public/v1/alumnos/{matricula}/Tutores") {
@@ -110,7 +114,7 @@ fun Application.module(testing: Boolean = false) {
             val queryParameters: Parameters = request.queryParameters
             val matricula = call.parameters["matricula"] ?: ""
 
-            val porcursar = porcursarApi.getPorCursar(matricula)
+            val porcursar = alumnoApi.getPorCursar(matricula)
             call.respond(porcursar)
         }
         get("$apiRoot/public/v1/alumnos/{matricula}/PromedioGeneral") {

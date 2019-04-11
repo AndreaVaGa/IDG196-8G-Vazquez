@@ -8,9 +8,12 @@ import mx.edu.cetys.garay.andrea.BoletaDTO
 import mx.edu.cetys.garay.andrea.application.RequestHandler
 import mx.edu.cetys.garay.andrea.application.alumnos.GetMatriculaQuery
 import mx.edu.cetys.garay.andrea.application.alumnos.GetMatriculaQueryResponse
+import mx.edu.cetys.garay.andrea.application.aprobadas.GetAprobadasQueryResponse
 import mx.edu.cetys.garay.andrea.application.boleta.GetBoletaQueryResponse
+import mx.edu.cetys.garay.andrea.application.horario.GetHorarioQueryResponse
 import mx.edu.cetys.garay.andrea.application.perfiles.GetPerfilQuery
 import mx.edu.cetys.garay.andrea.application.perfiles.GetPerfilQueryResponse
+import mx.edu.cetys.garay.andrea.application.porcursar.GetPorCursarQueryResponse
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
@@ -19,7 +22,17 @@ class AlumnoApiTest {
     private val getMatriculaQueryHandler = mockk<RequestHandler<GetMatriculaQuery, GetMatriculaQueryResponse>>()
     private val getPerfilQueryHandler = mockk<RequestHandler<GetPerfilQuery, GetPerfilQueryResponse>>()
     private val getBoletaQueryHandler = mockk<RequestHandler<GetPerfilQuery, GetBoletaQueryResponse>>()
-    private val api = AlumnoApi(getMatriculaQueryHandler,getPerfilQueryHandler,getBoletaQueryHandler)
+    private val getHorarioQueryHandler = mockk<RequestHandler<GetPerfilQuery, GetHorarioQueryResponse>>()
+    private val getAprobadasQueryHandler = mockk<RequestHandler<GetPerfilQuery, GetAprobadasQueryResponse>>()
+    private val getPorCursarQueryHandler = mockk<RequestHandler<GetPerfilQuery, GetPorCursarQueryResponse>>()
+    private val api = AlumnoApi(
+        getMatriculaQueryHandler,
+        getPerfilQueryHandler,
+        getBoletaQueryHandler,
+        getHorarioQueryHandler,
+        getAprobadasQueryHandler,
+        getPorCursarQueryHandler
+    )
 
     private val matricula = (0..10).random().toString()
     private val password = (0..10).random().toString()
