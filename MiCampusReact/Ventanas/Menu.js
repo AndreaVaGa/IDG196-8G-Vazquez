@@ -147,6 +147,23 @@ export default class Menu extends React.Component {
           </View>
           <View style={styles.lineStyle} />
           </View>
+
+          <Text style={styles.title}>Financiero</Text>
+
+          <View style={styles.container}>
+            <TouchableOpacity style={styles.Boton} title='Adeudos'>
+              <Image source={require("../src/imgs/adeudos.png")}></Image>
+              <Text style={styles.texto}>Historial</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.Boton} title='Historial Financiero'>
+              <Image source={require("../src/imgs/hfinanciero.png")}></Image>
+              <Text style={styles.texto}>Adeudos</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.Boton} title='Tramites'>
+              <Image source={require("../src/imgs/tramites.png")}></Image>
+              <Text style={styles.texto}>Tramites</Text>
+            </TouchableOpacity>
+          </View>
       </ScrollView>
       </ImageBackground>
     );
@@ -186,6 +203,7 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginRight: 20,
     borderColor: '#ffd700',
+    marginBottom: 30
   },
   backgroundImage: {
     width: screenWidth,
