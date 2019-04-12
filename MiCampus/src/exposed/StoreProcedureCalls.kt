@@ -11,12 +11,12 @@ import mx.edu.cetys.garay.andrea.application.promediogeneral.GetPromGeneralQuery
 
 interface StoreProcedureCalls {
     fun callBuscarAlumnoSP(user: String, password: String): String
-    fun callBuscarPerfilSP(matricula: String):  GetPerfilQueryResponse
-    fun callBuscarBoletaSP (matricula: String):  GetBoletaQueryResponse
-    fun callBuscarTutoresSP (matricula: String): GetTutoresQueryResponse
-    fun callBuscarHorarioSP (matricula: String):  GetHorarioQueryResponse
-    fun callBuscarAprobadasSP (matricula: String): GetAprobadasQueryResponse
-    fun callBuscarPorCusarSP (matricula: String):  GetPorCursarQueryResponse
-    fun callBuscarPromedioGeneralSP(matricula: String):  GetPromGeneralQueryResponse
-    fun callBuscarCursandoSP (matricula: String):  List<GetCursandoQueryResponse>
+    fun callBuscarPerfilSP(matricula: String): GetPerfilQueryResponse
+    fun callBuscarBoletaSP(matricula: String): GetBoletaQueryResponse
+    fun callBuscarTutoresSP(matricula: String): GetTutoresQueryResponse
+    fun callBuscarHorarioSP(matricula: String): GetHorarioQueryResponse
+    fun callBuscarAprobadasSP(matricula: String): GetAprobadasQueryResponse
+    fun callBuscarPorCusarSP(matricula: String): GetPorCursarQueryResponse
+    fun callBuscarPromedioGeneralSP(matricula: String): GetPromGeneralQueryResponse
+    fun callBuscarCursandoSP(matricula: String): GetCursandoQueryResponse
 }

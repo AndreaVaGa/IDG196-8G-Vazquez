@@ -1,18 +1,21 @@
 package mx.edu.cetys.garay.andrea
 
 import mx.edu.cetys.garay.andrea.application.RequestHandler
+import mx.edu.cetys.garay.andrea.application.Tutores.GetTutoresQuery
+import mx.edu.cetys.garay.andrea.application.Tutores.GetTutoresQueryResponse
 import mx.edu.cetys.garay.andrea.application.alumnos.GetMatriculaQuery
 import mx.edu.cetys.garay.andrea.application.alumnos.GetMatriculaQueryResponse
 import mx.edu.cetys.garay.andrea.application.aprobadas.GetAprobadasQueryResponse
 import mx.edu.cetys.garay.andrea.application.boleta.GetBoletaQueryResponse
+import mx.edu.cetys.garay.andrea.application.cursando.GetCursandoQueryResponse
 import mx.edu.cetys.garay.andrea.application.horario.GetHorarioQueryResponse
 import mx.edu.cetys.garay.andrea.application.perfiles.GetPerfilQuery
 import mx.edu.cetys.garay.andrea.application.perfiles.GetPerfilQueryResponse
 import mx.edu.cetys.garay.andrea.application.porcursar.GetPorCursarQueryHandler
 import mx.edu.cetys.garay.andrea.application.porcursar.GetPorCursarQueryResponse
-import mx.edu.cetys.garay.andrea.dto.AprobadasDTO
-import mx.edu.cetys.garay.andrea.dto.HorarioDTO
-import mx.edu.cetys.garay.andrea.dto.PorCursarDTO
+import mx.edu.cetys.garay.andrea.application.promediogeneral.GetPromGeneralQuery
+import mx.edu.cetys.garay.andrea.application.promediogeneral.GetPromGeneralQueryResponse
+import mx.edu.cetys.garay.andrea.dto.*
 
 
 class AlumnoApi(
@@ -21,7 +24,10 @@ class AlumnoApi(
     private val getBoletaQueryHandler: RequestHandler<GetPerfilQuery, GetBoletaQueryResponse>,
     private val getHorarioQueryHandler: RequestHandler<GetPerfilQuery, GetHorarioQueryResponse>,
     private val getAprobadasQueryHandler: RequestHandler<GetPerfilQuery, GetAprobadasQueryResponse>,
-    private val getPorCursarQueryHandler: RequestHandler<GetPerfilQuery, GetPorCursarQueryResponse>
+    private val getPorCursarQueryHandler: RequestHandler<GetPerfilQuery, GetPorCursarQueryResponse>,
+    private val getCursandoQueryHandler: RequestHandler<GetPerfilQuery, GetCursandoQueryResponse>,
+    private val getTutoresQueryHandler: RequestHandler<GetTutoresQuery, GetTutoresQueryResponse>,
+    private val getPromedioGeneralQueryHandler: RequestHandler<GetPromGeneralQuery, GetPromGeneralQueryResponse>
 ) {
 
     fun getMatricula(matricula: String, password: String): GetMatriculaResponse {
@@ -40,6 +46,47 @@ class AlumnoApi(
             response.nombre_programa,
             response.cve_programa,
             response.materias_aprobadas
+        )
+
+    }
+
+    fun getTutores(matricula: String): TutoresDTO {
+        val response = getTutoresQueryHandler.handle(GetTutoresQuery(matricula))
+        return TutoresDTO(
+            response.nombre_1_padre,
+            response.nombre_2_padre,
+            response.apellido_paterno_padre,
+            response.apellido_materno_padre,
+            response.direccion_padre,
+            response.colonia_padre,
+            response.telefono_padre,
+            response.email_padre,
+            response.telefono_celular_pad,
+            response.empresa_padre,
+            response.emp_dir_padre,
+            response.emp_col_padre,
+            response.emp_tel_padre,
+            response.nombre_1_madre,
+            response.nombre_2_madre,
+            response.apellido_paterno_madre,
+            response.apellido_materno_madre,
+            response.direccion_madre,
+            response.colonia_madre,
+            response.telefono_madre,
+            response.email_madre,
+            response.telefono_celular_madre,
+            response.empresa_madre,
+            response.emp_dir_madre,
+            response.emp_col_madre,
+            response.emp_tel_madre
+        )
+
+    }
+
+    fun getPromedioGeneral(matricula: String): PromedioGeneralDTO {
+        val response = getPromedioGeneralQueryHandler.handle(GetPromGeneralQuery(matricula))
+        return PromedioGeneralDTO(
+            response.promedio_general
         )
 
     }
@@ -64,10 +111,16 @@ class AlumnoApi(
         return GetPorCursarResponse(response.porcursar)
     }
 
+    fun getCursando(matricula: String):GetCursandoResponse{
+        val response = getCursandoQueryHandler.handle(GetPerfilQuery(matricula))
+        return GetCursandoResponse(response.cursando)
+    }
+
 
     data class GetMatriculaResponse(val matricula: String)
     data class GetBoletaResponse(val boleta: List<BoletaDTO>)
     data class GetHorarioResponse(val horario: List<HorarioDTO>)
     data class GetAprobadasResponse(val aprobadas: List<AprobadasDTO>)
     data class GetPorCursarResponse(val porcursar: List<PorCursarDTO>)
+    data class GetCursandoResponse(val cursando: List<CursandoDTO>)
 }

@@ -332,9 +332,9 @@ class SPCallsImpl : StoreProcedureCalls {
         return promediogeneral
     }
 
-    override fun callBuscarCursandoSP(matricula: String): List<GetCursandoQueryResponse> {
+    override fun callBuscarCursandoSP(matricula: String): GetCursandoQueryResponse {
         val storedProcedureRawSQL = "exec dbo.buscar_cursando '$matricula'"
-        val cursando = ArrayList<GetCursandoQueryResponse>()
+        val cursando = ArrayList<CursandoDTO>()
 
         Database.connect(
             EXPOSED_CONNECTION_STRING,
@@ -347,7 +347,7 @@ class SPCallsImpl : StoreProcedureCalls {
             execSp(storedProcedureRawSQL) {
                 while (it.next()) {
                     cursando.add(
-                        GetCursandoQueryResponse(
+                        CursandoDTO(
                             it.getString("Cve_Periodo"),
                             it.getString("Nombre_Materia"),
                             it.getString("Nombre_Maestro"),
@@ -358,7 +358,7 @@ class SPCallsImpl : StoreProcedureCalls {
                 }
             }
         }
-        return cursando
+        return GetCursandoQueryResponse(cursando)
     }
 
 }

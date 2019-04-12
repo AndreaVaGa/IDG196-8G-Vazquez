@@ -8,14 +8,16 @@ import io.ktor.auth.*
 import com.fasterxml.jackson.databind.*
 import io.ktor.jackson.*
 import io.ktor.features.*
+import mx.edu.cetys.garay.andrea.application.Tutores.GetTutoresQueryHandler
 import mx.edu.cetys.garay.andrea.application.alumnos.GetMatriculaQueryHandler
 import mx.edu.cetys.garay.andrea.application.aprobadas.GetAprobadasQueryHandler
 import mx.edu.cetys.garay.andrea.application.boleta.GetBoletaQueryHandler
+import mx.edu.cetys.garay.andrea.application.cursando.GetCursandoQueryHandler
 import mx.edu.cetys.garay.andrea.application.horario.GetHorarioQueryHandler
 import mx.edu.cetys.garay.andrea.application.perfiles.GetPerfilQueryHandler
 import mx.edu.cetys.garay.andrea.application.porcursar.GetPorCursarQueryHandler
+import mx.edu.cetys.garay.andrea.application.promediogeneral.GetPromGeneralQueryHandler
 import mx.edu.cetys.garay.andrea.exposed.*
-import mx.edu.cetys.garay.andrea.impl.*
 
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
@@ -30,11 +32,11 @@ fun Application.module(testing: Boolean = false) {
         GetBoletaQueryHandler(SPCallsImpl()),
         GetHorarioQueryHandler(SPCallsImpl()),
         GetAprobadasQueryHandler(SPCallsImpl()),
-        GetPorCursarQueryHandler(SPCallsImpl())
+        GetPorCursarQueryHandler(SPCallsImpl()),
+        GetCursandoQueryHandler(SPCallsImpl()),
+        GetTutoresQueryHandler(SPCallsImpl()),
+        GetPromGeneralQueryHandler(SPCallsImpl())
     )
-    val tutoresApi = TutoresApi()
-    val promeGeneralApi = PromGeneralApi()
-    val cursandoApi = CursandoApi()
     install(Authentication) {
     }
 
@@ -82,7 +84,7 @@ fun Application.module(testing: Boolean = false) {
             val queryParameters: Parameters = request.queryParameters
             val matricula = call.parameters["matricula"] ?: ""
 
-            val cursando = cursandoApi.getCursando(matricula)
+            val cursando = alumnoApi.getCursando(matricula)
             call.respond(cursando)
         }
         get("$apiRoot/public/v1/alumnos/{matricula}/Horario") {
@@ -106,7 +108,7 @@ fun Application.module(testing: Boolean = false) {
             val queryParameters: Parameters = request.queryParameters
             val matricula = call.parameters["matricula"] ?: ""
 
-            val tutores = tutoresApi.getTutores(matricula)
+            val tutores = alumnoApi.getTutores(matricula)
             call.respond(tutores)
         }
         get("$apiRoot/public/v1/alumnos/{matricula}/PorCursar") {
@@ -122,7 +124,7 @@ fun Application.module(testing: Boolean = false) {
             val queryParameters: Parameters = request.queryParameters
             val matricula = call.parameters["matricula"] ?: ""
 
-            val promediogeneral = promeGeneralApi.getPromGeneral(matricula)
+            val promediogeneral = alumnoApi.getPromedioGeneral(matricula)
             call.respond(promediogeneral)
         }
 
