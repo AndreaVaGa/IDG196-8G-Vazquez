@@ -9,7 +9,7 @@ export default class Login extends React.Component {
     this.state = {
       usuario: '',
       password: '',
-      apiRoot: "http://0.0.0.0:8080/api/micampus"
+      apiRoot: "http:// 192.168.99.100:8080/api/micampus/"
     };
   }
   componentDidMount() {
