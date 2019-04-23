@@ -118,7 +118,8 @@ export default class Menu extends React.Component {
       });
   }
   _getTramites = () => {
-    this.props.navigation.navigate('Tramites');
+
+          this.props.navigation.navigate('Tramites');
   }
 
   render() {

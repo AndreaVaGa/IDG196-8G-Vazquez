@@ -2,32 +2,33 @@ import React from 'react';
 import {
     Text,
     View,
-    StyleSheet
+    StyleSheet,
+    ScrollView
 } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 export default class Tramites extends React.PureComponent {
     render() {
         return (
+            <ScrollView style={{marginBottom:50}}>
                 <View style={styles.fila}>
-                <ScrollView style={{marginBottom:50}}>
                     <View style={[styles.materia, { alignItems: 'center' }]} >
                         <Text style={[styles.headers, { marginTop: 20, fontSize: 15 }]}></Text>
                         <Text style={styles.texto}></Text>
                     </View>
                     <View style={[styles.faltas, { alignItems: 'center' }]}>
                         <Text style={styles.headers}>F</Text>
-                        <Text style={styles.texto}>{this.props.faltas}</Text>
+                        <Text style={styles.texto}></Text>
                     </View>
                     <View style={styles.promedio}>
                         <Text style={styles.headers}>P</Text>
-                        <Text style={styles.texto}>{this.props.calif}</Text>
+                        <Text style={styles.texto}></Text>
                     </View>
-                    </ScrollView>
                     <View style={styles.promedio2}>
                          <Text style={styles.textPromedio}>Total: $200 </Text>
                  </View>
                 </View>
+                </ScrollView>
         );
 
     }

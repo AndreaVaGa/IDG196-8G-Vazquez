@@ -11,6 +11,7 @@ import Fondo from './Ventanas/Fondo';
 import Terminos from './Ventanas/Terminos';
 import Configuracion from './Ventanas/Configuracion';
 import Menu from './Ventanas/Menu';
+import Tramites from './Ventanas/Tramites';
 
 
 Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.PORTRAIT);
@@ -107,6 +108,9 @@ const MiCampus = createStackNavigator({
   },
   Menu: {
     screen: Menu, navigationOptions: { header: null, }
+  },
+  Tramites: {
+    screen: Tramites, navigationOptions: { header: null, }
   }
 });
 export default class App extends React.Component {
