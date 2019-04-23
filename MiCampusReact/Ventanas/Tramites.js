@@ -2,7 +2,8 @@ import React from 'react';
 import {
     Text,
     View,
-    StyleSheet
+    StyleSheet,
+    ScrollView
 } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
@@ -39,8 +40,9 @@ export default class Tramites extends React.Component {
                     <View style={styles.promedio2}>
                          <Text style={styles.textPromedio}>Total: $200 </Text>
                  </View>
+                 </ScrollView>
                 </View>
-                </ScrollView>
+                
         );
     }
 }
