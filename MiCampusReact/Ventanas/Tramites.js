@@ -11,15 +11,15 @@ export default class Tramites extends React.PureComponent {
         return (
                 <View style={styles.fila}>
                 <ScrollView style={{marginBottom:50}}>
-                    <View style={[styles.materia, { alignItems: 'center' }]} ref={component => this._height = component}>
-                        <Text style={[styles.headers, { marginTop: 20, fontSize: 15 }]}>{this.props.materia}</Text>
-                        <Text style={styles.texto}>{this.props.profesor}</Text>
+                    <View style={[styles.materia, { alignItems: 'center' }]} >
+                        <Text style={[styles.headers, { marginTop: 20, fontSize: 15 }]}></Text>
+                        <Text style={styles.texto}></Text>
                     </View>
-                    <View style={[styles.faltas, { alignItems: 'center' }]} ref={component => this._height2 = component}>
+                    <View style={[styles.faltas, { alignItems: 'center' }]}>
                         <Text style={styles.headers}>F</Text>
                         <Text style={styles.texto}>{this.props.faltas}</Text>
                     </View>
-                    <View style={styles.promedio} ref={component => this._height3 = component}>
+                    <View style={styles.promedio}>
                         <Text style={styles.headers}>P</Text>
                         <Text style={styles.texto}>{this.props.calif}</Text>
                     </View>
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
       fontSize: 20, 
       textAlign: 'right', 
       marginRight: 5, 
-      marginBottom: 10, 
+      marginBottom: 15, 
     },
     texto: {
         fontSize: 12,

@@ -161,7 +161,7 @@ export default class Menu extends React.Component {
               <Image source={require("../src/imgs/hfinanciero.png")}></Image>
               <Text style={styles.texto}>Adeudos</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.Boton} onPress={(this._getPerfil)} title='Tramites'>
+            <TouchableOpacity style={styles.Boton} onPress={(this._getTramites)} title='Tramites'>
               <Image source={require("../src/imgs/tramites.png")}></Image>
               <Text style={styles.texto}>Tramites</Text>
             </TouchableOpacity>
@@ -204,6 +204,7 @@ const styles = StyleSheet.create({
     width: screenWidth,
     marginLeft: 20,
     marginRight: 20,
+    marginBottom: 25,
     borderColor: '#ffd700',
   },
   backgroundImage: {
@@ -215,7 +216,7 @@ const styles = StyleSheet.create({
     height: hp('18%'),
     borderRadius: 20,
     padding: 10,
-    marginBottom: 25,
+    marginBottom: 10,
   },
   Boton2: {
     height: 100,
