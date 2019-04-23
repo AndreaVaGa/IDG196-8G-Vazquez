@@ -1,13 +1,13 @@
 import React from 'react';
 import { StyleSheet, ScrollView, Text, View, ImageBackground, AsyncStorage, screenWidth, screenHeight, Image, TouchableOpacity } from 'react-native';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 export default class Menu extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       matricula: '',
-      apiRoot: "http:// 192.168.99.100:8080/api/micampus/"
+      apiRoot: "http://0.0.0.0:8080/api/micampus/"
     };
 
   }
@@ -23,23 +23,23 @@ export default class Menu extends React.Component {
     }
   }
   _IraPerfil = () => {
-    return fetch(this.state.apiRoot +'/public/v1/alumnos/'+ this.state.matricula +'/Perfil')
+    return fetch(this.state.apiRoot + '/public/v1/alumnos/' + this.state.matricula + '/Perfil')
       .then((response) => response.json())
       .then((responseJson) => {
         if (responseJson !== undefined) {
           AsyncStorage.setItem('perfil', JSON.stringify(responseJson))
           this.props.navigation.navigate('Perfil');
-          
+
         }
       })
       .catch((error) => {
         console.error(error);
       });
   }
-  
+
   _getHistorial = () => {
 
-    fetch(this.state.apiRoot +'/public/v1/alumnos/'+ this.state.matricula +'/Cursando')
+    fetch(this.state.apiRoot + '/public/v1/alumnos/' + this.state.matricula + '/Cursando')
 
       .then((response) => response.json())
       .then((responseJson) => {
@@ -50,7 +50,7 @@ export default class Menu extends React.Component {
       .catch((error) => {
         console.error(error);
       });
-    fetch(this.state.apiRoot +'/public/v1/alumnos/'+ this.state.matricula +'/Aprobadas')
+    fetch(this.state.apiRoot + '/public/v1/alumnos/' + this.state.matricula + '/Aprobadas')
 
       .then((response) => response.json())
       .then((responseJson) => {
@@ -61,7 +61,7 @@ export default class Menu extends React.Component {
       .catch((error) => {
         console.error(error);
       });
-    fetch(this.state.apiRoot +'/public/v1/alumnos/'+ this.state.matricula +'/PorCursar')
+    fetch(this.state.apiRoot + '/public/v1/alumnos/' + this.state.matricula + '/PorCursar')
 
       .then((response) => response.json())
       .then((responseJson) => {
@@ -72,7 +72,7 @@ export default class Menu extends React.Component {
       .catch((error) => {
         console.error(error);
       });
-    fetch(this.state.apiRoot +'/public/v1/alumnos/'+ this.state.matricula +'/PromedioGeneral')
+    fetch(this.state.apiRoot + '/public/v1/alumnos/' + this.state.matricula + '/PromedioGeneral')
 
       .then((response) => response.json())
       .then((responseJson) => {
@@ -89,7 +89,7 @@ export default class Menu extends React.Component {
 
   _getBoleta = () => {
 
-    return fetch(this.state.apiRoot +'/public/v1/alumnos/'+ this.state.matricula +'/Boleta')
+    return fetch(this.state.apiRoot + '/public/v1/alumnos/' + this.state.matricula + '/Boleta')
       .then((response) => response.json())
       .then((responseJson) => {
         if (responseJson !== undefined) {
@@ -104,7 +104,7 @@ export default class Menu extends React.Component {
 
   _getHorario = () => {
 
-    return fetch(this.state.apiRoot +'/public/v1/alumnos/'+ this.state.matricula +'/Horario')
+    return fetch(this.state.apiRoot + '/public/v1/alumnos/' + this.state.matricula + '/Horario')
 
       .then((response) => response.json())
       .then((responseJson) => {
@@ -117,37 +117,56 @@ export default class Menu extends React.Component {
         console.error(error);
       });
   }
-
+  _getTramites = () => {
+    this.props.navigation.navigate('Tramites');
+  }
 
   render() {
     return (
       <ImageBackground style={styles.perfilContainer} source={require('../src/imgs/background.jpg')}>
-      <ScrollView>
-      <View style={styles.perfilContainer}>
-          <View style={{ flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'flex-start', paddingRight: 10 }}>
-            <TouchableOpacity style={styles.Boton2} onPress={(this._IraPerfil)}>
-              <Image style={{ flex: 1, aspectRatio: .2, resizeMode: 'contain' }} source={require("../src/imgs/perfil.png")}></Image>
-            </TouchableOpacity>
+        <ScrollView>
+          <View style={styles.perfilContainer}>
+            <View style={{ flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'flex-start', paddingRight: 10 }}>
+              <TouchableOpacity style={styles.Boton2} onPress={(this._IraPerfil)}>
+                <Image style={{ flex: 1, aspectRatio: .2, resizeMode: 'contain' }} source={require("../src/imgs/perfil.png")}></Image>
+              </TouchableOpacity>
+            </View>
+            <Text style={styles.title}>Académico</Text>
+
+            <View style={styles.container}>
+              <TouchableOpacity style={styles.Boton} onPress={(this._getBoleta)} title='Boleta'>
+                <Image source={require("../src/imgs/boleta.png")}></Image>
+                <Text style={styles.texto}>Boleta</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.Boton} onPress={(this._getHistorial)} title='Historial'>
+                <Image source={require("../src/imgs/historial.png")}></Image>
+                <Text style={styles.texto}>Historial</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.Boton} onPress={(this._getHorario)} title='Horario'>
+                <Image source={require("../src/imgs/horario.png")}></Image>
+                <Text style={styles.texto}>Horario</Text>l
+              </TouchableOpacity>
+            </View>
+            <View style={styles.lineStyle} />
           </View>
-          <Text style={styles.title}>Académico</Text>
+
+          <Text style={styles.title}>Financiero</Text>
 
           <View style={styles.container}>
-            <TouchableOpacity style={styles.Boton} onPress={(this._getBoleta)} title='Boleta'>
-              <Image source={require("../src/imgs/boleta.png")}></Image>
-              <Text style={styles.texto}>Boleta</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.Boton} onPress={(this._getHistorial)} title='Historial'>
-              <Image source={require("../src/imgs/historial.png")}></Image>
+            <TouchableOpacity style={styles.Boton} title='Adeudos'>
+              <Image source={require("../src/imgs/adeudos.png")}></Image>
               <Text style={styles.texto}>Historial</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.Boton} onPress={(this._getHorario)} title='Horario'>
-              <Image source={require("../src/imgs/horario.png")}></Image>
-              <Text style={styles.texto}>Horario</Text>
+            <TouchableOpacity style={styles.Boton} title='Historial Financiero'>
+              <Image source={require("../src/imgs/hfinanciero.png")}></Image>
+              <Text style={styles.texto}>Adeudos</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.Boton} onPress={(this._getPerfil)} title='Tramites'>
+              <Image source={require("../src/imgs/tramites.png")}></Image>
+              <Text style={styles.texto}>Tramites</Text>
             </TouchableOpacity>
           </View>
-          <View style={styles.lineStyle} />
-          </View>
-      </ScrollView>
+        </ScrollView>
       </ImageBackground>
     );
   }
@@ -169,7 +188,7 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     color: 'white',
     marginLeft: 15,
-    marginTop:5,
+    marginTop: 5,
     marginBottom: 5,
   },
   texto: {

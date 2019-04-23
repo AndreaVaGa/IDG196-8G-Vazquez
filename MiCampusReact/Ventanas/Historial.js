@@ -233,7 +233,7 @@ export default class Historial extends React.Component {
 
         </ScrollView>
         <View style={styles.promedio}>
-          <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 20, textAlign: 'right', marginRight: 5, marginBottom: 10, }}>Promedio general: {this.state.promedio}</Text>
+          <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 20, textAlign: 'right', marginRight: 5, marginBottom: 15, }}>Promedio general: {this.state.promedio}</Text>
         </View>
       </View>
     );
