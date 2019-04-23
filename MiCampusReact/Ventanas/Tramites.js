@@ -2,27 +2,39 @@ import React from 'react';
 import {
     Text,
     View,
-    StyleSheet,
-    ScrollView
+    StyleSheet
 } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
-export default class Tramites extends React.PureComponent {
+export default class Tramites extends React.Component {
+
+  functionOne(){
+    // do something
+    }
+    
+    functionTwo(){
+    // do someting
+    }
+
+    functionCombined() {
+      this.functionOne();
+      this.functionTwo();
+  }
+
     render() {
         return (
-            <ScrollView style={{marginBottom:50}}>
                 <View style={styles.fila}>
-                    <View style={[styles.materia, { alignItems: 'center' }]} >
-                        <Text style={[styles.headers, { marginTop: 20, fontSize: 15 }]}></Text>
-                        <Text style={styles.texto}></Text>
+                <ScrollView style={{marginBottom:50}}>
+                    <View style={[styles.seleccionar, { alignItems: 'center' }]} >
+                        <Text style={[styles.cuadrado]} OnPress={(this.functionCombined())}></Text>
                     </View>
                     <View style={[styles.faltas, { alignItems: 'center' }]}>
                         <Text style={styles.headers}>F</Text>
-                        <Text style={styles.texto}></Text>
+                        <Text style={styles.texto}>{this.props.faltas}</Text>
                     </View>
                     <View style={styles.promedio}>
                         <Text style={styles.headers}>P</Text>
-                        <Text style={styles.texto}></Text>
+                        <Text style={styles.texto}>{this.props.calif}</Text>
                     </View>
                     <View style={styles.promedio2}>
                          <Text style={styles.textPromedio}>Total: $200 </Text>
@@ -30,7 +42,6 @@ export default class Tramites extends React.PureComponent {
                 </View>
                 </ScrollView>
         );
-
     }
 }
 
@@ -44,7 +55,7 @@ const styles = StyleSheet.create({
         marginLeft: 22,
         flexDirection: 'row',
     },
-    materia: {
+    seleccionar: {
         overflow: "hidden",
         height: 100,
         width: wp('58%'),
@@ -84,11 +95,6 @@ const styles = StyleSheet.create({
         shadowRadius: 2,
         elevation: 4,
     },
-    headers: {
-        fontSize: 20,
-        textAlign: 'center',
-        marginTop: 15,
-    },
     romedio2: {
       backgroundColor: '#191919',
       bottom: 0,
@@ -110,5 +116,18 @@ const styles = StyleSheet.create({
         color: '#333333',
         margin: 7,
         opacity: 1,
-    }
+    },
+    cuadrado: {
+      width: 10,
+      height: 10,
+      borderRadius: 3,
+      borderColor: "grey",
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    palomita: {
+      width: 10,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
 });
