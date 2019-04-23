@@ -24,23 +24,24 @@ export default class Tramites extends React.Component {
 
     render() {
         return (
+            <View style={styles.container}>
                 <View style={styles.fila}>
                 <ScrollView style={{marginBottom:50}}>
-                    <View style={[styles.seleccionar, { alignItems: 'center' }]} >
-                        <Text style={[styles.cuadrado]} OnPress={(this.functionCombined())}></Text>
+                    <View style={[styles.seleccionar]}>
+                         <View style={[styles.caja, styles.cuadrado]}></View>
                     </View>
-                    <View style={[styles.faltas, { alignItems: 'center' }]}>
-                        <Text style={styles.headers}>F</Text>
-                        <Text style={styles.texto}>{this.props.faltas}</Text>
+                    <View style={[styles.precio]}>
+                        <Text style={styles.headersPrecio}>PRECIO</Text>
                     </View>
-                    <View style={styles.promedio}>
-                        <Text style={styles.headers}>P</Text>
-                        <Text style={styles.texto}>{this.props.calif}</Text>
+                    <View style={styles.info}>
+                        <Text style={styles.headers}>NOMBRE DEL PAGO</Text>
+                        <Text style={styles.texto}>Informacion extra del tramite</Text>
                     </View>
-                    <View style={styles.promedio2}>
-                         <Text style={styles.textPromedio}>Total: $200 </Text>
-                 </View>
                  </ScrollView>
+                </View>
+                <View style={styles.total}>
+                         <Text style={styles.textPromedio}>Total: $200 </Text>
+                </View>
                 </View>
                 
         );
@@ -50,31 +51,19 @@ export default class Tramites extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginBottom: 50,
     },
     fila: {
         marginTop: 30,
-        marginLeft: 22,
+        marginLeft: 15,
         flexDirection: 'row',
     },
     seleccionar: {
         overflow: "hidden",
+        justifyContent: 'center',
         height: 100,
-        width: wp('58%'),
+        width: wp('15%'),
         borderTopLeftRadius: 10,
         borderBottomLeftRadius: 10,
-        backgroundColor: '#F5F5F5',
-        flexDirection: 'column',
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.8,
-        shadowRadius: 2,
-        elevation: 4,
-    },
-    faltas: {
-        overflow: "hidden",
-        height: 100,
-        width: wp('15%'),
         backgroundColor: '#ffffff',
         flexDirection: 'column',
         shadowColor: '#000',
@@ -83,13 +72,12 @@ const styles = StyleSheet.create({
         shadowRadius: 2,
         elevation: 4,
     },
-    promedio: {
+    precio: {
         overflow: "hidden",
-        height: 100,
-        width: wp('15%'),
+        height: 30,
+        width: wp('70%'),
         borderTopRightRadius: 10,
-        borderBottomRightRadius: 10,
-        backgroundColor: '#ffffff',
+        backgroundColor: '#666666',
         flexDirection: 'column',
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
@@ -97,7 +85,20 @@ const styles = StyleSheet.create({
         shadowRadius: 2,
         elevation: 4,
     },
-    romedio2: {
+    info: {
+        overflow: "hidden",
+        height: 70,
+        width: wp('70%'),
+        borderBottomRightRadius: 10,
+        backgroundColor: '#f2f2f2',
+        flexDirection: 'column',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        elevation: 4,
+    },
+    total: {
       backgroundColor: '#191919',
       bottom: 0,
       position: 'absolute',
@@ -108,24 +109,42 @@ const styles = StyleSheet.create({
       color: 'white', 
       fontWeight: 'bold', 
       fontSize: 20, 
-      textAlign: 'right', 
-      marginRight: 5, 
-      marginBottom: 15, 
+      textAlign: 'left', 
+      marginLeft: 5, 
+      marginTop: 3,
+      marginBottom: 20, 
     },
     texto: {
         fontSize: 12,
-        textAlign: 'center',
+        textAlign: 'left',
+        marginLeft: 18,
         color: '#333333',
-        margin: 7,
+        marginTop: 2,
         opacity: 1,
     },
+    headersPrecio: {
+        fontSize: 14,
+        textAlign: 'right',
+        marginRight: 15,
+        color: 'white',
+        marginTop: 7,
+      },
+    headers: {
+        fontSize: 14,
+        fontWeight: 'bold', 
+        textAlign: 'left',
+        marginLeft: 18,
+        marginTop: 15,
+        color: '#333333',
+      },
+      caja: {
+        width: 20,
+        height: 20,
+        borderColor: "grey",
+      },
     cuadrado: {
-      width: 10,
-      height: 10,
-      borderRadius: 3,
-      borderColor: "grey",
-      justifyContent: 'center',
-      alignItems: 'center',
+        position: 'absolute',
+        backgroundColor: 'grey',
     },
     palomita: {
       width: 10,

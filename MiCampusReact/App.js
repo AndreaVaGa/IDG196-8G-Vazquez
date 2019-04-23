@@ -24,6 +24,7 @@ const MiCampus = createStackNavigator({
         backgroundColor: 'black',
       }, headerTitleStyle: {
         color: 'white',
+        fontWeight: 'bold',
       },
       title: 'Boleta',
       headerTintColor: 'white',
@@ -35,6 +36,7 @@ const MiCampus = createStackNavigator({
         backgroundColor: 'black',
       }, headerTitleStyle: {
         color: 'white',
+        fontWeight: 'bold',
       },
       headerTintColor: 'white',
     }
@@ -47,6 +49,7 @@ const MiCampus = createStackNavigator({
       },
       headerTitleStyle: {
         color: 'white',
+        fontWeight: 'bold',
       },
       headerTintColor: 'white',
     }
@@ -58,6 +61,7 @@ const MiCampus = createStackNavigator({
         backgroundColor: 'black',
       }, headerTitleStyle: {
         color: 'white',
+        fontWeight: 'bold',
       },
       headerTintColor: 'white',
     }
@@ -69,6 +73,7 @@ const MiCampus = createStackNavigator({
         backgroundColor: 'black',
       }, headerTitleStyle: {
         color: 'white',
+        fontWeight: 'bold',
       },
       headerTintColor: 'white',
     }
@@ -80,6 +85,7 @@ const MiCampus = createStackNavigator({
         backgroundColor: 'black',
       }, headerTitleStyle: {
         color: 'white',
+        fontWeight: 'bold',
       },
       headerTintColor: 'white',
     }
@@ -91,6 +97,19 @@ const MiCampus = createStackNavigator({
         backgroundColor: 'black',
       }, headerTitleStyle: {
         color: 'white',
+        fontWeight: 'bold',
+      },
+      headerTintColor: 'white',
+    }
+  },
+  Tramites: {
+    screen: Tramites, navigationOptions: {
+      title: 'Tramites',
+      headerStyle: {
+        backgroundColor: 'black',
+      }, headerTitleStyle: {
+        color: 'white',
+        fontWeight: 'bold',
       },
       headerTintColor: 'white',
     }
@@ -102,15 +121,13 @@ const MiCampus = createStackNavigator({
         backgroundColor: 'black',
       }, headerTitleStyle: {
         color: 'white',
+        fontWeight: 'bold',
       },
       headerTintColor: 'white',
     }
   },
   Menu: {
     screen: Menu, navigationOptions: { header: null, }
-  },
-  Tramites: {
-    screen: Tramites, navigationOptions: { header: null, }
   }
 });
 export default class App extends React.Component {
