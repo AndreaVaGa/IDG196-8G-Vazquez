@@ -122,6 +122,16 @@ export default class Menu extends React.Component {
           this.props.navigation.navigate('Tramites');
   }
 
+  _getHistorialFinanciero = () => {
+
+    this.props.navigation.navigate('HistorialFinanciero');
+}
+
+_getAdeudos = () => {
+
+  this.props.navigation.navigate('Adeudos');
+}
+
   render() {
     return (
       <ImageBackground style={styles.perfilContainer} source={require('../src/imgs/background.jpg')}>
@@ -154,17 +164,17 @@ export default class Menu extends React.Component {
           <Text style={styles.title}>Financiero</Text>
 
           <View style={styles.container}>
-            <TouchableOpacity style={styles.Boton} title='Adeudos'>
+            <TouchableOpacity style={styles.Boton} onPress={(this._getAdeudos)} title='Adeudos'>
               <Image source={require("../src/imgs/adeudos.png")}></Image>
-              <Text style={styles.texto}>Historial</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.Boton} title='Historial Financiero'>
-              <Image source={require("../src/imgs/hfinanciero.png")}></Image>
               <Text style={styles.texto}>Adeudos</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.Boton} onPress={(this._getHistorialFinanciero)} title='HistorialFinanciero'>
+              <Image source={require("../src/imgs/hfinanciero.png")}></Image>
+              <Text style={styles.texto}>Historial</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.Boton} onPress={(this._getTramites)} title='Tramites'>
               <Image source={require("../src/imgs/tramites.png")}></Image>
-              <Text style={styles.texto}>Tramites</Text>
+              <Text style={styles.texto}>Trámites</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>

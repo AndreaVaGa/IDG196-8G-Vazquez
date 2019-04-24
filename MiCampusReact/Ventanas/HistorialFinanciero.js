@@ -9,25 +9,7 @@ import {
 } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
-export default class Tramites extends React.Component {
-
-    _IraPago = () => {
-        this.props.navigation.navigate('Pago');
-      }
-   
-    functionOne(){
-    // do something
-    }
-    
-    functionTwo(){
-    // do someting
-    }
-
-    functionCombined() {
-      this.functionOne();
-      this.functionTwo();
-  }
-
+export default class HistorialFinanciero extends React.Component {
     render() {
         return (
             <View style={styles.container}>
@@ -36,8 +18,6 @@ export default class Tramites extends React.Component {
 
                 <View style={styles.fila}>
                     <View style={[styles.seleccionar]}>
-                         <View style={[styles.caja, styles.cuadrado]}>
-                         </View>
                     </View>
                     <View>
                         <View style={[styles.precio]}>
@@ -51,8 +31,6 @@ export default class Tramites extends React.Component {
                 </View>
                 <View style={styles.fila}>
                     <View style={[styles.seleccionar]}>
-                         <View style={[styles.caja, styles.cuadrado]}>
-                         </View>
                     </View>
                     <View>
                         <View style={[styles.precio]}>
@@ -66,8 +44,6 @@ export default class Tramites extends React.Component {
                 </View>
                 <View style={styles.fila}>
                     <View style={[styles.seleccionar]}>
-                         <View style={[styles.caja, styles.cuadrado]}>
-                         </View>
                     </View>
                     <View>
                         <View style={[styles.precio]}>
@@ -81,8 +57,6 @@ export default class Tramites extends React.Component {
                 </View>
                 <View style={styles.fila}>
                     <View style={[styles.seleccionar]}>
-                         <View style={[styles.caja, styles.cuadrado]}>
-                         </View>
                     </View>
                     <View>
                         <View style={[styles.precio]}>
@@ -96,8 +70,6 @@ export default class Tramites extends React.Component {
                 </View>
                 <View style={styles.fila}>
                     <View style={[styles.seleccionar]}>
-                         <View style={[styles.caja, styles.cuadrado]}>
-                         </View>
                     </View>
                     <View>
                         <View style={[styles.precio]}>
@@ -109,48 +81,9 @@ export default class Tramites extends React.Component {
                         </View>
                     </View>
                 </View>
-                <View style={styles.fila}>
-                    <View style={[styles.seleccionar]}>
-                         <View style={[styles.caja, styles.cuadrado]}>
-                         </View>
-                    </View>
-                    <View>
-                        <View style={[styles.precio]}>
-                            <Text style={styles.headersPrecio}>$60</Text>
-                        </View>
-                        <View style={styles.info}>
-                            <Text style={styles.texto}>Escolares (español)</Text>
-                            <Text style={styles.headers}>Historial académico de profesional</Text>
-                        </View>
-                    </View>
-                </View>
-                <View style={styles.fila}>
-                    <View style={[styles.seleccionar]}>
-                         <View style={[styles.caja, styles.cuadrado]}>
-                         </View>
-                    </View>
-                    <View>
-                        <View style={[styles.precio]}>
-                            <Text style={styles.headersPrecio}>$65</Text>
-                        </View>
-                        <View style={styles.info}>
-                            <Text style={styles.texto}>Escolares (ingles)</Text>
-                            <Text style={styles.headers}>Constancia de estudios en ingles (sin calificaciones)</Text>
-                        </View>
-                    </View>
-                </View>
 
                 </ScrollView>
-
-                <View style={styles.total}>
-                         <Text style={styles.textPromedio}>Total: $200 
-                         <TouchableOpacity onPress={(this._IraConfiguracion)}>
-                            <Image source={require("../src/imgs/pagar.png")} style={styles.boton} onPress={(this._IraPago)}></Image>
-                        </TouchableOpacity>
-                     </Text>
-                </View>
-                </View>
-                
+                </View>     
         );
     }
 }
@@ -203,21 +136,6 @@ const styles = StyleSheet.create({
         shadowRadius: 2,
         elevation: 4,
     },
-    total: {
-      backgroundColor: '#191919',
-      bottom: 0,
-      position: 'absolute',
-      padding: 7,
-      width: '100%',
-    },
-    textPromedio: { 
-      color: 'white', 
-      fontWeight: 'bold', 
-      fontSize: 18, 
-      textAlign: 'center', 
-      marginTop: 3,
-      marginBottom: 20, 
-    },
     texto: {
         fontSize: 12,
         textAlign: 'left',
@@ -241,24 +159,5 @@ const styles = StyleSheet.create({
         marginRight: 15,
         marginTop: 4,
         color: '#333333',
-      },
-      caja: {
-        width: 20,
-        height: 20,
-
-      },
-    cuadrado: {
-        position: 'absolute',
-        backgroundColor: '#e6e6e6',
-        marginLeft: 20,
-    },
-    palomita: {
-        height: 100,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    boton: { 
-      marginLeft: 25,
-      height: 10,
       },
 });
