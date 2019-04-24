@@ -56,7 +56,82 @@ export default class Tramites extends React.Component {
                         </View>
                         <View style={styles.info}>
                             <Text style={styles.texto}>Escolares (español)</Text>
-                            <Text style={styles.headers}>Carta para servicios medicos</Text>
+                            <Text style={styles.headers}>Carta para servicios médicos</Text>
+                        </View>
+                    </View>
+                </View>
+                <View style={styles.fila}>
+                    <View style={[styles.seleccionar]}>
+                         <View style={[styles.caja, styles.cuadrado]}>
+                         </View>
+                    </View>
+                    <View>
+                        <View style={[styles.precio]}>
+                            <Text style={styles.headersPrecio}>$65</Text>
+                        </View>
+                        <View style={styles.info}>
+                            <Text style={styles.texto}>Escolares (español)</Text>
+                            <Text style={styles.headers}>Constancia de estudios (sin calificaciones)</Text>
+                        </View>
+                    </View>
+                </View>
+                <View style={styles.fila}>
+                    <View style={[styles.seleccionar]}>
+                         <View style={[styles.caja, styles.cuadrado]}>
+                         </View>
+                    </View>
+                    <View>
+                        <View style={[styles.precio]}>
+                            <Text style={styles.headersPrecio}>$65</Text>
+                        </View>
+                        <View style={styles.info}>
+                            <Text style={styles.texto}>Escolares (español)</Text>
+                            <Text style={styles.headers}>Carta de calificaciones</Text>
+                        </View>
+                    </View>
+                </View>
+                <View style={styles.fila}>
+                    <View style={[styles.seleccionar]}>
+                         <View style={[styles.caja, styles.cuadrado]}>
+                         </View>
+                    </View>
+                    <View>
+                        <View style={[styles.precio]}>
+                            <Text style={styles.headersPrecio}>$870</Text>
+                        </View>
+                        <View style={styles.info}>
+                            <Text style={styles.texto}>Escolares (español)</Text>
+                            <Text style={styles.headers}>Trámite de cambio de carrera y/o maestría (convalidación de estudios)</Text>
+                        </View>
+                    </View>
+                </View>
+                <View style={styles.fila}>
+                    <View style={[styles.seleccionar]}>
+                         <View style={[styles.caja, styles.cuadrado]}>
+                         </View>
+                    </View>
+                    <View>
+                        <View style={[styles.precio]}>
+                            <Text style={styles.headersPrecio}>$60</Text>
+                        </View>
+                        <View style={styles.info}>
+                            <Text style={styles.texto}>Escolares (español)</Text>
+                            <Text style={styles.headers}>Historial académico de profesional</Text>
+                        </View>
+                    </View>
+                </View>
+                <View style={styles.fila}>
+                    <View style={[styles.seleccionar]}>
+                         <View style={[styles.caja, styles.cuadrado]}>
+                         </View>
+                    </View>
+                    <View>
+                        <View style={[styles.precio]}>
+                            <Text style={styles.headersPrecio}>$65</Text>
+                        </View>
+                        <View style={styles.info}>
+                            <Text style={styles.texto}>Escolares (ingles)</Text>
+                            <Text style={styles.headers}>Constancia de estudios en ingles (sin calificaciones)</Text>
                         </View>
                     </View>
                 </View>

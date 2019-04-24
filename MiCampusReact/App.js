@@ -104,7 +104,7 @@ const MiCampus = createStackNavigator({
   },
   Tramites: {
     screen: Tramites, navigationOptions: {
-      title: 'Tramites',
+      title: 'Trámites',
       headerStyle: {
         backgroundColor: 'black',
       }, headerTitleStyle: {
