@@ -3,7 +3,9 @@ import {
     Text,
     View,
     StyleSheet,
-    ScrollView
+    ScrollView,
+    TouchableOpacity,
+    Image
 } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
@@ -31,7 +33,7 @@ export default class Tramites extends React.Component {
                          <View style={[styles.caja, styles.cuadrado]}></View>
                     </View>
                     <View style={[styles.precio]}>
-                        <Text style={styles.headersPrecio}>PRECIO</Text>
+                        <Text style={styles.headersPrecio}>$200</Text>
                     </View>
                     <View style={styles.info}>
                         <Text style={styles.headers}>NOMBRE DEL PAGO</Text>
@@ -40,7 +42,10 @@ export default class Tramites extends React.Component {
                  </ScrollView>
                 </View>
                 <View style={styles.total}>
-                         <Text style={styles.textPromedio}>Total: $200 </Text>
+                         <Text style={styles.textPromedio}>Total: $200 
+                  <TouchableOpacity>
+                  <Image source={require("../src/imgs/pagar.png")} style={styles.boton} />
+                </TouchableOpacity></Text>
                 </View>
                 </View>
                 
@@ -108,9 +113,8 @@ const styles = StyleSheet.create({
     textPromedio: { 
       color: 'white', 
       fontWeight: 'bold', 
-      fontSize: 20, 
-      textAlign: 'left', 
-      marginLeft: 5, 
+      fontSize: 18, 
+      textAlign: 'center', 
       marginTop: 3,
       marginBottom: 20, 
     },
@@ -140,15 +144,20 @@ const styles = StyleSheet.create({
       caja: {
         width: 20,
         height: 20,
-        borderColor: "grey",
+
       },
     cuadrado: {
         position: 'absolute',
-        backgroundColor: 'grey',
+        backgroundColor: '#e6e6e6',
+        marginLeft: 20,
     },
     palomita: {
-      width: 10,
+        height: 100,
       justifyContent: 'center',
       alignItems: 'center',
     },
+    boton: { 
+      marginLeft: 25,
+      height: 10,
+      },
 });
