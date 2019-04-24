@@ -27,20 +27,24 @@ export default class Tramites extends React.Component {
     render() {
         return (
             <View style={styles.container}>
+
+            <ScrollView style={{marginBottom:50}}>
                 <View style={styles.fila}>
-                <ScrollView style={{marginBottom:50}}>
                     <View style={[styles.seleccionar]}>
                          <View style={[styles.caja, styles.cuadrado]}></View>
                     </View>
-                    <View style={[styles.precio]}>
-                        <Text style={styles.headersPrecio}>$200</Text>
+                    <View>
+                        <View style={[styles.precio]}>
+                            <Text style={styles.headersPrecio}>$200</Text>
+                        </View>
+                        <View style={styles.info}>
+                            <Text style={styles.headers}>NOMBRE DEL PAGO</Text>
+                            <Text style={styles.texto}>Informacion extra del tramite</Text>
+                        </View>
                     </View>
-                    <View style={styles.info}>
-                        <Text style={styles.headers}>NOMBRE DEL PAGO</Text>
-                        <Text style={styles.texto}>Informacion extra del tramite</Text>
-                    </View>
-                 </ScrollView>
                 </View>
+                </ScrollView>
+
                 <View style={styles.total}>
                          <Text style={styles.textPromedio}>Total: $200 
                   <TouchableOpacity>
@@ -60,10 +64,10 @@ const styles = StyleSheet.create({
     fila: {
         marginTop: 30,
         marginLeft: 15,
+        marginBottom: 5,
         flexDirection: 'row',
     },
     seleccionar: {
-        overflow: "hidden",
         justifyContent: 'center',
         height: 100,
         width: wp('15%'),
@@ -71,35 +75,33 @@ const styles = StyleSheet.create({
         borderBottomLeftRadius: 10,
         backgroundColor: '#ffffff',
         flexDirection: 'column',
-        shadowColor: '#000',
+        shadowColor: 'grey',
         shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.8,
+        shadowOpacity: 0.9,
         shadowRadius: 2,
         elevation: 4,
     },
     precio: {
-        overflow: "hidden",
         height: 30,
-        width: wp('70%'),
+        width: wp('76%'),
         borderTopRightRadius: 10,
         backgroundColor: '#666666',
         flexDirection: 'column',
-        shadowColor: '#000',
+        shadowColor: 'grey',
         shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.8,
+        shadowOpacity: 0.9,
         shadowRadius: 2,
         elevation: 4,
     },
     info: {
-        overflow: "hidden",
         height: 70,
-        width: wp('70%'),
+        width: wp('76%'),
         borderBottomRightRadius: 10,
         backgroundColor: '#f2f2f2',
         flexDirection: 'column',
-        shadowColor: '#000',
+        shadowColor: 'grey',
         shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.8,
+        shadowOpacity: 0.9,
         shadowRadius: 2,
         elevation: 4,
     },
