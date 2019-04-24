@@ -11,7 +11,7 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 
 export default class Tramites extends React.Component {
 
-  functionOne(){
+    functionOne(){
     // do something
     }
     
@@ -29,20 +29,38 @@ export default class Tramites extends React.Component {
             <View style={styles.container}>
 
             <ScrollView style={{marginBottom:50}}>
+
                 <View style={styles.fila}>
                     <View style={[styles.seleccionar]}>
-                         <View style={[styles.caja, styles.cuadrado]}></View>
+                         <View style={[styles.caja, styles.cuadrado]}>
+                         </View>
                     </View>
                     <View>
                         <View style={[styles.precio]}>
-                            <Text style={styles.headersPrecio}>$200</Text>
+                            <Text style={styles.headersPrecio}>$165</Text>
                         </View>
                         <View style={styles.info}>
-                            <Text style={styles.headers}>NOMBRE DEL PAGO</Text>
-                            <Text style={styles.texto}>Informacion extra del tramite</Text>
+                            <Text style={styles.texto}>Credenciales</Text>
+                            <Text style={styles.headers}>Duplicado de credencial de estudiante</Text>
                         </View>
                     </View>
                 </View>
+                <View style={styles.fila}>
+                    <View style={[styles.seleccionar]}>
+                         <View style={[styles.caja, styles.cuadrado]}>
+                         </View>
+                    </View>
+                    <View>
+                        <View style={[styles.precio]}>
+                            <Text style={styles.headersPrecio}>$65</Text>
+                        </View>
+                        <View style={styles.info}>
+                            <Text style={styles.texto}>Escolares (español)</Text>
+                            <Text style={styles.headers}>Carta para servicios medicos</Text>
+                        </View>
+                    </View>
+                </View>
+
                 </ScrollView>
 
                 <View style={styles.total}>
@@ -125,7 +143,7 @@ const styles = StyleSheet.create({
         textAlign: 'left',
         marginLeft: 18,
         color: '#333333',
-        marginTop: 2,
+        marginTop: 7,
         opacity: 1,
     },
     headersPrecio: {
@@ -140,7 +158,8 @@ const styles = StyleSheet.create({
         fontWeight: 'bold', 
         textAlign: 'left',
         marginLeft: 18,
-        marginTop: 15,
+        marginRight: 15,
+        marginTop: 4,
         color: '#333333',
       },
       caja: {
