@@ -7,9 +7,17 @@ import {
     TouchableOpacity,
     Image
 } from 'react-native';
+import { CheckBox } from 'react-native-elements';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 export default class Tramites extends React.Component {
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            checked:false
+        };
+    }
 
     _IraPago = () => {
         this.props.navigation.navigate('Pago');
@@ -36,8 +44,7 @@ export default class Tramites extends React.Component {
 
                 <View style={styles.fila}>
                     <View style={[styles.seleccionar]}>
-                         <View style={[styles.caja, styles.cuadrado]}>
-                         </View>
+                    <CheckBox center checked={this.state.checked} onPress={() => this.setState({checked: !this.state.checked})} />
                     </View>
                     <View>
                         <View style={[styles.precio]}>
@@ -51,8 +58,7 @@ export default class Tramites extends React.Component {
                 </View>
                 <View style={styles.fila}>
                     <View style={[styles.seleccionar]}>
-                         <View style={[styles.caja, styles.cuadrado]}>
-                         </View>
+                         <CheckBox center checked={this.state.checked} onPress={() => this.setState({checked: !this.state.checked})} />
                     </View>
                     <View>
                         <View style={[styles.precio]}>
@@ -66,8 +72,7 @@ export default class Tramites extends React.Component {
                 </View>
                 <View style={styles.fila}>
                     <View style={[styles.seleccionar]}>
-                         <View style={[styles.caja, styles.cuadrado]}>
-                         </View>
+                         <CheckBox center checked={this.state.checked} onPress={() => this.setState({checked: !this.state.checked})} />
                     </View>
                     <View>
                         <View style={[styles.precio]}>
@@ -81,8 +86,7 @@ export default class Tramites extends React.Component {
                 </View>
                 <View style={styles.fila}>
                     <View style={[styles.seleccionar]}>
-                         <View style={[styles.caja, styles.cuadrado]}>
-                         </View>
+                         <CheckBox center checked={this.state.checked} onPress={() => this.setState({checked: !this.state.checked})} />
                     </View>
                     <View>
                         <View style={[styles.precio]}>
@@ -96,8 +100,7 @@ export default class Tramites extends React.Component {
                 </View>
                 <View style={styles.fila}>
                     <View style={[styles.seleccionar]}>
-                         <View style={[styles.caja, styles.cuadrado]}>
-                         </View>
+                         <CheckBox center checked={this.state.checked} onPress={() => this.setState({checked: !this.state.checked})} />
                     </View>
                     <View>
                         <View style={[styles.precio]}>
@@ -111,8 +114,7 @@ export default class Tramites extends React.Component {
                 </View>
                 <View style={styles.fila}>
                     <View style={[styles.seleccionar]}>
-                         <View style={[styles.caja, styles.cuadrado]}>
-                         </View>
+                         <CheckBox center checked={this.state.checked} onPress={() => this.setState({checked: !this.state.checked})} />
                     </View>
                     <View>
                         <View style={[styles.precio]}>
@@ -126,8 +128,7 @@ export default class Tramites extends React.Component {
                 </View>
                 <View style={styles.fila}>
                     <View style={[styles.seleccionar]}>
-                         <View style={[styles.caja, styles.cuadrado]}>
-                         </View>
+                         <CheckBox center checked={this.state.checked} onPress={() => this.setState({checked: !this.state.checked})} />
                     </View>
                     <View>
                         <View style={[styles.precio]}>
