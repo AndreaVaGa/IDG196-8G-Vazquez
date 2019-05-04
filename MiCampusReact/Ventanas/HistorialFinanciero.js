@@ -2,11 +2,34 @@ import React from 'react';
 import {
     View,
     StyleSheet,
-    FlatList
+    FlatList,
+     AsyncStorage,
 } from 'react-native';
 import HistorialFRow from '../Utils/historial_f_row';
 
 class HistorialFinanciero extends React.Component {
+     constructor(props) {
+    super(props)
+    this.state = {
+      loading: false,
+      page: 1,
+      seed: 1,
+      error: null,
+      refreshing: false,
+    };
+  }
+
+  componentDidMount() {
+    this._loadInitionState().done();
+  }
+
+  _loadInitionState = async () => {
+    var value = await AsyncStorage.getItem('boleta');
+    if (value !== undefined) {
+      var boleta = JSON.parse(value)
+      this.setState({ data: boleta.boleta})
+    }
+  }
 
     
       _renderItem = ({ item }) => (

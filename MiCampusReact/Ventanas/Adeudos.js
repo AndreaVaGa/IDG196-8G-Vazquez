@@ -2,12 +2,36 @@ import React from 'react';
 import {
     View,
     StyleSheet,
-    FlatList
+    FlatList,
+     AsyncStorage,
 } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import AdeudosRow from '../Utils/adeudos_row';
 
 class Adeudos extends React.Component {
+     
+  constructor(props) {
+    super(props)
+    this.state = {
+      loading: false,
+      page: 1,
+      seed: 1,
+      error: null,
+      refreshing: false,
+    };
+  }
+
+  componentDidMount() {
+    this._loadInitionState().done();
+  }
+
+  _loadInitionState = async () => {
+    var value = await AsyncStorage.getItem('boleta');
+    if (value !== undefined) {
+      var boleta = JSON.parse(value)
+      this.setState({ data: boleta.boleta})
+    }
+  }
 
     
       _renderItem = ({ item }) => (
