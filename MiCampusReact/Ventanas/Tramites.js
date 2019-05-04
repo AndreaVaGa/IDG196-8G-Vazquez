@@ -14,6 +14,18 @@ class Tramites extends React.Component {
     _IraPago = () => {
         this.props.navigation.navigate('Pago');
       }
+    
+      _renderItem = ({ item }) => (
+        <TramitesRow
+        onPressItem={this._onPressItem}
+        fila={item.fila}
+        seleccionar={item.seleccionar}
+        headersPrecio={item.headersPrecio}
+        info={item.info}
+        texto={item.texto}
+        header={item.header}
+        />
+      );
 
       render() {
         return (
@@ -21,7 +33,7 @@ class Tramites extends React.Component {
             <FlatList
               data={this.state.data}
               extraData={this.state}
-              keyExtractor={(item, index) => item.tramites}
+              keyExtractor={(item, index) => item.fila}
               renderItem={this._renderItem}
               showsVerticalScrollIndicator={false}
             />
