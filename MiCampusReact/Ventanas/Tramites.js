@@ -4,12 +4,37 @@ import {
     View,
     StyleSheet,
     TouchableOpacity,
-    Image
+    Image,
+    FlatList,
+    AsyncStorage,
 } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import TramitesRow from '../Utils/tramites_row';
 
 class Tramites extends React.Component {
+
+     constructor(props) {
+    super(props)
+    this.state = {
+      loading: false,
+      page: 1,
+      seed: 1,
+      error: null,
+      refreshing: false,
+    };
+  }
+
+  componentDidMount() {
+    this._loadInitionState().done();
+  }
+
+    _loadInitionState = async () => {
+    var value = await AsyncStorage.getItem('boleta');
+    if (value !== undefined) {
+      var boleta = JSON.parse(value)
+      this.setState({ data: boleta.boleta})
+    }
+  }
 
     _IraPago = () => {
         this.props.navigation.navigate('Pago');
