@@ -4,6 +4,7 @@ import {
     View,
     StyleSheet,
     TouchableOpacity,
+    ScrollView,
     Image,
     FlatList,
     AsyncStorage,
@@ -55,6 +56,7 @@ class Tramites extends React.Component {
       render() {
         return (
           <View style={styles.container} >
+          <ScrollView>
             <FlatList
               data={this.state.data}
               extraData={this.state}
@@ -62,15 +64,18 @@ class Tramites extends React.Component {
               renderItem={this._renderItem}
               showsVerticalScrollIndicator={false}
             />
+            </ScrollView>
 
-                <View style={styles.total}>
+            <View style={styles.total}>
                          <Text style={styles.textPromedio}>Total: $200 
-                         <TouchableOpacity onPress={(this._IraConfiguracion)}>
+                         <TouchableOpacity onPress={(this._IraPago)}>
                             <Image source={require("../src/imgs/pagar.png")} style={styles.boton} onPress={(this._IraPago)}></Image>
                         </TouchableOpacity>
                      </Text>
                 </View>
+
             </View>
+            
                 
         );
     }
@@ -81,16 +86,19 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
+    total: {
+      backgroundColor: '#333333',
+    },
+
     textPromedio: { 
       color: 'white', 
       fontWeight: 'bold', 
-      fontSize: 18, 
+      fontSize: 20, 
       textAlign: 'center', 
-      marginTop: 3,
-      marginBottom: 20, 
+      marginTop: 10,
+      marginBottom: 35, 
     },
     boton: { 
       marginLeft: 25,
-      height: 10,
       },
 });

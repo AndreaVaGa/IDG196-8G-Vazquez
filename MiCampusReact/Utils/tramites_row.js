@@ -3,7 +3,6 @@ import {
     Text,
     View,
     StyleSheet,
-    ScrollView,
     TouchableOpacity,
     Image
 } from 'react-native';
@@ -22,7 +21,6 @@ class TramitesRow extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-            <ScrollView style={{marginBottom:50}}>
 
                 <View style={styles.fila}>
                     <View style={[styles.seleccionar]}>
@@ -38,9 +36,8 @@ class TramitesRow extends React.Component {
                         </View>
                     </View>
                 </View>
-                
-                </ScrollView>
-                </View>
+
+            </View>
                 
         );
     }
