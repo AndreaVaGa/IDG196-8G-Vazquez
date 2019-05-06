@@ -9,74 +9,63 @@ import {
 } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
-export default class Pago extends React.Component {
+class Pago extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-
-            <ScrollView style={{marginBottom:50}}>
-
-                <View style={styles.fila}>
-                    <View style={[styles.seleccionar]}>
+                    <View style={[styles.precioTotal]}>
+                    <Text style={styles.textoPrecio}>$165 MXN</Text>
                     </View>
                     <View>
-                        <View style={[styles.precio]}>
-                            <Text style={styles.headersPrecio}>$165</Text>
+                        <View style={[styles.contenido]}>
+                            <Text style={styles.textoContenido}>$165</Text>
                         </View>
-                        <View style={styles.info}>
-                            <Text style={styles.texto}>Credenciales</Text>
-                            <Text style={styles.headers}>Duplicado de credencial de estudiante</Text>
+                        <View style={styles.infoExtra}>
+                            <Text style={styles.textoInfo}>Duplicado de credencial de estudiante</Text>
                         </View>
-                    </View>
                 </View>
-
-                </ScrollView>
-                </View>     
+            </View>     
         );
     }
 }
+export default Pago;
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-    },
-    fila: {
-        marginTop: 30,
         marginLeft: 15,
-        marginBottom: 5,
-        flexDirection: 'row',
     },
-    seleccionar: {
-        justifyContent: 'center',
-        height: 100,
-        width: wp('15%'),
-        borderTopLeftRadius: 10,
-        borderBottomLeftRadius: 10,
-        backgroundColor: '#ffffff',
-        flexDirection: 'column',
-        shadowColor: 'grey',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.9,
-        shadowRadius: 2,
-        elevation: 4,
-    },
-    precio: {
-        height: 30,
-        width: wp('76%'),
-        borderTopRightRadius: 10,
-        backgroundColor: '#666666',
-        flexDirection: 'column',
-        shadowColor: 'grey',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.9,
-        shadowRadius: 2,
-        elevation: 4,
-    },
-    info: {
+    precioTotal: {
+        marginTop: 30,
         height: 70,
-        width: wp('76%'),
-        borderBottomRightRadius: 10,
+        width: wp('91%'),
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10,
+        backgroundColor: '#333333',
+        flexDirection: 'row',
+        shadowColor: 'grey',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.9,
+        shadowRadius: 2,
+        elevation: 4,
+    },
+    contenido: {
+        height: 300,
+        width: wp('91%'),
         backgroundColor: '#f2f2f2',
+        flexDirection: 'row',
+        shadowColor: 'grey',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.9,
+        shadowRadius: 2,
+        elevation: 4,
+    },
+    infoExtra: {
+        height: 80,
+        width: wp('91%'),
+        borderBottomRightRadius: 10,
+        borderBottomLeftRadius: 10,
+        backgroundColor: '#333333',
         flexDirection: 'column',
         shadowColor: 'grey',
         shadowOffset: { width: 0, height: 2 },
@@ -84,28 +73,31 @@ const styles = StyleSheet.create({
         shadowRadius: 2,
         elevation: 4,
     },
-    texto: {
-        fontSize: 12,
+    textoPrecio: {
+        fontSize: 24,
         textAlign: 'left',
         marginLeft: 18,
-        color: '#333333',
-        marginTop: 7,
+        marginRight: 18,
+        color: 'white',
+        marginTop: 10,
         opacity: 1,
     },
-    headersPrecio: {
-        fontSize: 14,
-        textAlign: 'right',
-        marginRight: 15,
-        color: 'white',
-        marginTop: 7,
-      },
-    headers: {
-        fontSize: 14,
-        fontWeight: 'bold', 
+    textoContenido: {
+        fontSize: 18,
         textAlign: 'left',
         marginLeft: 18,
-        marginRight: 15,
-        marginTop: 4,
+        marginRight: 18,
         color: '#333333',
-      },
+        marginTop: 10,
+        opacity: 1,
+    },
+    textoInfo: {
+        fontSize: 12,
+        textAlign: 'center',
+        marginLeft: 18,
+        marginRight: 18,
+        color: '#f2f2f2',
+        marginTop: 15,
+        opacity: 1,
+    },
 });
