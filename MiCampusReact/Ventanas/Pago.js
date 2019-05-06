@@ -5,7 +5,7 @@ import {
     StyleSheet,
     ScrollView,
     TouchableOpacity,
-    Image
+    Image,
 } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
@@ -19,6 +19,9 @@ class Pago extends React.Component {
                     <View>
                         <View style={[styles.contenido]}>
                             <Text style={styles.textoContenido}>$165</Text>
+                            <View style={[styles.box]}>
+                                <Text style={[styles.boxText]}>Pagar $165.00 MXN</Text>
+                            </View>
                         </View>
                         <View style={styles.infoExtra}>
                             <Text style={styles.textoInfo}>Duplicado de credencial de estudiante</Text>
@@ -66,7 +69,7 @@ const styles = StyleSheet.create({
         borderBottomRightRadius: 10,
         borderBottomLeftRadius: 10,
         backgroundColor: '#333333',
-        flexDirection: 'column',
+        flexDirection: 'row',
         shadowColor: 'grey',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.9,
@@ -100,4 +103,29 @@ const styles = StyleSheet.create({
         marginTop: 15,
         opacity: 1,
     },
+    box: {
+        height: 40,
+        width: wp('61%'),
+        flexDirection: 'row',
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10,
+        borderBottomRightRadius: 10,
+        borderBottomLeftRadius: 10,
+        shadowColor: 'grey',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.9,
+        shadowRadius: 2,
+        elevation: 4,
+        backgroundColor: 'yellow',
+    },
+    boxText: {
+        fontSize: 18,
+        textAlign: 'center',
+        marginLeft: 15,
+        marginRight: 15,
+        marginTop: 10,
+        marginBottom: 10,
+        color: '#333333',
+    },
+    
 });
