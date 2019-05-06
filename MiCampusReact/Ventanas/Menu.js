@@ -7,12 +7,13 @@ export default class Menu extends React.Component {
     super(props);
     this.state = {
       matricula: '',
-      apiRoot: "http://0.0.0.0:8080/api/micampus/"
+      apiRoot: "http://ec2co-ecsel-1o7jydferg75c-743462231.us-east-2.elb.amazonaws.com:8080/api/micampus/"
     };
 
   }
   componentDidMount() {
     this._loadInitionState().done();
+    
   }
 
   _loadInitionState = async () => {
