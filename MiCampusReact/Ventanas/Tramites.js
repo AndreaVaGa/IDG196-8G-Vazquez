@@ -42,6 +42,7 @@ class Tramites extends React.Component {
       var boleta = JSON.parse(value)
       this.setState({ data: boleta.boleta })
     }
+    global.sumaTramites = 0;
   }
 
   _IraPago = () => {
