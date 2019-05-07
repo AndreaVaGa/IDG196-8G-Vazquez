@@ -9,6 +9,10 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 
 class HistorialFRow extends React.Component {
 
+    _IraRecibo = () => {
+        this.props.navigation.navigate('Recibo');
+      }
+
     render() {
         return (
             <View style={styles.container}>

@@ -3,19 +3,17 @@ import {
     Text,
     View,
     StyleSheet,
-    ScrollView,
     TouchableOpacity,
-    TextInput,
-    Image,
-    borderBottomColor,
+    TextInput
 } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
-_IraMenu = () => {
-    this.props.navigation.navigate('Menu');
-  }
-
 class Pago extends React.Component {
+
+    _IraRecibo = () => {
+        this.props.navigation.navigate('Recibo');
+      }
+      
     render() {
         return (
             <View style={styles.container}>
@@ -42,7 +40,7 @@ class Pago extends React.Component {
                                     />
                                 </View>
                                 
-                                <TouchableOpacity style={[styles.box]} onPress={(this._IraMenu)}>
+                                <TouchableOpacity style={[styles.box]} onPress={(this._IraRecibo)}>
                                     <Text style={[styles.boxText]} >Pagar ${global.sumaTramites}MXN</Text>
                                 </TouchableOpacity>
                             </View>
