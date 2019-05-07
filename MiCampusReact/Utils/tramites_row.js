@@ -17,28 +17,26 @@ class TramitesRow extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            checked:false,
+            checked: false,
             precio: 100,
             sumaTramites
         };
     }
 
-     _changeValue = () => {
+    _changeValue = () => {
 
-        this.setState({checked: !this.state.checked})
+        this.setState({ checked: !this.state.checked })
         if (this.state.checked) {
-            global.sumaTramites-=this.state.precio;
-            
+            global.sumaTramites -= this.state.precio;
+
         }
         else {
-            global.sumaTramites+=this.state.precio;      
+            global.sumaTramites += this.state.precio;
         }
-
-        
+        this.props.actualizador_del_futuro(global.sumaTramites)
     }
 
-
-     _onPress = () => {
+    _onPress = () => {
         this._changeValue()
     };
 
@@ -48,7 +46,7 @@ class TramitesRow extends React.Component {
 
                 <View style={styles.fila}>
                     <View style={[styles.seleccionar]}>
-                    <CheckBox center checked={this.state.checked} onPress={this._onPress} />
+                        <CheckBox center checked={this.state.checked} onPress={this._onPress} />
                     </View>
                     <View>
                         <View style={[styles.precio]}>
@@ -62,7 +60,7 @@ class TramitesRow extends React.Component {
                 </View>
 
             </View>
-                
+
         );
     }
 }
@@ -118,11 +116,11 @@ const styles = StyleSheet.create({
         elevation: 4,
     },
     total: {
-      backgroundColor: '#191919',
-      bottom: 0,
-      position: 'absolute',
-      padding: 7,
-      width: '100%',
+        backgroundColor: '#191919',
+        bottom: 0,
+        position: 'absolute',
+        padding: 7,
+        width: '100%',
     },
     texto: {
         fontSize: 12,
@@ -138,21 +136,21 @@ const styles = StyleSheet.create({
         marginRight: 15,
         color: 'white',
         marginTop: 7,
-      },
+    },
     headers: {
         fontSize: 14,
-        fontWeight: 'bold', 
+        fontWeight: 'bold',
         textAlign: 'left',
         marginLeft: 18,
         marginRight: 15,
         marginTop: 4,
         color: '#333333',
-      },
-      caja: {
+    },
+    caja: {
         width: 20,
         height: 20,
 
-      },
+    },
     cuadrado: {
         position: 'absolute',
         backgroundColor: '#e6e6e6',
@@ -160,7 +158,7 @@ const styles = StyleSheet.create({
     },
     palomita: {
         height: 100,
-      justifyContent: 'center',
-      alignItems: 'center',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 });
