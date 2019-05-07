@@ -14,13 +14,21 @@ class Pago extends React.Component {
         return (
             <View style={styles.container}>
                     <View style={[styles.precioTotal]}>
-                    <Text style={styles.textoPrecio}>$165 MXN</Text>
+                    <Text style={styles.textoPrecio}>${global.sumaTramites}MXN</Text>
                     </View>
                     <View>
                         <View style={[styles.contenido]}>
-                            <Text style={styles.textoContenido}>$165</Text>
-                            <View style={[styles.box]}>
-                                <Text style={[styles.boxText]}>Pagar $165.00 MXN</Text>
+                            <View style={styles.textoContenido}>
+                                <View>
+                                    <Text style={[styles.boxContenido]}>Numero de Tarjeta</Text>
+                                </View>
+                                <View >
+                                    <Text style={[styles.boxExpira]}>Expira</Text>
+                                    <Text style={[styles.boxCVV]}>CVV</Text>
+                                </View>
+                                <View style={[styles.box]}>
+                                    <Text style={[styles.boxText]}>Pagar ${global.sumaTramites}MXN</Text>
+                                </View>
                             </View>
                         </View>
                         <View style={styles.infoExtra}>
@@ -75,6 +83,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.9,
         shadowRadius: 2,
         elevation: 4,
+        justifyContent: 'center',
     },
     textoPrecio: {
         fontSize: 24,
@@ -89,7 +98,6 @@ const styles = StyleSheet.create({
         fontSize: 18,
         textAlign: 'left',
         marginLeft: 18,
-        marginRight: 18,
         color: '#333333',
         marginTop: 10,
         opacity: 1,
@@ -116,16 +124,46 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.9,
         shadowRadius: 2,
         elevation: 4,
-        backgroundColor: 'yellow',
+        backgroundColor: '#ffd700',
+        justifyContent: 'center',
+        marginTop: 35,
+        marginLeft: 38,
     },
     boxText: {
-        fontSize: 18,
+        marginTop: 5,
+        fontSize: 20,
         textAlign: 'center',
-        marginLeft: 15,
-        marginRight: 15,
+        color: '#333333',
+    },
+    boxContenido: {
+        height: 20,
+        width: wp('81%'),
+        flexDirection: 'row',
+        backgroundColor: 'grey',
+        justifyContent: 'center',
         marginTop: 10,
         marginBottom: 10,
-        color: '#333333',
+        fontSize: 16,
+    },
+    boxExpira: {
+        height: 20,
+        width: wp('35%'),
+        flexDirection: 'row',
+        backgroundColor: 'grey',
+        justifyContent: 'center',
+        marginTop: 10,
+        marginBottom: 10,
+        fontSize: 16,
+    },
+    boxCVV: {
+        height: 20,
+        width: wp('35%'),
+        flexDirection: 'row',
+        backgroundColor: 'grey',
+        justifyContent: 'center',
+        marginTop: 10,
+        marginBottom: 10,
+        fontSize: 16,
     },
     
 });

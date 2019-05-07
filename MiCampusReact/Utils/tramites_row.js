@@ -4,19 +4,43 @@ import {
     View,
     StyleSheet,
     TouchableOpacity,
-    Image
+    Image,
+    RefreshControl
 } from 'react-native';
 import { CheckBox } from 'react-native-elements';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+
+global.sumaTramites = 0;
 
 class TramitesRow extends React.Component {
 
     constructor(props) {
         super(props)
         this.state = {
-            checked:false
+            checked:false,
+            precio: 100,
+            sumaTramites
         };
     }
+
+     _changeValue = () => {
+
+        this.setState({checked: !this.state.checked})
+        if (this.state.checked) {
+            global.sumaTramites-=this.state.precio;
+            
+        }
+        else {
+            global.sumaTramites+=this.state.precio;      
+        }
+
+        
+    }
+
+
+     _onPress = () => {
+        this._changeValue()
+    };
 
     render() {
         return (
@@ -24,11 +48,11 @@ class TramitesRow extends React.Component {
 
                 <View style={styles.fila}>
                     <View style={[styles.seleccionar]}>
-                    <CheckBox center checked={this.state.checked} onPress={() => this.setState({checked: !this.state.checked})} />
+                    <CheckBox center checked={this.state.checked} onPress={this._onPress} />
                     </View>
                     <View>
                         <View style={[styles.precio]}>
-                            <Text style={styles.headersPrecio}>$165</Text>
+                            <Text style={styles.headersPrecio}>${this.state.precio}</Text>
                         </View>
                         <View style={styles.info}>
                             <Text style={styles.texto}>Credenciales</Text>

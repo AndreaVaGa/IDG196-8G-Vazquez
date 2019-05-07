@@ -8,9 +8,11 @@ import {
     Image,
     FlatList,
     AsyncStorage,
+    RefreshControl
 } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import TramitesRow from '../Utils/tramites_row';
+
 
 class Tramites extends React.Component {
 
@@ -21,7 +23,7 @@ class Tramites extends React.Component {
       page: 1,
       seed: 1,
       error: null,
-      refreshing: false,
+      refreshing: true,
     };
   }
 
@@ -64,10 +66,12 @@ class Tramites extends React.Component {
               renderItem={this._renderItem}
               showsVerticalScrollIndicator={false}
             />
+
             </ScrollView>
 
+
             <View style={styles.total}>
-                         <Text style={styles.textPromedio}>Total: $200 
+                         <Text style={styles.textPromedio}>Total: ${global.sumaTramites} 
                          <TouchableOpacity onPress={(this._IraPago)}>
                             <Image source={require("../src/imgs/pagar.png")} style={styles.boton} onPress={(this._IraPago)}></Image>
                         </TouchableOpacity>
