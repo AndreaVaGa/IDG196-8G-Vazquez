@@ -18,8 +18,7 @@ class TramitesRow extends React.Component {
         super(props)
         this.state = {
             checked: false,
-            precio: 100,
-            sumaTramites
+            price: 100
         };
     }
 
@@ -27,18 +26,19 @@ class TramitesRow extends React.Component {
 
         this.setState({ checked: !this.state.checked })
         if (this.state.checked) {
-            global.sumaTramites -= this.state.precio;
+            global.sumaTramites -= this.state.price;
 
         }
         else {
-            global.sumaTramites += this.state.precio;
+            global.sumaTramites += this.state.price;
         }
-        this.props.actualizador_del_futuro(global.sumaTramites)
+        this.props.binder(global.sumaTramites)
     }
 
     _onPress = () => {
         this._changeValue()
     };
+
 
     render() {
         return (
@@ -50,7 +50,7 @@ class TramitesRow extends React.Component {
                     </View>
                     <View>
                         <View style={[styles.precio]}>
-                            <Text style={styles.headersPrecio}>${this.state.precio}</Text>
+                            <Text style={styles.headersPrecio}>${this.state.price}</Text>
                         </View>
                         <View style={styles.info}>
                             <Text style={styles.texto}>Credenciales</Text>

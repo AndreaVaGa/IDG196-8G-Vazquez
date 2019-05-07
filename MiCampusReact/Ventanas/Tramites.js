@@ -25,7 +25,7 @@ class Tramites extends React.Component {
       seed: 1,
       error: null,
       refreshing: true,
-      total: 1000
+      total: 0
     };
 
     this.handler = this.handler.bind(this);
@@ -61,7 +61,7 @@ class Tramites extends React.Component {
       info={item.info}
       texto={item.texto}
       header={item.header}
-      actualizador_del_futuro={this.handler}
+      binder={this.handler}
     />
   );
 

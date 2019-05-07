@@ -5,9 +5,15 @@ import {
     StyleSheet,
     ScrollView,
     TouchableOpacity,
+    TextInput,
     Image,
+    borderBottomColor,
 } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+
+_IraMenu = () => {
+    this.props.navigation.navigate('Menu');
+  }
 
 class Pago extends React.Component {
     render() {
@@ -20,15 +26,25 @@ class Pago extends React.Component {
                         <View style={[styles.contenido]}>
                             <View style={styles.textoContenido}>
                                 <View>
-                                    <Text style={[styles.boxContenido]}>Numero de Tarjeta</Text>
+                                    <TextInput style={[styles.boxContenido]}
+                                    placeholder="Numero de Trajeta"
+                                    placeholderTextColor='grey'
+                                    />
                                 </View>
-                                <View >
-                                    <Text style={[styles.boxExpira]}>Expira</Text>
-                                    <Text style={[styles.boxCVV]}>CVV</Text>
+                                <View style={[styles.boxEC]}>
+                                    <TextInput style={[styles.boxECInterno]}
+                                    placeholder="Expira"
+                                    placeholderTextColor='grey'
+                                    />
+                                    <TextInput style={[styles.boxECInterno]}
+                                    placeholder="CVV"
+                                    placeholderTextColor='grey'
+                                    />
                                 </View>
-                                <View style={[styles.box]}>
-                                    <Text style={[styles.boxText]}>Pagar ${global.sumaTramites}MXN</Text>
-                                </View>
+                                
+                                <TouchableOpacity style={[styles.box]} onPress={(this._IraMenu)}>
+                                    <Text style={[styles.boxText]} >Pagar ${global.sumaTramites}MXN</Text>
+                                </TouchableOpacity>
                             </View>
                         </View>
                         <View style={styles.infoExtra}>
@@ -48,7 +64,7 @@ const styles = StyleSheet.create({
     },
     precioTotal: {
         marginTop: 30,
-        height: 70,
+        height: 50,
         width: wp('91%'),
         borderTopLeftRadius: 10,
         borderTopRightRadius: 10,
@@ -86,7 +102,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     textoPrecio: {
-        fontSize: 24,
+        fontSize: 26,
         textAlign: 'left',
         marginLeft: 18,
         marginRight: 18,
@@ -136,34 +152,24 @@ const styles = StyleSheet.create({
         color: '#333333',
     },
     boxContenido: {
-        height: 20,
+        height: 30,
         width: wp('81%'),
-        flexDirection: 'row',
-        backgroundColor: 'grey',
+        flexDirection: 'column',
         justifyContent: 'center',
-        marginTop: 10,
+        marginTop: 30,
         marginBottom: 10,
-        fontSize: 16,
+        fontSize: 22,
     },
-    boxExpira: {
-        height: 20,
-        width: wp('35%'),
+    boxEC: {
+        marginTop: 20,
+        marginBottom: 30,
         flexDirection: 'row',
-        backgroundColor: 'grey',
-        justifyContent: 'center',
-        marginTop: 10,
-        marginBottom: 10,
-        fontSize: 16,
     },
-    boxCVV: {
-        height: 20,
+    boxECInterno: {
+        height: 30,
         width: wp('35%'),
-        flexDirection: 'row',
-        backgroundColor: 'grey',
-        justifyContent: 'center',
-        marginTop: 10,
-        marginBottom: 10,
-        fontSize: 16,
+        flexDirection: 'column',
+        fontSize: 22,
     },
     
 });
