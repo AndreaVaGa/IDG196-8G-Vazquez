@@ -5,7 +5,6 @@ import {
   StyleSheet,
   TouchableOpacity,
   ScrollView,
-  Image,
   FlatList,
   AsyncStorage,
   RefreshControl
@@ -82,11 +81,11 @@ class Tramites extends React.Component {
 
 
         <View style={styles.total}>
-          <Text style={styles.textPromedio}>Total: ${this.state.total}
-            <TouchableOpacity onPress={(this._IraPago)}>
-              <Image source={require("../src/imgs/pagar.png")} style={styles.boton} onPress={(this._IraPago)}></Image>
+          <Text style={styles.textPromedio}>Total: ${this.state.total}MXN
+            <TouchableOpacity style={[styles.box]} onPress={(this._IraPago)}>
+              <Text style={[styles.boxText]} >Pagar</Text>
             </TouchableOpacity>
-          </Text>
+            </Text>
         </View>
 
       </View>
@@ -107,13 +106,29 @@ const styles = StyleSheet.create({
 
   textPromedio: {
     color: 'white',
-    fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: 18,
     textAlign: 'center',
     marginTop: 10,
     marginBottom: 35,
   },
-  boton: {
-    marginLeft: 25,
-  },
+  box: {
+    height: 25,
+    width: wp('22%'),
+    flexDirection: 'row',
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    borderBottomRightRadius: 10,
+    borderBottomLeftRadius: 10,
+    shadowColor: 'black',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.9,
+    shadowRadius: 2,
+    elevation: 4,
+    backgroundColor: '#ffd700',
+    justifyContent: 'center',
+},
+boxText: {
+    fontSize: 18,
+    color: '#333333',
+},
 });
