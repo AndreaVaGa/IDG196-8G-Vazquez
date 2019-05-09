@@ -11,6 +11,11 @@ import Fondo from './Ventanas/Fondo';
 import Terminos from './Ventanas/Terminos';
 import Configuracion from './Ventanas/Configuracion';
 import Menu from './Ventanas/Menu';
+import Tramites from './Ventanas/Tramites';
+import HistorialFinanciero from './Ventanas/HistorialFinanciero';
+import Adeudos from './Ventanas/Adeudos';
+import Pago from './Ventanas/Pago';
+import Recibo from './Ventanas/Recibo';
 
 
 Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.PORTRAIT);
@@ -23,6 +28,7 @@ const MiCampus = createStackNavigator({
         backgroundColor: 'black',
       }, headerTitleStyle: {
         color: 'white',
+        fontWeight: 'bold',
       },
       title: 'Boleta',
       headerTintColor: 'white',
@@ -34,6 +40,7 @@ const MiCampus = createStackNavigator({
         backgroundColor: 'black',
       }, headerTitleStyle: {
         color: 'white',
+        fontWeight: 'bold',
       },
       headerTintColor: 'white',
     }
@@ -46,6 +53,7 @@ const MiCampus = createStackNavigator({
       },
       headerTitleStyle: {
         color: 'white',
+        fontWeight: 'bold',
       },
       headerTintColor: 'white',
     }
@@ -57,6 +65,7 @@ const MiCampus = createStackNavigator({
         backgroundColor: 'black',
       }, headerTitleStyle: {
         color: 'white',
+        fontWeight: 'bold',
       },
       headerTintColor: 'white',
     }
@@ -68,6 +77,7 @@ const MiCampus = createStackNavigator({
         backgroundColor: 'black',
       }, headerTitleStyle: {
         color: 'white',
+        fontWeight: 'bold',
       },
       headerTintColor: 'white',
     }
@@ -79,6 +89,7 @@ const MiCampus = createStackNavigator({
         backgroundColor: 'black',
       }, headerTitleStyle: {
         color: 'white',
+        fontWeight: 'bold',
       },
       headerTintColor: 'white',
     }
@@ -90,6 +101,67 @@ const MiCampus = createStackNavigator({
         backgroundColor: 'black',
       }, headerTitleStyle: {
         color: 'white',
+        fontWeight: 'bold',
+      },
+      headerTintColor: 'white',
+    }
+  },
+  Tramites: {
+    screen: Tramites, navigationOptions: {
+      title: 'Trámites',
+      headerStyle: {
+        backgroundColor: 'black',
+      }, headerTitleStyle: {
+        color: 'white',
+        fontWeight: 'bold',
+      },
+      headerTintColor: 'white',
+    }
+  },
+  Pago: {
+    screen: Pago, navigationOptions: {
+      title: 'Pago',
+      headerStyle: {
+        backgroundColor: 'black',
+      }, headerTitleStyle: {
+        color: 'white',
+        fontWeight: 'bold',
+      },
+      headerTintColor: 'white',
+    }
+  },
+  Recibo: {
+    screen: Recibo, navigationOptions: {
+      title: 'Recibo',
+      headerStyle: {
+        backgroundColor: 'black',
+      }, headerTitleStyle: {
+        color: 'white',
+        fontWeight: 'bold',
+      },
+      headerTintColor: 'white',
+    }
+  },
+  Adeudos: {
+    screen: Adeudos, navigationOptions: {
+      title: 'Adeudos',
+      headerStyle: {
+        backgroundColor: 'black',
+      }, headerTitleStyle: {
+        color: 'white',
+        fontWeight: 'bold',
+      },
+      headerTintColor: 'white',
+    }
+  },
+  HistorialFinanciero: {
+    screen: HistorialFinanciero, navigationOptions: {
+      title: 'Historial',
+      headerStyle: {
+        backgroundColor: 'black',
+      }, headerTitleStyle: {
+        color: 'white',
+        fontWeight: 'bold',
       },
       headerTintColor: 'white',
     }
@@ -101,6 +173,7 @@ const MiCampus = createStackNavigator({
         backgroundColor: 'black',
       }, headerTitleStyle: {
         color: 'white',
+        fontWeight: 'bold',
       },
       headerTintColor: 'white',
     }

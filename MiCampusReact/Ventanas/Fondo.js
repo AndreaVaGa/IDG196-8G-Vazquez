@@ -15,8 +15,8 @@ export default class App extends React.Component {
       url: require("../src/imgs/portada/a.jpg"),
     };
   }
-  _IraMenu = () => {
-    this.props.navigation.navigate('Menu');
+  _IraPerfil = () => {
+    this.props.navigation.navigate('Perfil');
   }
 
   render() {
@@ -79,7 +79,7 @@ export default class App extends React.Component {
           </View>
         </ScrollView>
         <View style={styles.cuadro}>
-          <TouchableOpacity onPress={(this._IraMenu)}>
+          <TouchableOpacity onPress={(this._IraPerfil)}>
             <Image source={require("../src/imgs/fondobtn.png")} style={styles.aceptar}></Image>
           </TouchableOpacity>
         </View>

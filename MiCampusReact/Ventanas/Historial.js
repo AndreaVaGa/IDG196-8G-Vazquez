@@ -57,17 +57,17 @@ export default class Historial extends React.Component {
     var value = await AsyncStorage.getItem('cursando');
     if (value !== null) {
       var cursando = JSON.parse(value)
-      this.setState({ cursando: cursando })
+      this.setState({ cursando: cursando.cursando })
     }
     var value = await AsyncStorage.getItem('aprobadas');
     if (value !== null) {
       var aprobadas = JSON.parse(value)
-      this.setState({ aprobadas: aprobadas })
+      this.setState({ aprobadas: aprobadas.aprobadas })
     }
     var value = await AsyncStorage.getItem('porcursar');
     if (value !== null) {
-      var aprobadas = JSON.parse(value)
-      this.setState({ puede: aprobadas })
+      var porCursar = JSON.parse(value)
+      this.setState({ puede: porCursar.porcursar })
     }
     var value = await AsyncStorage.getItem('PromedioGeneral');
     if (value !== null) {
@@ -233,7 +233,7 @@ export default class Historial extends React.Component {
 
         </ScrollView>
         <View style={styles.promedio}>
-          <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 20, textAlign: 'right', marginRight: 5, marginBottom: 15, }}>Promedio general: {this.state.promedio}</Text>
+          <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 20, textAlign: 'right', marginRight: 5, marginTop: 3, marginBottom: 20, }}>Promedio general: {this.state.promedio}</Text>
         </View>
       </View>
     );

@@ -38,7 +38,7 @@ class Horario extends React.Component {
     var value = await AsyncStorage.getItem('horario');
     if (value !== null) {
       var horario = JSON.parse(value)
-      horario.forEach(materia => {
+      horario.horario.forEach(materia => {
         if (materia.dia == 1) {
 
           this.state.lunes.push(materia)

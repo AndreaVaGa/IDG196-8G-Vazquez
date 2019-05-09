@@ -7,12 +7,13 @@ export default class Menu extends React.Component {
     super(props);
     this.state = {
       matricula: '',
-      apiRoot: "http://0.0.0.0:8080/api/micampus/"
+      apiRoot: "http://ec2co-ecsel-1o7jydferg75c-743462231.us-east-2.elb.amazonaws.com:8080/api/micampus/"
     };
 
   }
   componentDidMount() {
     this._loadInitionState().done();
+    
   }
 
   _loadInitionState = async () => {
@@ -118,8 +119,19 @@ export default class Menu extends React.Component {
       });
   }
   _getTramites = () => {
-    this.props.navigation.navigate('Tramites');
+
+          this.props.navigation.navigate('Tramites');
   }
+
+  _getHistorialFinanciero = () => {
+
+    this.props.navigation.navigate('HistorialFinanciero');
+}
+
+_getAdeudos = () => {
+
+  this.props.navigation.navigate('Adeudos');
+}
 
   render() {
     return (
@@ -153,17 +165,17 @@ export default class Menu extends React.Component {
           <Text style={styles.title}>Financiero</Text>
 
           <View style={styles.container}>
-            <TouchableOpacity style={styles.Boton} title='Adeudos'>
+            <TouchableOpacity style={styles.Boton} onPress={(this._getAdeudos)} title='Adeudos'>
               <Image source={require("../src/imgs/adeudos.png")}></Image>
-              <Text style={styles.texto}>Historial</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.Boton} title='Historial Financiero'>
-              <Image source={require("../src/imgs/hfinanciero.png")}></Image>
               <Text style={styles.texto}>Adeudos</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.Boton} onPress={(this._getHistorialFinanciero)} title='HistorialFinanciero'>
+              <Image source={require("../src/imgs/hfinanciero.png")}></Image>
+              <Text style={styles.texto}>Historial</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.Boton} onPress={(this._getTramites)} title='Tramites'>
               <Image source={require("../src/imgs/tramites.png")}></Image>
-              <Text style={styles.texto}>Tramites</Text>
+              <Text style={styles.texto}>Trámites</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
