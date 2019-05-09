@@ -6,15 +6,18 @@ import mx.edu.cetys.garay.andrea.application.Tutores.GetTutoresQueryResponse
 import mx.edu.cetys.garay.andrea.application.aprobadas.GetAprobadasQueryResponse
 import mx.edu.cetys.garay.andrea.application.boleta.GetBoletaQueryResponse
 import mx.edu.cetys.garay.andrea.application.cursando.GetCursandoQueryResponse
+import mx.edu.cetys.garay.andrea.application.financiero.GetHistorialQueryResponse
 import mx.edu.cetys.garay.andrea.application.horario.GetHorarioQueryResponse
 import mx.edu.cetys.garay.andrea.application.perfiles.GetPerfilQueryResponse
 import mx.edu.cetys.garay.andrea.application.porcursar.GetPorCursarQueryResponse
 import mx.edu.cetys.garay.andrea.application.promediogeneral.GetPromGeneralQueryResponse
 import mx.edu.cetys.garay.andrea.dto.AprobadasDTO
+import mx.edu.cetys.garay.andrea.dto.HistorialDTO
 import mx.edu.cetys.garay.andrea.dto.HorarioDTO
 import mx.edu.cetys.garay.andrea.dto.PorCursarDTO
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.transactions.transaction
+import java.time.LocalDateTime
 
 class SPCallsImpl : StoreProcedureCalls {
     override fun callBuscarAlumnoSP(user: String, password: String): String {
@@ -359,6 +362,37 @@ class SPCallsImpl : StoreProcedureCalls {
             }
         }
         return GetCursandoQueryResponse(cursando)
+    }
+
+
+    override fun callBuscarHistorialSP(matricula: String, id_compra: Int): GetHistorialQueryResponse {
+        val storedProcedureRawSQL = "exec dbo.buscar_historial_financiero '$matricula','$id_compra'"
+
+        val historial = ArrayList<HistorialDTO>()
+        Database.connect(
+            EXPOSED_CONNECTION_STRING,
+            EXPOSED_DRIVER,
+            EXPOSED_USER,
+            EXPOSED_PASSWORD
+        )
+
+        transaction {
+            execSp(storedProcedureRawSQL) {
+                while (it.next()) {
+                    historial.add(
+                        HistorialDTO(
+                            it.getInt("id_compras"),
+                            it.getString("date"),
+                            it.getInt("id_tramites"),
+                            it.getString("name"),
+                            it.getInt("price")
+                        )
+                    )
+                }
+            }
+        }
+
+        return GetHistorialQueryResponse(historial)
     }
 
 }

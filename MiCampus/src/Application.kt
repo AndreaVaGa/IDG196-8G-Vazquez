@@ -13,11 +13,13 @@ import mx.edu.cetys.garay.andrea.application.alumnos.GetMatriculaQueryHandler
 import mx.edu.cetys.garay.andrea.application.aprobadas.GetAprobadasQueryHandler
 import mx.edu.cetys.garay.andrea.application.boleta.GetBoletaQueryHandler
 import mx.edu.cetys.garay.andrea.application.cursando.GetCursandoQueryHandler
+import mx.edu.cetys.garay.andrea.application.financiero.GetHistorialQueryHandler
 import mx.edu.cetys.garay.andrea.application.horario.GetHorarioQueryHandler
 import mx.edu.cetys.garay.andrea.application.perfiles.GetPerfilQueryHandler
 import mx.edu.cetys.garay.andrea.application.porcursar.GetPorCursarQueryHandler
 import mx.edu.cetys.garay.andrea.application.promediogeneral.GetPromGeneralQueryHandler
 import mx.edu.cetys.garay.andrea.exposed.*
+import mx.edu.cetys.garay.andrea.impl.FinancieroApi
 
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
@@ -36,6 +38,9 @@ fun Application.module(testing: Boolean = false) {
         GetCursandoQueryHandler(SPCallsImpl()),
         GetTutoresQueryHandler(SPCallsImpl()),
         GetPromGeneralQueryHandler(SPCallsImpl())
+    )
+    val financieroApi = FinancieroApi(
+        GetHistorialQueryHandler(SPCallsImpl())
     )
     install(Authentication) {
     }
@@ -126,6 +131,17 @@ fun Application.module(testing: Boolean = false) {
 
             val promediogeneral = alumnoApi.getPromedioGeneral(matricula)
             call.respond(promediogeneral)
+        }
+
+        get("$apiRoot/public/v1/financiero/Historial/Financiero/{matricula}/{id_compra}") {
+            val request = this.context.request
+
+            val matricula = call.parameters["matricula"] ?: ""
+            val id_compra = call.parameters["id_compra"] ?: "0"
+            id_compra.toInt()
+
+            val historial = financieroApi.getHistorial(matricula,id_compra.toInt())
+            call.respond(historial)
         }
 
     }
