@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.*
 import io.ktor.jackson.*
 import io.ktor.features.*
 import io.ktor.request.receive
+import mx.edu.cetys.garay.andrea.application.HistorialFin.GetReciboQueryHandler
 import mx.edu.cetys.garay.andrea.application.Tutores.GetTutoresQueryHandler
 import mx.edu.cetys.garay.andrea.application.alumnos.GetMatriculaQueryHandler
 import mx.edu.cetys.garay.andrea.application.aprobadas.GetAprobadasQueryHandler
@@ -44,7 +45,8 @@ fun Application.module(testing: Boolean = false) {
     )
     val financieroApi = FinancieroApi(
         GetHistorialQueryHandler(SPCallsImpl()),
-        SaveCompraCommandHandler(SPCallsImpl())
+        SaveCompraCommandHandler(SPCallsImpl()),
+        GetReciboQueryHandler(SPCallsImpl())
     )
     install(Authentication) {
     }
@@ -136,6 +138,12 @@ fun Application.module(testing: Boolean = false) {
 
             }
 
+        }
+
+        get ("$apiRoot/public/v1/alumnos/{matricula}/Financiero/Historial") {
+                val matricula = call.parameters["matricula"] ?: ""
+                val recibo = financieroApi.getRecibo(matricula)
+                call.respond(recibo)
         }
 
     }

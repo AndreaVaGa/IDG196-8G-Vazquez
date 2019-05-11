@@ -1,5 +1,6 @@
 package mx.edu.cetys.garay.andrea.exposed
 
+import mx.edu.cetys.garay.andrea.application.HistorialFin.GetReciboQueryResponse
 import mx.edu.cetys.garay.andrea.application.Tutores.GetTutoresQueryResponse
 import mx.edu.cetys.garay.andrea.application.aprobadas.GetAprobadasQueryResponse
 import mx.edu.cetys.garay.andrea.application.boleta.GetBoletaQueryResponse
@@ -22,5 +23,6 @@ interface StoreProcedureCalls {
     fun callBuscarPromedioGeneralSP(matricula: String): GetPromGeneralQueryResponse
     fun callBuscarCursandoSP(matricula: String): GetCursandoQueryResponse
     fun callBuscarHistorialSP(matricula: String, id_compra:Int): GetHistorialQueryResponse
+    fun callBuscarReciboSP(matricula: String): GetReciboQueryResponse
     fun callAddCompraSP(matricula: String, total: Int): SaveCompraCommandResponse
 }

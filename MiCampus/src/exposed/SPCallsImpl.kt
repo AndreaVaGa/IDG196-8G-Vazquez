@@ -2,6 +2,7 @@ package mx.edu.cetys.garay.andrea.exposed
 
 import io.ktor.features.NotFoundException
 import mx.edu.cetys.garay.andrea.*
+import mx.edu.cetys.garay.andrea.application.HistorialFin.GetReciboQueryResponse
 import mx.edu.cetys.garay.andrea.application.Tutores.GetTutoresQueryResponse
 import mx.edu.cetys.garay.andrea.application.aprobadas.GetAprobadasQueryResponse
 import mx.edu.cetys.garay.andrea.application.boleta.GetBoletaQueryResponse
@@ -426,5 +427,34 @@ class SPCallsImpl : StoreProcedureCalls {
         return compra
     }
 
+    override fun callBuscarReciboSP(matricula: String): GetReciboQueryResponse {
+        val storedProcedureRawSQL = "exec dbo.buscar_recibo '$matricula'"
+
+        val recibo = ArrayList<HistorialDTO>()
+        Database.connect(
+            EXPOSED_CONNECTION_STRING,
+            EXPOSED_DRIVER,
+            EXPOSED_USER,
+            EXPOSED_PASSWORD
+        )
+
+        transaction {
+            execSp(storedProcedureRawSQL) {
+                while (it.next()) {
+                    recibo.add(
+                        HistorialDTO(
+                            it.getInt("id_compras"),
+                            it.getString("date"),
+                            it.getInt("id_tramites"),
+                            it.getString("name"),
+                            it.getInt("price")
+                        )
+                    )
+                }
+            }
+        }
+
+        return GetReciboQueryResponse(recibo)
+    }
 
 }
