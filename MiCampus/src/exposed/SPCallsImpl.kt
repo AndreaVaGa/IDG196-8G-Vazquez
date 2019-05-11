@@ -7,6 +7,7 @@ import mx.edu.cetys.garay.andrea.application.aprobadas.GetAprobadasQueryResponse
 import mx.edu.cetys.garay.andrea.application.boleta.GetBoletaQueryResponse
 import mx.edu.cetys.garay.andrea.application.cursando.GetCursandoQueryResponse
 import mx.edu.cetys.garay.andrea.application.financiero.GetHistorialQueryResponse
+import mx.edu.cetys.garay.andrea.application.financiero.SaveCompraCommandResponse
 import mx.edu.cetys.garay.andrea.application.horario.GetHorarioQueryResponse
 import mx.edu.cetys.garay.andrea.application.perfiles.GetPerfilQueryResponse
 import mx.edu.cetys.garay.andrea.application.porcursar.GetPorCursarQueryResponse
@@ -394,5 +395,36 @@ class SPCallsImpl : StoreProcedureCalls {
 
         return GetHistorialQueryResponse(historial)
     }
+
+    override fun callAddCompraSP(matricula: String, total: Int): SaveCompraCommandResponse {
+        val storedProcedureRawSQL = "exec dbo.add_compra '$matricula','$total'"
+        var compra = SaveCompraCommandResponse(0, "", "", 0)
+
+        Database.connect(
+            EXPOSED_CONNECTION_STRING,
+            EXPOSED_DRIVER,
+            EXPOSED_USER,
+            EXPOSED_PASSWORD
+        )
+
+        transaction {
+            execSp(storedProcedureRawSQL) {
+                if (it.next()) {
+                    val statusCode = it.getInt("StatusCode")
+                    when (statusCode) {
+                        500 -> throw Exception("FAIL")
+                    }
+                    compra = SaveCompraCommandResponse(
+                        it.getInt("id_compras"),
+                        it.getString("matricula"),
+                        it.getString("date"),
+                        it.getInt("monto_total")
+                    )
+                }
+            }
+        }
+        return compra
+    }
+
 
 }
