@@ -140,7 +140,7 @@ fun Application.module(testing: Boolean = false) {
 
         }
 
-        get ("$apiRoot/public/v1/alumnos/{matricula}/Financiero/Historial") {
+        get ("$apiRoot/public/v1/alumnos/{matricula}/Financiero/Recibo") {
                 val matricula = call.parameters["matricula"] ?: ""
                 val recibo = financieroApi.getRecibo(matricula)
                 call.respond(recibo)
