@@ -98,29 +98,29 @@ fun Application.module(testing: Boolean = false) {
             val horario = alumnoApi.getHorario(matricula)
             call.respond(horario)
         }
-        get("$apiRoot/public/v1/alumnos/{matricula}/Materias/Aprobadas") {
+        get("$apiRoot/public/v1/alumnos/{matricula}/Academico/Historial/Materias/Aprobadas") {
             val matricula = call.parameters["matricula"] ?: ""
 
             val aprobadas = alumnoApi.getAprobadas(matricula)
             call.respond(aprobadas)
         }
-        get("$apiRoot/public/v1/alumnos/{matricula}/Materias/Cursando") {
+        get("$apiRoot/public/v1/alumnos/{matricula}/Academico/Historial/Materias/Cursando") {
             val matricula = call.parameters["matricula"] ?: ""
             val cursando = alumnoApi.getCursando(matricula)
             call.respond(cursando)
         }
-        get("$apiRoot/public/v1/alumnos/{matricula}/Materias/PorCursar") {
+        get("$apiRoot/public/v1/alumnos/{matricula}/Academico/Historial/Materias/PorCursar") {
             val matricula = call.parameters["matricula"] ?: ""
             val porcursar = alumnoApi.getPorCursar(matricula)
             call.respond(porcursar)
         }
-        get("$apiRoot/public/v1/alumnos/{matricula}/PromedioGeneral") {
+        get("$apiRoot/public/v1/alumnos/{matricula}/Academico/Historial/PromedioGeneral") {
             val matricula = call.parameters["matricula"] ?: ""
 
             val promediogeneral = alumnoApi.getPromedioGeneral(matricula)
             call.respond(promediogeneral)
         }
-        route("$apiRoot/public/v1/alumnos/{matricula}/financiero/Historial/Financiero/{id_compra}") {
+        route("$apiRoot/public/v1/alumnos/{matricula}/Financiero/Historial/{id_compra}") {
             get {
                 val matricula = call.parameters["matricula"] ?: ""
                 val id_compra = call.parameters["id_compra"] ?: "0"
