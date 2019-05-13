@@ -32,7 +32,8 @@ class AlumnoApiTest {
     private val getPorCursarQueryHandler = mockk<RequestHandler<GetPerfilQuery, GetPorCursarQueryResponse>>()
     private val getCursandoQueryHandler = mockk<RequestHandler<GetPerfilQuery, GetCursandoQueryResponse>>()
     private val getTutoresQueryHandler = mockk<RequestHandler<GetTutoresQuery, GetTutoresQueryResponse>>()
-    private val getPromedioGeneralQueryHandler = mockk<RequestHandler<GetPromGeneralQuery, GetPromGeneralQueryResponse>>()
+    private val getPromedioGeneralQueryHandler =
+        mockk<RequestHandler<GetPromGeneralQuery, GetPromGeneralQueryResponse>>()
     private val api = AlumnoApi(
         getMatriculaQueryHandler,
         getPerfilQueryHandler,
@@ -107,10 +108,26 @@ class AlumnoApiTest {
 
         verify { getMatriculaQueryHandler.handle(request) }
     }
+
     @Test
     fun `calls boleta query handler`() {
         api.getBoleta(matricula)
 
         verify { getBoletaQueryHandler.handle(any()) }
+    }
+
+    @Test
+    fun `returns boleta correctly when request is correct`() {
+        val request = GetPerfilQuery(matricula)
+        val expected = AlumnoApi.GetBoletaResponse(getBoletaQueryResponse)
+
+        every {
+            getBoletaQueryHandler.handle(request)
+        } returns (GetBoletaQueryResponse(getBoletaQueryResponse))
+
+        val actual = api.getBoleta(matricula)
+        Assert.assertEquals(expected, actual)
+
+        verify { getBoletaQueryHandler.handle(request) }
     }
 }
