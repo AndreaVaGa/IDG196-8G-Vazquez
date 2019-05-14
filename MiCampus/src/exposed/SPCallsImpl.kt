@@ -11,6 +11,7 @@ import mx.edu.cetys.garay.andrea.application.financiero.GetHistorialQueryRespons
 import mx.edu.cetys.garay.andrea.application.financiero.SaveCompraCommandResponse
 import mx.edu.cetys.garay.andrea.application.horario.GetHorarioQueryResponse
 import mx.edu.cetys.garay.andrea.application.perfiles.GetPerfilQueryResponse
+import mx.edu.cetys.garay.andrea.application.perfiles.SaveFotoCommandResponse
 import mx.edu.cetys.garay.andrea.application.porcursar.GetPorCursarQueryResponse
 import mx.edu.cetys.garay.andrea.application.promediogeneral.GetPromGeneralQueryResponse
 import mx.edu.cetys.garay.andrea.dto.AprobadasDTO
@@ -19,7 +20,6 @@ import mx.edu.cetys.garay.andrea.dto.HorarioDTO
 import mx.edu.cetys.garay.andrea.dto.PorCursarDTO
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.transactions.transaction
-import java.time.LocalDateTime
 
 class SPCallsImpl : StoreProcedureCalls {
     override fun callBuscarAlumnoSP(user: String, password: String): String {
@@ -57,6 +57,7 @@ class SPCallsImpl : StoreProcedureCalls {
             "",
             "",
             "",
+            "",
             ""
         )
         Database.connect(
@@ -83,7 +84,8 @@ class SPCallsImpl : StoreProcedureCalls {
                         it.getString("Apellido_Materno"),
                         it.getString("Nombre_Programa"),
                         it.getString("Cve_Programa"),
-                        it.getString("materias_aprobadas")
+                        it.getString("materias_aprobadas"),
+                        it.getString("foto_portada")
                     )
 
                 }
@@ -236,7 +238,8 @@ class SPCallsImpl : StoreProcedureCalls {
                             it.getString("Dia"),
                             it.getString("Lugar"),
                             it.getString("Hora_Inicio"),
-                            it.getString("Hora_Final")
+                            it.getString("Hora_Final"),
+                            it.getString("Color")
                         )
                     )
                 }
@@ -426,6 +429,38 @@ class SPCallsImpl : StoreProcedureCalls {
         }
         return compra
     }
+    override fun callChangeFotoSP(matricula: String, foto: String): SaveFotoCommandResponse {
+        val storedProcedureRawSQL = "exec dbo.add_compra '$matricula','$foto'"
+        var perfil = SaveFotoCommandResponse("","","","", "","")
+
+        Database.connect(
+            EXPOSED_CONNECTION_STRING,
+            EXPOSED_DRIVER,
+            EXPOSED_USER,
+            EXPOSED_PASSWORD
+        )
+
+        transaction {
+            execSp(storedProcedureRawSQL) {
+                if (it.next()) {
+                    val statusCode = it.getInt("StatusCode")
+                    when (statusCode) {
+                        500 -> throw Exception("FAIL")
+                    }
+                    perfil = SaveFotoCommandResponse(
+                        it.getString("Matricula"),
+                        it.getString("Nombre_1"),
+                        it.getString("Nombre_2"),
+                        it.getString("Apellido_Paterno"),
+                        it.getString("Apellido_Materno"),
+                        it.getString("foto_portada")
+                    )
+                }
+            }
+        }
+        return perfil
+    }
+
 
     override fun callBuscarReciboSP(matricula: String): GetReciboQueryResponse {
         val storedProcedureRawSQL = "exec dbo.buscar_recibo '$matricula'"

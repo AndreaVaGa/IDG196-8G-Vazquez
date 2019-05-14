@@ -17,6 +17,8 @@ import mx.edu.cetys.garay.andrea.application.cursando.GetCursandoQueryResponse
 import mx.edu.cetys.garay.andrea.application.horario.GetHorarioQueryResponse
 import mx.edu.cetys.garay.andrea.application.perfiles.GetPerfilQuery
 import mx.edu.cetys.garay.andrea.application.perfiles.GetPerfilQueryResponse
+import mx.edu.cetys.garay.andrea.application.perfiles.SaveFotoCommand
+import mx.edu.cetys.garay.andrea.application.perfiles.SaveFotoCommandResponse
 import mx.edu.cetys.garay.andrea.application.porcursar.GetPorCursarQueryResponse
 import mx.edu.cetys.garay.andrea.application.promediogeneral.GetPromGeneralQuery
 import mx.edu.cetys.garay.andrea.application.promediogeneral.GetPromGeneralQueryResponse
@@ -35,6 +37,7 @@ class PerfilTest {
     private val getTutoresQueryHandler = mockk<RequestHandler<GetTutoresQuery, GetTutoresQueryResponse>>()
     private val getPromedioGeneralQueryHandler =
         mockk<RequestHandler<GetPromGeneralQuery, GetPromGeneralQueryResponse>>()
+    private val saveFotoCommandHandler = mockk<RequestHandler<SaveFotoCommand, SaveFotoCommandResponse>>()
     private val api = AlumnoApi(
         getMatriculaQueryHandler,
         getPerfilQueryHandler,
@@ -44,7 +47,8 @@ class PerfilTest {
         getPorCursarQueryHandler,
         getCursandoQueryHandler,
         getTutoresQueryHandler,
-        getPromedioGeneralQueryHandler
+        getPromedioGeneralQueryHandler,
+        saveFotoCommandHandler
     )
 
     private val matricula = (0..10).random().toString()
@@ -56,6 +60,7 @@ class PerfilTest {
     private val nombre_programa = "0"
     private val cve_programa = "10"
     private val materias_aprobadas = " "
+    private val foto_portada = "a"
     private val perfil = PerfilDTO(
         matricula,
         nombre_1,
@@ -64,13 +69,24 @@ class PerfilTest {
         apellido_materno,
         nombre_programa,
         cve_programa,
-        materias_aprobadas
+        materias_aprobadas,
+        foto_portada
     )
 
 
     @Before
     fun setup() {
-        every { getPerfilQueryHandler.handle(any()) } returns GetPerfilQueryResponse(matricula, nombre_1, nombre_2, apellido_paterno, apellido_materno, nombre_programa, cve_programa, materias_aprobadas)
+        every { getPerfilQueryHandler.handle(any()) } returns GetPerfilQueryResponse(
+            matricula,
+            nombre_1,
+            nombre_2,
+            apellido_paterno,
+            apellido_materno,
+            nombre_programa,
+            cve_programa,
+            materias_aprobadas,
+            foto_portada
+        )
     }
 
 
@@ -88,7 +104,17 @@ class PerfilTest {
 
         every {
             getPerfilQueryHandler.handle(request)
-        } returns (GetPerfilQueryResponse( matricula, nombre_1, nombre_2, apellido_paterno, apellido_materno, nombre_programa, cve_programa, materias_aprobadas))
+        } returns (GetPerfilQueryResponse(
+            matricula,
+            nombre_1,
+            nombre_2,
+            apellido_paterno,
+            apellido_materno,
+            nombre_programa,
+            cve_programa,
+            materias_aprobadas,
+            foto_portada
+            ))
 
         val actual = api.getPerfil(matricula)
         Assert.assertEquals(expected, actual)

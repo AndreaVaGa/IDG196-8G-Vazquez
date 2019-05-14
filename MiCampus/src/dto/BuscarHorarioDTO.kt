@@ -7,5 +7,6 @@ data class HorarioDTO (
     val dia: String,
     val lugar: String,
     val hora_inicio: String,
-    val hora_final: String
+    val hora_final: String,
+    val color: String
 )

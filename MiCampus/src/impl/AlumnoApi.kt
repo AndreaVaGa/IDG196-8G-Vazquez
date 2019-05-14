@@ -9,8 +9,7 @@ import mx.edu.cetys.garay.andrea.application.aprobadas.GetAprobadasQueryResponse
 import mx.edu.cetys.garay.andrea.application.boleta.GetBoletaQueryResponse
 import mx.edu.cetys.garay.andrea.application.cursando.GetCursandoQueryResponse
 import mx.edu.cetys.garay.andrea.application.horario.GetHorarioQueryResponse
-import mx.edu.cetys.garay.andrea.application.perfiles.GetPerfilQuery
-import mx.edu.cetys.garay.andrea.application.perfiles.GetPerfilQueryResponse
+import mx.edu.cetys.garay.andrea.application.perfiles.*
 import mx.edu.cetys.garay.andrea.application.porcursar.GetPorCursarQueryHandler
 import mx.edu.cetys.garay.andrea.application.porcursar.GetPorCursarQueryResponse
 import mx.edu.cetys.garay.andrea.application.promediogeneral.GetPromGeneralQuery
@@ -27,7 +26,8 @@ class AlumnoApi(
     private val getPorCursarQueryHandler: RequestHandler<GetPerfilQuery, GetPorCursarQueryResponse>,
     private val getCursandoQueryHandler: RequestHandler<GetPerfilQuery, GetCursandoQueryResponse>,
     private val getTutoresQueryHandler: RequestHandler<GetTutoresQuery, GetTutoresQueryResponse>,
-    private val getPromedioGeneralQueryHandler: RequestHandler<GetPromGeneralQuery, GetPromGeneralQueryResponse>
+    private val getPromedioGeneralQueryHandler: RequestHandler<GetPromGeneralQuery, GetPromGeneralQueryResponse>,
+    private val saveFotoCommandHandler: RequestHandler<SaveFotoCommand, SaveFotoCommandResponse>
 ) {
 
     fun getMatricula(matricula: String, password: String): GetMatriculaResponse {
@@ -45,7 +45,8 @@ class AlumnoApi(
             response.apellido_materno,
             response.nombre_programa,
             response.cve_programa,
-            response.materias_aprobadas
+            response.materias_aprobadas,
+            response.foto_portada
         )
 
     }
@@ -115,6 +116,11 @@ class AlumnoApi(
         val response = getCursandoQueryHandler.handle(GetPerfilQuery(matricula))
         return GetCursandoResponse(response.cursando)
     }
+    fun changeFoto(request: SaveFotoCommand): saveFotoCommandResponse{
+        val response = saveFotoCommandHandler.handle(SaveFotoCommand(request.matricula,request.foto))
+        return saveFotoCommandResponse(response)
+
+    }
 
 
     data class GetMatriculaResponse(val matricula: String)
@@ -123,4 +129,5 @@ class AlumnoApi(
     data class GetAprobadasResponse(val aprobadas: List<AprobadasDTO>)
     data class GetPorCursarResponse(val porcursar: List<PorCursarDTO>)
     data class GetCursandoResponse(val cursando: List<CursandoDTO>)
+    data class saveFotoCommandResponse(val perfil: SaveFotoCommandResponse)
 }

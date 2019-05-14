@@ -16,6 +16,8 @@ import mx.edu.cetys.garay.andrea.application.cursando.GetCursandoQueryResponse
 import mx.edu.cetys.garay.andrea.application.horario.GetHorarioQueryResponse
 import mx.edu.cetys.garay.andrea.application.perfiles.GetPerfilQuery
 import mx.edu.cetys.garay.andrea.application.perfiles.GetPerfilQueryResponse
+import mx.edu.cetys.garay.andrea.application.perfiles.SaveFotoCommand
+import mx.edu.cetys.garay.andrea.application.perfiles.SaveFotoCommandResponse
 import mx.edu.cetys.garay.andrea.application.porcursar.GetPorCursarQueryResponse
 import mx.edu.cetys.garay.andrea.application.promediogeneral.GetPromGeneralQuery
 import mx.edu.cetys.garay.andrea.application.promediogeneral.GetPromGeneralQueryResponse
@@ -32,8 +34,9 @@ class LoginTest {
     private val getPorCursarQueryHandler = mockk<RequestHandler<GetPerfilQuery, GetPorCursarQueryResponse>>()
     private val getCursandoQueryHandler = mockk<RequestHandler<GetPerfilQuery, GetCursandoQueryResponse>>()
     private val getTutoresQueryHandler = mockk<RequestHandler<GetTutoresQuery, GetTutoresQueryResponse>>()
-    private val getPromedioGeneralQueryHandler =
-        mockk<RequestHandler<GetPromGeneralQuery, GetPromGeneralQueryResponse>>()
+    private val getPromedioGeneralQueryHandler =  mockk<RequestHandler<GetPromGeneralQuery, GetPromGeneralQueryResponse>>()
+    private val saveFotoCommandHandler= mockk<RequestHandler<SaveFotoCommand, SaveFotoCommandResponse>>()
+
     private val api = AlumnoApi(
         getMatriculaQueryHandler,
         getPerfilQueryHandler,
@@ -43,7 +46,9 @@ class LoginTest {
         getPorCursarQueryHandler,
         getCursandoQueryHandler,
         getTutoresQueryHandler,
-        getPromedioGeneralQueryHandler
+        getPromedioGeneralQueryHandler,
+        saveFotoCommandHandler
+
     )
 
     private val matricula = (0..10).random().toString()

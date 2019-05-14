@@ -8,5 +8,6 @@ data class GetPerfilQueryResponse(
     val apellido_materno: String,
     val nombre_programa: String,
     val cve_programa: String,
-    val materias_aprobadas: String
+    val materias_aprobadas: String,
+    val foto_portada: String
 )
