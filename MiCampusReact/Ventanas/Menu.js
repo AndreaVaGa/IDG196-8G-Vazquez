@@ -143,7 +143,10 @@ _getAdeudos = () => {
                 <Image style={{ flex: 1, aspectRatio: .2, resizeMode: 'contain' }} source={require("../src/imgs/perfil.png")}></Image>
               </TouchableOpacity>
             </View>
+
+            <View>
             <Text style={styles.title}>Académico</Text>
+            </View>
 
             <View style={styles.container}>
               <TouchableOpacity style={styles.Boton} onPress={(this._getBoleta)} title='Boleta'>
@@ -156,13 +159,15 @@ _getAdeudos = () => {
               </TouchableOpacity>
               <TouchableOpacity style={styles.Boton} onPress={(this._getHorario)} title='Horario'>
                 <Image source={require("../src/imgs/horario.png")}></Image>
-                <Text style={styles.texto}>Horario</Text>l
+                <Text style={styles.texto}>Horario</Text>
               </TouchableOpacity>
             </View>
-            <View style={styles.lineStyle} />
+            <View style={styles.lineStyle}/>
           </View>
 
+          <View>
           <Text style={styles.title}>Financiero</Text>
+          </View>
 
           <View style={styles.container}>
             <TouchableOpacity style={styles.Boton} onPress={(this._getAdeudos)} title='Adeudos'>
