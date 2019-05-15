@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Image, TouchableOpacity, TextInput, AsyncStorage, } from 'react-native';
+import { StyleSheet, View, Image, Text, TouchableOpacity, TextInput, AsyncStorage, } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 export default class Login extends React.Component {
@@ -47,16 +47,16 @@ export default class Login extends React.Component {
     return (
       <View style={styles.container}>
 
-        <Image style={{ flex: .4, aspectRatio: 1, resizeMode: 'contain', marginBottom: 10 }} source={require('../src/imgs/flama.png')} />
+        <Image style={styles.img} source={require('../src/imgs/flama.png')} />
         <TextInput placeholder="Usuario"
           style={styles.text} onChangeText={(usuario) => this.setState({ usuario })} />
         <TextInput placeholder="Contraseña" secureTextEntry={true}
           style={styles.text} onChangeText={(password) => this.setState({ password })} />
-        <View>
-          <TouchableOpacity onPress={(this._getAlumno)}>
-            <Image source={require('../src/imgs/ingresar.png')} style={styles.button} onPress={this._getAlumno} />
+        
+          <TouchableOpacity style={[styles.boton]} onPress={this._getAlumno}>
+            <Text style={[styles.botonText]} onPress={this._getAlumno}>Ingresar</Text>
           </TouchableOpacity>
-        </View>
+        
       </View>
     );
   }
@@ -73,20 +73,35 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 20,
     padding: 10
-
   },
   img: {
-    width: '30%',
-    height: '30%',
-    marginBottom: 50,
-    justifyContent: 'center',
+    flex: .4, 
+    aspectRatio: 1, 
+    resizeMode: 'contain', 
+    marginBottom: 10
   },
-  button: {
-    height: hp('9%'),
-    width: wp('60%'),
-    marginTop: 25,
-
-  }
-
-
+  boton: {
+    height: 42,
+    width: wp('50%'),
+    flexDirection: 'row',
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    borderBottomRightRadius: 20,
+    borderBottomLeftRadius: 20,
+    shadowColor: 'grey',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.9,
+    shadowRadius: 2,
+    elevation: 4,
+    backgroundColor: 'black',
+    justifyContent: 'center',
+    marginTop: 30,
+},
+botonText: {
+    marginTop: 5,
+    fontSize: 18,
+    textAlign: 'center',
+    color: 'white',
+    fontWeight: 'bold',
+},
 });
