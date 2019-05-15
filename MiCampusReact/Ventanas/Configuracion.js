@@ -22,20 +22,19 @@ export default class Configuracion extends React.Component {
       <View style={styles.container}>
 
         <View style={styles.textBox}>
-          <Text style={styles.titles}>NOTIFICACIONES</Text>
+          <Text style={styles.titles}>Notificaciones</Text>
         </View>
 
         <View style={styles.textBox}>
           <View style={styles.fila}>
             <View style={styles.columna}>
-              <Text style={styles.titles}>FONDO</Text>
+              <Text style={styles.titles}>Fondo</Text>
             </View>
-            <View style={styles.columna2}>
+            <View style={styles.columnaF}>
               <TouchableOpacity onPress={(this._IraFondo)}>
                 <Image source={require('../src/imgs/flecha.png')} style={styles.flechafondo} onPress={this._IraFondo} />
               </TouchableOpacity>
             </View>
-
           </View>
         </View>
 
@@ -43,18 +42,18 @@ export default class Configuracion extends React.Component {
 
           <View style={styles.fila}>
             <View style={styles.columna}>
-              <Text style={styles.titles}>TERMINOS/PRIVACIDAD</Text>
+              <Text style={styles.titles}>Terminos/Privacidad</Text>
             </View>
-            <View style={styles.columna2}>
-              <TouchableOpacity onPress={(this._IraTerminos)}>
+            <View style={styles.columnaF}>
+            <TouchableOpacity onPress={(this._IraTerminos)}>
                 <Image source={require('../src/imgs/flecha.png')} style={styles.flecha} onPress={this._IraTerminos} />
-              </TouchableOpacity>
+            </TouchableOpacity>
             </View>
           </View>
 
         </View>
-        <TouchableOpacity onPress={(this._LogOut)}>
-          <Image source={require('../src/imgs/cerrar.png')} style={styles.sesion} onPress={(this._LogOut)} />
+        <TouchableOpacity style={[styles.boton]} onPress={(this._LogOut)}>
+            <Text style={[styles.botonText]}>Cerrar sesiòn</Text>
         </TouchableOpacity>
       </View>
     );
@@ -66,54 +65,65 @@ const styles = StyleSheet.create({
     flex: 1,
     margin: 20,
   },
-
+  fila: {
+    flexDirection: 'row'
+  },
+  columna: {
+    justifyContent: 'center',
+    height: 40,
+    width: wp('80%'),
+  },
+  columnaF: {
+    justifyContent: 'center',
+    height: 40,
+    width: wp('20%'),
+  },
   textBox: {
     backgroundColor: '#F5F5F5',
     justifyContent: 'center',
     borderRadius: 20,
     marginTop: 20,
   },
-
-  columna2: {
-    justifyContent: 'center',
-    flexDirection: 'row',
-  },
-
   flecha: {
     height: hp('3%'),
     width: wp('2.5%'),
-    marginLeft: 100,
-    marginBottom: 10,
     marginTop: 10,
+    marginBottom: 10,
   },
-
   flechafondo: {
     height: hp('3%'),
     width: wp('2.5%'),
-    marginLeft: 228,
-    marginBottom: 10,
     marginTop: 10,
+    marginBottom: 10,
   },
-
   titles: {
-    fontSize: 15,
+    fontSize: 16,
     marginLeft: 20,
     marginBottom: 10,
     marginTop: 10,
   },
-
-  fila: {
-    flexDirection: 'row'
-  },
-
-  columna: {
+  boton: {
+    height: 40,
+    width: wp('81%'),
+    flexDirection: 'row',
+    borderRadius: 20,
+    shadowColor: 'grey',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.9,
+    shadowRadius: 2,
+    elevation: 4,
+    backgroundColor: 'red',
+    marginTop: 110,
+    marginLeft: 10,
     justifyContent: 'center',
-  },
+},
+botonText: {
+    marginTop: 7,
+    fontSize: 16,
+    color: 'white',
+    textAlign: 'center',
+    fontWeight: 'bold',
+},
 
-  sesion: {
-    height: hp('10%'),
-    width: wp('90%'),
-    marginTop: 100,
-  }
 
 });

@@ -52,10 +52,9 @@ export default class Login extends React.Component {
           style={styles.text} onChangeText={(usuario) => this.setState({ usuario })} />
         <TextInput placeholder="Contraseña" secureTextEntry={true}
           style={styles.text} onChangeText={(password) => this.setState({ password })} />
-        
-          <TouchableOpacity style={[styles.boton]} onPress={this._getAlumno}>
+        <TouchableOpacity style={[styles.boton]} onPress={this._getAlumno}>
             <Text style={[styles.botonText]} onPress={this._getAlumno}>Ingresar</Text>
-          </TouchableOpacity>
+        </TouchableOpacity>
         
       </View>
     );
@@ -84,10 +83,7 @@ const styles = StyleSheet.create({
     height: 42,
     width: wp('50%'),
     flexDirection: 'row',
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    borderBottomRightRadius: 20,
-    borderBottomLeftRadius: 20,
+    borderRadius: 20,
     shadowColor: 'grey',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.9,

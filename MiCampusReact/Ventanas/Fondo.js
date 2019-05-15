@@ -3,6 +3,7 @@ import {
   StyleSheet,
   ScrollView,
   View,
+  Text,
   TouchableOpacity,
   Image
 } from 'react-native';
@@ -79,15 +80,14 @@ export default class App extends React.Component {
           </View>
         </ScrollView>
         <View style={styles.cuadro}>
-          <TouchableOpacity onPress={(this._IraPerfil)}>
-            <Image source={require("../src/imgs/fondobtn.png")} style={styles.aceptar}></Image>
-          </TouchableOpacity>
+        <TouchableOpacity style={[styles.boton]} onPress={this._IraPerfil}>
+            <Text style={[styles.botonText]}>Cambiar fondo</Text>
+        </TouchableOpacity>
         </View>
       </View>
     );
   }
 }
-
 
 
 const styles = StyleSheet.create({
@@ -118,8 +118,25 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: "center",
   },
-  aceptar: {
-    height: hp('10%'),
-    width: wp('60%'),
-  }
+  boton: {
+    height: 40,
+    width: wp('61%'),
+    flexDirection: 'row',
+    borderRadius: 20,
+    shadowColor: 'grey',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.9,
+    shadowRadius: 2,
+    elevation: 4,
+    backgroundColor: '#ffd700',
+    justifyContent: 'center',
+    marginTop: 10,
+    marginBottom: 10,
+},
+botonText: {
+    marginTop: 5,
+    fontSize: 20,
+    textAlign: 'center',
+    color: '#333333',
+},
 });
