@@ -30,13 +30,13 @@ class AlumnoApi(
     private val saveFotoCommandHandler: RequestHandler<SaveFotoCommand, SaveFotoCommandResponse>
 ) {
 
-    fun getMatricula(matricula: String, password: String): GetMatriculaResponse {
-        val response = getMatriculaQueryHandler.handle(GetMatriculaQuery(matricula, password))
+    fun getMatricula(request: GetMatriculaRequest): GetMatriculaResponse {
+        val response = getMatriculaQueryHandler.handle(GetMatriculaQuery(request.matricula, request.password))
         return GetMatriculaResponse(response.matricula)
     }
 
-    fun getPerfil(matricula: String): PerfilDTO {
-        val response = getPerfilQueryHandler.handle(GetPerfilQuery(matricula))
+    fun getPerfil(request: GetPerfilRequest): PerfilDTO {
+        val response = getPerfilQueryHandler.handle(GetPerfilQuery(request.matricula))
         return PerfilDTO(
             response.matricula,
             response.nombre_1,
@@ -51,8 +51,8 @@ class AlumnoApi(
 
     }
 
-    fun getTutores(matricula: String): TutoresDTO {
-        val response = getTutoresQueryHandler.handle(GetTutoresQuery(matricula))
+    fun getTutores(request: GetPerfilRequest): TutoresDTO {
+        val response = getTutoresQueryHandler.handle(GetTutoresQuery(request.matricula))
         return TutoresDTO(
             response.nombre_1_padre,
             response.nombre_2_padre,
@@ -84,44 +84,56 @@ class AlumnoApi(
 
     }
 
-    fun getPromedioGeneral(matricula: String): PromedioGeneralDTO {
-        val response = getPromedioGeneralQueryHandler.handle(GetPromGeneralQuery(matricula))
+    fun getPromedioGeneral(request: GetPerfilRequest): PromedioGeneralDTO {
+        val response = getPromedioGeneralQueryHandler.handle(GetPromGeneralQuery(request.matricula))
         return PromedioGeneralDTO(
             response.promedio_general
         )
 
     }
 
-    fun getBoleta(matricula: String):GetBoletaResponse{
-        val response = getBoletaQueryHandler.handle(GetPerfilQuery(matricula))
+    fun getBoleta(request: GetPerfilRequest): GetBoletaResponse {
+        val response = getBoletaQueryHandler.handle(GetPerfilQuery(request.matricula))
         return GetBoletaResponse(response.boleta)
     }
 
-    fun getHorario(matricula: String):GetHorarioResponse{
-        val response = getHorarioQueryHandler.handle(GetPerfilQuery(matricula))
+    fun getHorario(request: GetPerfilRequest): GetHorarioResponse {
+        val response = getHorarioQueryHandler.handle(GetPerfilQuery(request.matricula))
         return GetHorarioResponse(response.horario)
     }
 
-    fun getAprobadas(matricula: String):GetAprobadasResponse{
-        val response = getAprobadasQueryHandler.handle(GetPerfilQuery(matricula))
+    fun getAprobadas(request: GetPerfilRequest): GetAprobadasResponse {
+        val response = getAprobadasQueryHandler.handle(GetPerfilQuery(request.matricula))
         return GetAprobadasResponse(response.aprobadas)
     }
 
-    fun getPorCursar(matricula: String):GetPorCursarResponse{
-        val response = getPorCursarQueryHandler.handle(GetPerfilQuery(matricula))
+    fun getPorCursar(request: GetPerfilRequest): GetPorCursarResponse {
+        val response = getPorCursarQueryHandler.handle(GetPerfilQuery(request.matricula))
         return GetPorCursarResponse(response.porcursar)
     }
 
-    fun getCursando(matricula: String):GetCursandoResponse{
-        val response = getCursandoQueryHandler.handle(GetPerfilQuery(matricula))
+    fun getCursando(request: GetPerfilRequest): GetCursandoResponse {
+        val response = getCursandoQueryHandler.handle(GetPerfilQuery(request.matricula))
         return GetCursandoResponse(response.cursando)
     }
-    fun changeFoto(request: SaveFotoCommand): saveFotoCommandResponse{
-        val response = saveFotoCommandHandler.handle(SaveFotoCommand(request.matricula,request.foto))
+
+    fun changeFoto(request: SaveFotoRequest): saveFotoCommandResponse {
+        val response = saveFotoCommandHandler.handle(SaveFotoCommand(request.matricula, request.foto))
         return saveFotoCommandResponse(response)
 
     }
 
+    data class GetMatriculaRequest(
+        val matricula: String,
+        val password: String
+    )
+
+    data class SaveFotoRequest(
+        val matricula: String,
+        val foto: String
+    )
+
+    data class GetPerfilRequest(val matricula: String)
 
     data class GetMatriculaResponse(val matricula: String)
     data class GetBoletaResponse(val boleta: List<BoletaDTO>)

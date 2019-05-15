@@ -89,7 +89,7 @@ class BoletaTest {
 
     @Test
     fun `calls boleta query handler`() {
-        api.getBoleta(matricula)
+        api.getBoleta(AlumnoApi.GetPerfilRequest(matricula))
 
         verify { getBoletaQueryHandler.handle(any()) }
     }
@@ -103,7 +103,7 @@ class BoletaTest {
             getBoletaQueryHandler.handle(request)
         } returns (GetBoletaQueryResponse(getBoletaQueryResponse))
 
-        val actual = api.getBoleta(matricula)
+        val actual = api.getBoleta(AlumnoApi.GetPerfilRequest(matricula))
         Assert.assertEquals(expected, actual)
 
         verify { getBoletaQueryHandler.handle(request) }

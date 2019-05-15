@@ -74,7 +74,7 @@ class CursandoTest {
 
     @Test
     fun `calls cursando query handler`() {
-        api.getCursando(matricula)
+        api.getCursando(AlumnoApi.GetPerfilRequest(matricula))
 
         verify { getCursandoQueryHandler.handle(any()) }
     }
@@ -88,7 +88,7 @@ class CursandoTest {
             getCursandoQueryHandler.handle(request)
         } returns (GetCursandoQueryResponse(getCursandoQueryResponse))
 
-        val actual = api.getCursando(matricula)
+        val actual = api.getCursando(AlumnoApi.GetPerfilRequest(matricula))
         Assert.assertEquals(expected, actual)
 
         verify { getCursandoQueryHandler.handle(request) }

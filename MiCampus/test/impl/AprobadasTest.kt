@@ -76,7 +76,7 @@ class AprobadasTest {
 
     @Test
     fun `calls aprobadas query handler`() {
-        api.getAprobadas(matricula)
+        api.getAprobadas(AlumnoApi.GetPerfilRequest(matricula))
 
         verify { getAprobadasQueryHandler.handle(any()) }
     }
@@ -90,7 +90,7 @@ class AprobadasTest {
             getAprobadasQueryHandler.handle(request)
         } returns (GetAprobadasQueryResponse(getAprobadasQueryResponse))
 
-        val actual = api.getAprobadas(matricula)
+        val actual = api.getAprobadas(AlumnoApi.GetPerfilRequest(matricula))
         Assert.assertEquals(expected, actual)
 
         verify { getAprobadasQueryHandler.handle(request) }

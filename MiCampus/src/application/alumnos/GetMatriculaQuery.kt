@@ -5,5 +5,5 @@ import mx.edu.cetys.garay.andrea.application.Request
 
 data class GetMatriculaQuery(
     val matricula: String,
-    val contrasena: String
+    val password: String
 ) : Request

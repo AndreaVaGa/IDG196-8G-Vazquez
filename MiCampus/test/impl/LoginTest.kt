@@ -64,7 +64,7 @@ class LoginTest {
 
     @Test
     fun `calls query handler`() {
-        api.getMatricula(matricula, password)
+        api.getMatricula(AlumnoApi.GetMatriculaRequest(matricula, password))
 
         verify { getMatriculaQueryHandler.handle(any()) }
     }
@@ -78,7 +78,7 @@ class LoginTest {
             getMatriculaQueryHandler.handle(request)
         } returns (GetMatriculaQueryResponse(request.matricula))
 
-        val actual = api.getMatricula(matricula, password)
+        val actual = api.getMatricula(AlumnoApi.GetMatriculaRequest(matricula, password))
         Assert.assertEquals(expected, actual)
 
         verify { getMatriculaQueryHandler.handle(request) }

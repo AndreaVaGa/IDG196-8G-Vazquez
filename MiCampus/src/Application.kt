@@ -72,19 +72,19 @@ fun Application.module(testing: Boolean = false) {
             call.respondText("HELLO WORLD!", contentType = ContentType.Text.Plain)
         }
 
-        post("$apiRoot/public/v1/alumnos/{matricula}/login") {
-            val postObject = call.receive<GetMatriculaQuery>()
-            call.respond(alumnoApi.getMatricula(postObject.matricula,postObject.contrasena))
+        post("$apiRoot/public/v1/alumnos/login") {
+            val postObject = call.receive<AlumnoApi.GetMatriculaRequest>()
+            call.respond(alumnoApi.getMatricula(postObject))
         }
         route("$apiRoot/public/v1/alumnos/{matricula}/Perfil")
         {
             get {
                 val matricula = call.parameters["matricula"] ?: ""
-                val perfil = alumnoApi.getPerfil(matricula)
+                val perfil = alumnoApi.getPerfil(AlumnoApi.GetPerfilRequest(matricula))
                 call.respond(perfil)
             }
             put {
-                val putObject = call.receive<SaveFotoCommand>()
+                val putObject = call.receive<AlumnoApi.SaveFotoRequest>()
                 call.respond(alumnoApi.changeFoto(putObject))
 
             }
@@ -92,40 +92,40 @@ fun Application.module(testing: Boolean = false) {
         get("$apiRoot/public/v1/alumnos/{matricula}/Tutores") {
             val matricula = call.parameters["matricula"] ?: ""
 
-            val tutores = alumnoApi.getTutores(matricula)
+            val tutores = alumnoApi.getTutores(AlumnoApi.GetPerfilRequest(matricula))
             call.respond(tutores)
         }
         get("$apiRoot/public/v1/alumnos/{matricula}/Boleta") {
             val matricula = call.parameters["matricula"] ?: ""
-            val boleta = alumnoApi.getBoleta(matricula)
+            val boleta = alumnoApi.getBoleta(AlumnoApi.GetPerfilRequest(matricula))
             call.respond(boleta)
         }
         get("$apiRoot/public/v1/alumnos/{matricula}/Horario") {
             val matricula = call.parameters["matricula"] ?: ""
 
-            val horario = alumnoApi.getHorario(matricula)
+            val horario = alumnoApi.getHorario(AlumnoApi.GetPerfilRequest(matricula))
             call.respond(horario)
         }
         get("$apiRoot/public/v1/alumnos/{matricula}/Historial/Academico/Materias/Aprobadas") {
             val matricula = call.parameters["matricula"] ?: ""
 
-            val aprobadas = alumnoApi.getAprobadas(matricula)
+            val aprobadas = alumnoApi.getAprobadas(AlumnoApi.GetPerfilRequest(matricula))
             call.respond(aprobadas)
         }
         get("$apiRoot/public/v1/alumnos/{matricula}/Historial/Academico/Materias/Cursando") {
             val matricula = call.parameters["matricula"] ?: ""
-            val cursando = alumnoApi.getCursando(matricula)
+            val cursando = alumnoApi.getCursando(AlumnoApi.GetPerfilRequest(matricula))
             call.respond(cursando)
         }
         get("$apiRoot/public/v1/alumnos/{matricula}/Historial/Academico/Materias/PorCursar") {
             val matricula = call.parameters["matricula"] ?: ""
-            val porcursar = alumnoApi.getPorCursar(matricula)
+            val porcursar = alumnoApi.getPorCursar(AlumnoApi.GetPerfilRequest(matricula))
             call.respond(porcursar)
         }
         get("$apiRoot/public/v1/alumnos/{matricula}/Historial/Academico/PromedioGeneral") {
             val matricula = call.parameters["matricula"] ?: ""
 
-            val promediogeneral = alumnoApi.getPromedioGeneral(matricula)
+            val promediogeneral = alumnoApi.getPromedioGeneral(AlumnoApi.GetPerfilRequest(matricula))
             call.respond(promediogeneral)
         }
         route("$apiRoot/public/v1/alumnos/{matricula}/Historial/Financiero") {
@@ -144,7 +144,7 @@ fun Application.module(testing: Boolean = false) {
             get {
                 val matricula = call.parameters["matricula"] ?: ""
                 val id_compra = call.parameters["id_compra"] ?: "0"
-                id_compra.toInt()
+
                 val historial = financieroApi.getHistorial(matricula, id_compra.toInt())
                 call.respond(historial)
             }

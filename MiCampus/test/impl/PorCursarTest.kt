@@ -75,7 +75,7 @@ class PorCursarTest {
 
     @Test
     fun `calls por cursar query handler`() {
-        api.getPorCursar(matricula)
+        api.getPorCursar(AlumnoApi.GetPerfilRequest(matricula))
 
         verify { getPorCursarQueryHandler.handle(any()) }
     }
@@ -89,7 +89,7 @@ class PorCursarTest {
             getPorCursarQueryHandler.handle(request)
         } returns (GetPorCursarQueryResponse(getPorCursarQueryResponse))
 
-        val actual = api.getPorCursar(matricula)
+        val actual = api.getPorCursar(AlumnoApi.GetPerfilRequest(matricula))
         Assert.assertEquals(expected, actual)
 
         verify { getPorCursarQueryHandler.handle(request) }

@@ -92,7 +92,7 @@ class PerfilTest {
 
     @Test
     fun `calls perfil query handler`() {
-        api.getPerfil(matricula)
+        api.getPerfil(AlumnoApi.GetPerfilRequest(matricula))
 
         verify { getPerfilQueryHandler.handle(any()) }
     }
@@ -116,7 +116,7 @@ class PerfilTest {
             foto_portada
             ))
 
-        val actual = api.getPerfil(matricula)
+        val actual = api.getPerfil(AlumnoApi.GetPerfilRequest(matricula))
         Assert.assertEquals(expected, actual)
 
         verify { getPerfilQueryHandler.handle(request) }

@@ -9,14 +9,14 @@ class GetMatriculaQueryHandler(private val spc: StoreProcedureCalls) :
 
     override fun handle(message: GetMatriculaQuery): GetMatriculaQueryResponse {
         require(message.matricula.isNotBlank())
-        require(message.contrasena.isNotBlank())
+        require(message.password.isNotBlank())
 
         var messageA = message.matricula.toUpperCase()
         when (messageA[0]) {
             'T', 'M', 'E' -> messageA = messageA.substring(1)
         }
 
-        val alumno = spc.callBuscarAlumnoSP(messageA, message.contrasena)
+        val alumno = spc.callBuscarAlumnoSP(messageA, message.password)
 
         return GetMatriculaQueryResponse(alumno)
     }

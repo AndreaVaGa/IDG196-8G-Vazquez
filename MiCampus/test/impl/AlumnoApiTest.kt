@@ -92,7 +92,7 @@ class AlumnoApiTest {
 
     @Test
     fun `calls query handler`() {
-        api.getMatricula(matricula, password)
+        api.getMatricula(AlumnoApi.GetMatriculaRequest(matricula, password))
 
         verify { getMatriculaQueryHandler.handle(any()) }
     }
@@ -106,7 +106,7 @@ class AlumnoApiTest {
             getMatriculaQueryHandler.handle(request)
         } returns (GetMatriculaQueryResponse(request.matricula))
 
-        val actual = api.getMatricula(matricula, password)
+        val actual = api.getMatricula(AlumnoApi.GetMatriculaRequest(matricula, password))
         Assert.assertEquals(expected, actual)
 
         verify { getMatriculaQueryHandler.handle(request) }
@@ -114,7 +114,7 @@ class AlumnoApiTest {
 
     @Test
     fun `calls boleta query handler`() {
-        api.getBoleta(matricula)
+        api.getBoleta(AlumnoApi.GetPerfilRequest(matricula))
 
         verify { getBoletaQueryHandler.handle(any()) }
     }
@@ -128,7 +128,7 @@ class AlumnoApiTest {
             getBoletaQueryHandler.handle(request)
         } returns (GetBoletaQueryResponse(getBoletaQueryResponse))
 
-        val actual = api.getBoleta(matricula)
+        val actual = api.getBoleta(AlumnoApi.GetPerfilRequest(matricula))
         Assert.assertEquals(expected, actual)
 
         verify { getBoletaQueryHandler.handle(request) }

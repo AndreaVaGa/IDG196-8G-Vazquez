@@ -83,7 +83,7 @@ class HorarioTest {
 
     @Test
     fun `calls horario query handler`() {
-        api.getHorario(matricula)
+        api.getHorario(AlumnoApi.GetPerfilRequest(matricula))
 
         verify { getHorarioQueryHandler.handle(any()) }
     }
@@ -97,7 +97,7 @@ class HorarioTest {
             getHorarioQueryHandler.handle(request)
         } returns (GetHorarioQueryResponse(getHorarioQueryResponse))
 
-        val actual = api.getHorario(matricula)
+        val actual = api.getHorario(AlumnoApi.GetPerfilRequest(matricula))
         Assert.assertEquals(expected, actual)
 
         verify { getHorarioQueryHandler.handle(request) }
