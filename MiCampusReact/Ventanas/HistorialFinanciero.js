@@ -3,6 +3,7 @@ import {
     View,
     StyleSheet,
     FlatList,
+    ScrollView,
      AsyncStorage,
 } from 'react-native';
 import HistorialFRow from '../Utils/historial_f_row';
@@ -47,13 +48,16 @@ class HistorialFinanciero extends React.Component {
       render() {
         return (
           <View style={styles.container} >
-            <FlatList
-              data={this.state.data}
-              extraData={this.state}
-              keyExtractor={(item, index) => item.fila}
-              renderItem={this._renderItem}
-              showsVerticalScrollIndicator={false}
-            />
+        <ScrollView>
+          <FlatList
+            data={this.state.data}
+            extraData={this.state}
+            keyExtractor={(item, index) => item.fila}
+            renderItem={this._renderItem}
+            showsVerticalScrollIndicator={false}
+          />
+
+        </ScrollView>
             </View>
                 
         );

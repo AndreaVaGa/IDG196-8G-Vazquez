@@ -74,13 +74,12 @@ const styles = StyleSheet.create({
     fila: {
         marginTop: 30,
         marginLeft: 15,
-        marginBottom: 5,
         flexDirection: 'row',
     },
     seleccionar: {
         justifyContent: 'center',
-        height: 100,
-        width: wp('15%'),
+        height: 110,
+        width: wp('25%'),
         borderTopLeftRadius: 10,
         borderBottomLeftRadius: 10,
         backgroundColor: '#ffffff',
@@ -93,7 +92,7 @@ const styles = StyleSheet.create({
     },
     precio: {
         height: 30,
-        width: wp('76%'),
+        width: wp('66%'),
         borderTopRightRadius: 10,
         backgroundColor: '#666666',
         flexDirection: 'column',
@@ -104,8 +103,8 @@ const styles = StyleSheet.create({
         elevation: 4,
     },
     info: {
-        height: 70,
-        width: wp('76%'),
+        height: 80,
+        width: wp('66%'),
         borderBottomRightRadius: 10,
         backgroundColor: '#f2f2f2',
         flexDirection: 'column',
@@ -149,16 +148,5 @@ const styles = StyleSheet.create({
     caja: {
         width: 20,
         height: 20,
-
-    },
-    cuadrado: {
-        position: 'absolute',
-        backgroundColor: '#e6e6e6',
-        marginLeft: 20,
-    },
-    palomita: {
-        height: 100,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
+    }
 });

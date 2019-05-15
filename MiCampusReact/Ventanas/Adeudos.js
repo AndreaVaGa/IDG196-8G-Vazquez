@@ -3,14 +3,13 @@ import {
     View,
     StyleSheet,
     FlatList,
+    ScrollView,
      AsyncStorage,
 } from 'react-native';
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import AdeudosRow from '../Utils/adeudos_row';
 
 class Adeudos extends React.Component {
-     
-  constructor(props) {
+     constructor(props) {
     super(props)
     this.state = {
       loading: false,
@@ -49,13 +48,16 @@ class Adeudos extends React.Component {
       render() {
         return (
           <View style={styles.container} >
-            <FlatList
-              data={this.state.data}
-              extraData={this.state}
-              keyExtractor={(item, index) => item.fila}
-              renderItem={this._renderItem}
-              showsVerticalScrollIndicator={false}
-            />
+        <ScrollView>
+          <FlatList
+            data={this.state.data}
+            extraData={this.state}
+            keyExtractor={(item, index) => item.fila}
+            renderItem={this._renderItem}
+            showsVerticalScrollIndicator={false}
+          />
+
+        </ScrollView>
             </View>
                 
         );

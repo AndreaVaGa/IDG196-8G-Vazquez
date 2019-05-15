@@ -3,33 +3,39 @@ import {
     Text,
     View,
     StyleSheet,
-    ScrollView,
+    TouchableOpacity
 } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 class AdeudosRow extends React.Component {
 
+    _IraRecibo = () => {
+        this.props.navigation.navigate('Recibo');
+      }
+
     render() {
         return (
             <View style={styles.container}>
-            <ScrollView style={{marginBottom:50}}>
 
                 <View style={styles.fila}>
                     <View style={[styles.seleccionar]}>
+                        
                     </View>
                     <View>
                         <View style={[styles.precio]}>
-                            <Text style={styles.headersPrecio}>$165</Text>
+                            <Text style={styles.headersPrecio}>$ 100 MXN</Text>
                         </View>
                         <View style={styles.info}>
                             <Text style={styles.texto}>Credenciales</Text>
                             <Text style={styles.headers}>Duplicado de credencial de estudiante</Text>
+                            <TouchableOpacity onPress={(this._IraRecibo)}>
+                                <Text style={[styles.reciboText]}>Ver recibo</Text>
+                            </TouchableOpacity>
                         </View>
                     </View>
                 </View>
-                
-                </ScrollView>
-                </View>
+
+            </View>
                 
         );
     }
@@ -44,16 +50,15 @@ const styles = StyleSheet.create({
     fila: {
         marginTop: 30,
         marginLeft: 15,
-        marginBottom: 5,
         flexDirection: 'row',
     },
     seleccionar: {
         justifyContent: 'center',
-        height: 100,
-        width: wp('15%'),
+        height: 110,
+        width: wp('25%'),
         borderTopLeftRadius: 10,
         borderBottomLeftRadius: 10,
-        backgroundColor: '#ffffff',
+        backgroundColor: 'green',
         flexDirection: 'column',
         shadowColor: 'grey',
         shadowOffset: { width: 0, height: 2 },
@@ -63,7 +68,7 @@ const styles = StyleSheet.create({
     },
     precio: {
         height: 30,
-        width: wp('76%'),
+        width: wp('66%'),
         borderTopRightRadius: 10,
         backgroundColor: '#666666',
         flexDirection: 'column',
@@ -74,8 +79,8 @@ const styles = StyleSheet.create({
         elevation: 4,
     },
     info: {
-        height: 70,
-        width: wp('76%'),
+        height: 80,
+        width: wp('66%'),
         borderBottomRightRadius: 10,
         backgroundColor: '#f2f2f2',
         flexDirection: 'column',
@@ -116,19 +121,17 @@ const styles = StyleSheet.create({
         marginTop: 4,
         color: '#333333',
       },
+      reciboText: {
+        fontSize: 10,
+        fontWeight: 'bold', 
+        textAlign: 'right',
+        marginRight: 18,
+        marginTop: 4,
+        color: 'grey',
+      },
       caja: {
         width: 20,
         height: 20,
 
-      },
-    cuadrado: {
-        position: 'absolute',
-        backgroundColor: '#e6e6e6',
-        marginLeft: 20,
-    },
-    palomita: {
-        height: 100,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
+      }
 });
