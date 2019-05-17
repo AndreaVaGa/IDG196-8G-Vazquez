@@ -1,17 +1,20 @@
 package mx.edu.cetys.garay.andrea.exposed
 
-import mx.edu.cetys.garay.andrea.application.HistorialFin.GetReciboQueryResponse
+import mx.edu.cetys.garay.andrea.application.HistorialFin.GetHistorialQueryResponse
 import mx.edu.cetys.garay.andrea.application.Tutores.GetTutoresQueryResponse
 import mx.edu.cetys.garay.andrea.application.aprobadas.GetAprobadasQueryResponse
 import mx.edu.cetys.garay.andrea.application.boleta.GetBoletaQueryResponse
 import mx.edu.cetys.garay.andrea.application.cursando.GetCursandoQueryResponse
-import mx.edu.cetys.garay.andrea.application.financiero.GetHistorialQueryResponse
+import mx.edu.cetys.garay.andrea.application.financiero.GetReciboQueryResponse
 import mx.edu.cetys.garay.andrea.application.financiero.SaveCompraCommandResponse
 import mx.edu.cetys.garay.andrea.application.horario.GetHorarioQueryResponse
+import mx.edu.cetys.garay.andrea.application.horario.SaveColorCommandResponse
 import mx.edu.cetys.garay.andrea.application.perfiles.GetPerfilQueryResponse
 import mx.edu.cetys.garay.andrea.application.perfiles.SaveFotoCommandResponse
 import mx.edu.cetys.garay.andrea.application.porcursar.GetPorCursarQueryResponse
 import mx.edu.cetys.garay.andrea.application.promediogeneral.GetPromGeneralQueryResponse
+import mx.edu.cetys.garay.andrea.application.tramites.GetTramitesQueryResponse
+import mx.edu.cetys.garay.andrea.dto.TramitesDTO
 
 interface StoreProcedureCalls {
     fun callBuscarAlumnoSP(user: String, password: String): String
@@ -23,8 +26,10 @@ interface StoreProcedureCalls {
     fun callBuscarPorCusarSP(matricula: String): GetPorCursarQueryResponse
     fun callBuscarPromedioGeneralSP(matricula: String): GetPromGeneralQueryResponse
     fun callBuscarCursandoSP(matricula: String): GetCursandoQueryResponse
-    fun callBuscarHistorialSP(matricula: String, id_compra:Int): GetHistorialQueryResponse
-    fun callBuscarReciboSP(matricula: String): GetReciboQueryResponse
-    fun callAddCompraSP(matricula: String, total: Int): SaveCompraCommandResponse
-    fun callChangeFotoSP(matricula: String, foto: String): SaveFotoCommandResponse
+    fun callBuscarHistorialSP(matricula: String, id_compra:Int): GetReciboQueryResponse
+    fun callBuscarReciboSP(matricula: String): GetHistorialQueryResponse
+    fun callAddCompraSP(matricula: String, total: Int, tramites: List<TramitesDTO>): SaveCompraCommandResponse
+    fun callCambiarFotoSP(matricula: String, foto: String): SaveFotoCommandResponse
+    fun callCambiarColorSP(matricula: String, materia: String, color: String): SaveColorCommandResponse
+    fun callBuscarTramitesSP(): GetTramitesQueryResponse
 }

@@ -2,22 +2,22 @@ package mx.edu.cetys.garay.andrea.exposed
 
 import io.ktor.features.NotFoundException
 import mx.edu.cetys.garay.andrea.*
-import mx.edu.cetys.garay.andrea.application.HistorialFin.GetReciboQueryResponse
+import mx.edu.cetys.garay.andrea.application.HistorialFin.GetHistorialQueryResponse
 import mx.edu.cetys.garay.andrea.application.Tutores.GetTutoresQueryResponse
 import mx.edu.cetys.garay.andrea.application.aprobadas.GetAprobadasQueryResponse
 import mx.edu.cetys.garay.andrea.application.boleta.GetBoletaQueryResponse
 import mx.edu.cetys.garay.andrea.application.cursando.GetCursandoQueryResponse
-import mx.edu.cetys.garay.andrea.application.financiero.GetHistorialQueryResponse
+import mx.edu.cetys.garay.andrea.application.financiero.GetReciboQueryResponse
 import mx.edu.cetys.garay.andrea.application.financiero.SaveCompraCommandResponse
 import mx.edu.cetys.garay.andrea.application.horario.GetHorarioQueryResponse
+import mx.edu.cetys.garay.andrea.application.horario.SaveColorCommandResponse
 import mx.edu.cetys.garay.andrea.application.perfiles.GetPerfilQueryResponse
 import mx.edu.cetys.garay.andrea.application.perfiles.SaveFotoCommandResponse
 import mx.edu.cetys.garay.andrea.application.porcursar.GetPorCursarQueryResponse
 import mx.edu.cetys.garay.andrea.application.promediogeneral.GetPromGeneralQueryResponse
-import mx.edu.cetys.garay.andrea.dto.AprobadasDTO
-import mx.edu.cetys.garay.andrea.dto.HistorialDTO
-import mx.edu.cetys.garay.andrea.dto.HorarioDTO
-import mx.edu.cetys.garay.andrea.dto.PorCursarDTO
+import mx.edu.cetys.garay.andrea.application.tramites.GetTramitesQueryResponse
+import mx.edu.cetys.garay.andrea.application.tramites.SaveTramitesCommandResponse
+import mx.edu.cetys.garay.andrea.dto.*
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.transactions.transaction
 
@@ -370,7 +370,7 @@ class SPCallsImpl : StoreProcedureCalls {
     }
 
 
-    override fun callBuscarHistorialSP(matricula: String, id_compra: Int): GetHistorialQueryResponse {
+    override fun callBuscarHistorialSP(matricula: String, id_compra: Int): GetReciboQueryResponse {
         val storedProcedureRawSQL = "exec dbo.buscar_historial_financiero '$matricula','$id_compra'"
 
         val historial = ArrayList<HistorialDTO>()
@@ -397,12 +397,17 @@ class SPCallsImpl : StoreProcedureCalls {
             }
         }
 
-        return GetHistorialQueryResponse(historial)
+        return GetReciboQueryResponse(historial)
     }
 
-    override fun callAddCompraSP(matricula: String, total: Int): SaveCompraCommandResponse {
+    override fun callAddCompraSP(
+        matricula: String,
+        total: Int,
+        tramites: List<TramitesDTO>
+    ): SaveCompraCommandResponse {
         val storedProcedureRawSQL = "exec dbo.add_compra '$matricula','$total'"
         var compra = SaveCompraCommandResponse(0, "", "", 0)
+        val seleccion = ArrayList<SaveTramitesCommandResponse>()
 
         Database.connect(
             EXPOSED_CONNECTION_STRING,
@@ -426,12 +431,37 @@ class SPCallsImpl : StoreProcedureCalls {
                     )
                 }
             }
+
+
         }
+
+        for (t in tramites) {
+            val storedProcedureRawSQL2 = "exec dbo.add_compra_traimte '${compra.id_compra}','$tramites.id'"
+            transaction {
+                execSp(storedProcedureRawSQL2) {
+                    if (it.next()) {
+                        val statusCode = it.getInt("StatusCode")
+                        when (statusCode) {
+                            500 -> throw Exception("FAIL")
+                        }
+                        seleccion.add(
+                            SaveTramitesCommandResponse(
+                                it.getInt("id_compra"),
+                                it.getInt("id_tramites")
+                            )
+                        )
+                    }
+                }
+
+            }
+        }
+
         return compra
     }
-    override fun callChangeFotoSP(matricula: String, foto: String): SaveFotoCommandResponse {
+
+    override fun callCambiarFotoSP(matricula: String, foto: String): SaveFotoCommandResponse {
         val storedProcedureRawSQL = "exec dbo.add_compra '$matricula','$foto'"
-        var perfil = SaveFotoCommandResponse("","","","", "","")
+        var perfil = SaveFotoCommandResponse("", "", "", "", "", "")
 
         Database.connect(
             EXPOSED_CONNECTION_STRING,
@@ -461,8 +491,40 @@ class SPCallsImpl : StoreProcedureCalls {
         return perfil
     }
 
+    override fun callCambiarColorSP(matricula: String, materia: String, color: String): SaveColorCommandResponse {
+        val storedProcedureRawSQL = "exec dbo.cambiar_color '$matricula','$materia',$color'"
+        val horario = ArrayList<HorarioDTO>()
+        Database.connect(
+            EXPOSED_CONNECTION_STRING,
+            EXPOSED_DRIVER,
+            EXPOSED_USER,
+            EXPOSED_PASSWORD
+        )
 
-    override fun callBuscarReciboSP(matricula: String): GetReciboQueryResponse {
+        transaction {
+            execSp(storedProcedureRawSQL) {
+                while (it.next()) {
+                    horario.add(
+                        HorarioDTO(
+                            it.getString("Nombre_Materia"),
+                            it.getString("Nombre_Maestro"),
+                            it.getString("Cve_Periodo"),
+                            it.getString("Dia"),
+                            it.getString("Lugar"),
+                            it.getString("Hora_Inicio"),
+                            it.getString("Hora_Final"),
+                            it.getString("Color")
+                        )
+                    )
+                }
+            }
+        }
+
+        return SaveColorCommandResponse(horario)
+    }
+
+
+    override fun callBuscarReciboSP(matricula: String): GetHistorialQueryResponse {
         val storedProcedureRawSQL = "exec dbo.buscar_recibo '$matricula'"
 
         val recibo = ArrayList<HistorialDTO>()
@@ -489,7 +551,40 @@ class SPCallsImpl : StoreProcedureCalls {
             }
         }
 
-        return GetReciboQueryResponse(recibo)
+        return GetHistorialQueryResponse(recibo)
     }
 
+    override fun callBuscarTramitesSP(): GetTramitesQueryResponse {
+        val storedProcedureRawSQL = "exec dbo.buscar_tramites "
+
+        val tramites = ArrayList<TramitesDTO>()
+        Database.connect(
+            EXPOSED_CONNECTION_STRING,
+            EXPOSED_DRIVER,
+            EXPOSED_USER,
+            EXPOSED_PASSWORD
+        )
+
+        transaction {
+            execSp(storedProcedureRawSQL) {
+                while (it.next()) {
+                    tramites.add(
+                        TramitesDTO(
+                            it.getInt("id"),
+                            it.getString("name"),
+                            it.getInt("price")
+                        )
+                    )
+                }
+            }
+        }
+
+        return GetTramitesQueryResponse(tramites)
+    }
+
+
 }
+
+
+
+

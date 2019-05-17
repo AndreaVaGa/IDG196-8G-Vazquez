@@ -14,7 +14,7 @@ class SaveFotoCommandHandler(private val spc: StoreProcedureCalls) :
             'T', 'M', 'E' -> messageA = messageA.substring(1)
         }
 
-        val perfil = spc.callChangeFotoSP(messageA, message.foto)
+        val perfil = spc.callCambiarFotoSP(messageA, message.foto)
 
         return perfil
     }

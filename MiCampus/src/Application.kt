@@ -9,21 +9,21 @@ import com.fasterxml.jackson.databind.*
 import io.ktor.jackson.*
 import io.ktor.features.*
 import io.ktor.request.receive
-import mx.edu.cetys.garay.andrea.application.HistorialFin.GetReciboQueryHandler
+import mx.edu.cetys.garay.andrea.application.HistorialFin.GetHistorialQueryHandler
 import mx.edu.cetys.garay.andrea.application.Tutores.GetTutoresQueryHandler
-import mx.edu.cetys.garay.andrea.application.alumnos.GetMatriculaQuery
 import mx.edu.cetys.garay.andrea.application.alumnos.GetMatriculaQueryHandler
 import mx.edu.cetys.garay.andrea.application.aprobadas.GetAprobadasQueryHandler
 import mx.edu.cetys.garay.andrea.application.boleta.GetBoletaQueryHandler
 import mx.edu.cetys.garay.andrea.application.cursando.GetCursandoQueryHandler
-import mx.edu.cetys.garay.andrea.application.financiero.GetHistorialQueryHandler
+import mx.edu.cetys.garay.andrea.application.financiero.GetReciboQueryHandler
 import mx.edu.cetys.garay.andrea.application.financiero.SaveCompraCommandHandler
 import mx.edu.cetys.garay.andrea.application.horario.GetHorarioQueryHandler
+import mx.edu.cetys.garay.andrea.application.horario.SaveColorCommandHandler
 import mx.edu.cetys.garay.andrea.application.perfiles.GetPerfilQueryHandler
-import mx.edu.cetys.garay.andrea.application.perfiles.SaveFotoCommand
 import mx.edu.cetys.garay.andrea.application.perfiles.SaveFotoCommandHandler
 import mx.edu.cetys.garay.andrea.application.porcursar.GetPorCursarQueryHandler
 import mx.edu.cetys.garay.andrea.application.promediogeneral.GetPromGeneralQueryHandler
+import mx.edu.cetys.garay.andrea.application.tramites.GetTramitesQueryHandler
 import mx.edu.cetys.garay.andrea.exposed.*
 import mx.edu.cetys.garay.andrea.impl.FinancieroApi
 import mx.edu.cetys.garay.andrea.impl.FinancieroApi.AddCompraRequest
@@ -45,12 +45,14 @@ fun Application.module(testing: Boolean = false) {
         GetCursandoQueryHandler(SPCallsImpl()),
         GetTutoresQueryHandler(SPCallsImpl()),
         GetPromGeneralQueryHandler(SPCallsImpl()),
-        SaveFotoCommandHandler(SPCallsImpl())
+        SaveFotoCommandHandler(SPCallsImpl()),
+        SaveColorCommandHandler(SPCallsImpl())
     )
     val financieroApi = FinancieroApi(
-        GetHistorialQueryHandler(SPCallsImpl()),
+        GetReciboQueryHandler(SPCallsImpl()),
         SaveCompraCommandHandler(SPCallsImpl()),
-        GetReciboQueryHandler(SPCallsImpl())
+        GetHistorialQueryHandler(SPCallsImpl()),
+        GetTramitesQueryHandler(SPCallsImpl())
     )
     install(Authentication) {
     }
@@ -76,7 +78,7 @@ fun Application.module(testing: Boolean = false) {
             val postObject = call.receive<AlumnoApi.GetMatriculaRequest>()
             call.respond(alumnoApi.getMatricula(postObject))
         }
-        route("$apiRoot/public/v1/alumnos/{matricula}/Perfil")
+        route("$apiRoot/public/v1/alumnos/{matricula}/perfil")
         {
             get {
                 val matricula = call.parameters["matricula"] ?: ""
@@ -85,50 +87,56 @@ fun Application.module(testing: Boolean = false) {
             }
             put {
                 val putObject = call.receive<AlumnoApi.SaveFotoRequest>()
-                call.respond(alumnoApi.changeFoto(putObject))
+                call.respond(alumnoApi.cambiarFoto(putObject))
 
             }
         }
-        get("$apiRoot/public/v1/alumnos/{matricula}/Tutores") {
+        get("$apiRoot/public/v1/alumnos/{matricula}/tutores") {
             val matricula = call.parameters["matricula"] ?: ""
 
             val tutores = alumnoApi.getTutores(AlumnoApi.GetPerfilRequest(matricula))
             call.respond(tutores)
         }
-        get("$apiRoot/public/v1/alumnos/{matricula}/Boleta") {
+        get("$apiRoot/public/v1/alumnos/{matricula}/boleta") {
             val matricula = call.parameters["matricula"] ?: ""
             val boleta = alumnoApi.getBoleta(AlumnoApi.GetPerfilRequest(matricula))
             call.respond(boleta)
         }
-        get("$apiRoot/public/v1/alumnos/{matricula}/Horario") {
-            val matricula = call.parameters["matricula"] ?: ""
+        route("$apiRoot/public/v1/alumnos/{matricula}/horario") {
+            get {
+                val matricula = call.parameters["matricula"] ?: ""
 
-            val horario = alumnoApi.getHorario(AlumnoApi.GetPerfilRequest(matricula))
-            call.respond(horario)
+                val horario = alumnoApi.getHorario(AlumnoApi.GetPerfilRequest(matricula))
+                call.respond(horario)
+            }
+            put{
+                val putObject = call.receive<AlumnoApi.SaveColorRequest>()
+                call.respond(alumnoApi.cambiarColor(putObject))
+            }
         }
-        get("$apiRoot/public/v1/alumnos/{matricula}/Historial/Academico/Materias/Aprobadas") {
+        get("$apiRoot/public/v1/alumnos/{matricula}/historial/academico/materias/aprobadas") {
             val matricula = call.parameters["matricula"] ?: ""
 
             val aprobadas = alumnoApi.getAprobadas(AlumnoApi.GetPerfilRequest(matricula))
             call.respond(aprobadas)
         }
-        get("$apiRoot/public/v1/alumnos/{matricula}/Historial/Academico/Materias/Cursando") {
+        get("$apiRoot/public/v1/alumnos/{matricula}/historial/academico/materias/cursando") {
             val matricula = call.parameters["matricula"] ?: ""
             val cursando = alumnoApi.getCursando(AlumnoApi.GetPerfilRequest(matricula))
             call.respond(cursando)
         }
-        get("$apiRoot/public/v1/alumnos/{matricula}/Historial/Academico/Materias/PorCursar") {
+        get("$apiRoot/public/v1/alumnos/{matricula}/historial/academico/materias/porCursar") {
             val matricula = call.parameters["matricula"] ?: ""
             val porcursar = alumnoApi.getPorCursar(AlumnoApi.GetPerfilRequest(matricula))
             call.respond(porcursar)
         }
-        get("$apiRoot/public/v1/alumnos/{matricula}/Historial/Academico/PromedioGeneral") {
+        get("$apiRoot/public/v1/alumnos/{matricula}/historial/academico/promedioGeneral") {
             val matricula = call.parameters["matricula"] ?: ""
 
             val promediogeneral = alumnoApi.getPromedioGeneral(AlumnoApi.GetPerfilRequest(matricula))
             call.respond(promediogeneral)
         }
-        route("$apiRoot/public/v1/alumnos/{matricula}/Historial/Financiero") {
+        route("$apiRoot/public/v1/alumnos/{matricula}/historial/financiero") {
             get {
                 val matricula = call.parameters["matricula"] ?: ""
                 val recibo = financieroApi.getRecibo(matricula)
@@ -136,11 +144,10 @@ fun Application.module(testing: Boolean = false) {
             }
             post {
                 val postObject = call.receive<AddCompraRequest>()
-
                 call.respond(financieroApi.addCompra(postObject))
             }
         }
-        route("$apiRoot/public/v1/alumnos/{matricula}/Historial/Financiero/Recibo/{id_compra}") {
+        route("$apiRoot/public/v1/alumnos/{matricula}/historial/financiero/recibo/{id_compra}") {
             get {
                 val matricula = call.parameters["matricula"] ?: ""
                 val id_compra = call.parameters["id_compra"] ?: "0"
@@ -149,6 +156,11 @@ fun Application.module(testing: Boolean = false) {
                 call.respond(historial)
             }
 
+        }
+        get("$apiRoot/public/v1/alumnos/tramites"){
+            val matricula = ""
+            val tramites = financieroApi.getTramites(matricula)
+            call.respond(tramites)
         }
 
 

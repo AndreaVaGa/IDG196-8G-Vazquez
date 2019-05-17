@@ -9,6 +9,8 @@ import mx.edu.cetys.garay.andrea.application.aprobadas.GetAprobadasQueryResponse
 import mx.edu.cetys.garay.andrea.application.boleta.GetBoletaQueryResponse
 import mx.edu.cetys.garay.andrea.application.cursando.GetCursandoQueryResponse
 import mx.edu.cetys.garay.andrea.application.horario.GetHorarioQueryResponse
+import mx.edu.cetys.garay.andrea.application.horario.SaveColorCommand
+import mx.edu.cetys.garay.andrea.application.horario.SaveColorCommandResponse
 import mx.edu.cetys.garay.andrea.application.perfiles.*
 import mx.edu.cetys.garay.andrea.application.porcursar.GetPorCursarQueryHandler
 import mx.edu.cetys.garay.andrea.application.porcursar.GetPorCursarQueryResponse
@@ -27,7 +29,8 @@ class AlumnoApi(
     private val getCursandoQueryHandler: RequestHandler<GetPerfilQuery, GetCursandoQueryResponse>,
     private val getTutoresQueryHandler: RequestHandler<GetTutoresQuery, GetTutoresQueryResponse>,
     private val getPromedioGeneralQueryHandler: RequestHandler<GetPromGeneralQuery, GetPromGeneralQueryResponse>,
-    private val saveFotoCommandHandler: RequestHandler<SaveFotoCommand, SaveFotoCommandResponse>
+    private val saveFotoCommandHandler: RequestHandler<SaveFotoCommand, SaveFotoCommandResponse>,
+    private val saveColorCommandHandler: RequestHandler<SaveColorCommand, SaveColorCommandResponse>
 ) {
 
     fun getMatricula(request: GetMatriculaRequest): GetMatriculaResponse {
@@ -117,10 +120,16 @@ class AlumnoApi(
         return GetCursandoResponse(response.cursando)
     }
 
-    fun changeFoto(request: SaveFotoRequest): saveFotoCommandResponse {
+    fun cambiarFoto(request: SaveFotoRequest): saveFotoResponse {
         val response = saveFotoCommandHandler.handle(SaveFotoCommand(request.matricula, request.foto))
-        return saveFotoCommandResponse(response)
+        return saveFotoResponse(response)
 
+    }
+
+    fun cambiarColor(request: SaveColorRequest): GetHorarioResponse {
+        val response =
+            saveColorCommandHandler.handle(SaveColorCommand(request.matricula, request.materia, request.color))
+        return GetHorarioResponse(response.horario)
     }
 
     data class GetMatriculaRequest(
@@ -134,12 +143,12 @@ class AlumnoApi(
     )
 
     data class GetPerfilRequest(val matricula: String)
-
+    data class SaveColorRequest(val matricula: String, val materia: String, val color: String)
     data class GetMatriculaResponse(val matricula: String)
     data class GetBoletaResponse(val boleta: List<BoletaDTO>)
     data class GetHorarioResponse(val horario: List<HorarioDTO>)
     data class GetAprobadasResponse(val aprobadas: List<AprobadasDTO>)
     data class GetPorCursarResponse(val porcursar: List<PorCursarDTO>)
     data class GetCursandoResponse(val cursando: List<CursandoDTO>)
-    data class saveFotoCommandResponse(val perfil: SaveFotoCommandResponse)
+    data class saveFotoResponse(val perfil: SaveFotoCommandResponse)
 }

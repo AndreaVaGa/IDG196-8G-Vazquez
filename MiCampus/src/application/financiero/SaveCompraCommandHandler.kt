@@ -9,12 +9,13 @@ class SaveCompraCommandHandler(private val spc: StoreProcedureCalls) :
     override fun handle(message: SaveCompraCommand): SaveCompraCommandResponse {
         require(message.matricula.isNotBlank())
         require((message.total.toString()).isNotBlank())
+        require(message.tramites.isNotEmpty())
         var messageA = message.matricula.toUpperCase()
         when (messageA[0]) {
             'T', 'M', 'E' -> messageA = messageA.substring(1)
         }
 
-        val compra = spc.callAddCompraSP(messageA, message.total)
+        val compra = spc.callAddCompraSP(messageA, message.total, message.tramites)
 
         return compra
     }

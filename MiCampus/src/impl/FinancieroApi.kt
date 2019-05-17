@@ -1,34 +1,46 @@
 package mx.edu.cetys.garay.andrea.impl
 
-import mx.edu.cetys.garay.andrea.application.HistorialFin.GetReciboQuery
-import mx.edu.cetys.garay.andrea.application.HistorialFin.GetReciboQueryResponse
+import mx.edu.cetys.garay.andrea.application.HistorialFin.GetHistorialQuery
+import mx.edu.cetys.garay.andrea.application.HistorialFin.GetHistorialQueryResponse
 import mx.edu.cetys.garay.andrea.application.RequestHandler
 import mx.edu.cetys.garay.andrea.application.financiero.*
+import mx.edu.cetys.garay.andrea.application.perfiles.GetPerfilQuery
+import mx.edu.cetys.garay.andrea.application.tramites.GetTramitesQueryHandler
+import mx.edu.cetys.garay.andrea.application.tramites.GetTramitesQueryResponse
+import mx.edu.cetys.garay.andrea.application.tramites.SaveTramitesCommandResponse
 import mx.edu.cetys.garay.andrea.dto.HistorialDTO
+import mx.edu.cetys.garay.andrea.dto.TramitesDTO
 
 class FinancieroApi(
-    private val getHistorialQueryHandler: RequestHandler<GetHistorialQuery, GetHistorialQueryResponse>,
+    private val getReciboQueryHandler: RequestHandler<GetReciboQuery, GetReciboQueryResponse>,
     private val saveCompraCommandHandler: RequestHandler<SaveCompraCommand, SaveCompraCommandResponse>,
-    private val getReciboQueryHandler: RequestHandler<GetReciboQuery, GetReciboQueryResponse>
+    private val getHistorialQueryHandler: RequestHandler<GetHistorialQuery, GetHistorialQueryResponse>,
+    private val getTramitesQueryHandler: RequestHandler<GetPerfilQuery,GetTramitesQueryResponse>
 )
 {
-    fun getHistorial(matricula: String, id_compra:Int):GetHistorialResponse{
-        val response = getHistorialQueryHandler.handle(GetHistorialQuery(matricula, id_compra))
-        return GetHistorialResponse(response.historial)
-    }
-
-    fun getRecibo(matricula: String):GetReciboResponse{
-        val response = getReciboQueryHandler.handle(GetReciboQuery(matricula))
+    fun getHistorial(matricula: String, id_compra:Int):GetReciboResponse{
+        val response = getReciboQueryHandler.handle(GetReciboQuery(matricula, id_compra))
         return GetReciboResponse(response.recibo)
     }
 
+    fun getRecibo(matricula: String):GetHistorialResponse{
+        val response = getHistorialQueryHandler.handle(GetHistorialQuery(matricula))
+        return GetHistorialResponse(response.historial)
+    }
+
     fun addCompra(request: AddCompraRequest):SaveCompraResponse{
-        val response = saveCompraCommandHandler.handle(SaveCompraCommand(request.matricula,request.total))
+        val response = saveCompraCommandHandler.handle(SaveCompraCommand(request.matricula,request.total, request.tramites))
         return SaveCompraResponse(response)
+    }
+    fun getTramites(matricula: String):GetTramitesResponse{
+        val response = getTramitesQueryHandler.handle(GetPerfilQuery(matricula))
+        return  GetTramitesResponse(response.tramites)
     }
 
     data class GetHistorialResponse(val historial: List<HistorialDTO>)
-    data class AddCompraRequest(val matricula:String, val total: Int)
+    data class AddCompraRequest(val matricula:String, val total: Int, val tramites: List<TramitesDTO>)
     data class SaveCompraResponse(val compra: SaveCompraCommandResponse)
     data class GetReciboResponse(val recibo: List<HistorialDTO>)
+    data class GetTramitesResponse(val tramites: List<TramitesDTO>)
+
 }
