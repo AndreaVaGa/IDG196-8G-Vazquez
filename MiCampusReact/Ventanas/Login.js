@@ -23,13 +23,21 @@ export default class Login extends React.Component {
     }
   }
 
-
   _getAlumno = () => {
     var matriculatemp = this.state.usuario
     var matricula_numerica = matriculatemp.slice(matriculatemp.length * -1 + 1)
 
-    return fetch(this.state.apiRoot + '/public/v1/alumnos/'+ matricula_numerica +'/login?password=' + this.state.password)
-
+    return fetch(this.state.apiRoot + 'public/v1/alumnos/login', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        matricula: this.state.usuario,
+        password: this.state.password
+      }),
+    })
       .then((response) => response.json())
       .then((responseJson) => {
         if (responseJson.matricula == matricula_numerica) {
@@ -53,9 +61,9 @@ export default class Login extends React.Component {
         <TextInput placeholder="Contraseña" secureTextEntry={true}
           style={styles.text} onChangeText={(password) => this.setState({ password })} />
         <TouchableOpacity style={[styles.boton]} onPress={this._getAlumno}>
-            <Text style={[styles.botonText]} onPress={this._getAlumno}>Ingresar</Text>
+          <Text style={[styles.botonText]} onPress={this._getAlumno}>Ingresar</Text>
         </TouchableOpacity>
-        
+
       </View>
     );
   }
@@ -74,9 +82,9 @@ const styles = StyleSheet.create({
     padding: 10
   },
   img: {
-    flex: .4, 
-    aspectRatio: 1, 
-    resizeMode: 'contain', 
+    flex: .4,
+    aspectRatio: 1,
+    resizeMode: 'contain',
     marginBottom: 10
   },
   boton: {
@@ -92,12 +100,12 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
     justifyContent: 'center',
     marginTop: 30,
-},
-botonText: {
+  },
+  botonText: {
     marginTop: 5,
     fontSize: 18,
     textAlign: 'center',
     color: 'white',
     fontWeight: 'bold',
-},
+  },
 });
