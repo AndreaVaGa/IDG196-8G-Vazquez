@@ -42,6 +42,7 @@ class HorarioRow extends React.PureComponent {
     if (colores == null) {
       this.setState({ selectedColor: '#ffffff' });
     }
+    
   };
 
 

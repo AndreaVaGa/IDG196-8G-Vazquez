@@ -36,10 +36,10 @@ class Tramites extends React.Component {
   }
 
   _loadInitionState = async () => {
-    var value = await AsyncStorage.getItem('boleta');
+    var value = await AsyncStorage.getItem('tramites');
     if (value !== undefined) {
-      var boleta = JSON.parse(value)
-      this.setState({ data: boleta.boleta })
+      var tramites = JSON.parse(value)
+      this.setState({ data: tramites.tramites })
     }
     global.sumaTramites = 0;
   }
@@ -55,7 +55,8 @@ class Tramites extends React.Component {
   _renderItem = ({ item }) => (
     <TramitesRow
       onPressItem={this._onPressItem}
-      fila={item.fila}
+      nombre={item.nombre}
+      precio={item.precio}
       seleccionar={item.seleccionar}
       headersPrecio={item.headersPrecio}
       info={item.info}
@@ -72,7 +73,7 @@ class Tramites extends React.Component {
           <FlatList
             data={this.state.data}
             extraData={this.state}
-            keyExtractor={(item, index) => item.fila}
+            keyExtractor={(item, index) => item.nombre}
             renderItem={this._renderItem}
             showsVerticalScrollIndicator={false}
           />

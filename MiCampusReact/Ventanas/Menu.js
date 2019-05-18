@@ -119,13 +119,37 @@ export default class Menu extends React.Component {
       });
   }
   _getTramites = () => {
+    return fetch( 'http://0.0.0.0:8080/api/micampus/public/v1/alumnos/tramites')
 
+      .then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson !== undefined) {
+          AsyncStorage.setItem('tramites', JSON.stringify(responseJson))
           this.props.navigation.navigate('Tramites');
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+          
   }
 
   _getHistorialFinanciero = () => {
+    return fetch( 'http://0.0.0.0:8080/api/micampus/public/v1/alumnos/T021204/historial/financiero')
 
-    this.props.navigation.navigate('HistorialFinanciero');
+      .then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson !== undefined) {
+          AsyncStorage.setItem('historialF', JSON.stringify(responseJson))
+          this.props.navigation.navigate('HistorialFinanciero');
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+    
 }
 
 _getAdeudos = () => {

@@ -19,15 +19,15 @@ class HistorialFRow extends React.Component {
 
                 <View style={styles.fila}>
                     <View style={[styles.seleccionar]}>
-                    <Text style={styles.fecha}>5/14/19</Text>
+                    <Text style={styles.fecha}>{this.props.fecha}</Text>
                     </View>
                     <View>
                         <View style={[styles.precio]}>
-                            <Text style={styles.headersPrecio}>$ 100 MXN</Text>
+                            <Text style={styles.headersPrecio}>${this.props.precio}</Text>
                         </View>
                         <View style={styles.info}>
-                            <Text style={styles.texto}>Credenciales</Text>
-                            <Text style={styles.headers}>Duplicado de credencial de estudiante</Text>
+                            <Text style={styles.texto}>Compra #{this.props.id_compra}</Text>
+                            <Text style={styles.headers}>{this.props.descripcion}</Text>
                             <TouchableOpacity onPress={(this._IraRecibo)}>
                                 <Text style={[styles.reciboText]}>Ver recibo</Text>
                             </TouchableOpacity>

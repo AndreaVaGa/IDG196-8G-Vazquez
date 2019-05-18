@@ -25,10 +25,10 @@ class HistorialFinanciero extends React.Component {
   }
 
   _loadInitionState = async () => {
-    var value = await AsyncStorage.getItem('boleta');
+    var value = await AsyncStorage.getItem('historialF');
     if (value !== undefined) {
-      var boleta = JSON.parse(value)
-      this.setState({ data: boleta.boleta})
+      var historialF = JSON.parse(value)
+      this.setState({ data: historialF.historial})
     }
   }
 
@@ -36,12 +36,12 @@ class HistorialFinanciero extends React.Component {
       _renderItem = ({ item }) => (
         <HistorialFRow
         onPressItem={this._onPressItem}
-        fila={item.fila}
         seleccionar={item.seleccionar}
         headersPrecio={item.headersPrecio}
-        info={item.info}
-        texto={item.texto}
-        header={item.header}
+        fecha={item.date}
+        id_compra={item.id_compras}
+        precio={item.price}
+        descripcion={item.name}
         />
       );
 
@@ -52,7 +52,7 @@ class HistorialFinanciero extends React.Component {
           <FlatList
             data={this.state.data}
             extraData={this.state}
-            keyExtractor={(item, index) => item.fila}
+            keyExtractor={(item, index) => item.id_compra}
             renderItem={this._renderItem}
             showsVerticalScrollIndicator={false}
           />

@@ -26,11 +26,11 @@ class TramitesRow extends React.Component {
 
         this.setState({ checked: !this.state.checked })
         if (this.state.checked) {
-            global.sumaTramites -= this.state.price;
+            global.sumaTramites -= this.props.precio;
 
         }
         else {
-            global.sumaTramites += this.state.price;
+            global.sumaTramites += this.props.precio;
         }
         this.props.binder(global.sumaTramites)
     }
@@ -50,11 +50,11 @@ class TramitesRow extends React.Component {
                     </View>
                     <View>
                         <View style={[styles.precio]}>
-                            <Text style={styles.headersPrecio}>${this.state.price}</Text>
+                            <Text style={styles.headersPrecio}>${this.props.precio}</Text>
                         </View>
                         <View style={styles.info}>
                             <Text style={styles.texto}>Credenciales</Text>
-                            <Text style={styles.headers}>Duplicado de credencial de estudiante</Text>
+                            <Text style={styles.headers}>{this.props.nombre}</Text>
                         </View>
                     </View>
                 </View>
