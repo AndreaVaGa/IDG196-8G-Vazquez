@@ -22,10 +22,6 @@ export default class Configuracion extends React.Component {
       <View style={styles.container}>
 
         <View style={styles.textBox}>
-          <Text style={styles.titles}>Notificaciones</Text>
-        </View>
-
-        <View style={styles.textBox}>
           <View style={styles.fila}>
             <View style={styles.columna}>
               <Text style={styles.titles}>Fondo</Text>
@@ -49,11 +45,24 @@ export default class Configuracion extends React.Component {
                 <Image source={require('../src/imgs/flecha.png')} style={styles.flecha} onPress={this._IraTerminos} />
             </TouchableOpacity>
             </View>
+        </View>
+
+        <View style={styles.textBox}>
+          <View style={styles.fila}>
+            <View style={styles.columna}>
+              <Text style={styles.titles}>Tutorial</Text>
+            </View>
+            <View style={styles.columnaF}>
+              <TouchableOpacity onPress={(this._IraFondo)}>
+                <Image source={require('../src/imgs/flecha.png')} style={styles.flechafondo} onPress={this._IraFondo} />
+              </TouchableOpacity>
+            </View>
           </View>
+        </View>
 
         </View>
         <TouchableOpacity style={[styles.boton]} onPress={(this._LogOut)}>
-            <Text style={[styles.botonText]}>Cerrar sesiòn</Text>
+            <Text style={[styles.botonText]}>Cerrar sesión</Text>
         </TouchableOpacity>
       </View>
     );
