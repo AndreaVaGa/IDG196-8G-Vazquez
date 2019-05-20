@@ -58,7 +58,6 @@ export default class Perfil extends React.Component {
       this.setState({ carrera: alumno.nombre_programa })
       this.setState({ aprobadas: alumno.materias_aprobadas })
     }
-    alert(global.url)
   }
   
   render() {

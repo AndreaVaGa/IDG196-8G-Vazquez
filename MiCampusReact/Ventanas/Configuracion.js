@@ -17,6 +17,10 @@ export default class Configuracion extends React.Component {
     this.props.navigation.navigate('Terminos');
   }
 
+  _IraTutorial = () => {
+    this.props.navigation.navigate('Tutorial');
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -35,6 +39,19 @@ export default class Configuracion extends React.Component {
         </View>
 
         <View style={styles.textBox}>
+          <View style={styles.fila}>
+            <View style={styles.columna}>
+              <Text style={styles.titles}>Tutorial</Text>
+            </View>
+            <View style={styles.columnaF}>
+              <TouchableOpacity onPress={(this._IraTutorial)}>
+                <Image source={require('../src/imgs/flecha.png')} style={styles.flechafondo} onPress={this._IraTutorial} />
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+
+        <View style={styles.textBox}>
 
           <View style={styles.fila}>
             <View style={styles.columna}>
@@ -45,19 +62,6 @@ export default class Configuracion extends React.Component {
                 <Image source={require('../src/imgs/flecha.png')} style={styles.flecha} onPress={this._IraTerminos} />
             </TouchableOpacity>
             </View>
-        </View>
-
-        <View style={styles.textBox}>
-          <View style={styles.fila}>
-            <View style={styles.columna}>
-              <Text style={styles.titles}>Tutorial</Text>
-            </View>
-            <View style={styles.columnaF}>
-              <TouchableOpacity onPress={(this._IraFondo)}>
-                <Image source={require('../src/imgs/flecha.png')} style={styles.flechafondo} onPress={this._IraFondo} />
-              </TouchableOpacity>
-            </View>
-          </View>
         </View>
 
         </View>
@@ -123,7 +127,7 @@ const styles = StyleSheet.create({
     elevation: 4,
     backgroundColor: 'red',
     marginTop: 110,
-    marginLeft: 10,
+    marginLeft: 12,
     justifyContent: 'center',
 },
 botonText: {

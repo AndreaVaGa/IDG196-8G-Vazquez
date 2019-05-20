@@ -16,6 +16,7 @@ import HistorialFinanciero from './Ventanas/HistorialFinanciero';
 import Adeudos from './Ventanas/Adeudos';
 import Pago from './Ventanas/Pago';
 import Recibo from './Ventanas/Recibo';
+import Tutorial from './Ventanas/Tutorial';
 
 
 Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.PORTRAIT);
@@ -85,6 +86,18 @@ const MiCampus = createStackNavigator({
   Fondo: {
     screen: Fondo, navigationOptions: {
       title: 'Fondo',
+      headerStyle: {
+        backgroundColor: 'black',
+      }, headerTitleStyle: {
+        color: 'white',
+        fontWeight: 'bold',
+      },
+      headerTintColor: 'white',
+    }
+  },
+  Tutorial: {
+    screen: Tutorial, navigationOptions: {
+      title: 'Tutorial',
       headerStyle: {
         backgroundColor: 'black',
       }, headerTitleStyle: {
