@@ -88,7 +88,7 @@ class Horario extends React.Component {
       materia={item.materia}
       salon={item.lugar}
       profesor={item.maestro}
-      color={item.color}
+      color={item.color.slice(0,7)}
 
     />
 

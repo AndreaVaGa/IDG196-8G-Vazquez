@@ -13,7 +13,7 @@ class HorarioRow extends React.PureComponent {
     this.state = {
       visible: false,
       colors: ['#ffffff', "#BC95DD", "#95D5DD", "#F9BBF4", "#F9F4BB", "#BBD1F9", "#F9D3BB", "#03A9F4", "#00BCD4", "#009688", "#4CAF50", "#8BC34A", "#CDDC39", "#FFEB3B", "#FFC107", "#FF9800"],
-      selectedColor: '#ffffff',
+      selectedColor: this.props.color,
     };
   }
 
@@ -30,19 +30,6 @@ class HorarioRow extends React.PureComponent {
   _onPress = () => {
     this.setState({ visible: true })
 
-  };
-
-  componentDidMount() {
-    this._loadInitionState().done();
-  }
-
-  _loadInitionState = async () => {
-    var colores = await AsyncStorage.getItem(this.props.materia);
-    this.setState({ selectedColor: colores });
-    if (colores == null) {
-      this.setState({ selectedColor: '#ffffff' });
-    }
-    
   };
 
 
@@ -102,7 +89,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderTopRightRadius: 10,
     borderBottomRightRadius: 10,
-    backgroundColor: '#ffffff',
     flexDirection: 'column',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.8,
