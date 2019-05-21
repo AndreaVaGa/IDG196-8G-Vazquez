@@ -13,7 +13,6 @@ import Configuracion from './Ventanas/Configuracion';
 import Menu from './Ventanas/Menu';
 import Tramites from './Ventanas/Tramites';
 import HistorialFinanciero from './Ventanas/HistorialFinanciero';
-import Adeudos from './Ventanas/Adeudos';
 import Pago from './Ventanas/Pago';
 import Recibo from './Ventanas/Recibo';
 import Tutorial from './Ventanas/Tutorial';
@@ -146,18 +145,6 @@ const MiCampus = createStackNavigator({
   Recibo: {
     screen: Recibo, navigationOptions: {
       title: 'Recibo',
-      headerStyle: {
-        backgroundColor: 'black',
-      }, headerTitleStyle: {
-        color: 'white',
-        fontWeight: 'bold',
-      },
-      headerTintColor: 'white',
-    }
-  },
-  Adeudos: {
-    screen: Adeudos, navigationOptions: {
-      title: 'Adeudos',
       headerStyle: {
         backgroundColor: 'black',
       }, headerTitleStyle: {

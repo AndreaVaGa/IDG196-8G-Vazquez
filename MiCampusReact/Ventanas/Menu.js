@@ -152,11 +152,6 @@ export default class Menu extends React.Component {
     
 }
 
-_getAdeudos = () => {
-
-  this.props.navigation.navigate('Adeudos');
-}
-
   render() {
     return (
       <ImageBackground style={styles.perfilContainer} source={require('../src/imgs/background.jpg')}>
@@ -194,10 +189,6 @@ _getAdeudos = () => {
           </View>
 
           <View style={styles.container}>
-            <TouchableOpacity style={styles.Boton} onPress={(this._getAdeudos)} title='Adeudos'>
-              <Image source={require("../src/imgs/adeudos.png")}></Image>
-              <Text style={styles.texto}>Adeudos</Text>
-            </TouchableOpacity>
             <TouchableOpacity style={styles.Boton} onPress={(this._getHistorialFinanciero)} title='HistorialFinanciero'>
               <Image source={require("../src/imgs/hfinanciero.png")}></Image>
               <Text style={styles.texto}>Historial</Text>
