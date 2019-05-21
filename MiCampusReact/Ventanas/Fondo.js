@@ -8,12 +8,12 @@ import {
   Image
 } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-global.url = require("../src/imgs/portada/a.jpg");
+global.url = require('../src/imgs/portada/a.jpg');
 export default class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      url: require("../src/imgs/portada/a.jpg"),
+      url: require('../src/imgs/portada/a.jpg'),
     };
   }
   _IraPerfil = () => {

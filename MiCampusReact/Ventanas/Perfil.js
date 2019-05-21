@@ -57,20 +57,21 @@ export default class Perfil extends React.Component {
       this.setState({ apellido: alumno.apellido_paterno + ' ' + alumno.apellido_materno })
       this.setState({ carrera: alumno.nombre_programa })
       this.setState({ aprobadas: alumno.materias_aprobadas })
+      this.setState({portada: alumno.foto_portada.slice(0,27)})
     }
   }
   
   render() {
     return (
       <View>
-        <ImageBackground source={global.url} style={styles.portada}>
+        <ImageBackground source={require(this.state.portada)} style={styles.portada}>
           <TouchableOpacity onPress={(this._IraConfiguracion)}>
             <Image source={require("../src/imgs/configuracion.png")} style={styles.confi} onPress={(this._IraConfiguracion)}></Image>
           </TouchableOpacity>
           <Image source={{ uri: 'https://micampus.tij.cetys.mx/fotos/' + this.state.matricula + '.jpg' }} style={styles.fpersona} />
         </ImageBackground>
         <View>
-          <Text style={styles.title}>{this.state.nombre}</Text>
+          <Text style={styles.title}>{this.state.portada}</Text>
           <Text style={styles.title2}>{this.state.apellido}</Text>
           <Text style={styles.texto}>Carrera: {this.state.carrera} </Text>
           <Text style={styles.texto}>Materias aprobadas: {this.state.aprobadas}</Text>
