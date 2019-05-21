@@ -15,8 +15,12 @@ import mx.edu.cetys.garay.andrea.application.aprobadas.GetAprobadasQueryResponse
 import mx.edu.cetys.garay.andrea.application.boleta.GetBoletaQueryResponse
 import mx.edu.cetys.garay.andrea.application.cursando.GetCursandoQueryResponse
 import mx.edu.cetys.garay.andrea.application.horario.GetHorarioQueryResponse
+import mx.edu.cetys.garay.andrea.application.horario.SaveColorCommand
+import mx.edu.cetys.garay.andrea.application.horario.SaveColorCommandResponse
 import mx.edu.cetys.garay.andrea.application.perfiles.GetPerfilQuery
 import mx.edu.cetys.garay.andrea.application.perfiles.GetPerfilQueryResponse
+import mx.edu.cetys.garay.andrea.application.perfiles.SaveFotoCommand
+import mx.edu.cetys.garay.andrea.application.perfiles.SaveFotoCommandResponse
 import mx.edu.cetys.garay.andrea.application.porcursar.GetPorCursarQueryResponse
 import mx.edu.cetys.garay.andrea.application.promediogeneral.GetPromGeneralQuery
 import mx.edu.cetys.garay.andrea.application.promediogeneral.GetPromGeneralQueryResponse
@@ -36,6 +40,8 @@ class TutoresTest {
     private val getTutoresQueryHandler = mockk<RequestHandler<GetTutoresQuery, GetTutoresQueryResponse>>()
     private val getPromedioGeneralQueryHandler =
         mockk<RequestHandler<GetPromGeneralQuery, GetPromGeneralQueryResponse>>()
+    private val saveFotoCommandHandler= mockk<RequestHandler<SaveFotoCommand, SaveFotoCommandResponse>>()
+    private val saveColorCommandHandler= mockk<RequestHandler<SaveColorCommand, SaveColorCommandResponse>>()
     private val api = AlumnoApi(
         getMatriculaQueryHandler,
         getPerfilQueryHandler,
@@ -45,7 +51,9 @@ class TutoresTest {
         getPorCursarQueryHandler,
         getCursandoQueryHandler,
         getTutoresQueryHandler,
-        getPromedioGeneralQueryHandler
+        getPromedioGeneralQueryHandler,
+        saveFotoCommandHandler,
+        saveColorCommandHandler
     )
 
     private val matricula = (0..10).random().toString()
@@ -114,7 +122,7 @@ class TutoresTest {
 
     @Test
     fun `calls tutores query handler`() {
-        api.getTutores(matricula)
+        api.getTutores(AlumnoApi.GetPerfilRequest(matricula))
 
         verify { getTutoresQueryHandler.handle(any()) }
     }
@@ -128,7 +136,7 @@ class TutoresTest {
             getTutoresQueryHandler.handle(request)
         } returns (GetTutoresQueryResponse( nombre_1_padre, nombre_2_padre, apellido_paterno_padre, apellido_materno_padre, direccion_padre, colonia_padre, telefono_padre, email_padre, telefono_celular_pad, empresa_padre, emp_dir_padre, emp_col_padre, emp_tel_padre, nombre_1_madre, nombre_2_madre, apellido_paterno_madre, apellido_materno_madre, direccion_madre, colonia_madre, telefono_madre, email_madre, telefono_celular_madre, empresa_madre, emp_dir_madre, emp_col_madre, emp_tel_madre))
 
-        val actual = api.getTutores(matricula)
+        val actual = api.getTutores(AlumnoApi.GetPerfilRequest(matricula))
         Assert.assertEquals(expected, actual)
 
         verify { getTutoresQueryHandler.handle(request) }

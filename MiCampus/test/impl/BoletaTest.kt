@@ -14,6 +14,8 @@ import mx.edu.cetys.garay.andrea.application.aprobadas.GetAprobadasQueryResponse
 import mx.edu.cetys.garay.andrea.application.boleta.GetBoletaQueryResponse
 import mx.edu.cetys.garay.andrea.application.cursando.GetCursandoQueryResponse
 import mx.edu.cetys.garay.andrea.application.horario.GetHorarioQueryResponse
+import mx.edu.cetys.garay.andrea.application.horario.SaveColorCommand
+import mx.edu.cetys.garay.andrea.application.horario.SaveColorCommandResponse
 import mx.edu.cetys.garay.andrea.application.perfiles.GetPerfilQuery
 import mx.edu.cetys.garay.andrea.application.perfiles.GetPerfilQueryResponse
 import mx.edu.cetys.garay.andrea.application.perfiles.SaveFotoCommand
@@ -37,6 +39,7 @@ class BoletaTest {
     private val getPromedioGeneralQueryHandler =
         mockk<RequestHandler<GetPromGeneralQuery, GetPromGeneralQueryResponse>>()
     private val saveFotoCommandHandler = mockk<RequestHandler<SaveFotoCommand, SaveFotoCommandResponse>>()
+    private val saveColorCommandHandler= mockk<RequestHandler<SaveColorCommand, SaveColorCommandResponse>>()
     private val api = AlumnoApi(
         getMatriculaQueryHandler,
         getPerfilQueryHandler,
@@ -47,7 +50,8 @@ class BoletaTest {
         getCursandoQueryHandler,
         getTutoresQueryHandler,
         getPromedioGeneralQueryHandler,
-        saveFotoCommandHandler
+        saveFotoCommandHandler,
+        saveColorCommandHandler
     )
 
     private val matricula = (0..10).random().toString()
