@@ -21,6 +21,7 @@ export default class Perfil extends React.Component {
       semestre: '',
       aprobadas: '',
       matricula: '', 
+      portada: '', 
       apiRoot: "http://10.12.20.188:8080/api/micampus"
     };
       
@@ -57,21 +58,41 @@ export default class Perfil extends React.Component {
       this.setState({ apellido: alumno.apellido_paterno + ' ' + alumno.apellido_materno })
       this.setState({ carrera: alumno.nombre_programa })
       this.setState({ aprobadas: alumno.materias_aprobadas })
-      this.setState({portada: alumno.foto_portada.slice(0,27)})
+      this.setState({portada: alumno.foto_portada.slice(0,1)})
+      
+
     }
   }
   
   render() {
+    var x = this.state.portada.toString()
+    var load_image = x == 'a' ? require("../src/imgs/portada/a.jpg") : 
+      this.state.portada == 'b' ? require("../src/imgs/portada/b.jpg") : 
+      this.state.portada == 'c' ? require("../src/imgs/portada/c.jpg") : 
+      this.state.portada == 'd' ? require("../src/imgs/portada/d.jpg") : 
+      this.state.portada == 'e' ? require("../src/imgs/portada/e.jpg") :
+      this.state.portada == 'f' ? require("../src/imgs/portada/f.jpg") : 
+      this.state.portada == 'g' ? require("../src/imgs/portada/g.jpg") :
+      this.state.portada == 'h' ? require("../src/imgs/portada/h.jpg") : 
+      this.state.portada == 'i' ? require("../src/imgs/portada/i.jpg") :
+      this.state.portada == 'j' ? require("../src/imgs/portada/j.jpg") : 
+      this.state.portada == 'k' ? require("../src/imgs/portada/k.jpg") :
+      this.state.portada == 'l' ? require("../src/imgs/portada/l.jpg") : 
+      this.state.portada == 'm' ? require("../src/imgs/portada/m.jpg") :
+      this.state.portada == 'n' ? require("../src/imgs/portada/n.jpg") : 
+      this.state.portada == 'o' ? require("../src/imgs/portada/o.jpg") :
+      this.state.portada == 'p' ? require("../src/imgs/portada/p.jpg") : 
+      require("../src/imgs/portada/o.jpg") ;
     return (
       <View>
-        <ImageBackground source={require(this.state.portada)} style={styles.portada}>
+        <ImageBackground source={load_image} style={styles.portada}>
           <TouchableOpacity onPress={(this._IraConfiguracion)}>
             <Image source={require("../src/imgs/configuracion.png")} style={styles.confi} onPress={(this._IraConfiguracion)}></Image>
           </TouchableOpacity>
           <Image source={{ uri: 'https://micampus.tij.cetys.mx/fotos/' + this.state.matricula + '.jpg' }} style={styles.fpersona} />
         </ImageBackground>
         <View>
-          <Text style={styles.title}>{this.state.portada}</Text>
+          <Text style={styles.title2}>{this.state.nombre}</Text>
           <Text style={styles.title2}>{this.state.apellido}</Text>
           <Text style={styles.texto}>Carrera: {this.state.carrera} </Text>
           <Text style={styles.texto}>Materias aprobadas: {this.state.aprobadas}</Text>
