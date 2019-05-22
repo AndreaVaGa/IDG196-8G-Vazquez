@@ -23,6 +23,7 @@ import mx.edu.cetys.garay.andrea.application.perfiles.SaveFotoCommandResponse
 import mx.edu.cetys.garay.andrea.application.porcursar.GetPorCursarQueryResponse
 import mx.edu.cetys.garay.andrea.application.promediogeneral.GetPromGeneralQuery
 import mx.edu.cetys.garay.andrea.application.promediogeneral.GetPromGeneralQueryResponse
+import mx.edu.cetys.garay.andrea.dto.HistorialDTO
 import mx.edu.cetys.garay.andrea.dto.HorarioDTO
 import org.junit.Assert
 import org.junit.Before
@@ -40,7 +41,7 @@ class HorarioTest {
     private val getPromedioGeneralQueryHandler =
         mockk<RequestHandler<GetPromGeneralQuery, GetPromGeneralQueryResponse>>()
     private val saveFotoCommandHandler = mockk<RequestHandler<SaveFotoCommand, SaveFotoCommandResponse>>()
-    private val saveColorCommandHandler= mockk<RequestHandler<SaveColorCommand, SaveColorCommandResponse>>()
+    private val saveColorCommandHandler = mockk<RequestHandler<SaveColorCommand, SaveColorCommandResponse>>()
     private val api = AlumnoApi(
         getMatriculaQueryHandler,
         getPerfilQueryHandler,
@@ -64,8 +65,10 @@ class HorarioTest {
     private val lugar = "9005"
     private val hora_inicio = "6:00"
     private val hora_final = "8:00"
-    private val color =" "
+    private val color = " "
     private val getHorarioQueryResponse = ArrayList<HorarioDTO>()
+    private val SaveColorCommandResponse = ArrayList<HorarioDTO>()
+
     private val horario = HorarioDTO(
         materia,
         maestro,
@@ -77,11 +80,24 @@ class HorarioTest {
         color
     )
 
+    private val colores = HorarioDTO(
+        materia,
+        maestro,
+        cve_periodo,
+        dia,
+        lugar,
+        hora_inicio,
+        hora_final,
+        color
+    )
 
     @Before
     fun setup() {
         getHorarioQueryResponse.add(horario)
         every { getHorarioQueryHandler.handle(any()) } returns GetHorarioQueryResponse(getHorarioQueryResponse)
+
+        SaveColorCommandResponse.add(colores)
+        every { saveColorCommandHandler.handle(any()) } returns SaveColorCommandResponse(SaveColorCommandResponse)
     }
 
     @Test
@@ -104,5 +120,27 @@ class HorarioTest {
         Assert.assertEquals(expected, actual)
 
         verify { getHorarioQueryHandler.handle(request) }
+    }
+
+    @Test
+    fun `calls color comand handler`() {
+        api.cambiarColor(AlumnoApi.SaveColorRequest(matricula, materia, color))
+
+        verify { saveColorCommandHandler.handle(any()) }
+    }
+
+    @Test
+    fun `returns color correctly when request is correct`() {
+        val request = SaveColorCommand(matricula, materia, color)
+        val expected = AlumnoApi.GetHorarioResponse(SaveColorCommandResponse)
+
+        every {
+            saveColorCommandHandler.handle(request)
+        } returns (SaveColorCommandResponse(SaveColorCommandResponse))
+
+        val actual = api.cambiarColor(AlumnoApi.SaveColorRequest(matricula, materia, color))
+        Assert.assertEquals(expected, actual)
+
+        verify { saveColorCommandHandler.handle(request) }
     }
 }
