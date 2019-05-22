@@ -5,9 +5,7 @@ import mx.edu.cetys.garay.andrea.application.HistorialFin.GetHistorialQueryRespo
 import mx.edu.cetys.garay.andrea.application.RequestHandler
 import mx.edu.cetys.garay.andrea.application.financiero.*
 import mx.edu.cetys.garay.andrea.application.perfiles.GetPerfilQuery
-import mx.edu.cetys.garay.andrea.application.tramites.GetTramitesQueryHandler
 import mx.edu.cetys.garay.andrea.application.tramites.GetTramitesQueryResponse
-import mx.edu.cetys.garay.andrea.application.tramites.SaveTramitesCommandResponse
 import mx.edu.cetys.garay.andrea.dto.HistorialDTO
 import mx.edu.cetys.garay.andrea.dto.TramitesDTO
 

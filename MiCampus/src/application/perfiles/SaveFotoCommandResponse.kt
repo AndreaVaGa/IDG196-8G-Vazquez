@@ -7,4 +7,4 @@ data class SaveFotoCommandResponse(
     val apellido_paterno: String,
     val apellido_materno: String,
     val foto_portada: String
-    )
+)
