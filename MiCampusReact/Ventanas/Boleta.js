@@ -68,7 +68,6 @@ class ListViewDemo extends React.Component {
           this.state.loading ?
             <ActivityIndicator size='large' color='grey' />
             :
-            <View>
               <FlatList
                 data={this.state.data}
                 extraData={this.state}
@@ -76,7 +75,6 @@ class ListViewDemo extends React.Component {
                 renderItem={this._renderItem}
                 showsVerticalScrollIndicator={false}
               />
-            </View>
         }
       </View>
     );
@@ -89,7 +87,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginBottom: 20,
-    alignContent: 'flex-end',
-    justifyContent: 'center'
+    alignContent: 'flex-end'
   }
 });
