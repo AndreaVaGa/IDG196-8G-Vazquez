@@ -111,4 +111,41 @@ class ApplicationTest {
             }
         }
     }
+
+    @Test
+    fun getMatriculaConT(){
+        withTestApplication({ module(testing = true) }) {
+            with(handleRequest(HttpMethod.Post, "$apiRoot/public/v1/alumnos/login") {
+                addHeader("content-type", "application/json")
+                setBody("{\"matricula\":\"T021204\",\"password\":\"123456\"}")
+            }) {
+                assertEquals(HttpStatusCode.OK, response.status())
+            }
+        }
+    }
+
+    @Test
+    fun getMatriculaConE(){
+        withTestApplication({ module(testing = true) }) {
+            with(handleRequest(HttpMethod.Post, "$apiRoot/public/v1/alumnos/login") {
+                addHeader("content-type", "application/json")
+                setBody("{\"matricula\":\"E021204\",\"password\":\"123456\"}")
+            }) {
+                assertEquals(HttpStatusCode.OK, response.status())
+            }
+        }
+    }
+
+    @Test
+    fun getMatriculaConM(){
+        withTestApplication({ module(testing = true) }) {
+            with(handleRequest(HttpMethod.Post, "$apiRoot/public/v1/alumnos/login") {
+                addHeader("content-type", "application/json")
+                setBody("{\"matricula\":\"M021204\",\"password\":\"123456\"}")
+            }) {
+                assertEquals(HttpStatusCode.OK, response.status())
+            }
+        }
+    }
+
 }
