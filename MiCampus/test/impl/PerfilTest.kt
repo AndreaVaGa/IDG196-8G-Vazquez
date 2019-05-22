@@ -76,7 +76,17 @@ class PerfilTest {
         materias_aprobadas,
         foto_portada
     )
-
+    private val foto = SaveFotoCommandResponse(
+        matricula,
+        nombre_1,
+        nombre_2,
+        apellido_paterno,
+        apellido_materno,
+        nombre_programa,
+        cve_programa,
+        materias_aprobadas,
+        foto_portada
+    )
 
     @Before
     fun setup() {
@@ -91,8 +101,19 @@ class PerfilTest {
             materias_aprobadas,
             foto_portada
         )
-    }
 
+        every {saveFotoCommandHandler.handle(any())} returns SaveFotoCommandResponse(
+            matricula,
+            nombre_1,
+            nombre_2,
+            apellido_paterno,
+            apellido_materno,
+            nombre_programa,
+            cve_programa,
+            materias_aprobadas,
+            foto_portada
+        )
+    }
 
     @Test
     fun `calls perfil query handler`() {
@@ -124,5 +145,38 @@ class PerfilTest {
         Assert.assertEquals(expected, actual)
 
         verify { getPerfilQueryHandler.handle(request) }
+    }
+
+
+    @Test
+    fun `calls foto command handler`() {
+        api.cambiarFoto(AlumnoApi.SaveFotoRequest(matricula, foto_portada))
+
+        verify { saveFotoCommandHandler.handle(any()) }
+    }
+
+    @Test
+    fun `returns foto correctly when request is correct`() {
+        val request = SaveFotoCommand(matricula, foto_portada)
+        val expected = AlumnoApi.saveFotoResponse(foto)
+
+        every {
+            saveFotoCommandHandler.handle(request)
+        } returns (SaveFotoCommandResponse(
+            matricula,
+            nombre_1,
+            nombre_2,
+            apellido_paterno,
+            apellido_materno,
+            nombre_programa,
+            cve_programa,
+            materias_aprobadas,
+            foto_portada
+        ))
+
+        val actual = api.cambiarFoto(AlumnoApi.SaveFotoRequest(matricula, foto_portada))
+        Assert.assertEquals(expected, actual)
+
+        verify { saveFotoCommandHandler.handle(request) }
     }
 }

@@ -461,7 +461,7 @@ class SPCallsImpl : StoreProcedureCalls {
 
     override fun callCambiarFotoSP(matricula: String, foto: String): SaveFotoCommandResponse {
         val storedProcedureRawSQL = "exec dbo.add_compra '$matricula','$foto'"
-        var perfil = SaveFotoCommandResponse("", "", "", "", "", "")
+        var perfil = SaveFotoCommandResponse("", "", "", "", "", "", "", "", "")
 
         Database.connect(
             EXPOSED_CONNECTION_STRING,
@@ -483,7 +483,11 @@ class SPCallsImpl : StoreProcedureCalls {
                         it.getString("Nombre_2"),
                         it.getString("Apellido_Paterno"),
                         it.getString("Apellido_Materno"),
+                        it.getString("Nombre_Programa"),
+                        it.getString("Cve_Programa"),
+                        it.getString("materias_aprobadas"),
                         it.getString("foto_portada")
+
                     )
                 }
             }
