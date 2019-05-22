@@ -402,12 +402,10 @@ class SPCallsImpl : StoreProcedureCalls {
 
     override fun callAddCompraSP(
         matricula: String,
-        total: Int,
-        tramites: List<TramitesDTO>
+        tramites: String
     ): SaveCompraCommandResponse {
-        val storedProcedureRawSQL = "exec dbo.add_compra '$matricula','$total'"
-        var compra = SaveCompraCommandResponse(0, "", "", 0)
-        val seleccion = ArrayList<SaveTramitesCommandResponse>()
+        val storedProcedureRawSQL = "exec dbo.add_compra '$matricula','$tramites'"
+        var compra = ArrayList<ReciboDTO>()
 
         Database.connect(
             EXPOSED_CONNECTION_STRING,
@@ -423,11 +421,16 @@ class SPCallsImpl : StoreProcedureCalls {
                     when (statusCode) {
                         500 -> throw Exception("FAIL")
                     }
-                    compra = SaveCompraCommandResponse(
-                        it.getInt("id_compras"),
-                        it.getString("matricula"),
-                        it.getString("date"),
-                        it.getInt("monto_total")
+                    compra.add(
+                        ReciboDTO(
+                            it.getInt("id_compra"),
+                            it.getString("matricula"),
+                            it.getString("date"),
+                            it.getInt("id_tramites"),
+                            it.getString("name"),
+                            it.getInt("precio"),
+                            it.getInt("monto_total")
+                        )
                     )
                 }
             }
@@ -435,32 +438,11 @@ class SPCallsImpl : StoreProcedureCalls {
 
         }
 
-        for (t in tramites) {
-            val storedProcedureRawSQL2 = "exec dbo.add_compra_traimte '${compra.id_compra}','$tramites.id'"
-            transaction {
-                execSp(storedProcedureRawSQL2) {
-                    if (it.next()) {
-                        val statusCode = it.getInt("StatusCode")
-                        when (statusCode) {
-                            500 -> throw Exception("FAIL")
-                        }
-                        seleccion.add(
-                            SaveTramitesCommandResponse(
-                                it.getInt("id_compra"),
-                                it.getInt("id_tramites")
-                            )
-                        )
-                    }
-                }
-
-            }
-        }
-
-        return compra
+        return SaveCompraCommandResponse(compra)
     }
 
     override fun callCambiarFotoSP(matricula: String, foto: String): SaveFotoCommandResponse {
-        val storedProcedureRawSQL = "exec dbo.add_compra '$matricula','$foto'"
+        val storedProcedureRawSQL = "exec dbo.cambiar_foto '$matricula','$foto'"
         var perfil = SaveFotoCommandResponse("", "", "", "", "", "", "", "", "")
 
         Database.connect(
@@ -496,7 +478,7 @@ class SPCallsImpl : StoreProcedureCalls {
     }
 
     override fun callCambiarColorSP(matricula: String, materia: String, color: String): SaveColorCommandResponse {
-        val storedProcedureRawSQL = "exec dbo.cambiar_color '$matricula','$materia',$color'"
+        val storedProcedureRawSQL = "exec dbo.cambiar_color '$matricula','$materia','$color'"
         val horario = ArrayList<HorarioDTO>()
         Database.connect(
             EXPOSED_CONNECTION_STRING,
