@@ -148,4 +148,76 @@ class ApplicationTest {
         }
     }
 
+    @Test
+    fun getMatriculaEspaciosBlancos(){
+        withTestApplication({ module(testing = true) }) {
+            with(handleRequest(HttpMethod.Post, "$apiRoot/public/v1/alumnos/login") {
+                addHeader("content-type", "application/json")
+                setBody("{\"matricula\":\"02 1204 \",\"password\":\"123456\"}")
+            }) {
+                assertEquals(HttpStatusCode.NotFound, response.status())
+            }
+        }
+    }
+
+    @Test
+    fun getMatriculaMasNumeros(){
+        withTestApplication({ module(testing = false) }) {
+            with(handleRequest(HttpMethod.Post, "$apiRoot/public/v1/alumnos/login") {
+                addHeader("content-type", "application/json")
+                setBody("{\"matricula\":\"021204122\",\"password\":\"123456\"}")
+            }) {
+                assertEquals(HttpStatusCode.OK, response.status())
+            }
+        }
+    }
+
+    @Test
+    fun getMatriculaMenosNumeros(){
+        withTestApplication({ module(testing = true) }) {
+            with(handleRequest(HttpMethod.Post, "$apiRoot/public/v1/alumnos/login") {
+                addHeader("content-type", "application/json")
+                setBody("{\"matricula\":\"02120\",\"password\":\"123456\"}")
+            }) {
+                assertEquals(HttpStatusCode.NotFound, response.status())
+            }
+        }
+    }
+
+    @Test
+    fun getMatriculaCaracteresEspeciales(){
+        withTestApplication({ module(testing = true) }) {
+            with(handleRequest(HttpMethod.Post, "$apiRoot/public/v1/alumnos/login") {
+                addHeader("content-type", "application/json")
+                setBody("{\"matricula\":\"02120@#\",\"password\":\"123456\"}")
+            }) {
+                assertEquals(HttpStatusCode.NotFound, response.status())
+            }
+        }
+    }
+
+    @Test
+    fun getMatriculaBoolean(){
+        withTestApplication({ module(testing = true) }) {
+            with(handleRequest(HttpMethod.Post, "$apiRoot/public/v1/alumnos/login") {
+                addHeader("content-type", "application/json")
+                setBody("{\"matricula\":\"return\",\"password\":\"123456\"}")
+            }) {
+                assertEquals(HttpStatusCode.NotFound, response.status())
+            }
+        }
+    }
+
+    @Test
+    fun getPasswordEspaciosBlancos(){
+        withTestApplication({ module(testing = false) }) {
+            with(handleRequest(HttpMethod.Post, "$apiRoot/public/v1/alumnos/login") {
+                addHeader("content-type", "application/json")
+                setBody("{\"matricula\":\"021204\",\"password\":\"123456 \"}")
+            }) {
+                assertEquals(HttpStatusCode.OK, response.status())
+            }
+        }
+    }
+
 }
