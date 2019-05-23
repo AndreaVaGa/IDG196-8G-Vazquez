@@ -17,12 +17,12 @@ class FinancieroApi(
     private val getTramitesQueryHandler: RequestHandler<GetPerfilQuery,GetTramitesQueryResponse>
 )
 {
-    fun getHistorial(matricula: String, id_compra:Int):GetReciboResponse{
+    fun getRecibo(matricula: String, id_compra:Int):GetReciboResponse{
         val response = getReciboQueryHandler.handle(GetReciboQuery(matricula, id_compra))
         return GetReciboResponse(response.recibo)
     }
 
-    fun getRecibo(matricula: String):GetHistorialResponse{
+    fun getHistorial(matricula: String):GetHistorialResponse{
         val response = getHistorialQueryHandler.handle(GetHistorialQuery(matricula))
         return GetHistorialResponse(response.historial)
     }

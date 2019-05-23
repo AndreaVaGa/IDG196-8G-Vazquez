@@ -26,8 +26,8 @@ interface StoreProcedureCalls {
     fun callBuscarPorCusarSP(matricula: String): GetPorCursarQueryResponse
     fun callBuscarPromedioGeneralSP(matricula: String): GetPromGeneralQueryResponse
     fun callBuscarCursandoSP(matricula: String): GetCursandoQueryResponse
-    fun callBuscarHistorialSP(matricula: String, id_compra: Int): GetReciboQueryResponse
-    fun callBuscarReciboSP(matricula: String): GetHistorialQueryResponse
+    fun callBuscarReciboSP(matricula: String, id_compra: Int): GetReciboQueryResponse
+    fun callBuscarHistorialSP(matricula: String): GetHistorialQueryResponse
     fun callAddCompraSP(matricula: String, tramites: String): SaveCompraCommandResponse
     fun callCambiarFotoSP(matricula: String, foto: String): SaveFotoCommandResponse
     fun callCambiarColorSP(matricula: String, materia: String, color: String): SaveColorCommandResponse

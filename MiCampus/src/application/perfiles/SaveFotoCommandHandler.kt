@@ -8,13 +8,13 @@ class SaveFotoCommandHandler(private val spc: StoreProcedureCalls) :
 
     override fun handle(message: SaveFotoCommand): SaveFotoCommandResponse {
         require(message.matricula.isNotBlank())
-        require(message.foto.isNotBlank())
+        require(message.foto_portada.isNotBlank())
         var messageA = message.matricula.toUpperCase()
         when (messageA[0]) {
             'T', 'M', 'E' -> messageA = messageA.substring(1)
         }
 
-        val perfil = spc.callCambiarFotoSP(messageA, message.foto)
+        val perfil = spc.callCambiarFotoSP(messageA, message.foto_portada)
 
         return perfil
     }

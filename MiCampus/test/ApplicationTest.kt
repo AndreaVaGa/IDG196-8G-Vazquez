@@ -30,7 +30,7 @@ class ApplicationTest {
     @Test
     fun getTutores() {
         withTestApplication({ module(testing = true) }) {
-            handleRequest(HttpMethod.Get, "$apiRoot/public/v1/alumnos/T021204/Tutores").apply {
+            handleRequest(HttpMethod.Get, "$apiRoot/public/v1/alumnos/T021204/tutores").apply {
                 assertEquals(HttpStatusCode.OK, response.status())
             }
         }
@@ -39,7 +39,7 @@ class ApplicationTest {
     @Test
     fun getBoleta() {
         withTestApplication({ module(testing = true) }) {
-            handleRequest(HttpMethod.Get, "$apiRoot/public/v1/alumnos/T021204/Boleta").apply {
+            handleRequest(HttpMethod.Get, "$apiRoot/public/v1/alumnos/T021204/boleta").apply {
                 assertEquals(HttpStatusCode.OK, response.status())
             }
         }
@@ -50,7 +50,7 @@ class ApplicationTest {
         withTestApplication({ module(testing = true) }) {
             handleRequest(
                 HttpMethod.Get,
-                "$apiRoot/public/v1/alumnos/T021204/Historial/Academico/Materias/Aprobadas"
+                "$apiRoot/public/v1/alumnos/T021204/historial/academico/materias/aprobadas"
             ).apply {
                 assertEquals(HttpStatusCode.OK, response.status())
             }
@@ -61,7 +61,7 @@ class ApplicationTest {
     @Test
     fun getHorario() {
         withTestApplication({ module(testing = true) }) {
-            handleRequest(HttpMethod.Get, "$apiRoot/public/v1/alumnos/T021204/Horario").apply {
+            handleRequest(HttpMethod.Get, "$apiRoot/public/v1/alumnos/T021204/horario").apply {
                 assertEquals(HttpStatusCode.OK, response.status())
             }
         }
@@ -70,7 +70,7 @@ class ApplicationTest {
     @Test
     fun getPerfil() {
         withTestApplication({ module(testing = true) }) {
-            handleRequest(HttpMethod.Get, "$apiRoot/public/v1/alumnos/T021204/Perfil").apply {
+            handleRequest(HttpMethod.Get, "$apiRoot/public/v1/alumnos/T021204/perfil").apply {
                 assertEquals(HttpStatusCode.OK, response.status())
             }
         }
@@ -81,7 +81,7 @@ class ApplicationTest {
         withTestApplication({ module(testing = true) }) {
             handleRequest(
                 HttpMethod.Get,
-                "$apiRoot/public/v1/alumnos/T021204/Historial/Academico/Materias/Cursando"
+                "$apiRoot/public/v1/alumnos/T021204/historial/academico/materias/cursando"
             ).apply {
                 assertEquals(HttpStatusCode.OK, response.status())
             }
@@ -93,7 +93,7 @@ class ApplicationTest {
         withTestApplication({ module(testing = true) }) {
             handleRequest(
                 HttpMethod.Get,
-                "$apiRoot/public/v1/alumnos/T021204/Historial/Academico/PromedioGeneral"
+                "$apiRoot/public/v1/alumnos/T021204/historial/academico/promedioGeneral"
             ).apply {
                 assertEquals(HttpStatusCode.OK, response.status())
             }
@@ -105,7 +105,7 @@ class ApplicationTest {
         withTestApplication({ module(testing = true) }) {
             handleRequest(
                 HttpMethod.Get,
-                "$apiRoot/public/v1/alumnos/T021204/Historial/Academico/Materias/PorCursar"
+                "$apiRoot/public/v1/alumnos/T021204/historial/academico/materias/porCursar"
             ).apply {
                 assertEquals(HttpStatusCode.OK, response.status())
             }
@@ -142,6 +142,28 @@ class ApplicationTest {
             with(handleRequest(HttpMethod.Post, "$apiRoot/public/v1/alumnos/login") {
                 addHeader("content-type", "application/json")
                 setBody("{\"matricula\":\"M021204\",\"password\":\"123456\"}")
+            }) {
+                assertEquals(HttpStatusCode.OK, response.status())
+            }
+        }
+    }
+    @Test
+    fun addFoto() {
+        withTestApplication({ module(testing = true) }) {
+            with(handleRequest(HttpMethod.Put, "$apiRoot/public/v1/alumnos/T021204/perfil") {
+                addHeader("content-type", "application/json")
+                setBody("{\"matricula\":\"021204\",\"foto_portada\":\"b\"}")
+            }) {
+                assertEquals(HttpStatusCode.OK, response.status())
+            }
+        }
+    }
+    @Test
+    fun addColor() {
+        withTestApplication({ module(testing = true) }) {
+            with(handleRequest(HttpMethod.Put, "$apiRoot/public/v1/alumnos/T021204/horario") {
+                addHeader("content-type", "application/json")
+                setBody("{\"matricula\":\"021204\",\"materia\":\"Base de Datos\",\"color\":\"#F9F4BB\"}")
             }) {
                 assertEquals(HttpStatusCode.OK, response.status())
             }
