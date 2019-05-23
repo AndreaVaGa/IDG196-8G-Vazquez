@@ -28,7 +28,7 @@ class ListViewDemo extends React.Component {
         loading: false
       })
     },
-      300)
+      150)
   }
 
   _loadInitionState = async () => {
