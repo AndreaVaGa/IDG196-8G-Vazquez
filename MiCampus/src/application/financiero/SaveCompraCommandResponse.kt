@@ -1,9 +1,7 @@
 package mx.edu.cetys.garay.andrea.application.financiero
 
-data class SaveCompraCommandResponse(
-    val id_compra: Int,
-    val matricula: String,
-    val date: String,
-    val total : Int
+import mx.edu.cetys.garay.andrea.dto.ReciboDTO
 
+data class SaveCompraCommandResponse(
+    val compra: List<ReciboDTO>
 )

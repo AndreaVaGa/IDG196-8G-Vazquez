@@ -121,7 +121,7 @@ class AlumnoApi(
     }
 
     fun cambiarFoto(request: SaveFotoRequest): saveFotoResponse {
-        val response = saveFotoCommandHandler.handle(SaveFotoCommand(request.matricula, request.foto))
+        val response = saveFotoCommandHandler.handle(SaveFotoCommand(request.matricula, request.foto_portada))
         return saveFotoResponse(response)
 
     }
@@ -139,7 +139,7 @@ class AlumnoApi(
 
     data class SaveFotoRequest(
         val matricula: String,
-        val foto: String
+        val foto_portada: String
     )
 
     data class GetPerfilRequest(val matricula: String)

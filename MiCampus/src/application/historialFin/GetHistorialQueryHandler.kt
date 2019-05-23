@@ -13,8 +13,8 @@ class GetHistorialQueryHandler(private val spc: StoreProcedureCalls) :
             'T', 'M', 'E' -> messageA = messageA.substring(1)
         }
 
-        val recibo = spc.callBuscarReciboSP(messageA)
+        val historial = spc.callBuscarHistorialSP(messageA)
 
-        return recibo
+        return historial
     }
 }

@@ -4,5 +4,5 @@ import mx.edu.cetys.garay.andrea.application.Request
 
 data class SaveFotoCommand(
     val matricula: String,
-    val foto: String
+    val foto_portada: String
 ) : Request

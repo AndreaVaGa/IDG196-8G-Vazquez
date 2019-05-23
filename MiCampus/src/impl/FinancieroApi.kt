@@ -7,6 +7,7 @@ import mx.edu.cetys.garay.andrea.application.financiero.*
 import mx.edu.cetys.garay.andrea.application.perfiles.GetPerfilQuery
 import mx.edu.cetys.garay.andrea.application.tramites.GetTramitesQueryResponse
 import mx.edu.cetys.garay.andrea.dto.HistorialDTO
+import mx.edu.cetys.garay.andrea.dto.ReciboDTO
 import mx.edu.cetys.garay.andrea.dto.TramitesDTO
 
 class FinancieroApi(
@@ -27,8 +28,8 @@ class FinancieroApi(
     }
 
     fun addCompra(request: AddCompraRequest):SaveCompraResponse{
-        val response = saveCompraCommandHandler.handle(SaveCompraCommand(request.matricula,request.total, request.tramites))
-        return SaveCompraResponse(response)
+        val response = saveCompraCommandHandler.handle(SaveCompraCommand(request.matricula, request.tramites))
+        return SaveCompraResponse(response.compra)
     }
     fun getTramites(matricula: String):GetTramitesResponse{
         val response = getTramitesQueryHandler.handle(GetPerfilQuery(matricula))
@@ -36,8 +37,8 @@ class FinancieroApi(
     }
 
     data class GetHistorialResponse(val historial: List<HistorialDTO>)
-    data class AddCompraRequest(val matricula:String, val total: Int, val tramites: List<TramitesDTO>)
-    data class SaveCompraResponse(val compra: SaveCompraCommandResponse)
+    data class AddCompraRequest(val matricula:String,  val tramites: String)
+    data class SaveCompraResponse(val compra:List<ReciboDTO>)
     data class GetReciboResponse(val recibo: List<HistorialDTO>)
     data class GetTramitesResponse(val tramites: List<TramitesDTO>)
 
