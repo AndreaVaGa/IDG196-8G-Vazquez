@@ -169,6 +169,18 @@ class ApplicationTest {
             }
         }
     }
+    @Test
+    fun addCompra() {
+        withTestApplication({ module(testing = true) }) {
+            with(handleRequest(HttpMethod.Post, "$apiRoot/public/v1//alumnos/T021204/historial/financiero") {
+                addHeader("content-type", "application/json")
+                setBody("{\"matricula\":\"021204\",\"tramites\":\"1,3,5,\"}")
+            }) {
+                assertEquals(HttpStatusCode.OK, response.status())
+            }
+        }
+    }
+
 
     @Test
     fun getMatriculaEspaciosBlancos(){

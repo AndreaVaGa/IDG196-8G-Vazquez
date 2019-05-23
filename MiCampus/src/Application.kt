@@ -139,8 +139,8 @@ fun Application.module(testing: Boolean = false) {
         route("$apiRoot/alumnos/{matricula}/historial/financiero") {
             get {
                 val matricula = call.parameters["matricula"] ?: ""
-                val recibo = financieroApi.getHistorial(matricula)
-                call.respond(recibo)
+                val historial = financieroApi.getHistorial(matricula)
+                call.respond(historial)
             }
             post {
                 val postObject = call.receive<AddCompraRequest>()
