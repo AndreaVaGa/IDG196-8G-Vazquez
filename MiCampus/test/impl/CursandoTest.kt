@@ -4,7 +4,6 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
 import mx.edu.cetys.garay.andrea.AlumnoApi
-import mx.edu.cetys.garay.andrea.BoletaDTO
 import mx.edu.cetys.garay.andrea.CursandoDTO
 import mx.edu.cetys.garay.andrea.application.RequestHandler
 import mx.edu.cetys.garay.andrea.application.Tutores.GetTutoresQuery
