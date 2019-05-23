@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Image, Text, TouchableOpacity, TextInput, AsyncStorage, } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import { STATUS_CODES } from 'http';
 
 export default class Login extends React.Component {
 
@@ -48,12 +47,7 @@ export default class Login extends React.Component {
 
       })
       .catch((error) => {
-        if (STATUS_CODES == 404) {
-          alert('Usuario o contraseña incorrecta')
-        }
-        else if (STATUS_CODES == 500) {
-          alert('Conexión fallida con el servidor')
-        }
+        alert('Usuario o contraseña incorrecta')
       });
   }
 
