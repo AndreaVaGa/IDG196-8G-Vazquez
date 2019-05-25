@@ -2,10 +2,10 @@ package mx.edu.cetys.garay.andrea.application.boleta
 
 import mx.edu.cetys.garay.andrea.application.RequestHandler
 import mx.edu.cetys.garay.andrea.application.perfiles.GetPerfilQuery
-import mx.edu.cetys.garay.andrea.exposed.SPCallsImpl
 import mx.edu.cetys.garay.andrea.exposed.StoreProcedureCalls
 
-class GetBoletaQueryHandler (private val spc: StoreProcedureCalls) : RequestHandler<GetPerfilQuery, GetBoletaQueryResponse> {
+class GetBoletaQueryHandler(private val spc: StoreProcedureCalls) :
+    RequestHandler<GetPerfilQuery, GetBoletaQueryResponse> {
 
     override fun handle(message: GetPerfilQuery): GetBoletaQueryResponse {
         require(message.matricula.isNotBlank())

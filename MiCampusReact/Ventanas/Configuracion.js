@@ -58,15 +58,15 @@ export default class Configuracion extends React.Component {
               <Text style={styles.titles}>Terminos/Privacidad</Text>
             </View>
             <View style={styles.columnaF}>
-            <TouchableOpacity onPress={(this._IraTerminos)}>
+              <TouchableOpacity onPress={(this._IraTerminos)}>
                 <Image source={require('../src/imgs/flecha.png')} style={styles.flecha} onPress={this._IraTerminos} />
-            </TouchableOpacity>
+              </TouchableOpacity>
             </View>
-        </View>
+          </View>
 
         </View>
         <TouchableOpacity style={[styles.boton]} onPress={(this._LogOut)}>
-            <Text style={[styles.botonText]}>Cerrar sesión</Text>
+          <Text style={[styles.botonText]}>Cerrar sesión</Text>
         </TouchableOpacity>
       </View>
     );
@@ -129,14 +129,14 @@ const styles = StyleSheet.create({
     marginTop: 110,
     marginLeft: 12,
     justifyContent: 'center',
-},
-botonText: {
+  },
+  botonText: {
     marginTop: 7,
     fontSize: 16,
     color: 'white',
     textAlign: 'center',
     fontWeight: 'bold',
-},
+  },
 
 
 });

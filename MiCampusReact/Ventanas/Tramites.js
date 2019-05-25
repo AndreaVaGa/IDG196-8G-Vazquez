@@ -82,11 +82,11 @@ class Tramites extends React.Component {
 
 
         <View style={styles.total}>
-          <Text style={styles.textPromedio}>Total: ${this.state.total}MXN 
+          <Text style={styles.textPromedio}>Total: ${this.state.total}MXN
             <TouchableOpacity style={[styles.box]} onPress={(this._IraPago)}>
               <Text style={[styles.boxText]} >Pagar</Text>
             </TouchableOpacity>
-            </Text>
+          </Text>
         </View>
 
       </View>
@@ -124,9 +124,9 @@ const styles = StyleSheet.create({
     elevation: 4,
     backgroundColor: '#ffd700',
     justifyContent: 'center',
-},
-boxText: {
+  },
+  boxText: {
     fontSize: 18,
     color: '#333333',
-},
+  },
 });

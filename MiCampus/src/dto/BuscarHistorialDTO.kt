@@ -1,6 +1,5 @@
 package mx.edu.cetys.garay.andrea.dto
 
-import org.joda.time.DateTime
 
 data class HistorialDTO(
     val id_compra: Int,

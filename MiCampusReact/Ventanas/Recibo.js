@@ -12,8 +12,8 @@ class Recibo extends React.Component {
 
     _IraHistorialF = () => {
         this.props.navigation.navigate('HistorialFinanciero');
-      }
-      
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -23,16 +23,16 @@ class Recibo extends React.Component {
                             <Text style={styles.boxText}>Folio: {global.sumaTramites}</Text>
                         </View>
 
-                        <View style={styles.lineStyle}/>
+                        <View style={styles.lineStyle} />
 
                         <View>
-                        <Text style={styles.total}>Total: ${global.sumaTramites}MXN</Text>
+                            <Text style={styles.total}>Total: ${global.sumaTramites}MXN</Text>
                         </View>
-                            <View style={[styles.filaBox]}>
-                                <Text style={styles.cantidad}>{global.sumaTramites}</Text>
-                                <Text style={styles.producto}>Nombre del servicio</Text>
-                                <Text style={styles.precio}>${global.sumaTramites}MXN</Text>
-                            </View>
+                        <View style={[styles.filaBox]}>
+                            <Text style={styles.cantidad}>{global.sumaTramites}</Text>
+                            <Text style={styles.producto}>Nombre del servicio</Text>
+                            <Text style={styles.precio}>${global.sumaTramites}MXN</Text>
+                        </View>
                     </View>
                 </View>
                 <View style={[styles.boton]}>
@@ -40,7 +40,7 @@ class Recibo extends React.Component {
                         <Text style={[styles.aceptar]}>Aceptar</Text>
                     </TouchableOpacity>
                 </View>
-            </View>     
+            </View>
         );
     }
 }
@@ -49,7 +49,7 @@ export default Recibo;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginLeft:15
+        marginLeft: 15
     },
     contenido: {
         height: 350,
@@ -135,12 +135,12 @@ const styles = StyleSheet.create({
         fontSize: 18,
     },
     lineStyle: {
-    borderWidth: .7,
-    width: wp('75%'),
-    marginLeft: 15,
-    marginRight: 15,
-    marginBottom: 25,
-    borderColor: '#ffd700',
-  },
-    
+        borderWidth: .7,
+        width: wp('75%'),
+        marginLeft: 15,
+        marginRight: 15,
+        marginBottom: 25,
+        borderColor: '#ffd700',
+    },
+
 });

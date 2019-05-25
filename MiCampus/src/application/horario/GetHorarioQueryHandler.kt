@@ -4,7 +4,8 @@ import mx.edu.cetys.garay.andrea.application.RequestHandler
 import mx.edu.cetys.garay.andrea.application.perfiles.GetPerfilQuery
 import mx.edu.cetys.garay.andrea.exposed.StoreProcedureCalls
 
-class GetHorarioQueryHandler(private val spc: StoreProcedureCalls)  : RequestHandler<GetPerfilQuery, GetHorarioQueryResponse> {
+class GetHorarioQueryHandler(private val spc: StoreProcedureCalls) :
+    RequestHandler<GetPerfilQuery, GetHorarioQueryResponse> {
     override fun handle(message: GetPerfilQuery): GetHorarioQueryResponse {
         require(message.matricula.isNotBlank())
 

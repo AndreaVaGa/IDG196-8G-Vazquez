@@ -16,7 +16,6 @@ import mx.edu.cetys.garay.andrea.application.perfiles.SaveFotoCommandResponse
 import mx.edu.cetys.garay.andrea.application.porcursar.GetPorCursarQueryResponse
 import mx.edu.cetys.garay.andrea.application.promediogeneral.GetPromGeneralQueryResponse
 import mx.edu.cetys.garay.andrea.application.tramites.GetTramitesQueryResponse
-import mx.edu.cetys.garay.andrea.application.tramites.SaveTramitesCommandResponse
 import mx.edu.cetys.garay.andrea.dto.*
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.transactions.transaction
@@ -49,7 +48,7 @@ class SPCallsImpl : StoreProcedureCalls {
 
     override fun callBuscarPerfilSP(matricula: String): GetPerfilQueryResponse {
         val storedProcedureRawSQL = "exec dbo.buscar_perfil '$matricula'"
-        var perfil = GetPerfilQueryResponse(
+        var perfil = PerfilDTO(
             "",
             "",
             "",
@@ -76,7 +75,7 @@ class SPCallsImpl : StoreProcedureCalls {
                         404 -> throw NotFoundException()
                     }
 
-                    perfil = GetPerfilQueryResponse(
+                    perfil = PerfilDTO(
                         it.getString("Matricula"),
                         it.getString("Nombre_1"),
                         it.getString("Nombre_2"),
@@ -92,7 +91,7 @@ class SPCallsImpl : StoreProcedureCalls {
             }
         }
 
-        return perfil
+        return GetPerfilQueryResponse(perfil)
     }
 
     override fun callBuscarBoletaSP(matricula: String): GetBoletaQueryResponse {
@@ -136,7 +135,7 @@ class SPCallsImpl : StoreProcedureCalls {
 
     override fun callBuscarTutoresSP(matricula: String): GetTutoresQueryResponse {
         val storedProcedureRawSQL = "exec dbo.buscar_tutores '$matricula'"
-        var tutores = GetTutoresQueryResponse(
+        var tutores = TutoresDTO(
             "",
             "",
             "",
@@ -179,7 +178,7 @@ class SPCallsImpl : StoreProcedureCalls {
                         500 -> throw Exception("FAIL")
                         404 -> throw NotFoundException()
                     }
-                    tutores = GetTutoresQueryResponse(
+                    tutores = TutoresDTO(
                         it.getString("Nombre_1_Padre"),
                         it.getString("Nombre_2_Padre"),
                         it.getString("Apellido_Paterno_Padre"),
@@ -212,7 +211,7 @@ class SPCallsImpl : StoreProcedureCalls {
             }
         }
 
-        return tutores
+        return GetTutoresQueryResponse(tutores)
     }
 
 
@@ -443,7 +442,7 @@ class SPCallsImpl : StoreProcedureCalls {
 
     override fun callCambiarFotoSP(matricula: String, foto: String): SaveFotoCommandResponse {
         val storedProcedureRawSQL = "exec dbo.cambiar_foto '$matricula','$foto'"
-        var perfil = SaveFotoCommandResponse("", "", "", "", "", "", "", "", "")
+        var perfil = PerfilDTO("", "", "", "", "", "", "", "", "")
 
         Database.connect(
             EXPOSED_CONNECTION_STRING,
@@ -459,7 +458,7 @@ class SPCallsImpl : StoreProcedureCalls {
                     when (statusCode) {
                         500 -> throw Exception("FAIL")
                     }
-                    perfil = SaveFotoCommandResponse(
+                    perfil = PerfilDTO(
                         it.getString("Matricula"),
                         it.getString("Nombre_1"),
                         it.getString("Nombre_2"),
@@ -474,7 +473,7 @@ class SPCallsImpl : StoreProcedureCalls {
                 }
             }
         }
-        return perfil
+        return SaveFotoCommandResponse(perfil)
     }
 
     override fun callCambiarColorSP(matricula: String, materia: String, color: String): SaveColorCommandResponse {

@@ -1,7 +1,6 @@
 package mx.edu.cetys.garay.andrea.application.promediogeneral
 
 import mx.edu.cetys.garay.andrea.application.RequestHandler
-import mx.edu.cetys.garay.andrea.exposed.SPCallsImpl
 import mx.edu.cetys.garay.andrea.exposed.StoreProcedureCalls
 
 class GetPromGeneralQueryHandler(private val spc: StoreProcedureCalls) :

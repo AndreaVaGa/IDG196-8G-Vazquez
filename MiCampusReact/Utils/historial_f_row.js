@@ -11,7 +11,7 @@ class HistorialFRow extends React.Component {
 
     _IraRecibo = () => {
         this.props.navigation.navigate('Recibo');
-      }
+    }
 
     render() {
         return (
@@ -19,7 +19,7 @@ class HistorialFRow extends React.Component {
 
                 <View style={styles.fila}>
                     <View style={[styles.seleccionar]}>
-                    <Text style={styles.fecha}>{this.props.fecha}</Text>
+                        <Text style={styles.fecha}>{this.props.fecha}</Text>
                     </View>
                     <View>
                         <View style={[styles.precio]}>
@@ -36,7 +36,7 @@ class HistorialFRow extends React.Component {
                 </View>
 
             </View>
-                
+
         );
     }
 }
@@ -91,11 +91,11 @@ const styles = StyleSheet.create({
         elevation: 4,
     },
     total: {
-      backgroundColor: '#191919',
-      bottom: 0,
-      position: 'absolute',
-      padding: 7,
-      width: '100%',
+        backgroundColor: '#191919',
+        bottom: 0,
+        position: 'absolute',
+        padding: 7,
+        width: '100%',
     },
     texto: {
         fontSize: 12,
@@ -111,32 +111,32 @@ const styles = StyleSheet.create({
         marginRight: 15,
         color: 'white',
         marginTop: 7,
-      },
+    },
     headers: {
         fontSize: 14,
-        fontWeight: 'bold', 
+        fontWeight: 'bold',
         textAlign: 'left',
         marginLeft: 18,
         marginRight: 15,
         marginTop: 4,
         color: '#333333',
-      },
-      reciboText: {
+    },
+    reciboText: {
         fontSize: 10,
-        fontWeight: 'bold', 
+        fontWeight: 'bold',
         textAlign: 'right',
         marginRight: 18,
         marginTop: 1,
         color: 'grey',
-      },
-      fecha: {
-        fontSize: 14, 
+    },
+    fecha: {
+        fontSize: 14,
         textAlign: 'center',
         color: 'white',
-      },
-      caja: {
+    },
+    caja: {
         width: 20,
         height: 20,
 
-      }
+    }
 });

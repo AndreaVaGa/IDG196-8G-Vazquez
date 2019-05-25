@@ -38,53 +38,14 @@ class AlumnoApi(
         return GetMatriculaResponse(response.matricula)
     }
 
-    fun getPerfil(request: GetPerfilRequest): PerfilDTO {
+    fun getPerfil(request: GetPerfilRequest): GetPerfilResponse {
         val response = getPerfilQueryHandler.handle(GetPerfilQuery(request.matricula))
-        return PerfilDTO(
-            response.matricula,
-            response.nombre_1,
-            response.nombre_2,
-            response.apellido_paterno,
-            response.apellido_materno,
-            response.nombre_programa,
-            response.cve_programa,
-            response.materias_aprobadas,
-            response.foto_portada
-        )
-
+        return GetPerfilResponse(response.perfil)
     }
 
-    fun getTutores(request: GetPerfilRequest): TutoresDTO {
+    fun getTutores(request: GetPerfilRequest): GetTutoresResponse {
         val response = getTutoresQueryHandler.handle(GetTutoresQuery(request.matricula))
-        return TutoresDTO(
-            response.nombre_1_padre,
-            response.nombre_2_padre,
-            response.apellido_paterno_padre,
-            response.apellido_materno_padre,
-            response.direccion_padre,
-            response.colonia_padre,
-            response.telefono_padre,
-            response.email_padre,
-            response.telefono_celular_pad,
-            response.empresa_padre,
-            response.emp_dir_padre,
-            response.emp_col_padre,
-            response.emp_tel_padre,
-            response.nombre_1_madre,
-            response.nombre_2_madre,
-            response.apellido_paterno_madre,
-            response.apellido_materno_madre,
-            response.direccion_madre,
-            response.colonia_madre,
-            response.telefono_madre,
-            response.email_madre,
-            response.telefono_celular_madre,
-            response.empresa_madre,
-            response.emp_dir_madre,
-            response.emp_col_madre,
-            response.emp_tel_madre
-        )
-
+        return GetTutoresResponse(response)
     }
 
     fun getPromedioGeneral(request: GetPerfilRequest): PromedioGeneralDTO {
@@ -92,7 +53,6 @@ class AlumnoApi(
         return PromedioGeneralDTO(
             response.promedio_general
         )
-
     }
 
     fun getBoleta(request: GetPerfilRequest): GetBoletaResponse {
@@ -145,10 +105,12 @@ class AlumnoApi(
     data class GetPerfilRequest(val matricula: String)
     data class SaveColorRequest(val matricula: String, val materia: String, val color: String)
     data class GetMatriculaResponse(val matricula: String)
+    data class GetTutoresResponse(val tutores: GetTutoresQueryResponse)
     data class GetBoletaResponse(val boleta: List<BoletaDTO>)
     data class GetHorarioResponse(val horario: List<HorarioDTO>)
     data class GetAprobadasResponse(val aprobadas: List<AprobadasDTO>)
     data class GetPorCursarResponse(val porcursar: List<PorCursarDTO>)
     data class GetCursandoResponse(val cursando: List<CursandoDTO>)
+    data class GetPerfilResponse(val perfil: PerfilDTO)
     data class saveFotoResponse(val perfil: SaveFotoCommandResponse)
 }

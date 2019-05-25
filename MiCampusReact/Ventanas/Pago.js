@@ -12,44 +12,44 @@ class Pago extends React.Component {
 
     _IraRecibo = () => {
         this.props.navigation.navigate('Recibo');
-      }
-      
+    }
+
     render() {
         return (
             <View style={styles.container}>
-                    <View style={[styles.precioTotal]}>
+                <View style={[styles.precioTotal]}>
                     <Text style={styles.textoPrecio}>${global.sumaTramites}MXN</Text>
-                    </View>
-                    <View>
-                        <View style={[styles.contenido]}>
-                            <View style={styles.textoContenido}>
-                                <View>
-                                    <TextInput style={[styles.boxContenido]}
+                </View>
+                <View>
+                    <View style={[styles.contenido]}>
+                        <View style={styles.textoContenido}>
+                            <View>
+                                <TextInput style={[styles.boxContenido]}
                                     placeholder="Numero de Trajeta"
                                     placeholderTextColor='grey'
-                                    />
-                                </View>
-                                <View style={[styles.boxEC]}>
-                                    <TextInput style={[styles.boxECInterno]}
+                                />
+                            </View>
+                            <View style={[styles.boxEC]}>
+                                <TextInput style={[styles.boxECInterno]}
                                     placeholder="Expira"
                                     placeholderTextColor='grey'
-                                    />
-                                    <TextInput style={[styles.boxECInterno]}
+                                />
+                                <TextInput style={[styles.boxECInterno]}
                                     placeholder="CVV"
                                     placeholderTextColor='grey'
-                                    />
-                                </View>
-                                
-                                <TouchableOpacity style={[styles.box]} onPress={(this._IraRecibo)}>
-                                    <Text style={[styles.boxText]} >Pagar ${global.sumaTramites}MXN</Text>
-                                </TouchableOpacity>
+                                />
                             </View>
+
+                            <TouchableOpacity style={[styles.box]} onPress={(this._IraRecibo)}>
+                                <Text style={[styles.boxText]} >Pagar ${global.sumaTramites}MXN</Text>
+                            </TouchableOpacity>
                         </View>
-                        <View style={styles.infoExtra}>
-                            <Text style={styles.textoInfo}>Duplicado de credencial de estudiante</Text>
-                        </View>
+                    </View>
+                    <View style={styles.infoExtra}>
+                        <Text style={styles.textoInfo}>Duplicado de credencial de estudiante</Text>
+                    </View>
                 </View>
-            </View>     
+            </View>
         );
     }
 }
@@ -166,5 +166,5 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         fontSize: 22,
     },
-    
+
 });

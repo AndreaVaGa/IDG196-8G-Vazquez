@@ -13,7 +13,7 @@ export default class Menu extends React.Component {
   }
   componentDidMount() {
     this._loadInitionState().done();
-    
+
   }
 
   _loadInitionState = async () => {
@@ -24,7 +24,7 @@ export default class Menu extends React.Component {
     }
   }
   _IraPerfil = () => {
-    return fetch(this.state.apiRoot + '/public/v1/alumnos/' + this.state.matricula + '/Perfil')
+    return fetch('http://0.0.0.0:8080/api/micampus/public/v1/alumnos/' + this.state.matricula + '/perfil')
       .then((response) => response.json())
       .then((responseJson) => {
         if (responseJson !== undefined) {
@@ -40,7 +40,7 @@ export default class Menu extends React.Component {
 
   _getHistorial = () => {
 
-    fetch(this.state.apiRoot + '/public/v1/alumnos/' + this.state.matricula + '/Cursando')
+    fetch(this.state.apiRoot + '/public/v1/alumnos/' + this.state.matricula + '/Historial/Academico/Materias/Cursando')
 
       .then((response) => response.json())
       .then((responseJson) => {
@@ -51,7 +51,7 @@ export default class Menu extends React.Component {
       .catch((error) => {
         console.error(error);
       });
-    fetch(this.state.apiRoot + '/public/v1/alumnos/' + this.state.matricula + '/Aprobadas')
+    fetch(this.state.apiRoot + '/public/v1/alumnos/' + this.state.matricula + '/Historial/Academico/Materias//Aprobadas')
 
       .then((response) => response.json())
       .then((responseJson) => {
@@ -62,7 +62,7 @@ export default class Menu extends React.Component {
       .catch((error) => {
         console.error(error);
       });
-    fetch(this.state.apiRoot + '/public/v1/alumnos/' + this.state.matricula + '/PorCursar')
+    fetch(this.state.apiRoot + '/public/v1/alumnos/' + this.state.matricula + '/Historial/Academico/Materias//PorCursar')
 
       .then((response) => response.json())
       .then((responseJson) => {
@@ -73,7 +73,7 @@ export default class Menu extends React.Component {
       .catch((error) => {
         console.error(error);
       });
-    fetch(this.state.apiRoot + '/public/v1/alumnos/' + this.state.matricula + '/PromedioGeneral')
+    fetch(this.state.apiRoot + '/public/v1/alumnos/' + this.state.matricula + '/Historial/Academico/PromedioGeneral')
 
       .then((response) => response.json())
       .then((responseJson) => {
@@ -119,7 +119,7 @@ export default class Menu extends React.Component {
       });
   }
   _getTramites = () => {
-    return fetch( 'http://0.0.0.0:8080/api/micampus/public/v1/alumnos/tramites')
+    return fetch('http://0.0.0.0:8080/api/micampus/public/v1/alumnos/tramites')
 
       .then((response) => response.json())
       .then((responseJson) => {
@@ -132,11 +132,11 @@ export default class Menu extends React.Component {
         console.error(error);
       });
 
-          
+
   }
 
   _getHistorialFinanciero = () => {
-    return fetch( 'http://0.0.0.0:8080/api/micampus/public/v1/alumnos/T021204/historial/financiero')
+    return fetch('http://0.0.0.0:8080/api/micampus/public/v1/alumnos/T021204/historial/financiero')
 
       .then((response) => response.json())
       .then((responseJson) => {
@@ -149,8 +149,8 @@ export default class Menu extends React.Component {
         console.error(error);
       });
 
-    
-}
+
+  }
 
   render() {
     return (
@@ -164,7 +164,7 @@ export default class Menu extends React.Component {
             </View>
 
             <View>
-            <Text style={styles.title}>Académico</Text>
+              <Text style={styles.title}>Académico</Text>
             </View>
 
             <View style={styles.container}>
@@ -181,11 +181,11 @@ export default class Menu extends React.Component {
                 <Text style={styles.texto}>Horario</Text>
               </TouchableOpacity>
             </View>
-            <View style={styles.lineStyle}/>
+            <View style={styles.lineStyle} />
           </View>
 
           <View>
-          <Text style={styles.title}>Financiero</Text>
+            <Text style={styles.title}>Financiero</Text>
           </View>
 
           <View style={styles.container}>

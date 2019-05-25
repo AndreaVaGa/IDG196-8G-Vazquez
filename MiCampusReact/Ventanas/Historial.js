@@ -80,7 +80,7 @@ export default class Historial extends React.Component {
     return (
 
       <View style={styles.container}>
-        <ScrollView style={{marginBottom:50}}>
+        <ScrollView style={{ marginBottom: 50 }}>
           <View>
             <TouchableOpacity onPress={this.toggleExpanded}>
 

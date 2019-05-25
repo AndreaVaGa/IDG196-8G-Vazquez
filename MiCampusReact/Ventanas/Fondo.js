@@ -4,6 +4,7 @@ import {
   ScrollView,
   View,
   Text,
+  AsyncStorage,
   TouchableOpacity,
   Image
 } from 'react-native';
@@ -13,11 +14,36 @@ export default class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      url: require("../src/imgs/portada/a.jpg"),
+      foto: '',
+      matricula: '021204',
+      apiRoot: "http://0.0.0.0:8080/api/micampus"
     };
   }
+
   _IraPerfil = () => {
-    this.props.navigation.navigate('Perfil');
+    return fetch(this.state.apiRoot + '/public/v1/alumnos/021204/perfil', {
+
+      method: 'PUT',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        matricula: this.state.matricula,
+        foto_portada: this.state.foto
+      }),
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson !== undefined) {
+          AsyncStorage.setItem('perfil', JSON.stringify(responseJson))
+          this.props.navigation.navigate('Perfil');
+
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      })
   }
 
   render() {
@@ -27,52 +53,54 @@ export default class App extends React.Component {
           <View style={styles.container}>
             <View style={styles.fila}>
               <View style={styles.columna}>
-                <Image source={require("../src/imgs/portada/a.jpg")} style={styles.imagenPortada} />
-                <TouchableOpacity onPress={() => { global.url = require("../src/imgs/portada/b.jpg") }}>
+                <TouchableOpacity onPress={() => { this.setState({ foto: "a" }) }}>
+                  <Image source={require("../src/imgs/portada/a.jpg")} style={styles.imagenPortada} />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => { this.setState({ foto: "b" }) }}>
                   <Image source={require("../src/imgs/portada/b.jpg")} style={styles.imagenPortada} />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => { global.url = require("../src/imgs/portada/c.jpg") }}>
+                <TouchableOpacity onPress={() => { this.setState({ foto: "c" }) }}>
                   <Image source={require("../src/imgs/portada/c.jpg")} style={styles.imagenPortada} />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => { global.url = require("../src/imgs/portada/d.jpg") }}>
+                <TouchableOpacity onPress={() => { this.setState({ foto: "d" }) }}>
                   <Image source={require("../src/imgs/portada/d.jpg")} style={styles.imagenPortada} />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => { global.url = require("../src/imgs/portada/e.jpg") }}>
+                <TouchableOpacity onPress={() => { this.setState({ foto: "e" }) }}>
                   <Image source={require("../src/imgs/portada/e.jpg")} style={styles.imagenPortada} />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => { global.url = require("../src/imgs/portada/f.jpg") }}>
+                <TouchableOpacity onPress={() => { this.setState({ foto: "f" }) }}>
                   <Image source={require("../src/imgs/portada/f.jpg")} style={styles.imagenPortada} />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => { global.url = require("../src/imgs/portada/g.jpg") }}>
+                <TouchableOpacity onPress={() => { this.setState({ foto: "g" }) }}>
                   <Image source={require("../src/imgs/portada/g.jpg")} style={styles.imagenPortada} />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => { global.url = require("../src/imgs/portada/h.jpg") }}>
+                <TouchableOpacity onPress={() => { this.setState({ foto: "h" }) }}>
                   <Image source={require("../src/imgs/portada/h.jpg")} style={styles.imagenPortada} />
                 </TouchableOpacity>
               </View>
               <View style={styles.columna}>
-                <TouchableOpacity onPress={() => { global.url = require("../src/imgs/portada/i.jpg") }}>
+                <TouchableOpacity onPress={() => { this.setState({ foto: "i" }) }}>
                   <Image source={require("../src/imgs/portada/i.jpg")} style={styles.imagenPortada} />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => { global.url = require("../src/imgs/portada/j.jpg") }}>
+                <TouchableOpacity onPress={() => { this.setState({ foto: "j" }) }}>
                   <Image source={require("../src/imgs/portada/j.jpg")} style={styles.imagenPortada} />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => { global.url = require("../src/imgs/portada/k.jpg") }}>
+                <TouchableOpacity onPress={() => { this.setState({ foto: "k" }) }}>
                   <Image source={require("../src/imgs/portada/k.jpg")} style={styles.imagenPortada} />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => { global.url = require("../src/imgs/portada/l.jpg") }}>
+                <TouchableOpacity onPress={() => { this.setState({ foto: "l" }) }}>
                   <Image source={require("../src/imgs/portada/l.jpg")} style={styles.imagenPortada} />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => { global.url = require("../src/imgs/portada/m.jpg") }}>
+                <TouchableOpacity onPress={() => { this.setState({ foto: "m" }) }}>
                   <Image source={require("../src/imgs/portada/m.jpg")} style={styles.imagenPortada} />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => { global.url = require("../src/imgs/portada/n.jpg") }}>
+                <TouchableOpacity onPress={() => { this.setState({ foto: "n" }) }}>
                   <Image source={require("../src/imgs/portada/n.jpg")} style={styles.imagenPortada} />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => { global.url = require("../src/imgs/portada/o.jpg") }}>
+                <TouchableOpacity onPress={() => { this.setState({ foto: "o" }) }}>
                   <Image source={require("../src/imgs/portada/o.jpg")} style={styles.imagenPortada} />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => { global.url = require("../src/imgs/portada/p.jpg") }}>
+                <TouchableOpacity onPress={() => { this.setState({ foto: "p" }) }}>
                   <Image source={require("../src/imgs/portada/p.jpg")} style={styles.imagenPortada} />
                 </TouchableOpacity>
               </View>
@@ -80,9 +108,9 @@ export default class App extends React.Component {
           </View>
         </ScrollView>
         <View style={styles.cuadro}>
-        <TouchableOpacity style={[styles.boton]} onPress={this._IraPerfil}>
+          <TouchableOpacity style={[styles.boton]} onPress={this._IraPerfil}>
             <Text style={[styles.botonText]}>Cambiar fondo</Text>
-        </TouchableOpacity>
+          </TouchableOpacity>
         </View>
       </View>
     );
@@ -132,11 +160,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 10,
     marginBottom: 10,
-},
-botonText: {
+  },
+  botonText: {
     marginTop: 5,
     fontSize: 20,
     textAlign: 'center',
     color: '#333333',
-},
+  },
 });

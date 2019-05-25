@@ -68,13 +68,13 @@ class ListViewDemo extends React.Component {
           this.state.loading ?
             <ActivityIndicator size='large' color='grey' />
             :
-              <FlatList
-                data={this.state.data}
-                extraData={this.state}
-                keyExtractor={(item, index) => item.materia}
-                renderItem={this._renderItem}
-                showsVerticalScrollIndicator={false}
-              />
+            <FlatList
+              data={this.state.data}
+              extraData={this.state}
+              keyExtractor={(item, index) => item.materia}
+              renderItem={this._renderItem}
+              showsVerticalScrollIndicator={false}
+            />
         }
       </View>
     );
