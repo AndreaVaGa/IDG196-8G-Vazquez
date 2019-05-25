@@ -77,41 +77,17 @@ class PerfilTest {
         foto_portada
     )
     private val foto = SaveFotoCommandResponse(
-        matricula,
-        nombre_1,
-        nombre_2,
-        apellido_paterno,
-        apellido_materno,
-        nombre_programa,
-        cve_programa,
-        materias_aprobadas,
-        foto_portada
+        perfil
     )
 
     @Before
     fun setup() {
         every { getPerfilQueryHandler.handle(any()) } returns GetPerfilQueryResponse(
-            matricula,
-            nombre_1,
-            nombre_2,
-            apellido_paterno,
-            apellido_materno,
-            nombre_programa,
-            cve_programa,
-            materias_aprobadas,
-            foto_portada
+            perfil
         )
 
         every {saveFotoCommandHandler.handle(any())} returns SaveFotoCommandResponse(
-            matricula,
-            nombre_1,
-            nombre_2,
-            apellido_paterno,
-            apellido_materno,
-            nombre_programa,
-            cve_programa,
-            materias_aprobadas,
-            foto_portada
+            perfil
         )
     }
 
@@ -130,16 +106,7 @@ class PerfilTest {
         every {
             getPerfilQueryHandler.handle(request)
         } returns (GetPerfilQueryResponse(
-            matricula,
-            nombre_1,
-            nombre_2,
-            apellido_paterno,
-            apellido_materno,
-            nombre_programa,
-            cve_programa,
-            materias_aprobadas,
-            foto_portada
-            ))
+           perfil))
 
         val actual = api.getPerfil(AlumnoApi.GetPerfilRequest(matricula))
         Assert.assertEquals(expected, actual)
@@ -163,15 +130,7 @@ class PerfilTest {
         every {
             saveFotoCommandHandler.handle(request)
         } returns (SaveFotoCommandResponse(
-            matricula,
-            nombre_1,
-            nombre_2,
-            apellido_paterno,
-            apellido_materno,
-            nombre_programa,
-            cve_programa,
-            materias_aprobadas,
-            foto_portada
+            perfil
         ))
 
         val actual = api.cambiarFoto(AlumnoApi.SaveFotoRequest(matricula, foto_portada))

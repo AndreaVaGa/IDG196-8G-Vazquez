@@ -4,8 +4,6 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
 import mx.edu.cetys.garay.andrea.AlumnoApi
-import mx.edu.cetys.garay.andrea.BoletaDTO
-import mx.edu.cetys.garay.andrea.PerfilDTO
 import mx.edu.cetys.garay.andrea.application.RequestHandler
 import mx.edu.cetys.garay.andrea.application.Tutores.GetTutoresQuery
 import mx.edu.cetys.garay.andrea.application.Tutores.GetTutoresQueryResponse
@@ -40,8 +38,8 @@ class TutoresTest {
     private val getTutoresQueryHandler = mockk<RequestHandler<GetTutoresQuery, GetTutoresQueryResponse>>()
     private val getPromedioGeneralQueryHandler =
         mockk<RequestHandler<GetPromGeneralQuery, GetPromGeneralQueryResponse>>()
-    private val saveFotoCommandHandler= mockk<RequestHandler<SaveFotoCommand, SaveFotoCommandResponse>>()
-    private val saveColorCommandHandler= mockk<RequestHandler<SaveColorCommand, SaveColorCommandResponse>>()
+    private val saveFotoCommandHandler = mockk<RequestHandler<SaveFotoCommand, SaveFotoCommandResponse>>()
+    private val saveColorCommandHandler = mockk<RequestHandler<SaveColorCommand, SaveColorCommandResponse>>()
     private val api = AlumnoApi(
         getMatriculaQueryHandler,
         getPerfilQueryHandler,
@@ -116,7 +114,7 @@ class TutoresTest {
 
     @Before
     fun setup() {
-        every { getTutoresQueryHandler.handle(any()) } returns GetTutoresQueryResponse(nombre_1_padre, nombre_2_padre, apellido_paterno_padre, apellido_materno_padre, direccion_padre, colonia_padre, telefono_padre, email_padre, telefono_celular_pad, empresa_padre, emp_dir_padre, emp_col_padre, emp_tel_padre, nombre_1_madre, nombre_2_madre, apellido_paterno_madre, apellido_materno_madre, direccion_madre, colonia_madre, telefono_madre, email_madre, telefono_celular_madre, empresa_madre, emp_dir_madre, emp_col_madre, emp_tel_madre)
+        every { getTutoresQueryHandler.handle(any()) } returns GetTutoresQueryResponse(tutores)
     }
 
 
@@ -134,7 +132,7 @@ class TutoresTest {
 
         every {
             getTutoresQueryHandler.handle(request)
-        } returns (GetTutoresQueryResponse( nombre_1_padre, nombre_2_padre, apellido_paterno_padre, apellido_materno_padre, direccion_padre, colonia_padre, telefono_padre, email_padre, telefono_celular_pad, empresa_padre, emp_dir_padre, emp_col_padre, emp_tel_padre, nombre_1_madre, nombre_2_madre, apellido_paterno_madre, apellido_materno_madre, direccion_madre, colonia_madre, telefono_madre, email_madre, telefono_celular_madre, empresa_madre, emp_dir_madre, emp_col_madre, emp_tel_madre))
+        } returns (GetTutoresQueryResponse(tutores))
 
         val actual = api.getTutores(AlumnoApi.GetPerfilRequest(matricula))
         Assert.assertEquals(expected, actual)

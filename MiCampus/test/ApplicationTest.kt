@@ -254,4 +254,17 @@ class ApplicationTest {
         }
     }
 
+    @Test
+    fun getMatriculaYPasswordAreBlank(){
+        assertFailsWith<IllegalArgumentException> {
+            withTestApplication({ module(testing = false) }) {
+                with(handleRequest(HttpMethod.Post, "$apiRoot/public/v1/alumnos/login") {
+                    addHeader("content-type", "application/json")
+                    setBody("{\"matricula\":\" \",\"password\":\" \"}")
+                }) {
+                    print(response.status())
+                }
+            }
+        }
+    }
 }
