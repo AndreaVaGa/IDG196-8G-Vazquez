@@ -39,7 +39,7 @@ export default class Menu extends React.Component {
 
   _getHistorial = () => {
 
-    fetch(apiRoot + '/public/v1/alumnos/' + this.state.matricula + '/Historial/Academico/Materias/Cursando')
+    fetch(apiRoot + '/alumnos/' + this.state.matricula + '/historial/academico/materias/cursando')
 
       .then((response) => response.json())
       .then((responseJson) => {
@@ -50,7 +50,7 @@ export default class Menu extends React.Component {
       .catch((error) => {
         console.error(error);
       });
-    fetch(apiRoot + '/public/v1/alumnos/' + this.state.matricula + '/Historial/Academico/Materias//Aprobadas')
+    fetch(apiRoot + '/alumnos/' + this.state.matricula + '/historial/academico/materias/aprobadas')
 
       .then((response) => response.json())
       .then((responseJson) => {
@@ -61,7 +61,7 @@ export default class Menu extends React.Component {
       .catch((error) => {
         console.error(error);
       });
-    fetch(apiRoot + '/public/v1/alumnos/' + this.state.matricula + '/Historial/Academico/Materias//PorCursar')
+    fetch(apiRoot + '/alumnos/' + this.state.matricula + '/historial/academico/materias/porCursar')
 
       .then((response) => response.json())
       .then((responseJson) => {
@@ -72,7 +72,7 @@ export default class Menu extends React.Component {
       .catch((error) => {
         console.error(error);
       });
-    fetch(apiRoot + '/public/v1/alumnos/' + this.state.matricula + '/Historial/Academico/PromedioGeneral')
+    fetch(apiRoot + '/alumnos/' + this.state.matricula + '/historial/academico/promedioGeneral')
 
       .then((response) => response.json())
       .then((responseJson) => {
@@ -89,7 +89,7 @@ export default class Menu extends React.Component {
 
   _getBoleta = () => {
 
-    return fetch(apiRoot + '/public/v1/alumnos/' + this.state.matricula + '/Boleta')
+    return fetch(apiRoot + '/alumnos/' + this.state.matricula + '/boleta')
       .then((response) => response.json())
       .then((responseJson) => {
         if (responseJson !== undefined) {
@@ -104,7 +104,7 @@ export default class Menu extends React.Component {
 
   _getHorario = () => {
 
-    return fetch(apiRoot + '/public/v1/alumnos/' + this.state.matricula + '/Horario')
+    return fetch(apiRoot + '/alumnos/' + this.state.matricula + '/horario')
 
       .then((response) => response.json())
       .then((responseJson) => {
