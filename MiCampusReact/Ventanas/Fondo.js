@@ -9,19 +9,19 @@ import {
   Image
 } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import {matricula, apiRoot} from '../src/Constantes'
+
 global.url = require("../src/imgs/portada/a.jpg");
 export default class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      foto: '',
-      matricula: '021204',
-      apiRoot: "http://0.0.0.0:8080/api/micampus"
+      foto: ''
     };
   }
 
   _IraPerfil = () => {
-    return fetch(this.state.apiRoot + '/public/v1/alumnos/021204/perfil', {
+    return fetch(apiRoot + '/public/v1/alumnos/021204/perfil', {
 
       method: 'PUT',
       headers: {

@@ -10,6 +10,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import {matricula , apiRoot} from '../src/Constantes'
 
 export default class Perfil extends React.Component {
   constructor(props) {
@@ -20,9 +21,7 @@ export default class Perfil extends React.Component {
       carrera: '',
       semestre: '',
       aprobadas: '',
-      matricula: '',
-      portada: '',
-      apiRoot: "http://ec2co-ecsel-1o7jydferg75c-743462231.us-east-2.elb.amazonaws.com:8080/api/micampus/"
+      portada: ''
     };
 
   }

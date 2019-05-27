@@ -1,13 +1,12 @@
 import React from 'react';
 import { StyleSheet, ScrollView, Text, View, ImageBackground, AsyncStorage, screenWidth, screenHeight, Image, TouchableOpacity } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import {matricula, apiRoot} from '../src/Constantes'
 
 export default class Menu extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      matricula: '',
-      apiRoot: "http://ec2co-ecsel-1o7jydferg75c-743462231.us-east-2.elb.amazonaws.com:8080/api/micampus/"
     };
 
   }
@@ -40,7 +39,7 @@ export default class Menu extends React.Component {
 
   _getHistorial = () => {
 
-    fetch(this.state.apiRoot + '/public/v1/alumnos/' + this.state.matricula + '/Historial/Academico/Materias/Cursando')
+    fetch(apiRoot + '/public/v1/alumnos/' + this.state.matricula + '/Historial/Academico/Materias/Cursando')
 
       .then((response) => response.json())
       .then((responseJson) => {
@@ -51,7 +50,7 @@ export default class Menu extends React.Component {
       .catch((error) => {
         console.error(error);
       });
-    fetch(this.state.apiRoot + '/public/v1/alumnos/' + this.state.matricula + '/Historial/Academico/Materias//Aprobadas')
+    fetch(apiRoot + '/public/v1/alumnos/' + this.state.matricula + '/Historial/Academico/Materias//Aprobadas')
 
       .then((response) => response.json())
       .then((responseJson) => {
@@ -62,7 +61,7 @@ export default class Menu extends React.Component {
       .catch((error) => {
         console.error(error);
       });
-    fetch(this.state.apiRoot + '/public/v1/alumnos/' + this.state.matricula + '/Historial/Academico/Materias//PorCursar')
+    fetch(apiRoot + '/public/v1/alumnos/' + this.state.matricula + '/Historial/Academico/Materias//PorCursar')
 
       .then((response) => response.json())
       .then((responseJson) => {
@@ -73,7 +72,7 @@ export default class Menu extends React.Component {
       .catch((error) => {
         console.error(error);
       });
-    fetch(this.state.apiRoot + '/public/v1/alumnos/' + this.state.matricula + '/Historial/Academico/PromedioGeneral')
+    fetch(apiRoot + '/public/v1/alumnos/' + this.state.matricula + '/Historial/Academico/PromedioGeneral')
 
       .then((response) => response.json())
       .then((responseJson) => {
@@ -90,7 +89,7 @@ export default class Menu extends React.Component {
 
   _getBoleta = () => {
 
-    return fetch(this.state.apiRoot + '/public/v1/alumnos/' + this.state.matricula + '/Boleta')
+    return fetch(apiRoot + '/public/v1/alumnos/' + this.state.matricula + '/Boleta')
       .then((response) => response.json())
       .then((responseJson) => {
         if (responseJson !== undefined) {
@@ -105,7 +104,7 @@ export default class Menu extends React.Component {
 
   _getHorario = () => {
 
-    return fetch(this.state.apiRoot + '/public/v1/alumnos/' + this.state.matricula + '/Horario')
+    return fetch(apiRoot + '/public/v1/alumnos/' + this.state.matricula + '/Horario')
 
       .then((response) => response.json())
       .then((responseJson) => {
