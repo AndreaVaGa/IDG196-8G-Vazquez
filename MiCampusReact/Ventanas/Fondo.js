@@ -21,7 +21,7 @@ export default class App extends React.Component {
   }
 
   _IraPerfil = () => {
-    return fetch(apiRoot + '/public/v1/alumnos/021204/perfil', {
+    return fetch(apiRoot + '/alumnos/021204/perfil', {
 
       method: 'PUT',
       headers: {
@@ -29,7 +29,7 @@ export default class App extends React.Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        matricula: this.state.matricula,
+        matricula: "021204",
         foto_portada: this.state.foto
       }),
     })

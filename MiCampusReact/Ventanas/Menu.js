@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, ScrollView, Text, View, ImageBackground, AsyncStorage, screenWidth, screenHeight, Image, TouchableOpacity } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import {link} from '../src/Constantes'
+import { link } from '../src/Constantes'
 
 export default class Menu extends React.Component {
   constructor(props) {
@@ -23,7 +23,7 @@ export default class Menu extends React.Component {
     }
   }
   _IraPerfil = () => {
-    return fetch(link.perfil)
+    return fetch(link.perfil.replace('{matricula}', this.state.matricula))
       .then((response) => response.json())
       .then((responseJson) => {
         if (responseJson !== undefined) {
@@ -39,7 +39,7 @@ export default class Menu extends React.Component {
 
   _getHistorial = () => {
 
-    fetch(link.cursando)
+    fetch(link.cursando.replace('{matricula}', this.state.matricula))
 
       .then((response) => response.json())
       .then((responseJson) => {
@@ -50,7 +50,7 @@ export default class Menu extends React.Component {
       .catch((error) => {
         console.error(error);
       });
-    fetch(link.aprobadas)
+    fetch(link.aprobadas.replace('{matricula}', this.state.matricula))
 
       .then((response) => response.json())
       .then((responseJson) => {
@@ -61,7 +61,7 @@ export default class Menu extends React.Component {
       .catch((error) => {
         console.error(error);
       });
-    fetch(link.porCursar)
+    fetch(link.porCursar.replace('{matricula}', this.state.matricula))
 
       .then((response) => response.json())
       .then((responseJson) => {
@@ -72,7 +72,7 @@ export default class Menu extends React.Component {
       .catch((error) => {
         console.error(error);
       });
-    fetch(link.promedioGeneral)
+    fetch(link.promedioGeneral.replace('{matricula}', this.state.matricula))
 
       .then((response) => response.json())
       .then((responseJson) => {
@@ -89,7 +89,7 @@ export default class Menu extends React.Component {
 
   _getBoleta = () => {
 
-    return fetch(link.boleta)
+    return fetch(link.boleta.replace('{matricula}', this.state.matricula))
       .then((response) => response.json())
       .then((responseJson) => {
         if (responseJson !== undefined) {
@@ -104,7 +104,7 @@ export default class Menu extends React.Component {
 
   _getHorario = () => {
 
-    return fetch(link.horario)
+    return fetch(link.horario.replace('{matricula}', this.state.matricula))
 
       .then((response) => response.json())
       .then((responseJson) => {
@@ -118,7 +118,7 @@ export default class Menu extends React.Component {
       });
   }
   _getTramites = () => {
-    return fetch(link.tramites)
+    return fetch(link.tramites.replace('{matricula}', this.state.matricula))
 
       .then((response) => response.json())
       .then((responseJson) => {
@@ -135,7 +135,7 @@ export default class Menu extends React.Component {
   }
 
   _getHistorialFinanciero = () => {
-    return fetch(link.historialFinanciero)
+    return fetch(link.historialFinanciero.replace('{matricula}', this.state.matricula))
 
       .then((response) => response.json())
       .then((responseJson) => {
