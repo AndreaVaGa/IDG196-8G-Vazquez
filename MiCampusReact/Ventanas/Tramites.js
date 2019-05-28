@@ -45,7 +45,9 @@ class Tramites extends React.Component {
   }
 
   _IraPago = () => {
+    if(this.state.total>0){
     this.props.navigation.navigate('Pago');
+    }
   }
 
   handler(amount) {

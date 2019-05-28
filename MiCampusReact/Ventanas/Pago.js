@@ -10,8 +10,20 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 
 class Pago extends React.Component {
 
+  constructor(props) {
+    super(props)
+    this.state = {
+      textoTarjeta: '',
+      textoExpiracion: '',
+      textoCVV: ''
+    };
+}
+
+
     _IraRecibo = () => {
+        if(this.state.textoTarjeta.length==16 && this.state.textoExpiracion.length==5 && this.state.textoCVV.length>=2){
         this.props.navigation.navigate('Recibo');
+        }
     }
 
     render() {
@@ -27,16 +39,22 @@ class Pago extends React.Component {
                                 <TextInput style={[styles.boxContenido]}
                                     placeholder="Numero de Trajeta"
                                     placeholderTextColor='grey'
-                                />
+                                    onChangeText={(textoTarjeta) => this.setState({textoTarjeta})} 
+                                    maxLength = {16}                               
+                                    />
                             </View>
                             <View style={[styles.boxEC]}>
                                 <TextInput style={[styles.boxECInterno]}
                                     placeholder="Expira"
                                     placeholderTextColor='grey'
+                                    onChangeText={(textoExpiracion) => this.setState({textoExpiracion})}
+                                    maxLength = {5}
                                 />
                                 <TextInput style={[styles.boxECInterno]}
                                     placeholder="CVV"
                                     placeholderTextColor='grey'
+                                    onChangeText={(textoCVV) => this.setState({textoCVV})}
+                                    maxLength = {3}
                                 />
                             </View>
 
