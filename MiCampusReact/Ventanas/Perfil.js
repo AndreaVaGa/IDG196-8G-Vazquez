@@ -10,7 +10,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import {matricula , apiRoot} from '../src/Constantes'
+import {link} from '../src/Constantes'
 
 export default class Perfil extends React.Component {
   constructor(props) {
@@ -27,7 +27,7 @@ export default class Perfil extends React.Component {
   }
 
   _IraTutores = () => {
-    return fetch(this.state.apiRoot + '/public/v1/alumnos/' + this.state.matricula + '/Tutores')
+    return fetch(link.tutores)
       .then((response) => response.json())
       .then((responseJson) => {
         if (responseJson !== undefined) {

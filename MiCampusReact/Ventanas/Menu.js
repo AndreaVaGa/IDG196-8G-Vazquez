@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, ScrollView, Text, View, ImageBackground, AsyncStorage, screenWidth, screenHeight, Image, TouchableOpacity } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import {matricula, apiRoot} from '../src/Constantes'
+import {link} from '../src/Constantes'
 
 export default class Menu extends React.Component {
   constructor(props) {
@@ -23,7 +23,7 @@ export default class Menu extends React.Component {
     }
   }
   _IraPerfil = () => {
-    return fetch('http://0.0.0.0:8080/api/micampus/public/v1/alumnos/' + this.state.matricula + '/perfil')
+    return fetch(link.perfil)
       .then((response) => response.json())
       .then((responseJson) => {
         if (responseJson !== undefined) {
@@ -39,7 +39,7 @@ export default class Menu extends React.Component {
 
   _getHistorial = () => {
 
-    fetch(apiRoot + '/alumnos/' + this.state.matricula + '/historial/academico/materias/cursando')
+    fetch(link.cursando)
 
       .then((response) => response.json())
       .then((responseJson) => {
@@ -50,7 +50,7 @@ export default class Menu extends React.Component {
       .catch((error) => {
         console.error(error);
       });
-    fetch(apiRoot + '/alumnos/' + this.state.matricula + '/historial/academico/materias/aprobadas')
+    fetch(link.aprobadas)
 
       .then((response) => response.json())
       .then((responseJson) => {
@@ -61,7 +61,7 @@ export default class Menu extends React.Component {
       .catch((error) => {
         console.error(error);
       });
-    fetch(apiRoot + '/alumnos/' + this.state.matricula + '/historial/academico/materias/porCursar')
+    fetch(link.porCursar)
 
       .then((response) => response.json())
       .then((responseJson) => {
@@ -72,7 +72,7 @@ export default class Menu extends React.Component {
       .catch((error) => {
         console.error(error);
       });
-    fetch(apiRoot + '/alumnos/' + this.state.matricula + '/historial/academico/promedioGeneral')
+    fetch(link.promedioGeneral)
 
       .then((response) => response.json())
       .then((responseJson) => {
@@ -89,7 +89,7 @@ export default class Menu extends React.Component {
 
   _getBoleta = () => {
 
-    return fetch(apiRoot + '/alumnos/' + this.state.matricula + '/boleta')
+    return fetch(link.boleta)
       .then((response) => response.json())
       .then((responseJson) => {
         if (responseJson !== undefined) {
@@ -104,7 +104,7 @@ export default class Menu extends React.Component {
 
   _getHorario = () => {
 
-    return fetch(apiRoot + '/alumnos/' + this.state.matricula + '/horario')
+    return fetch(link.horario)
 
       .then((response) => response.json())
       .then((responseJson) => {
@@ -118,7 +118,7 @@ export default class Menu extends React.Component {
       });
   }
   _getTramites = () => {
-    return fetch('http://0.0.0.0:8080/api/micampus/public/v1/alumnos/tramites')
+    return fetch(link.tramites)
 
       .then((response) => response.json())
       .then((responseJson) => {
@@ -135,7 +135,7 @@ export default class Menu extends React.Component {
   }
 
   _getHistorialFinanciero = () => {
-    return fetch('http://0.0.0.0:8080/api/micampus/public/v1/alumnos/T021204/historial/financiero')
+    return fetch(link.historialFinanciero)
 
       .then((response) => response.json())
       .then((responseJson) => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Image, Text, TouchableOpacity, TextInput, AsyncStorage, } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import {apiRoot} from '../src/Constantes'
+import {link} from '../src/Constantes'
 
 export default class Login extends React.Component {
 
@@ -27,7 +27,7 @@ export default class Login extends React.Component {
     var matriculatemp = this.state.usuario
     var matricula_numerica = matriculatemp.slice(matriculatemp.length * -1 + 1)
 
-    return fetch(apiRoot + '/alumnos/login', {
+    return fetch(link.login, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
