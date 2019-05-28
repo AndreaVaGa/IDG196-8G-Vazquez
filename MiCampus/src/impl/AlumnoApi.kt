@@ -12,7 +12,6 @@ import mx.edu.cetys.garay.andrea.application.horario.GetHorarioQueryResponse
 import mx.edu.cetys.garay.andrea.application.horario.SaveColorCommand
 import mx.edu.cetys.garay.andrea.application.horario.SaveColorCommandResponse
 import mx.edu.cetys.garay.andrea.application.perfiles.*
-import mx.edu.cetys.garay.andrea.application.porcursar.GetPorCursarQueryHandler
 import mx.edu.cetys.garay.andrea.application.porcursar.GetPorCursarQueryResponse
 import mx.edu.cetys.garay.andrea.application.promediogeneral.GetPromGeneralQuery
 import mx.edu.cetys.garay.andrea.application.promediogeneral.GetPromGeneralQueryResponse

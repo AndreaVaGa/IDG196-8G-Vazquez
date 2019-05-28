@@ -14,7 +14,6 @@ import mx.edu.cetys.garay.andrea.application.perfiles.SaveFotoCommandResponse
 import mx.edu.cetys.garay.andrea.application.porcursar.GetPorCursarQueryResponse
 import mx.edu.cetys.garay.andrea.application.promediogeneral.GetPromGeneralQueryResponse
 import mx.edu.cetys.garay.andrea.application.tramites.GetTramitesQueryResponse
-import mx.edu.cetys.garay.andrea.dto.TramitesDTO
 
 interface StoreProcedureCalls {
     fun callBuscarAlumnoSP(user: String, password: String): String

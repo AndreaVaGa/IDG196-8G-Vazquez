@@ -4,7 +4,6 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
 import mx.edu.cetys.garay.andrea.AlumnoApi
-import mx.edu.cetys.garay.andrea.BoletaDTO
 import mx.edu.cetys.garay.andrea.application.RequestHandler
 import mx.edu.cetys.garay.andrea.application.Tutores.GetTutoresQuery
 import mx.edu.cetys.garay.andrea.application.Tutores.GetTutoresQueryResponse
@@ -23,7 +22,6 @@ import mx.edu.cetys.garay.andrea.application.perfiles.SaveFotoCommandResponse
 import mx.edu.cetys.garay.andrea.application.porcursar.GetPorCursarQueryResponse
 import mx.edu.cetys.garay.andrea.application.promediogeneral.GetPromGeneralQuery
 import mx.edu.cetys.garay.andrea.application.promediogeneral.GetPromGeneralQueryResponse
-import mx.edu.cetys.garay.andrea.dto.HistorialDTO
 import mx.edu.cetys.garay.andrea.dto.HorarioDTO
 import org.junit.Assert
 import org.junit.Before
