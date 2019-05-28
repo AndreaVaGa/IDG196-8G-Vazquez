@@ -9,19 +9,32 @@ import {
   Image
 } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import {matricula, apiRoot} from '../src/Constantes'
+import { link } from '../src/Constantes'
 
 global.url = require("../src/imgs/portada/a.jpg");
 export default class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      foto: ''
+      foto: '',
+      matricula: ''
     };
+  }
+  componentDidMount() {
+    this._loadInitionState().done();
+
+  }
+
+  _loadInitionState = async () => {
+    var value = await AsyncStorage.getItem('usuario');
+    if (value !== null) {
+      var alumno = JSON.parse(value)
+      this.setState({ matricula: alumno.matricula })
+    }
   }
 
   _IraPerfil = () => {
-    return fetch(apiRoot + '/alumnos/021204/perfil', {
+    return fetch(link.perfil.replace('{matricula}', this.state.matricula), {
 
       method: 'PUT',
       headers: {
@@ -29,7 +42,7 @@ export default class App extends React.Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        matricula: "021204",
+        matricula: this.state.matricula,
         foto_portada: this.state.foto
       }),
     })

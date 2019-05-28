@@ -10,7 +10,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import {link} from '../src/Constantes'
+import { link } from '../src/Constantes'
 
 export default class Perfil extends React.Component {
   constructor(props) {
@@ -27,7 +27,7 @@ export default class Perfil extends React.Component {
   }
 
   _IraTutores = () => {
-    return fetch(link.tutores)
+    return fetch(link.tutores.replace('{matricula}', this.state.matricula))
       .then((response) => response.json())
       .then((responseJson) => {
         if (responseJson !== undefined) {
@@ -45,19 +45,31 @@ export default class Perfil extends React.Component {
   }
 
   componentDidMount() {
-    this._loadInitionState().done();
+    this._loadInitionState();
   }
 
   _loadInitionState = async () => {
-    var value = await AsyncStorage.getItem('perfil');
+    var value = await AsyncStorage.getItem('usuario');
     if (value !== null) {
       var alumno = JSON.parse(value)
-      this.setState({ nombre: alumno.perfil.nombre_1 + ' ' + alumno.perfil.nombre_2 })
-      this.setState({ matricula: alumno.perfil.matricula })
-      this.setState({ apellido: alumno.perfil.apellido_paterno + ' ' + alumno.perfil.apellido_materno })
-      this.setState({ carrera: alumno.perfil.nombre_programa })
-      this.setState({ aprobadas: alumno.perfil.materias_aprobadas })
-      this.setState({ portada: alumno.perfil.foto_portada.slice(0, 1) })
+      this.setState({ matricula: alumno.matricula })
+      return fetch(link.perfil.replace('{matricula}', this.state.matricula))
+        .then((response) => response.json())
+        .then((responseJson) => {
+          if (responseJson !== undefined) {
+            var response = JSON.stringify(responseJson)
+            var alumno = JSON.parse(response)
+            this.setState({ nombre: alumno.perfil.nombre_1 + ' ' + alumno.perfil.nombre_2 })
+            this.setState({ matricula: alumno.perfil.matricula })
+            this.setState({ apellido: alumno.perfil.apellido_paterno + ' ' + alumno.perfil.apellido_materno })
+            this.setState({ carrera: alumno.perfil.nombre_programa })
+            this.setState({ aprobadas: alumno.perfil.materias_aprobadas })
+            this.setState({ portada: alumno.perfil.foto_portada.slice(0, 1) })
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     }
   }
 

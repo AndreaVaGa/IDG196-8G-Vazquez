@@ -23,18 +23,7 @@ export default class Menu extends React.Component {
     }
   }
   _IraPerfil = () => {
-    return fetch(link.perfil.replace('{matricula}', this.state.matricula))
-      .then((response) => response.json())
-      .then((responseJson) => {
-        if (responseJson !== undefined) {
-          AsyncStorage.setItem('perfil', JSON.stringify(responseJson))
-          this.props.navigation.navigate('Perfil');
-
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    this.props.navigation.navigate('Perfil');
   }
 
   _getHistorial = () => {

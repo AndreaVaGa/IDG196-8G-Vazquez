@@ -2,10 +2,7 @@ import React from 'react';
 import {
     Text,
     View,
-    StyleSheet,
-    TouchableOpacity,
-    Image,
-    RefreshControl
+    StyleSheet
 } from 'react-native';
 import { CheckBox } from 'react-native-elements';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
@@ -53,7 +50,6 @@ class TramitesRow extends React.Component {
                             <Text style={styles.headersPrecio}>${this.props.precio}</Text>
                         </View>
                         <View style={styles.info}>
-                            <Text style={styles.texto}>Credenciales</Text>
                             <Text style={styles.headers}>{this.props.nombre}</Text>
                         </View>
                     </View>

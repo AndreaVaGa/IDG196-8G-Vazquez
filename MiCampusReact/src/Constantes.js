@@ -5,7 +5,7 @@ export const link = {
     perfil: apiRoot + '/alumnos/{matricula}/perfil',
     boleta: apiRoot + '/alumnos/{matricula}/boleta',
     horario: apiRoot + '/alumnos/{matricula}/horario',
-    tramites: apiRoot + '/alumnos/{matricula}/tramites',
+    tramites: apiRoot + '/alumnos/tramites',
     tutores: apiRoot + '/alumnos/{matricula}/tutores',
     tutores: apiRoot + '/alumnos/{matricula}/tutores',
     historialFinanciero: apiRoot + '/alumnos/{matricula}/historial/financiero',

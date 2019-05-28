@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Image, Text, TouchableOpacity, TextInput, AsyncStorage, } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import {matricula,link} from '../src/Constantes'
+import { matricula, link } from '../src/Constantes'
 
 export default class Login extends React.Component {
 
