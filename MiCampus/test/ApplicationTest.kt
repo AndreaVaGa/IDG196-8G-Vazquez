@@ -1,14 +1,6 @@
 package mx.edu.cetys.garay.andrea
 
-import io.ktor.application.*
-import io.ktor.response.*
-import io.ktor.request.*
-import io.ktor.routing.*
 import io.ktor.http.*
-import io.ktor.auth.*
-import com.fasterxml.jackson.databind.*
-import io.ktor.jackson.*
-import io.ktor.features.*
 import kotlin.test.*
 import io.ktor.server.testing.*
 
@@ -113,7 +105,7 @@ class ApplicationTest {
     }
 
     @Test
-    fun getMatriculaConT(){
+    fun getMatriculaConT() {
         withTestApplication({ module(testing = true) }) {
             with(handleRequest(HttpMethod.Post, "$apiRoot/public/v1/alumnos/login") {
                 addHeader("content-type", "application/json")
@@ -125,7 +117,7 @@ class ApplicationTest {
     }
 
     @Test
-    fun getMatriculaConE(){
+    fun getMatriculaConE() {
         withTestApplication({ module(testing = true) }) {
             with(handleRequest(HttpMethod.Post, "$apiRoot/public/v1/alumnos/login") {
                 addHeader("content-type", "application/json")
@@ -137,7 +129,7 @@ class ApplicationTest {
     }
 
     @Test
-    fun getMatriculaConM(){
+    fun getMatriculaConM() {
         withTestApplication({ module(testing = true) }) {
             with(handleRequest(HttpMethod.Post, "$apiRoot/public/v1/alumnos/login") {
                 addHeader("content-type", "application/json")
@@ -147,6 +139,7 @@ class ApplicationTest {
             }
         }
     }
+
     @Test
     fun addFoto() {
         withTestApplication({ module(testing = true) }) {
@@ -158,6 +151,7 @@ class ApplicationTest {
             }
         }
     }
+
     @Test
     fun addColor() {
         withTestApplication({ module(testing = true) }) {
@@ -169,6 +163,7 @@ class ApplicationTest {
             }
         }
     }
+
     @Test
     fun addCompra() {
         withTestApplication({ module(testing = true) }) {
@@ -183,7 +178,7 @@ class ApplicationTest {
 
 
     @Test
-    fun getMatriculaEspaciosBlancos(){
+    fun getMatriculaEspaciosBlancos() {
         withTestApplication({ module(testing = true) }) {
             with(handleRequest(HttpMethod.Post, "$apiRoot/public/v1/alumnos/login") {
                 addHeader("content-type", "application/json")
@@ -195,7 +190,7 @@ class ApplicationTest {
     }
 
     @Test
-    fun getMatriculaMasNumeros(){
+    fun getMatriculaMasNumeros() {
         withTestApplication({ module(testing = false) }) {
             with(handleRequest(HttpMethod.Post, "$apiRoot/public/v1/alumnos/login") {
                 addHeader("content-type", "application/json")
@@ -207,7 +202,7 @@ class ApplicationTest {
     }
 
     @Test
-    fun getMatriculaMenosNumeros(){
+    fun getMatriculaMenosNumeros() {
         withTestApplication({ module(testing = true) }) {
             with(handleRequest(HttpMethod.Post, "$apiRoot/public/v1/alumnos/login") {
                 addHeader("content-type", "application/json")
@@ -219,7 +214,7 @@ class ApplicationTest {
     }
 
     @Test
-    fun getMatriculaCaracteresEspeciales(){
+    fun getMatriculaCaracteresEspeciales() {
         withTestApplication({ module(testing = true) }) {
             with(handleRequest(HttpMethod.Post, "$apiRoot/public/v1/alumnos/login") {
                 addHeader("content-type", "application/json")
@@ -231,7 +226,7 @@ class ApplicationTest {
     }
 
     @Test
-    fun getMatriculaBoolean(){
+    fun getMatriculaBoolean() {
         withTestApplication({ module(testing = true) }) {
             with(handleRequest(HttpMethod.Post, "$apiRoot/public/v1/alumnos/login") {
                 addHeader("content-type", "application/json")
@@ -243,7 +238,7 @@ class ApplicationTest {
     }
 
     @Test
-    fun getPasswordEspaciosBlancos(){
+    fun getPasswordEspaciosBlancos() {
         withTestApplication({ module(testing = false) }) {
             with(handleRequest(HttpMethod.Post, "$apiRoot/public/v1/alumnos/login") {
                 addHeader("content-type", "application/json")
@@ -255,12 +250,40 @@ class ApplicationTest {
     }
 
     @Test
-    fun getMatriculaYPasswordAreBlank(){
+    fun getMatriculaYPasswordAreBlank() {
         assertFailsWith<IllegalArgumentException> {
             withTestApplication({ module(testing = false) }) {
                 with(handleRequest(HttpMethod.Post, "$apiRoot/public/v1/alumnos/login") {
                     addHeader("content-type", "application/json")
                     setBody("{\"matricula\":\" \",\"password\":\" \"}")
+                }) {
+                    print(response.status())
+                }
+            }
+        }
+    }
+
+    @Test
+    fun getMatriculaIsBlank() {
+        assertFailsWith<IllegalArgumentException> {
+            withTestApplication({ module(testing = false) }) {
+                with(handleRequest(HttpMethod.Post, "$apiRoot/public/v1/alumnos/login") {
+                    addHeader("content-type", "application/json")
+                    setBody("{\"matricula\":\" \",\"password\":\"1234\"}")
+                }) {
+                    print(response.status())
+                }
+            }
+        }
+    }
+
+    @Test
+    fun getPasswordIsBlank() {
+        assertFailsWith<IllegalArgumentException> {
+            withTestApplication({ module(testing = false) }) {
+                with(handleRequest(HttpMethod.Post, "$apiRoot/public/v1/alumnos/login") {
+                    addHeader("content-type", "application/json")
+                    setBody("{\"matricula\":\"t021204\",\"password\":\" \"}")
                 }) {
                     print(response.status())
                 }
