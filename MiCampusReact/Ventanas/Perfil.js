@@ -27,6 +27,7 @@ export default class Perfil extends React.Component {
   }
 
   _IraTutores = () => {
+    console.log(link.tutores)
     return fetch(link.tutores)
       .then((response) => response.json())
       .then((responseJson) => {

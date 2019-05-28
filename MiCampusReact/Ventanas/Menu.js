@@ -12,7 +12,6 @@ export default class Menu extends React.Component {
   }
   componentDidMount() {
     this._loadInitionState().done();
-
   }
 
   _loadInitionState = async () => {
@@ -20,12 +19,14 @@ export default class Menu extends React.Component {
     if (value !== null) {
       var alumno = JSON.parse(value)
       this.setState({ matricula: alumno.matricula })
+
     }
   }
   _IraPerfil = () => {
-    return fetch(link.perfil)
+    return fetch(link.perfil.replace('{matricula}',this.state.matricula))
       .then((response) => response.json())
       .then((responseJson) => {
+        console.log(responseJson)
         if (responseJson !== undefined) {
           AsyncStorage.setItem('perfil', JSON.stringify(responseJson))
           this.props.navigation.navigate('Perfil');
