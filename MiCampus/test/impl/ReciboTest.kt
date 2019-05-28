@@ -56,13 +56,13 @@ class ReciboTest {
 
     @Test
     fun `calls recibo query handler`() {
-        financieroApi.getHistorial(matricula)
+        financieroApi.getRecibo(FinancieroApi.GetReciboRequest(matricula,id_compra))
 
-        verify { getHistorialQueryHandler.handle(any()) }
+        verify { getReciboQueryHandler.handle(any()) }
     }
 
     @Test
-    fun `returns historial correctly when request is correct`() {
+    fun `returns recibo correctly when request is correct`() {
         val request = GetReciboQuery(matricula, id_compra)
         val expected = FinancieroApi.GetReciboResponse(getReciboQueryResponse)
 
@@ -70,7 +70,7 @@ class ReciboTest {
             getReciboQueryHandler.handle(request)
         } returns (GetReciboQueryResponse(getReciboQueryResponse))
 
-        val actual = financieroApi.getRecibo(matricula, id_compra)
+        val actual = financieroApi.getRecibo(FinancieroApi.GetReciboRequest(matricula,id_compra))
         Assert.assertEquals(expected, actual)
 
         verify { getReciboQueryHandler.handle(request) }

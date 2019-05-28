@@ -128,7 +128,7 @@ class TutoresTest {
     @Test
     fun `returns tutores correctly when request is correct`() {
         val request = GetTutoresQuery(matricula)
-        val expected = tutores
+        val expected = AlumnoApi.GetTutoresResponse(GetTutoresQueryResponse(tutores))
 
         every {
             getTutoresQueryHandler.handle(request)

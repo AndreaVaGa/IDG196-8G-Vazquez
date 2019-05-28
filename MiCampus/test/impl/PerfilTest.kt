@@ -101,7 +101,7 @@ class PerfilTest {
     @Test
     fun `returns perfil correctly when request is correct`() {
         val request = GetPerfilQuery(matricula)
-        val expected = perfil
+        val expected = AlumnoApi.GetPerfilResponse(perfil)
 
         every {
             getPerfilQueryHandler.handle(request)

@@ -16,8 +16,8 @@ class FinancieroApi(
     private val getHistorialQueryHandler: RequestHandler<GetHistorialQuery, GetHistorialQueryResponse>,
     private val getTramitesQueryHandler: RequestHandler<GetPerfilQuery, GetTramitesQueryResponse>
 ) {
-    fun getRecibo(matricula: String, id_compra: Int): GetReciboResponse {
-        val response = getReciboQueryHandler.handle(GetReciboQuery(matricula, id_compra))
+    fun getRecibo(request: GetReciboRequest): GetReciboResponse {
+        val response = getReciboQueryHandler.handle(GetReciboQuery(request.matricula, request.id_compra))
         return GetReciboResponse(response.recibo)
     }
 
@@ -36,6 +36,7 @@ class FinancieroApi(
         return GetTramitesResponse(response.tramites)
     }
 
+    data class GetReciboRequest(val matricula: String, val id_compra: Int)
     data class GetHistorialResponse(val historial: List<HistorialDTO>)
     data class AddCompraRequest(val matricula: String, val tramites: String)
     data class SaveCompraResponse(val compra: List<ReciboDTO>)

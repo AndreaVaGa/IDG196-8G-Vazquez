@@ -152,7 +152,7 @@ fun Application.module(testing: Boolean = false) {
                 val matricula = call.parameters["matricula"] ?: ""
                 val id_compra = call.parameters["id_compra"] ?: "0"
 
-                val recibo = financieroApi.getRecibo(matricula, id_compra.toInt())
+                val recibo = financieroApi.getRecibo(FinancieroApi.GetReciboRequest(matricula, id_compra.toInt()))
                 call.respond(recibo)
             }
 
