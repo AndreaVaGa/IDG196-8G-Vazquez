@@ -44,7 +44,7 @@ class AlumnoApi(
 
     fun getTutores(request: GetPerfilRequest): GetTutoresResponse {
         val response = getTutoresQueryHandler.handle(GetTutoresQuery(request.matricula))
-        return GetTutoresResponse(response)
+        return GetTutoresResponse(response.tutores)
     }
 
     fun getPromedioGeneral(request: GetPerfilRequest): PromedioGeneralDTO {
@@ -104,7 +104,7 @@ class AlumnoApi(
     data class GetPerfilRequest(val matricula: String)
     data class SaveColorRequest(val matricula: String, val materia: String, val color: String)
     data class GetMatriculaResponse(val matricula: String)
-    data class GetTutoresResponse(val tutores: GetTutoresQueryResponse)
+    data class GetTutoresResponse(val tutores: TutoresDTO)
     data class GetBoletaResponse(val boleta: List<BoletaDTO>)
     data class GetHorarioResponse(val horario: List<HorarioDTO>)
     data class GetAprobadasResponse(val aprobadas: List<AprobadasDTO>)
