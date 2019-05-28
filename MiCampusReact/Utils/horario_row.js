@@ -6,6 +6,7 @@ import {
   StyleSheet,
   AsyncStorage
 } from 'react-native';
+import { link } from '../src/Constantes'
 import { StatusColorPicker } from 'react-native-status-color-picker';
 class HorarioRow extends React.PureComponent {
   constructor(props) {
@@ -16,10 +17,44 @@ class HorarioRow extends React.PureComponent {
       selectedColor: this.props.color,
     };
   }
+  componentDidMount() {
+    this._loadInitionState().done();
+
+  }
+
+  _loadInitionState = async () => {
+    var value = await AsyncStorage.getItem('usuario');
+    if (value !== null) {
+      var alumno = JSON.parse(value)
+      this.setState({ matricula: alumno.matricula })
+    }
+  }
 
   ok = data => {
     this.setState({ selectedColor: data.selectedColor });
     this.close();
+    return fetch(link.horario.replace('{matricula}', this.state.matricula), {
+
+      method: 'PUT',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        matricula: this.state.matricula,
+        materia: this.props.materia,
+        color: data.selectedColor
+      }),
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson !== undefined) {
+          AsyncStorage.setItem('horario', JSON.stringify(responseJson))
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      })
     AsyncStorage.setItem(this.props.materia, data.selectedColor);
   };
 
