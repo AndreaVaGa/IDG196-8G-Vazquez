@@ -4,7 +4,7 @@ import {
     View,
     StyleSheet,
     TouchableOpacity,
-    TextInput
+    Image
 } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
@@ -19,6 +19,7 @@ class Recibo extends React.Component {
             <View style={styles.container}>
                 <View style={[styles.contenido]}>
                     <View style={styles.textoContenido}>
+                            <Image style={styles.img} source={require('../src/imgs/flamaAmarilla.png')} />
                         <View>
                             <Text style={styles.boxText}>Folio: {global.sumaTramites}</Text>
                         </View>
@@ -49,10 +50,11 @@ export default Recibo;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginLeft: 15
+        marginLeft: 15,
+        
     },
     contenido: {
-        height: 350,
+        height: 400,
         width: wp('91%'),
         borderTopLeftRadius: 10,
         borderTopRightRadius: 10,
@@ -117,14 +119,14 @@ const styles = StyleSheet.create({
         height: 30,
         width: wp('5%'),
         flexDirection: 'column',
-        fontSize: 18,
+        fontSize: 14,
         textAlign: 'right',
     },
     producto: {
         height: 30,
         width: wp('50%'),
         flexDirection: 'column',
-        fontSize: 18,
+        fontSize: 14,
         textAlign: 'center',
     },
     precio: {
@@ -132,7 +134,7 @@ const styles = StyleSheet.create({
         width: wp('20%'),
         flexDirection: 'column',
         textAlign: 'right',
-        fontSize: 18,
+        fontSize: 14,
     },
     lineStyle: {
         borderWidth: .7,
@@ -141,6 +143,11 @@ const styles = StyleSheet.create({
         marginRight: 15,
         marginBottom: 25,
         borderColor: '#ffd700',
+    },
+    img: {
+    resizeMode: 'contain',
+    flex: 1,
+    aspectRatio: 1,
     },
 
 });

@@ -59,7 +59,7 @@ class Pago extends React.Component {
                             </View>
 
                             <TouchableOpacity style={[styles.box]} onPress={(this._IraRecibo)}>
-                                <Text style={[styles.boxText]} >Pagar ${global.sumaTramites}MXN</Text>
+                                <Text style={[styles.boxText]} >Pagar ${global.sumaTramites}MXN </Text>
                             </TouchableOpacity>
                         </View>
                     </View>

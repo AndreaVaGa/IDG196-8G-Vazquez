@@ -84,11 +84,19 @@ class Tramites extends React.Component {
 
 
         <View style={styles.total}>
-          <Text style={styles.textPromedio}>Total: ${this.state.total}MXN
+        <View style={styles.fila}>
+
+        <View style={{flexDirection: 'column',}}>
+           <Text style={styles.textPromedio}>Total: ${this.state.total}MXN</Text>
+           </View>
+
+           <View style={{flexDirection: 'column', marginLeft: 7}}>
             <TouchableOpacity style={[styles.box]} onPress={(this._IraPago)}>
               <Text style={[styles.boxText]} >Pagar</Text>
             </TouchableOpacity>
-          </Text>
+            </View>
+
+            </View>
         </View>
 
       </View>
@@ -106,13 +114,16 @@ const styles = StyleSheet.create({
   total: {
     backgroundColor: '#333333',
   },
-
+  fila: {
+    flexDirection: 'row',
+    justifyContent:`center`,
+    marginTop: 10,
+    marginBottom: 35,
+  },
   textPromedio: {
     color: 'white',
     fontSize: 18,
     textAlign: 'center',
-    marginTop: 10,
-    marginBottom: 35,
   },
   box: {
     height: 25,
