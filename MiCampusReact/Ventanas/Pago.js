@@ -165,13 +165,14 @@ const styles = StyleSheet.create({
         color: '#333333',
     },
     boxContenido: {
-        height: 30,
+        height: 40,
         width: wp('81%'),
         flexDirection: 'column',
         justifyContent: 'center',
         marginTop: 30,
         marginBottom: 10,
         fontSize: 22,
+        padding: 5,
     },
     boxEC: {
         marginTop: 20,
@@ -179,10 +180,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     boxECInterno: {
-        height: 30,
-        width: wp('35%'),
+        height: 40,
+        width: wp('40%'),
         flexDirection: 'column',
         fontSize: 22,
+        padding: 5,
     },
 
 });

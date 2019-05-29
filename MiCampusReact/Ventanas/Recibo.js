@@ -114,6 +114,7 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         marginLeft: 5,
         fontSize: 25,
+        textAlign: 'center'
     },
     cantidad: {
         height: 30,
@@ -146,8 +147,10 @@ const styles = StyleSheet.create({
     },
     img: {
     resizeMode: 'contain',
-    flex: 1,
-    aspectRatio: 1,
+    aspectRatio: 3,
+    marginBottom: 3,
+    marginTop: 3,
+
     },
 
 });
