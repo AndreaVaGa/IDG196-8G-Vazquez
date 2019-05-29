@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, ScrollView, Text, View, ImageBackground, AsyncStorage, screenWidth, screenHeight, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, ScrollView, Text, View, ImageBackground, AsyncStorage, screenWidth, screenHeight, Image, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { link } from '../src/Constantes'
 
@@ -7,6 +7,7 @@ export default class Menu extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading: true
     };
 
   }
@@ -20,6 +21,12 @@ export default class Menu extends React.Component {
     if (value !== null) {
       var alumno = JSON.parse(value)
       this.setState({ matricula: alumno.matricula })
+      setTimeout(() => {
+        this.setState({
+          loading: false
+        })
+      },
+        300)
     }
   }
   _IraPerfil = () => {
@@ -141,6 +148,15 @@ export default class Menu extends React.Component {
   }
 
   render() {
+    {
+      if(this.state.loading)
+      {
+        return (
+            <View style={styles.cargar} >
+                <ActivityIndicator size='large' color='grey' />
+            </View>
+       );
+      }
     return (
       <ImageBackground style={styles.perfilContainer} source={require('../src/imgs/background.jpg')}>
         <ScrollView>
@@ -191,8 +207,14 @@ export default class Menu extends React.Component {
     );
   }
 }
+}
 
 const styles = StyleSheet.create({
+  cargar: {
+    flex: 1,
+    alignContent: 'center',
+    justifyContent: 'center',
+  },
   perfilContainer: {
     flex: 1,
   },

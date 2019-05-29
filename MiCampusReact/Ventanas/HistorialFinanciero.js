@@ -12,7 +12,7 @@ class HistorialFinanciero extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      loading: false,
+      loading: true,
       page: 1,
       seed: 1,
       error: null,
@@ -22,6 +22,12 @@ class HistorialFinanciero extends React.Component {
 
   componentDidMount() {
     this._loadInitionState().done();
+    setTimeout(() => {
+      this.setState({
+        loading: false
+      })
+    },
+      300)
   }
 
   _loadInitionState = async () => {
@@ -46,6 +52,15 @@ class HistorialFinanciero extends React.Component {
   );
 
   render() {
+    {
+      if(this.state.loading)
+      {
+        return (
+            <View style={styles.cargar} >
+                <ActivityIndicator size='large' color='grey' />
+            </View>
+       );
+      }
     return (
       <View style={styles.container} >
         <ScrollView>
@@ -63,9 +78,15 @@ class HistorialFinanciero extends React.Component {
     );
   }
 }
+}
 export default HistorialFinanciero;
 
 const styles = StyleSheet.create({
+  cargar: {
+    flex: 1,
+    alignContent: 'center',
+    justifyContent: 'center',
+  },
   container: {
     flex: 1,
   },

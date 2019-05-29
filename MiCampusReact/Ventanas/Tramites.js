@@ -7,6 +7,7 @@ import {
   ScrollView,
   FlatList,
   AsyncStorage,
+  ActivityIndicator,
   RefreshControl
 } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
@@ -19,7 +20,7 @@ class Tramites extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      loading: false,
+      loading: true,
       page: 1,
       seed: 1,
       error: null,
@@ -33,6 +34,12 @@ class Tramites extends React.Component {
 
   componentDidMount() {
     this._loadInitionState().done();
+    setTimeout(() => {
+      this.setState({
+        loading: false
+      })
+    },
+      300)
   }
 
   _loadInitionState = async () => {
@@ -69,6 +76,15 @@ class Tramites extends React.Component {
   );
 
   render() {
+    {
+      if(this.state.loading)
+      {
+        return (
+            <View style={styles.cargar} >
+                <ActivityIndicator size='large' color='grey' />
+            </View>
+       );
+      }
     return (
       <View style={styles.container} >
         <ScrollView>
@@ -105,9 +121,15 @@ class Tramites extends React.Component {
     );
   }
 }
+}
 export default Tramites;
 
 const styles = StyleSheet.create({
+  cargar: {
+    flex: 1,
+    alignContent: 'center',
+    justifyContent: 'center',
+  },
   container: {
     flex: 1,
   },
