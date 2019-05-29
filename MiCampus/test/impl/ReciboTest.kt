@@ -12,7 +12,7 @@ import mx.edu.cetys.garay.andrea.application.financiero.SaveCompraCommand
 import mx.edu.cetys.garay.andrea.application.financiero.SaveCompraCommandResponse
 import mx.edu.cetys.garay.andrea.application.perfiles.GetPerfilQuery
 import mx.edu.cetys.garay.andrea.application.tramites.GetTramitesQueryResponse
-import mx.edu.cetys.garay.andrea.dto.HistorialDTO
+import mx.edu.cetys.garay.andrea.dto.ReciboDTO
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
@@ -38,9 +38,9 @@ class ReciboTest {
     private val id_tramites = 1
     private val name = "Duplicado de credencial"
     private val price = 165
-    private val getReciboQueryResponse = ArrayList<HistorialDTO>()
+    private val getReciboQueryResponse = ArrayList<ReciboDTO>()
 
-    private val recibo = HistorialDTO(
+    private val recibo = ReciboDTO(
         id_compra,
         date,
         id_tramites,
@@ -56,7 +56,7 @@ class ReciboTest {
 
     @Test
     fun `calls recibo query handler`() {
-        financieroApi.getRecibo(FinancieroApi.GetReciboRequest(matricula,id_compra))
+        financieroApi.getRecibo(FinancieroApi.GetReciboRequest(matricula, id_compra))
 
         verify { getReciboQueryHandler.handle(any()) }
     }
@@ -70,7 +70,7 @@ class ReciboTest {
             getReciboQueryHandler.handle(request)
         } returns (GetReciboQueryResponse(getReciboQueryResponse))
 
-        val actual = financieroApi.getRecibo(FinancieroApi.GetReciboRequest(matricula,id_compra))
+        val actual = financieroApi.getRecibo(FinancieroApi.GetReciboRequest(matricula, id_compra))
         Assert.assertEquals(expected, actual)
 
         verify { getReciboQueryHandler.handle(request) }

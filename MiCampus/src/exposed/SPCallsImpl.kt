@@ -372,7 +372,7 @@ class SPCallsImpl : StoreProcedureCalls {
     override fun callBuscarReciboSP(matricula: String, id_compra: Int): GetReciboQueryResponse {
         val storedProcedureRawSQL = "exec dbo.buscar_recibo '$matricula','$id_compra'"
 
-        val historial = ArrayList<HistorialDTO>()
+        val recibo = ArrayList<ReciboDTO>()
         Database.connect(
             EXPOSED_CONNECTION_STRING,
             EXPOSED_DRIVER,
@@ -383,8 +383,8 @@ class SPCallsImpl : StoreProcedureCalls {
         transaction {
             execSp(storedProcedureRawSQL) {
                 while (it.next()) {
-                    historial.add(
-                        HistorialDTO(
+                    recibo.add(
+                        ReciboDTO(
                             it.getInt("id_compra"),
                             it.getString("date"),
                             it.getInt("id_tramites"),
@@ -396,7 +396,7 @@ class SPCallsImpl : StoreProcedureCalls {
             }
         }
 
-        return GetReciboQueryResponse(historial)
+        return GetReciboQueryResponse(recibo)
     }
 
     override fun callAddCompraSP(
@@ -404,7 +404,7 @@ class SPCallsImpl : StoreProcedureCalls {
         tramites: String
     ): SaveCompraCommandResponse {
         val storedProcedureRawSQL = "exec dbo.add_compra '$matricula','$tramites'"
-        var compra = ArrayList<ReciboDTO>()
+        var compra = ArrayList<CompraDTO>()
 
         Database.connect(
             EXPOSED_CONNECTION_STRING,
@@ -421,7 +421,7 @@ class SPCallsImpl : StoreProcedureCalls {
                         500 -> throw Exception("FAIL")
                     }
                     compra.add(
-                        ReciboDTO(
+                        CompraDTO(
                             it.getInt("id_compra"),
                             it.getString("matricula"),
                             it.getString("date"),
@@ -512,7 +512,7 @@ class SPCallsImpl : StoreProcedureCalls {
     override fun callBuscarHistorialSP(matricula: String): GetHistorialQueryResponse {
         val storedProcedureRawSQL = "exec dbo.buscar_historial_financiero '$matricula'"
 
-        val recibo = ArrayList<HistorialDTO>()
+        val historial = ArrayList<HistorialDTO>()
         Database.connect(
             EXPOSED_CONNECTION_STRING,
             EXPOSED_DRIVER,
@@ -523,20 +523,18 @@ class SPCallsImpl : StoreProcedureCalls {
         transaction {
             execSp(storedProcedureRawSQL) {
                 while (it.next()) {
-                    recibo.add(
+                    historial.add(
                         HistorialDTO(
                             it.getInt("id_compra"),
                             it.getString("date"),
-                            it.getInt("id_tramites"),
-                            it.getString("name"),
-                            it.getInt("price")
+                            it.getInt("monto_total")
                         )
                     )
                 }
             }
         }
 
-        return GetHistorialQueryResponse(recibo)
+        return GetHistorialQueryResponse(historial)
     }
 
     override fun callBuscarTramitesSP(): GetTramitesQueryResponse {

@@ -7,6 +7,7 @@ import mx.edu.cetys.garay.andrea.application.financiero.*
 import mx.edu.cetys.garay.andrea.application.perfiles.GetPerfilQuery
 import mx.edu.cetys.garay.andrea.application.tramites.GetTramitesQueryResponse
 import mx.edu.cetys.garay.andrea.dto.HistorialDTO
+import mx.edu.cetys.garay.andrea.dto.CompraDTO
 import mx.edu.cetys.garay.andrea.dto.ReciboDTO
 import mx.edu.cetys.garay.andrea.dto.TramitesDTO
 
@@ -39,8 +40,8 @@ class FinancieroApi(
     data class GetReciboRequest(val matricula: String, val id_compra: Int)
     data class GetHistorialResponse(val historial: List<HistorialDTO>)
     data class AddCompraRequest(val matricula: String, val tramites: String)
-    data class SaveCompraResponse(val compra: List<ReciboDTO>)
-    data class GetReciboResponse(val recibo: List<HistorialDTO>)
+    data class SaveCompraResponse(val compra: List<CompraDTO>)
+    data class GetReciboResponse(val recibo: List<ReciboDTO>)
     data class GetTramitesResponse(val tramites: List<TramitesDTO>)
 
 }

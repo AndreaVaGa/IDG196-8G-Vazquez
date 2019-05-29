@@ -1,6 +1,6 @@
 package mx.edu.cetys.garay.andrea.dto
 
-data class ReciboDTO(
+data class CompraDTO(
     val id_compra: Int,
     val matricula: String,
     val date: String,

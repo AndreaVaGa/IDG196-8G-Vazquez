@@ -9,7 +9,7 @@ import mx.edu.cetys.garay.andrea.application.RequestHandler
 import mx.edu.cetys.garay.andrea.application.financiero.*
 import mx.edu.cetys.garay.andrea.application.perfiles.GetPerfilQuery
 import mx.edu.cetys.garay.andrea.application.tramites.GetTramitesQueryResponse
-import mx.edu.cetys.garay.andrea.dto.ReciboDTO
+import mx.edu.cetys.garay.andrea.dto.CompraDTO
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
@@ -34,8 +34,8 @@ class AddCompraTest {
     private val tramite = "Duplicado de Credencial"
     private val precio = 165
     private val total = 165
-    private val SaveCompraResponse = ArrayList<ReciboDTO>()
-    private val recibo = ReciboDTO(id_compra, matricula, date, id_tramite, tramite, precio, total)
+    private val SaveCompraResponse = ArrayList<CompraDTO>()
+    private val recibo = CompraDTO(id_compra, matricula, date, id_tramite, tramite, precio, total)
 
     @Before
     fun setup() {

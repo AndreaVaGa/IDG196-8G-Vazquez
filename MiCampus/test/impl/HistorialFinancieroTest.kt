@@ -28,20 +28,15 @@ class HistorialFinancieroTest {
     )
 
     private val matricula = (0..10).random().toString()
-
     private val id_compra = 7
     private val date = ""
-    private val id_tramites = 1
-    private val name = "Duplicado de credencial"
-    private val price = 165
+    private val total = 165
     private val getHistorialQueryResponse = ArrayList<HistorialDTO>()
 
     private val historial = HistorialDTO(
         id_compra,
         date,
-        id_tramites,
-        name,
-        price
+        total
     )
 
     @Before

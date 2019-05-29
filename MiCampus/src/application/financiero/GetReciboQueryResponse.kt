@@ -1,5 +1,5 @@
 package mx.edu.cetys.garay.andrea.application.financiero
 
-import mx.edu.cetys.garay.andrea.dto.HistorialDTO
+import mx.edu.cetys.garay.andrea.dto.ReciboDTO
 
-data class GetReciboQueryResponse (val recibo: List<HistorialDTO>)
+data class GetReciboQueryResponse (val recibo: List<ReciboDTO>)
