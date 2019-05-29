@@ -62,22 +62,28 @@ class ListViewDemo extends React.Component {
   );
 
   render() {
-    return (
-      <View style={styles.container} >
-        {
-          this.state.loading ?
-            <ActivityIndicator size='large' color='grey' />
-            :
-            <FlatList
+    {
+      if(this.state.loading)
+      {
+        return (
+          <View style={styles.cargar} >
+          <ActivityIndicator size='large' color='grey' />
+          </View>
+          );
+      }
+    
+      return (
+        <View style={styles.container} >
+          <FlatList
               data={this.state.data}
               extraData={this.state}
               keyExtractor={(item, index) => item.materia}
               renderItem={this._renderItem}
               showsVerticalScrollIndicator={false}
             />
-        }
-      </View>
-    );
+        </View>
+      )
+    }
   }
 }
 
@@ -88,5 +94,10 @@ const styles = StyleSheet.create({
     flex: 1,
     marginBottom: 20,
     alignContent: 'flex-end'
+  },
+  cargar: {
+    flex: 1,
+    alignContent: 'center',
+    justifyContent: 'center',
   }
 });
