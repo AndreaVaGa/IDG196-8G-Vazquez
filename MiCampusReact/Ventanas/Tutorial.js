@@ -3,7 +3,8 @@ import {
   StyleSheet,
   Text,
   View,
-  Image
+  Image,
+  ActivityIndicator
 } from 'react-native';
 import Carousel from '../Utils/carrousel';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
@@ -11,6 +12,7 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 class Tutorial extends React.Component {
 
   render() {
+    
     return (
       <Carousel >
         <View>
@@ -45,8 +47,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   imagenPortada: {
-    height: hp('100%'),
-    width: wp('100%'),
+    width: wp (100),
+    height: hp (100),
   },
 
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, Image, TouchableOpacity, AsyncStorage, FlatList, ScrollView } from 'react-native';
+import { StyleSheet, View, Text, Image, TouchableOpacity, AsyncStorage, FlatList, ScrollView, ActivityIndicator } from 'react-native';
 import Collapsible from 'react-native-collapsible';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
@@ -38,6 +38,7 @@ export default class Historial extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading: true,
       matricula: '',
       historial: '',
       promedio: '',
@@ -50,7 +51,12 @@ export default class Historial extends React.Component {
 
   componentDidMount() {
     this._loadInitionState().done();
-
+    setTimeout(() => {
+      this.setState({
+        loading: false
+      })
+    },
+      300)
 
   }
   _loadInitionState = async () => {
@@ -77,6 +83,15 @@ export default class Historial extends React.Component {
   }
 
   render() {
+    {
+      if(this.state.loading)
+      {
+        return (
+            <View style={styles.cargar} >
+                <ActivityIndicator size='large' color='grey' />
+            </View>
+       );
+      }
     return (
 
       <View style={styles.container}>
@@ -239,8 +254,14 @@ export default class Historial extends React.Component {
     );
   }
 }
+}
 
 const styles = StyleSheet.create({
+  cargar: {
+    flex: 1,
+    alignContent: 'center',
+    justifyContent: 'center',
+  },
   container: {
     flex: 1,
   },

@@ -7,7 +7,8 @@ import {
   Image,
   ImageBackground,
   screenWidth,
-  TouchableOpacity
+  TouchableOpacity,
+  ActivityIndicator
 } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { link } from '../src/Constantes'
@@ -16,6 +17,7 @@ export default class Perfil extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading: true,
       nombre: '',
       apellido: '',
       carrera: '',
@@ -65,6 +67,12 @@ export default class Perfil extends React.Component {
             this.setState({ carrera: alumno.perfil.nombre_programa })
             this.setState({ aprobadas: alumno.perfil.materias_aprobadas })
             this.setState({ portada: alumno.perfil.foto_portada.slice(0, 1) })
+            setTimeout(() => {
+              this.setState({
+                loading: false
+              })
+            },
+              300)
           }
         })
         .catch((error) => {
@@ -92,9 +100,18 @@ export default class Perfil extends React.Component {
                                 this.state.portada == 'o' ? require("../src/imgs/portada/o.jpg") :
                                   this.state.portada == 'p' ? require("../src/imgs/portada/p.jpg") :
                                     require("../src/imgs/portada/o.jpg");
-    return (
+{
+if(this.state.loading)
+{
+  return (
+      <View style={styles.cargar} >
+          <ActivityIndicator size='large' color='grey' />
+      </View>
+ );
+}
+  return (
       <View>
-        <ImageBackground source={load_image} style={styles.portada}>
+            <ImageBackground source={load_image} style={styles.portada}>
           <TouchableOpacity onPress={(this._IraConfiguracion)}>
             <Image source={require("../src/imgs/configuracion.png")} style={styles.confi} onPress={(this._IraConfiguracion)}></Image>
           </TouchableOpacity>
@@ -108,13 +125,17 @@ export default class Perfil extends React.Component {
           <Text style={styles.info} onPress={this._IraTutores}>Más información ></Text>
         </View>
       </View>
-
-
     );
   }
 }
+}
 
 const styles = StyleSheet.create({
+  cargar: {
+    flex: 1,
+    alignContent: 'center',
+    justifyContent: 'center',
+  },
   title: {
     fontSize: 18,
     fontWeight: 'bold',
@@ -154,8 +175,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   confi: {
-    height: hp('5%'),
-    width: wp('9%'),
+    resizeMode: 'contain',
     marginBottom: 25,
     marginLeft: 300,
   }

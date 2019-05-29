@@ -14,6 +14,7 @@ class Horario extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading: true,
       horario: '',
       lunes: [],
       martes: [],
@@ -32,6 +33,12 @@ class Horario extends React.Component {
 
   componentDidMount() {
     this._loadInitionState().done();
+    setTimeout(() => {
+      this.setState({
+        loading: false
+      })
+    },
+      300)
   }
 
   _loadInitionState = async () => {
@@ -70,7 +77,7 @@ class Horario extends React.Component {
       this.setState({ jueves: this.state.jueves })
       this.setState({ viernes: this.state.viernes })
       this.setState({ sabado: this.state.sabado })
-
+      
     }
   }
 
@@ -95,6 +102,15 @@ class Horario extends React.Component {
   );
 
   render() {
+    {
+      if(this.state.loading)
+      {
+        return (
+            <View style={styles.cargar} >
+                <ActivityIndicator size='large' color='grey' />
+            </View>
+       );
+      }
     return (
       <Carousel >
         <View>
@@ -179,10 +195,16 @@ class Horario extends React.Component {
     );
   }
 }
+}
 
 export default Horario;
 
 const styles = StyleSheet.create({
+  cargar: {
+    flex: 1,
+    alignContent: 'center',
+    justifyContent: 'center',
+  },
   container: {
     flex: 1,
   },
