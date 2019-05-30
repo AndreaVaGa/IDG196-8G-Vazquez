@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, StyleSheet, TouchableOpacity, TextInput, AsyncStorage, ActivityIndicator } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity, TextInput, AsyncStorage } from 'react-native';
 import { link } from '../src/Constantes'
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
@@ -14,10 +14,12 @@ class Pago extends React.Component {
             textoCVV: ''
         };
     }
+
     componentDidMount() {
         this._loadInitionState().done();
 
     }
+
     _loadInitionState = async () => {
         var value = await AsyncStorage.getItem('usuario');
         if (value !== null) {
@@ -25,12 +27,14 @@ class Pago extends React.Component {
             this.setState({ matricula: alumno.matricula })
         }
 
-
     }
+
     _IraRecibo = () => {
-        this.setState({ loading: true })
+        if (!isNaN(this.state.textoTarjeta) && !isNaN(this.state.textoCVV)) {
         if (this.state.textoTarjeta.length == 16 && this.state.textoExpiracion.length == 5 && this.state.textoCVV.length >= 2) {
+            this.props.navigation.navigate('Recibo');
             return fetch(link.historialFinanciero.replace('{matricula}', this.state.matricula), {
+
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
@@ -38,34 +42,42 @@ class Pago extends React.Component {
                 },
                 body: JSON.stringify({
                     matricula: this.state.matricula,
-                    tramites: global.listaTramites.toString()
+                    tramites: "3,5,"
                 }),
             })
                 .then((response) => response.json())
                 .then((responseJson) => {
                     if (responseJson !== undefined) {
                         AsyncStorage.setItem('recibo', JSON.stringify(responseJson))
-                        this.props.navigation.navigate('Recibo');
-                        setTimeout(() => {
-                            this.setState({ loading: false })
-                        },
-                            300)
                     }
                 })
                 .catch((error) => {
                     console.error(error);
                 })
+
         }
+
+
     }
+}
 
     render() {
-        if (this.state.loading) {
-            return (
-                <View style={styles.cargar} >
-                    <ActivityIndicator size='large' color='grey' />
-                </View>
-            );
+        if (!isNaN(this.state.textoTarjeta) && !isNaN(this.state.textoCVV)) {
+        if (this.state.textoTarjeta.length == 16 && this.state.textoExpiracion.length == 5 && this.state.textoCVV.length >= 3) {
+        this._opacity.setNativeProps({ opacity: 1 })
         }
+        if (this.state.textoTarjeta.length < 16 && this.state.textoTarjeta.length > 0) {
+        this._opacity.setNativeProps({ opacity: .5 })
+        }
+        if (this.state.textoExpiracion.length < 5 && this.state.textoExpiracion.length > 0) {
+        this._opacity.setNativeProps({ opacity: .5 })
+        }
+        if (this.state.textoCVV.length < 3 && this.state.textoExpiracion.length > 0) {
+        this._opacity.setNativeProps({ opacity: .5 })
+        }
+    }
+             
+
         return (
             <View style={styles.container}>
                 <View style={[styles.precioTotal]}>
@@ -93,11 +105,11 @@ class Pago extends React.Component {
                                     placeholder="CVV"
                                     placeholderTextColor='grey'
                                     onChangeText={(textoCVV) => this.setState({ textoCVV })}
-                                    maxLength={3}
+                                    maxLength={4}
                                 />
                             </View>
 
-                            <TouchableOpacity style={[styles.box]} onPress={(this._IraRecibo)}>
+                            <TouchableOpacity style={[styles.box]} onPress={(this._IraRecibo)} ref={component => this._opacity = component}>
                                 <Text style={[styles.boxText]} >Pagar ${global.sumaTramites}MXN </Text>
                             </TouchableOpacity>
                         </View>
@@ -113,11 +125,6 @@ class Pago extends React.Component {
 export default Pago;
 
 const styles = StyleSheet.create({
-    cargar: {
-        flex: 1,
-        alignContent: 'center',
-        justifyContent: 'center',
-    },
     container: {
         flex: 1,
         marginLeft: 15,
@@ -201,6 +208,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginTop: 35,
         marginLeft: 38,
+        opacity: .5,
     },
     boxText: {
         marginTop: 5,
