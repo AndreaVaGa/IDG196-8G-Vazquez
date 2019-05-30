@@ -1,29 +1,63 @@
 import React from 'react';
-import {
-    Text,
-    View,
-    StyleSheet,
-    TouchableOpacity,
-    TextInput
-} from 'react-native';
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { Text, View, StyleSheet, TouchableOpacity, TextInput, AsyncStorage } from 'react-native';
+import { link } from '../src/Constantes'
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
 class Pago extends React.Component {
 
     constructor(props) {
         super(props)
         this.state = {
+            matricula: '',
             textoTarjeta: '',
             textoExpiracion: '',
             textoCVV: ''
         };
     }
 
+    componentDidMount() {
+        this._loadInitionState().done();
+
+    }
+
+    _loadInitionState = async () => {
+        var value = await AsyncStorage.getItem('usuario');
+        if (value !== null) {
+            var alumno = JSON.parse(value)
+            this.setState({ matricula: alumno.matricula })
+        }
+
+    }
+
 
     _IraRecibo = () => {
         if (this.state.textoTarjeta.length == 16 && this.state.textoExpiracion.length == 5 && this.state.textoCVV.length >= 2) {
             this.props.navigation.navigate('Recibo');
+            return fetch(link.historialFinanciero.replace('{matricula}', this.state.matricula), {
+
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    matricula: this.state.matricula,
+                    tramites: "3,5,"
+                }),
+            })
+                .then((response) => response.json())
+                .then((responseJson) => {
+                    if (responseJson !== undefined) {
+                        AsyncStorage.setItem('recibo', JSON.stringify(responseJson))
+                    }
+                })
+                .catch((error) => {
+                    console.error(error);
+                })
+
         }
+
+
     }
 
     render() {

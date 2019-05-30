@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  AsyncStorage,
-  TouchableOpacity,
-  Image
-} from 'react-native';
+import { StyleSheet, ScrollView, View, Text, AsyncStorage, TouchableOpacity, Image } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { link } from '../src/Constantes'
 

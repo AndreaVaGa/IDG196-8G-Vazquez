@@ -1,43 +1,85 @@
 import React from 'react';
-import {
-    Text,
-    View,
-    StyleSheet,
-    TouchableOpacity,
-    Image
-} from 'react-native';
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { Text, View, StyleSheet, AsyncStorage, TouchableOpacity, Image, FlatList } from 'react-native';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import ReciboRow from '../Utils/recibo_row';
 
 class Recibo extends React.Component {
-
-    _IraHistorialF = () => {
-        this.props.navigation.navigate('HistorialFinanciero');
+    constructor(props) {
+        super(props)
+        this.state = {
+            id_compra: '',
+            date: '',
+            id_tramite: '',
+            tramite: '',
+            precio: '',
+            total: '',
+            matricula: '',
+            data: ''
+        };
     }
+
+    _IraMenu = () => {
+        this.props.navigation.navigate('Menu');
+    }
+    componentDidMount() {
+        this._loadInitionState().done();
+
+    }
+
+    _loadInitionState = async () => {
+        var value = await AsyncStorage.getItem('usuario');
+        if (value !== null) {
+            var alumno = JSON.parse(value)
+            this.setState({ matricula: alumno.matricula })
+        }
+        var value2 = await AsyncStorage.getItem('recibo');
+        if (value2 !== null) {
+            var recibo = JSON.parse(value2)
+            this.setState({ data: recibo.compra })
+            this.setState({ id_compra: recibo.compra.id_compra })
+        }
+    }
+    _renderItem = ({ item }) => (
+        <ReciboRow
+            onPressItem={this._onPressItem}
+            id_compra={item.id_compra}
+            date={item.date}
+            precio={item.precio}
+            seleccionar={item.seleccionar}
+            id_tramite={item.id_tramite}
+            tramite={item.tramite}
+            total={item.total}
+            binder={this.handler}
+        />
+    );
 
     render() {
         return (
             <View style={styles.container}>
                 <View style={[styles.contenido]}>
                     <View style={styles.textoContenido}>
-                            <Image style={styles.img} source={require('../src/imgs/flamaAmarilla.png')} />
+                        <Image style={styles.img} source={require('../src/imgs/flamaAmarilla.png')} />
                         <View>
-                            <Text style={styles.boxText}>Folio: {global.sumaTramites}</Text>
+                            <Text style={styles.boxText}>Folio: 46</Text>
                         </View>
 
                         <View style={styles.lineStyle} />
-
                         <View>
                             <Text style={styles.total}>Total: ${global.sumaTramites}MXN</Text>
                         </View>
                         <View style={[styles.filaBox]}>
-                            <Text style={styles.cantidad}>{global.sumaTramites}</Text>
-                            <Text style={styles.producto}>Nombre del servicio</Text>
-                            <Text style={styles.precio}>${global.sumaTramites}MXN</Text>
+                            <FlatList
+                                data={this.state.data}
+                                extraData={this.state}
+                                keyExtractor={(item, index) => item.id_compra}
+                                renderItem={this._renderItem}
+                                showsVerticalScrollIndicator={false}
+                            />
                         </View>
                     </View>
                 </View>
                 <View style={[styles.boton]}>
-                    <TouchableOpacity onPress={(this._IraHistorialF)}>
+                    <TouchableOpacity onPress={(this._IraMenu)}>
                         <Text style={[styles.aceptar]}>Aceptar</Text>
                     </TouchableOpacity>
                 </View>
@@ -51,7 +93,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         marginLeft: 15,
-        
+
     },
     contenido: {
         height: 400,
@@ -146,10 +188,10 @@ const styles = StyleSheet.create({
         borderColor: '#ffd700',
     },
     img: {
-    resizeMode: 'contain',
-    aspectRatio: 3,
-    marginBottom: 3,
-    marginTop: 3,
+        resizeMode: 'contain',
+        aspectRatio: 3,
+        marginBottom: 3,
+        marginTop: 3,
 
     },
 

@@ -1,18 +1,14 @@
 import React from 'react';
-import {
-  StyleSheet,
-  View,
-  FlatList,
-  AsyncStorage,
-  ActivityIndicator
-} from 'react-native';
+import { StyleSheet, View, FlatList, AsyncStorage, ActivityIndicator } from 'react-native';
 import BoletaRow from '../Utils/boleta_row';
+import { link } from '../src/Constantes'
 
 class ListViewDemo extends React.Component {
 
   constructor(props) {
     super(props)
     this.state = {
+      matricula: '',
       loading: true,
       page: 1,
       seed: 1,
@@ -32,11 +28,23 @@ class ListViewDemo extends React.Component {
   }
 
   _loadInitionState = async () => {
-    var value = await AsyncStorage.getItem('boleta');
+    var value = await AsyncStorage.getItem('usuario');
     if (value !== undefined) {
-      var boleta = JSON.parse(value)
-      this.setState({ data: boleta.boleta })
+      var alumno = JSON.parse(value)
+      this.setState({ matricula: alumno.matricula })
     }
+    return fetch(link.boleta.replace('{matricula}', this.state.matricula))
+      .then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson !== undefined) {
+          var response = JSON.stringify(responseJson)
+          var boleta = JSON.parse(response)
+          this.setState({ data: boleta.boleta })
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
   //funcion que se define como atributo y se puede mandar 
   //a ejecutar desde el componente
@@ -63,24 +71,23 @@ class ListViewDemo extends React.Component {
 
   render() {
     {
-      if(this.state.loading)
-      {
+      if (this.state.loading) {
         return (
           <View style={styles.cargar} >
-          <ActivityIndicator size='large' color='grey' />
+            <ActivityIndicator size='large' color='grey' />
           </View>
-          );
+        );
       }
-    
+
       return (
         <View style={styles.container} >
           <FlatList
-              data={this.state.data}
-              extraData={this.state}
-              keyExtractor={(item, index) => item.materia}
-              renderItem={this._renderItem}
-              showsVerticalScrollIndicator={false}
-            />
+            data={this.state.data}
+            extraData={this.state}
+            keyExtractor={(item, index) => item.materia}
+            renderItem={this._renderItem}
+            showsVerticalScrollIndicator={false}
+          />
         </View>
       )
     }

@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  Text,
-  View,
-  TouchableOpacity,
-  StyleSheet,
-  AsyncStorage
-} from 'react-native';
+import { Text, View, TouchableOpacity, StyleSheet, AsyncStorage } from 'react-native';
 import { link } from '../src/Constantes'
 import { StatusColorPicker } from 'react-native-status-color-picker';
 class HorarioRow extends React.PureComponent {
@@ -55,7 +49,6 @@ class HorarioRow extends React.PureComponent {
       .catch((error) => {
         console.error(error);
       })
-    AsyncStorage.setItem(this.props.materia, data.selectedColor);
   };
 
   close = () => {

@@ -5,13 +5,16 @@ import {
   FlatList,
   ScrollView,
   AsyncStorage,
+  ActivityIndicator
 } from 'react-native';
 import HistorialFRow from '../Utils/historial_f_row';
+import { link } from '../src/Constantes'
 
 class HistorialFinanciero extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      matricula: '',
       loading: true,
       page: 1,
       seed: 1,
@@ -31,11 +34,26 @@ class HistorialFinanciero extends React.Component {
   }
 
   _loadInitionState = async () => {
-    var value = await AsyncStorage.getItem('historialF');
+    
+    var value = await AsyncStorage.getItem('usuario');
     if (value !== undefined) {
-      var historialF = JSON.parse(value)
-      this.setState({ data: historialF.historial })
+      var alumno = JSON.parse(value)
+      this.setState({ matricula: alumno.matricula })
     }
+    return fetch(link.historialFinanciero.replace('{matricula}', this.state.matricula))
+
+      .then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson !== undefined) {
+          var response= JSON.stringify(responseJson)
+          var historialF = JSON.parse(response)
+          this.setState({ data: historialF.historial })
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
   }
 
 
@@ -45,39 +63,38 @@ class HistorialFinanciero extends React.Component {
       seleccionar={item.seleccionar}
       headersPrecio={item.headersPrecio}
       fecha={item.date.slice(0, 11)}
-      id_compra={item.id_compras}
-      precio={item.price}
+      id_compra={item.id_compra}
+      total={item.total}
       descripcion={item.name}
     />
   );
 
   render() {
     {
-      if(this.state.loading)
-      {
+      if (this.state.loading) {
         return (
-            <View style={styles.cargar} >
-                <ActivityIndicator size='large' color='grey' />
-            </View>
-       );
+          <View style={styles.cargar} >
+            <ActivityIndicator size='large' color='grey' />
+          </View>
+        );
       }
-    return (
-      <View style={styles.container} >
-        <ScrollView>
-          <FlatList
-            data={this.state.data}
-            extraData={this.state}
-            keyExtractor={(item, index) => item.id_compra}
-            renderItem={this._renderItem}
-            showsVerticalScrollIndicator={false}
-          />
+      return (
+        <View style={styles.container} >
+          <ScrollView>
+            <FlatList
+              data={this.state.data}
+              extraData={this.state}
+              keyExtractor={(item, index) => item.id_compra}
+              renderItem={this._renderItem}
+              showsVerticalScrollIndicator={false}
+            />
 
-        </ScrollView>
-      </View>
+          </ScrollView>
+        </View>
 
-    );
+      );
+    }
   }
-}
 }
 export default HistorialFinanciero;
 

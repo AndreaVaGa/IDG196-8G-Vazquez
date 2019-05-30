@@ -1,14 +1,10 @@
 import React from 'react';
-import {
-    Text,
-    View,
-    StyleSheet
-} from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
 import { CheckBox } from 'react-native-elements';
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
 global.sumaTramites = 0;
-
+global.listaTramites = [null];
 class TramitesRow extends React.Component {
 
     constructor(props) {
@@ -20,14 +16,20 @@ class TramitesRow extends React.Component {
     }
 
     _changeValue = () => {
-
         this.setState({ checked: !this.state.checked })
         if (this.state.checked) {
             global.sumaTramites -= this.props.precio;
-
+            for (var i = 0; i < global.listaTramites.length; i++) {
+                if (global.listaTramites[i] == this.props.id) {
+                    global.listaTramites.splice(i, 1)
+                }
+            }
         }
         else {
             global.sumaTramites += this.props.precio;
+            global.listaTramites.unshift(this.props.id)
+
+
         }
         this.props.binder(global.sumaTramites)
     }

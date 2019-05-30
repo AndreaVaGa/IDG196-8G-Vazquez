@@ -1,16 +1,5 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  AsyncStorage,
-  View,
-  Image,
-  ImageBackground,
-  screenWidth,
-  TouchableOpacity,
-  ActivityIndicator
-} from 'react-native';
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { StyleSheet, Text, AsyncStorage, View, Image, ImageBackground, screenWidth, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { link } from '../src/Constantes'
 
 export default class Perfil extends React.Component {
@@ -29,17 +18,7 @@ export default class Perfil extends React.Component {
   }
 
   _IraTutores = () => {
-    return fetch(link.tutores.replace('{matricula}', this.state.matricula))
-      .then((response) => response.json())
-      .then((responseJson) => {
-        if (responseJson !== undefined) {
-          AsyncStorage.setItem('tutores', JSON.stringify(responseJson))
-          this.props.navigation.navigate('Tutores');
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    this.props.navigation.navigate('Tutores');
   }
 
   _IraConfiguracion = () => {
@@ -100,34 +79,33 @@ export default class Perfil extends React.Component {
                                 this.state.portada == 'o' ? require("../src/imgs/portada/o.jpg") :
                                   this.state.portada == 'p' ? require("../src/imgs/portada/p.jpg") :
                                     require("../src/imgs/portada/o.jpg");
-{
-if(this.state.loading)
-{
-  return (
-      <View style={styles.cargar} >
-          <ActivityIndicator size='large' color='grey' />
-      </View>
- );
-}
-  return (
-      <View>
-            <ImageBackground source={load_image} style={styles.portada}>
-          <TouchableOpacity onPress={(this._IraConfiguracion)}>
-            <Image source={require("../src/imgs/configuracion.png")} style={styles.confi} onPress={(this._IraConfiguracion)}></Image>
-          </TouchableOpacity>
-          <Image source={{ uri: 'https://micampus.tij.cetys.mx/fotos/' + this.state.matricula + '.jpg' }} style={styles.fpersona} />
-        </ImageBackground>
+    {
+      if (this.state.loading) {
+        return (
+          <View style={styles.cargar} >
+            <ActivityIndicator size='large' color='grey' />
+          </View>
+        );
+      }
+      return (
         <View>
-          <Text style={styles.title}>{this.state.nombre}</Text>
-          <Text style={styles.title2}>{this.state.apellido}</Text>
-          <Text style={styles.texto}>Carrera: {this.state.carrera} </Text>
-          <Text style={styles.texto}>Materias aprobadas: {this.state.aprobadas}</Text>
-          <Text style={styles.info} onPress={this._IraTutores}>Más información ></Text>
+          <ImageBackground source={load_image} style={styles.portada}>
+            <TouchableOpacity onPress={(this._IraConfiguracion)}>
+              <Image source={require("../src/imgs/configuracion.png")} style={styles.confi} onPress={(this._IraConfiguracion)}></Image>
+            </TouchableOpacity>
+            <Image source={{ uri: 'https://micampus.tij.cetys.mx/fotos/' + this.state.matricula + '.jpg' }} style={styles.fpersona} />
+          </ImageBackground>
+          <View>
+            <Text style={styles.title}>{this.state.nombre}</Text>
+            <Text style={styles.title2}>{this.state.apellido}</Text>
+            <Text style={styles.texto}>Carrera: {this.state.carrera} </Text>
+            <Text style={styles.texto}>Materias aprobadas: {this.state.aprobadas}</Text>
+            <Text style={styles.info} onPress={this._IraTutores}>Más información ></Text>
+          </View>
         </View>
-      </View>
-    );
+      );
+    }
   }
-}
 }
 
 const styles = StyleSheet.create({

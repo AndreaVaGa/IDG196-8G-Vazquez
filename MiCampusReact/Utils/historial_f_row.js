@@ -8,7 +8,12 @@ import {
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 class HistorialFRow extends React.Component {
-
+    constructor(props) {
+        super(props)
+        this.state = {
+            matricula: ''
+        };
+    }
     _IraRecibo = () => {
         this.props.navigation.navigate('Recibo');
     }
@@ -23,11 +28,11 @@ class HistorialFRow extends React.Component {
                     </View>
                     <View>
                         <View style={[styles.precio]}>
-                            <Text style={styles.headersPrecio}>${this.props.precio}</Text>
+                            <Text style={styles.headersPrecio}>${this.props.total}</Text>
                         </View>
                         <View style={styles.info}>
-                            <Text style={styles.texto}>Compra #{this.props.id_compra}</Text>
-                            <Text style={styles.headers}>{this.props.descripcion}</Text>
+                            {/*  <Text style={styles.texto}>Compra #{this.props.id_compra}</Text>*/}
+                            <Text style={styles.headers}>Compra #{this.props.id_compra}</Text>
                             <TouchableOpacity onPress={(this._IraRecibo)}>
                                 <Text style={[styles.reciboText]}>Ver recibo</Text>
                             </TouchableOpacity>

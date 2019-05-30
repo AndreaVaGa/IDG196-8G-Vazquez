@@ -1,20 +1,8 @@
 import React from 'react';
-import {
-  Text,
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  ScrollView,
-  FlatList,
-  AsyncStorage,
-  ActivityIndicator,
-  RefreshControl
-} from 'react-native';
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { Text, View, StyleSheet, TouchableOpacity, ScrollView, FlatList, AsyncStorage, ActivityIndicator } from 'react-native';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import TramitesRow from '../Utils/tramites_row';
-//import console = require('console');
-
-
+import { link } from '../src/Constantes'
 class Tramites extends React.Component {
 
   constructor(props) {
@@ -43,12 +31,25 @@ class Tramites extends React.Component {
   }
 
   _loadInitionState = async () => {
-    var value = await AsyncStorage.getItem('tramites');
+    var value = await AsyncStorage.getItem('usuario');
     if (value !== undefined) {
-      var tramites = JSON.parse(value)
-      this.setState({ data: tramites.tramites })
+      var alumno = JSON.parse(value)
+      this.setState({ matricula: alumno.matricula })
     }
     global.sumaTramites = 0;
+    return fetch(link.tramites.replace('{matricula}', this.state.matricula))
+
+      .then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson !== undefined) {
+          var response = JSON.stringify(responseJson)
+          var tramites = JSON.parse(response)
+          this.setState({ data: tramites.tramites })
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   _IraPago = () => {
@@ -77,50 +78,49 @@ class Tramites extends React.Component {
 
   render() {
     {
-      if(this.state.loading)
-      {
+      if (this.state.loading) {
         return (
-            <View style={styles.cargar} >
-                <ActivityIndicator size='large' color='grey' />
-            </View>
-       );
+          <View style={styles.cargar} >
+            <ActivityIndicator size='large' color='grey' />
+          </View>
+        );
       }
-    return (
-      <View style={styles.container} >
-        <ScrollView>
-          <FlatList
-            data={this.state.data}
-            extraData={this.state}
-            keyExtractor={(item, index) => item.nombre}
-            renderItem={this._renderItem}
-            showsVerticalScrollIndicator={false}
-          />
+      return (
+        <View style={styles.container} >
+          <ScrollView>
+            <FlatList
+              data={this.state.data}
+              extraData={this.state}
+              keyExtractor={(item, index) => item.nombre}
+              renderItem={this._renderItem}
+              showsVerticalScrollIndicator={false}
+            />
 
-        </ScrollView>
+          </ScrollView>
 
 
-        <View style={styles.total}>
-        <View style={styles.fila}>
+          <View style={styles.total}>
+            <View style={styles.fila}>
 
-        <View style={{flexDirection: 'column',}}>
-           <Text style={styles.textPromedio}>Total: ${this.state.total}MXN</Text>
-           </View>
+              <View style={{ flexDirection: 'column', }}>
+                <Text style={styles.textPromedio}>Total: ${this.state.total}MXN</Text>
+              </View>
 
-           <View style={{flexDirection: 'column', marginLeft: 7}}>
-            <TouchableOpacity style={[styles.box]} onPress={(this._IraPago)}>
-              <Text style={[styles.boxText]} >Pagar</Text>
-            </TouchableOpacity>
+              <View style={{ flexDirection: 'column', marginLeft: 7 }}>
+                <TouchableOpacity style={[styles.box]} onPress={(this._IraPago)}>
+                  <Text style={[styles.boxText]} >Pagar</Text>
+                </TouchableOpacity>
+              </View>
+
             </View>
+          </View>
 
-            </View>
         </View>
 
-      </View>
 
-
-    );
+      );
+    }
   }
-}
 }
 export default Tramites;
 
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
   },
   fila: {
     flexDirection: 'row',
-    justifyContent:`center`,
+    justifyContent: `center`,
     marginTop: 10,
     marginBottom: 35,
   },

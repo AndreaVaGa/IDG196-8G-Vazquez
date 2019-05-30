@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, AsyncStorage, ScrollView, screenWidth } from 'react-native';
+import { StyleSheet, View, Text, ScrollView, screenWidth } from 'react-native';
 
 export default class Terminos extends React.Component {
   render() {

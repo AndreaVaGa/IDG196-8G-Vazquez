@@ -1,7 +1,8 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity, AsyncStorage, FlatList, ScrollView, ActivityIndicator } from 'react-native';
 import Collapsible from 'react-native-collapsible';
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import { link } from '../src/Constantes'
 
 export default class Historial extends React.Component {
   state = {
@@ -60,200 +61,237 @@ export default class Historial extends React.Component {
 
   }
   _loadInitionState = async () => {
-    var value = await AsyncStorage.getItem('cursando');
+    var value = await AsyncStorage.getItem('usuario');
     if (value !== null) {
-      var cursando = JSON.parse(value)
-      this.setState({ cursando: cursando.cursando })
+      var alumno = JSON.parse(value)
+      this.setState({ matricula: alumno.matricula })
     }
-    var value = await AsyncStorage.getItem('aprobadas');
-    if (value !== null) {
-      var aprobadas = JSON.parse(value)
-      this.setState({ aprobadas: aprobadas.aprobadas })
-    }
-    var value = await AsyncStorage.getItem('porcursar');
-    if (value !== null) {
-      var porCursar = JSON.parse(value)
-      this.setState({ puede: porCursar.porcursar })
-    }
-    var value = await AsyncStorage.getItem('PromedioGeneral');
-    if (value !== null) {
-      var promedio = JSON.parse(value)
-      this.setState({ promedio: promedio.promedio_general })
-    }
+    fetch(link.cursando.replace('{matricula}', this.state.matricula))
+
+      .then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson !== undefined) {
+          var response = JSON.stringify(responseJson)
+          var cursando = JSON.parse(response)
+          this.setState({ cursando: cursando.cursando })
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    fetch(link.aprobadas.replace('{matricula}', this.state.matricula))
+
+      .then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson !== undefined) {
+          var response = JSON.stringify(responseJson)
+          var aprobadas = JSON.parse(response)
+          this.setState({ aprobadas: aprobadas.aprobadas })
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    fetch(link.porCursar.replace('{matricula}', this.state.matricula))
+
+      .then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson !== undefined) {
+          var response = JSON.stringify(responseJson)
+          var porCursar = JSON.parse(response)
+          this.setState({ puede: porCursar.porcursar })
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    fetch(link.promedioGeneral.replace('{matricula}', this.state.matricula))
+
+      .then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson !== undefined) {
+          var response = JSON.stringify(responseJson)
+          var promedio = JSON.parse(response)
+          this.setState({ promedio: promedio.promedio_general })
+
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   render() {
     {
-      if(this.state.loading)
-      {
+      if (this.state.loading) {
         return (
-            <View style={styles.cargar} >
-                <ActivityIndicator size='large' color='grey' />
-            </View>
-       );
+          <View style={styles.cargar} >
+            <ActivityIndicator size='large' color='grey' />
+          </View>
+        );
       }
-    return (
+      return (
 
-      <View style={styles.container}>
-        <ScrollView style={{ marginBottom: 50 }}>
-          <View>
-            <TouchableOpacity onPress={this.toggleExpanded}>
+        <View style={styles.container}>
+          <ScrollView style={{ marginBottom: 50 }}>
+            <View>
+              <TouchableOpacity onPress={this.toggleExpanded}>
 
-              <View style={[styles.row, { height: this.state.animation }]}>
-                <View style={[styles.colorBox, { backgroundColor: '#4481c2' }]}>
+                <View style={[styles.row, { height: this.state.animation }]}>
+                  <View style={[styles.colorBox, { backgroundColor: '#4481c2' }]}>
+                  </View>
+                  <View style={styles.info}>
+                    <Text style={styles.headers}>Cursando</Text>
+                  </View>
+
+                  <View style={styles.rowIcon}>
+                    <Image style={{ flex: 1, aspectRatio: .25, resizeMode: 'contain' }} source={require('../src/imgs/dropdown-01.png')}></Image>
+                  </View>
                 </View>
-                <View style={styles.info}>
-                  <Text style={styles.headers}>Cursando</Text>
+
+              </TouchableOpacity>
+
+              <Collapsible collapsed={this.state.collapsed} align="center">
+
+
+                <View style={[styles.row, { height: this.state.animation }]}>
+                  <FlatList
+                    data={this.state.cursando}
+                    showsVerticalScrollIndicator={false}
+                    renderItem={({ item }) =>
+                      <View style={styles.fila}>
+
+                        <View style={styles.materia}>
+                          <Text style={styles.headers}>{item.nombre_materia}</Text>
+                          <Text style={styles.texto}>{item.nombre_maestro}</Text>
+                        </View>
+
+                        <View style={styles.faltas}>
+                          <Text style={styles.headers}>H</Text>
+                          <Text style={styles.texto}>{item.horas_clase}</Text>
+                        </View>
+
+                        <View style={styles.promedio2}>
+                          <Text style={styles.headers}>P</Text>
+                        </View>
+
+                      </View>
+                    }
+                    keyExtractor={item => item.materia}
+                    ItemSeparatorComponent={this.ListViewItemSeparator}
+                  />
+
                 </View>
 
-                <View style={styles.rowIcon}>
-                  <Image style={{ flex: 1, aspectRatio: .25, resizeMode: 'contain' }} source={require('../src/imgs/dropdown-01.png')}></Image>
+              </Collapsible>
+            </View>
+
+            <View>
+              <TouchableOpacity onPress={this.toggleExpanded2}>
+                <View style={[styles.row, { height: this.state.animation }]}>
+                  <View style={[styles.colorBox, { backgroundColor: '#87c540' }]}>
+                  </View>
+                  <View style={styles.info}>
+                    <Text style={styles.headers}> Puede Cursar</Text>
+                  </View>
+
+                  <View style={styles.rowIcon}>
+                    <Image style={{ flex: 1, aspectRatio: .25, resizeMode: 'contain' }} source={require('../src/imgs/dropdown-01.png')}></Image>
+                  </View>
                 </View>
-              </View>
 
-            </TouchableOpacity>
+              </TouchableOpacity>
 
-            <Collapsible collapsed={this.state.collapsed} align="center">
+              <Collapsible collapsed={this.state.collapsed2} align="center">
+                <View style={[styles.row, { height: this.state.animation }]}>
+                  <FlatList
+                    data={this.state.puede}
+                    showsVerticalScrollIndicator={false}
+                    renderItem={({ item }) =>
+                      <View style={styles.fila}>
 
+                        <View style={styles.materia}>
+                          <Text style={styles.headers}>{item.nombre_materia}</Text>
+                          <Text style={styles.texto}>Maestro Indefinido</Text>
+                        </View>
 
-              <View style={[styles.row, { height: this.state.animation }]}>
-                <FlatList
-                  data={this.state.cursando}
-                  showsVerticalScrollIndicator={false}
-                  renderItem={({ item }) =>
-                    <View style={styles.fila}>
+                        <View style={styles.faltas}>
+                          <Text style={styles.headers}>H</Text>
+                          <Text style={styles.texto}>{item.horas_clase}</Text>
+                        </View>
 
-                      <View style={styles.materia}>
-                        <Text style={styles.headers}>{item.nombre_materia}</Text>
-                        <Text style={styles.texto}>{item.nombre_maestro}</Text>
+                        <View style={styles.promedio2}>
+                          <Text style={styles.headers}>P</Text>
+
+                        </View>
+
                       </View>
+                    }
+                    keyExtractor={item => item.materia}
+                    ItemSeparatorComponent={this.ListViewItemSeparator}
+                  />
 
-                      <View style={styles.faltas}>
-                        <Text style={styles.headers}>H</Text>
-                        <Text style={styles.texto}>{item.horas_clase}</Text>
+                </View>
+              </Collapsible>
+            </View>
+
+            <View>
+              <TouchableOpacity onPress={this.toggleExpanded3}>
+                <View style={[styles.row, { height: this.state.animation }]}>
+                  <View style={[styles.colorBox, { backgroundColor: '#fdd900' }]}>
+                  </View>
+                  <View style={styles.info}>
+                    <Text style={styles.headers}>Aprobadas</Text>
+                  </View>
+
+                  <View style={styles.rowIcon}>
+                    <Image style={{ flex: 1, aspectRatio: .25, resizeMode: 'contain' }} source={require('../src/imgs/dropdown-01.png')}></Image>
+                  </View>
+                </View>
+
+              </TouchableOpacity>
+
+              <Collapsible collapsed={this.state.collapsed3} align="center">
+                <View style={[styles.row, { height: this.state.animation }]}>
+                  <FlatList
+                    data={this.state.aprobadas}
+                    showsVerticalScrollIndicator={false}
+                    renderItem={({ item }) =>
+                      <View style={styles.fila}>
+
+                        <View style={styles.materia}>
+                          <Text style={styles.headers}>{item.nombre_materia}</Text>
+                          <Text style={styles.texto}>{item.nombre_maestro}</Text>
+                        </View>
+
+                        <View style={styles.faltas}>
+                          <Text style={styles.headers}>H</Text>
+                          <Text style={styles.texto}>{item.horas_clase}</Text>
+                        </View>
+
+                        <View style={styles.promedio2}>
+                          <Text style={styles.headers}>P</Text>
+                          <Text style={styles.texto}>{item.calificacion_final}</Text>
+                        </View>
+
                       </View>
+                    }
+                    keyExtractor={item => item.materia}
+                    ItemSeparatorComponent={this.ListViewItemSeparator}
+                  />
 
-                      <View style={styles.promedio2}>
-                        <Text style={styles.headers}>P</Text>
-                      </View>
+                </View>
+              </Collapsible>
+            </View>
 
-                    </View>
-                  }
-                  keyExtractor={item => item.materia}
-                  ItemSeparatorComponent={this.ListViewItemSeparator}
-                />
-
-              </View>
-
-            </Collapsible>
+          </ScrollView>
+          <View style={styles.promedio}>
+            <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 20, textAlign: 'right', marginRight: 5, marginTop: 3, marginBottom: 20, }}>Promedio general: {this.state.promedio}</Text>
           </View>
-
-          <View>
-            <TouchableOpacity onPress={this.toggleExpanded2}>
-              <View style={[styles.row, { height: this.state.animation }]}>
-                <View style={[styles.colorBox, { backgroundColor: '#87c540' }]}>
-                </View>
-                <View style={styles.info}>
-                  <Text style={styles.headers}> Puede Cursar</Text>
-                </View>
-
-                <View style={styles.rowIcon}>
-                  <Image style={{ flex: 1, aspectRatio: .25, resizeMode: 'contain' }} source={require('../src/imgs/dropdown-01.png')}></Image>
-                </View>
-              </View>
-
-            </TouchableOpacity>
-
-            <Collapsible collapsed={this.state.collapsed2} align="center">
-              <View style={[styles.row, { height: this.state.animation }]}>
-                <FlatList
-                  data={this.state.puede}
-                  showsVerticalScrollIndicator={false}
-                  renderItem={({ item }) =>
-                    <View style={styles.fila}>
-
-                      <View style={styles.materia}>
-                        <Text style={styles.headers}>{item.nombre_materia}</Text>
-                        <Text style={styles.texto}>Maestro Indefinido</Text>
-                      </View>
-
-                      <View style={styles.faltas}>
-                        <Text style={styles.headers}>H</Text>
-                        <Text style={styles.texto}>{item.horas_clase}</Text>
-                      </View>
-
-                      <View style={styles.promedio2}>
-                        <Text style={styles.headers}>P</Text>
-
-                      </View>
-
-                    </View>
-                  }
-                  keyExtractor={item => item.materia}
-                  ItemSeparatorComponent={this.ListViewItemSeparator}
-                />
-
-              </View>
-            </Collapsible>
-          </View>
-
-          <View>
-            <TouchableOpacity onPress={this.toggleExpanded3}>
-              <View style={[styles.row, { height: this.state.animation }]}>
-                <View style={[styles.colorBox, { backgroundColor: '#fdd900' }]}>
-                </View>
-                <View style={styles.info}>
-                  <Text style={styles.headers}>Aprobadas</Text>
-                </View>
-
-                <View style={styles.rowIcon}>
-                  <Image style={{ flex: 1, aspectRatio: .25, resizeMode: 'contain' }} source={require('../src/imgs/dropdown-01.png')}></Image>
-                </View>
-              </View>
-
-            </TouchableOpacity>
-
-            <Collapsible collapsed={this.state.collapsed3} align="center">
-              <View style={[styles.row, { height: this.state.animation }]}>
-                <FlatList
-                  data={this.state.aprobadas}
-                  showsVerticalScrollIndicator={false}
-                  renderItem={({ item }) =>
-                    <View style={styles.fila}>
-
-                      <View style={styles.materia}>
-                        <Text style={styles.headers}>{item.nombre_materia}</Text>
-                        <Text style={styles.texto}>{item.nombre_maestro}</Text>
-                      </View>
-
-                      <View style={styles.faltas}>
-                        <Text style={styles.headers}>H</Text>
-                        <Text style={styles.texto}>{item.horas_clase}</Text>
-                      </View>
-
-                      <View style={styles.promedio2}>
-                        <Text style={styles.headers}>P</Text>
-                        <Text style={styles.texto}>{item.calificacion_final}</Text>
-                      </View>
-
-                    </View>
-                  }
-                  keyExtractor={item => item.materia}
-                  ItemSeparatorComponent={this.ListViewItemSeparator}
-                />
-
-              </View>
-            </Collapsible>
-          </View>
-
-        </ScrollView>
-        <View style={styles.promedio}>
-          <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 20, textAlign: 'right', marginRight: 5, marginTop: 3, marginBottom: 20, }}>Promedio general: {this.state.promedio}</Text>
         </View>
-      </View>
-    );
+      );
+    }
   }
-}
 }
 
 const styles = StyleSheet.create({

@@ -1,5 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, AsyncStorage, ScrollView, screenWidth } from 'react-native';
+import { link } from '../src/Constantes'
+
 
 export default class Tutores extends React.Component {
   constructor(props) {
@@ -23,20 +25,32 @@ export default class Tutores extends React.Component {
   }
 
   _loadInitionState = async () => {
-    var value = await AsyncStorage.getItem('tutores');
+    var value = await AsyncStorage.getItem('usuario');
     if (value !== null) {
       var alumno = JSON.parse(value)
-      this.setState({ nombre: alumno.tutores.nombre_1_padre + ' ' + alumno.tutores.nombre_2_padre + ' ' + alumno.tutores.apellido_paterno_padre + ' ' + alumno.tutores.apellido_materno_padre })
-      this.setState({ telefono: alumno.tutores.telefono_padre })
-      this.setState({ trabajo: alumno.tutores.empresa_padre })
-      this.setState({ correo: alumno.tutores.email_padre })
-      this.setState({ direccion: alumno.tutores.direccion_padre + ' ' + alumno.tutores.colonia_padre })
-      this.setState({ nombre2: alumno.tutores.nombre_1_madre + ' ' + alumno.tutores.nombre_2_madre + ' ' + alumno.tutores.apellido_paterno_madre + ' ' + alumno.tutores.apellido_materno_madre })
-      this.setState({ telefono2: alumno.tutores.telefono_madre })
-      this.setState({ trabajo2: alumno.tutores.empresa_madre })
-      this.setState({ correo2: alumno.tutores.email_madre })
-      this.setState({ direccion2: alumno.tutores.direccion_madre + ' ' + alumno.tutores.colonia_madre })
+      this.setState({ matricula: alumno.matricula })
     }
+    return fetch(link.tutores.replace('{matricula}', this.state.matricula))
+      .then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson !== undefined) {
+          var response = JSON.stringify(responseJson)
+          var alumno = JSON.parse(response)
+          this.setState({ nombre: alumno.tutores.nombre_1_padre + ' ' + alumno.tutores.nombre_2_padre + ' ' + alumno.tutores.apellido_paterno_padre + ' ' + alumno.tutores.apellido_materno_padre })
+          this.setState({ telefono: alumno.tutores.telefono_padre })
+          this.setState({ trabajo: alumno.tutores.empresa_padre })
+          this.setState({ correo: alumno.tutores.email_padre })
+          this.setState({ direccion: alumno.tutores.direccion_padre + ' ' + alumno.tutores.colonia_padre })
+          this.setState({ nombre2: alumno.tutores.nombre_1_madre + ' ' + alumno.tutores.nombre_2_madre + ' ' + alumno.tutores.apellido_paterno_madre + ' ' + alumno.tutores.apellido_materno_madre })
+          this.setState({ telefono2: alumno.tutores.telefono_madre })
+          this.setState({ trabajo2: alumno.tutores.empresa_madre })
+          this.setState({ correo2: alumno.tutores.email_madre })
+          this.setState({ direccion2: alumno.tutores.direccion_madre + ' ' + alumno.tutores.colonia_madre })
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   render() {
