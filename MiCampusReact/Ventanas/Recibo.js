@@ -43,6 +43,7 @@ class Recibo extends React.Component {
         if (value2 !== null) {
             var recibo = JSON.parse(value2)
             this.setState({ data: recibo.compra })
+            this.setState({id_compra: recibo.compra[0].id_compra})
         }
 
     }

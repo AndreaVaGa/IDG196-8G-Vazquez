@@ -8,6 +8,7 @@ class Pago extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            loading: false,
             matricula: '',
             textoTarjeta: '',
             textoExpiracion: '',
@@ -30,9 +31,8 @@ class Pago extends React.Component {
     }
 
     _IraRecibo = () => {
-        if (!isNaN(this.state.textoTarjeta) && !isNaN(this.state.textoCVV)) {
+        this.setState({ loading: true })
         if (this.state.textoTarjeta.length == 16 && this.state.textoExpiracion.length == 5 && this.state.textoCVV.length >= 2) {
-            this.props.navigation.navigate('Recibo');
             return fetch(link.historialFinanciero.replace('{matricula}', this.state.matricula), {
 
                 method: 'POST',
@@ -42,41 +42,43 @@ class Pago extends React.Component {
                 },
                 body: JSON.stringify({
                     matricula: this.state.matricula,
-                    tramites: "3,5,"
+                    tramites: global.listaTramites.toString()
                 }),
             })
                 .then((response) => response.json())
                 .then((responseJson) => {
                     if (responseJson !== undefined) {
                         AsyncStorage.setItem('recibo', JSON.stringify(responseJson))
+                        this.props.navigation.navigate('Recibo');
+                        setTimeout(() => {
+                            this.setState({
+                                loading: false
+                            })
+                        },
+                            300)
                     }
                 })
                 .catch((error) => {
                     console.error(error);
                 })
-
         }
-
-
     }
-}
 
     render() {
-        if (!isNaN(this.state.textoTarjeta) && !isNaN(this.state.textoCVV)) {
+
         if (this.state.textoTarjeta.length == 16 && this.state.textoExpiracion.length == 5 && this.state.textoCVV.length >= 3) {
-        this._opacity.setNativeProps({ opacity: 1 })
+            this._opacity.setNativeProps({ opacity: 1 })
         }
         if (this.state.textoTarjeta.length < 16 && this.state.textoTarjeta.length > 0) {
-        this._opacity.setNativeProps({ opacity: .5 })
+            this._opacity.setNativeProps({ opacity: .5 })
         }
         if (this.state.textoExpiracion.length < 5 && this.state.textoExpiracion.length > 0) {
-        this._opacity.setNativeProps({ opacity: .5 })
+            this._opacity.setNativeProps({ opacity: .5 })
         }
         if (this.state.textoCVV.length < 3 && this.state.textoExpiracion.length > 0) {
-        this._opacity.setNativeProps({ opacity: .5 })
+            this._opacity.setNativeProps({ opacity: .5 })
         }
-    }
-             
+
 
         return (
             <View style={styles.container}>
@@ -87,7 +89,7 @@ class Pago extends React.Component {
                     <View style={[styles.contenido]}>
                         <View style={styles.textoContenido}>
                             <View>
-                                <TextInput style={[styles.boxContenido]}
+                                <TextInput style={[styles.boxContenido]} keyboardType={'numeric'}
                                     placeholder="Numero de Trajeta"
                                     placeholderTextColor='grey'
                                     onChangeText={(textoTarjeta) => this.setState({ textoTarjeta })}
@@ -101,7 +103,7 @@ class Pago extends React.Component {
                                     onChangeText={(textoExpiracion) => this.setState({ textoExpiracion })}
                                     maxLength={5}
                                 />
-                                <TextInput style={[styles.boxECInterno]}
+                                <TextInput style={[styles.boxECInterno]} keyboardType={'numeric'}
                                     placeholder="CVV"
                                     placeholderTextColor='grey'
                                     onChangeText={(textoCVV) => this.setState({ textoCVV })}
@@ -115,7 +117,7 @@ class Pago extends React.Component {
                         </View>
                     </View>
                     <View style={styles.infoExtra}>
-                        <Text style={styles.textoInfo}>Duplicado de credencial de estudiante</Text>
+                        <Text style={styles.textoInfo}></Text>
                     </View>
                 </View>
             </View>
@@ -128,6 +130,11 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         marginLeft: 15,
+    },
+    cargar: {
+        flex: 1,
+        alignContent: 'center',
+        justifyContent: 'center',
     },
     precioTotal: {
         marginTop: 30,
