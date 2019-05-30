@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, FlatList, AsyncStorage } from 'react-native';
+import { StyleSheet, Text, View, FlatList, AsyncStorage, ActivityIndicator } from 'react-native';
 import Carousel from '../Utils/carrousel';
 import HorarioRow from '../Utils/horario_row';
 import { link } from '../src/Constantes'
@@ -18,7 +18,6 @@ class Horario extends React.Component {
       viernes: [],
       sabado: [],
       visible: false,
-      loading: false,
       page: 1,
       seed: 1,
       error: null,

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, ScrollView, View, Text, AsyncStorage, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, ScrollView, View, Text, AsyncStorage, TouchableOpacity, Image, ActivityIndicator } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { link } from '../src/Constantes'
 
@@ -8,12 +8,19 @@ export default class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      loading: true,
       foto: '',
       matricula: ''
     };
   }
   componentDidMount() {
     this._loadInitionState().done();
+    setTimeout(() => {
+      this.setState({
+        loading: false
+      })
+    },
+      300)
 
   }
 
@@ -22,6 +29,7 @@ export default class App extends React.Component {
     if (value !== null) {
       var alumno = JSON.parse(value)
       this.setState({ matricula: alumno.matricula })
+    
     }
   }
 
@@ -52,6 +60,14 @@ export default class App extends React.Component {
   }
 
   render() {
+    {
+      if (this.state.loading) {
+        return (
+          <View style={styles.cargar} >
+            <ActivityIndicator size='large' color='grey' />
+          </View>
+        );
+      }
     return (
       <View>
         <ScrollView>
@@ -121,9 +137,15 @@ export default class App extends React.Component {
     );
   }
 }
+}
 
 
 const styles = StyleSheet.create({
+  cargar: {
+    flex: 1,
+    alignContent: 'center',
+    justifyContent: 'center',
+  },
   container: {
     flex: 1,
     marginTop: 20,

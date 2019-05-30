@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, AsyncStorage, ScrollView, screenWidth } from 'react-native';
+import { StyleSheet, View, Text, AsyncStorage, ScrollView, screenWidth, ActivityIndicator } from 'react-native';
 import { link } from '../src/Constantes'
 
 
@@ -7,6 +7,7 @@ export default class Tutores extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading: true,
       nombre: '',
       telefono: '',
       trabajo: '',
@@ -22,6 +23,12 @@ export default class Tutores extends React.Component {
 
   componentDidMount() {
     this._loadInitionState().done();
+    setTimeout(() => {
+      this.setState({
+        loading: false
+      })
+    },
+      300)
   }
 
   _loadInitionState = async () => {
@@ -46,6 +53,7 @@ export default class Tutores extends React.Component {
           this.setState({ trabajo2: alumno.tutores.empresa_madre })
           this.setState({ correo2: alumno.tutores.email_madre })
           this.setState({ direccion2: alumno.tutores.direccion_madre + ' ' + alumno.tutores.colonia_madre })
+
         }
       })
       .catch((error) => {
@@ -54,6 +62,14 @@ export default class Tutores extends React.Component {
   }
 
   render() {
+    {
+      if (this.state.loading) {
+        return (
+          <View style={styles.cargar} >
+            <ActivityIndicator size='large' color='grey' />
+          </View>
+        );
+      }
     return (
       <ScrollView style={styles.container}>
         <Text style={styles.titles}>Padre: </Text>
@@ -82,8 +98,14 @@ export default class Tutores extends React.Component {
     );
   }
 }
+}
 
 const styles = StyleSheet.create({
+  cargar: {
+    flex: 1,
+    alignContent: 'center',
+    justifyContent: 'center',
+  },
   container: {
     flex: 1,
     padding: 10,
