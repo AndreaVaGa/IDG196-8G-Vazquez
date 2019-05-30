@@ -415,11 +415,8 @@ class SPCallsImpl : StoreProcedureCalls {
 
         transaction {
             execSp(storedProcedureRawSQL) {
-                if (it.next()) {
-                    val statusCode = it.getInt("StatusCode")
-                    when (statusCode) {
-                        500 -> throw Exception("FAIL")
-                    }
+
+                while (it.next()) {
                     compra.add(
                         CompraDTO(
                             it.getInt("id_compra"),
@@ -433,9 +430,10 @@ class SPCallsImpl : StoreProcedureCalls {
                     )
                 }
             }
-
-
         }
+
+
+
 
         return SaveCompraCommandResponse(compra)
     }
