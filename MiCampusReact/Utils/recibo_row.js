@@ -7,7 +7,6 @@ class ReciboRow extends React.Component {
         return (
             <View style={styles.container}>
                 <View style={styles.filaBox}>
-                    <Text style={styles.cantidad}>1</Text>
                     <Text style={styles.producto}>{this.props.tramite}</Text>
                     <Text style={styles.precio}>${this.props.precio}MXN</Text>
                 </View>

@@ -37,6 +37,7 @@ class Tramites extends React.Component {
       this.setState({ matricula: alumno.matricula })
     }
     global.sumaTramites = 0;
+    global.listaTramites = [null];
     return fetch(link.tramites.replace('{matricula}', this.state.matricula))
 
       .then((response) => response.json())
@@ -65,6 +66,7 @@ class Tramites extends React.Component {
   _renderItem = ({ item }) => (
     <TramitesRow
       onPressItem={this._onPressItem}
+      id= {item.id}
       nombre={item.nombre}
       precio={item.precio}
       seleccionar={item.seleccionar}

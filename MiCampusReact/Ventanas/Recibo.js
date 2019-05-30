@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, StyleSheet, AsyncStorage, TouchableOpacity, Image, FlatList } from 'react-native';
+import { Text, View, StyleSheet, AsyncStorage, TouchableOpacity, Image, FlatList, ActivityIndicator } from 'react-native';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import ReciboRow from '../Utils/recibo_row';
 
@@ -7,6 +7,7 @@ class Recibo extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            loading: true,
             id_compra: '',
             date: '',
             id_tramite: '',
@@ -23,6 +24,12 @@ class Recibo extends React.Component {
     }
     componentDidMount() {
         this._loadInitionState().done();
+        setTimeout(() => {
+            this.setState({
+                loading: false
+            })
+        },
+        300)
 
     }
 
@@ -36,8 +43,8 @@ class Recibo extends React.Component {
         if (value2 !== null) {
             var recibo = JSON.parse(value2)
             this.setState({ data: recibo.compra })
-            this.setState({ id_compra: recibo.compra.id_compra })
         }
+
     }
     _renderItem = ({ item }) => (
         <ReciboRow
@@ -54,13 +61,20 @@ class Recibo extends React.Component {
     );
 
     render() {
+        if (this.state.loading) {
+            return (
+                <View style={styles.cargar} >
+                    <ActivityIndicator size='large' color='grey' />
+                </View>
+            );
+        }
         return (
             <View style={styles.container}>
                 <View style={[styles.contenido]}>
                     <View style={styles.textoContenido}>
                         <Image style={styles.img} source={require('../src/imgs/flamaAmarilla.png')} />
                         <View>
-                            <Text style={styles.boxText}>Folio: 46</Text>
+                            <Text style={styles.boxText}>Folio: {this.state.id_compra} </Text>
                         </View>
 
                         <View style={styles.lineStyle} />
