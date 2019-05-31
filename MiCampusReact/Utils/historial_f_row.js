@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
-import { widthPercentageToDP as wp} from 'react-native-responsive-screen';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 class HistorialFRow extends React.Component {
     constructor(props) {
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     },
     seleccionar: {
         justifyContent: 'center',
-        height: 110,
+        height: hp('16%'),
         width: wp('25%'),
         borderTopLeftRadius: 10,
         borderBottomLeftRadius: 10,
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
         elevation: 4,
     },
     precio: {
-        height: 20,
+        height: hp('3%'),
         width: wp('66%'),
         borderTopRightRadius: 10,
         backgroundColor: '#666666',
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
         elevation: 4,
     },
     info: {
-        height: 70,
+        height: hp('10%'),
         width: wp('66%'),
         backgroundColor: '#f2f2f2',
         flexDirection: 'column',
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
         elevation: 4,
     },
     reciboTabla: {
-        height: 20,
+        height: hp('3%'),
         width: wp('66%'),
         borderBottomRightRadius: 10,
         backgroundColor: '#f2f2f2',
