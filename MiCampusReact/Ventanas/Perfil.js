@@ -89,13 +89,15 @@ export default class Perfil extends React.Component {
       }
       return (
         <View>
+        <View>
           <ImageBackground source={load_image} style={styles.portada}>
             <TouchableOpacity onPress={(this._IraConfiguracion)}>
               <Image source={require("../src/imgs/configuracion.png")} style={styles.confi} onPress={(this._IraConfiguracion)}></Image>
             </TouchableOpacity>
-            <Image source={{ uri: 'https://micampus.tij.cetys.mx/fotos/' + this.state.matricula + '.jpg' }} style={styles.fpersona} />
           </ImageBackground>
-          <View>
+           <Image source={{ uri: 'https://micampus.tij.cetys.mx/fotos/' + this.state.matricula + '.jpg' }} style={styles.fpersona} />
+          </View>
+          <View style={{bottom:'10%'}}>
             <Text style={styles.title}>{this.state.nombre}</Text>
             <Text style={styles.title2}>{this.state.apellido}</Text>
             <Text style={styles.texto}>Carrera: {this.state.carrera} </Text>
@@ -117,8 +119,8 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: 'bold',
-    marginTop: 20,
-    textAlign: 'center'
+    textAlign: 'center',
+    top:0
   },
   title2: {
     fontSize: 18,
@@ -127,17 +129,19 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   fpersona: {
-    width: 130,
-    height: 130,
+    width: 150,
+    height: 150,
     borderWidth: 5,
     borderColor: '#ffffff',
-    borderRadius: 65,
+    borderRadius: 80,
+    bottom: '20%',
+    left: '30%',
   },
   portada: {
     width: screenWidth,
     height: 200,
     alignItems: 'center',
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-start',
   },
   texto: {
     justifyContent: 'center',
@@ -155,6 +159,8 @@ const styles = StyleSheet.create({
   confi: {
     resizeMode: 'contain',
     marginBottom: 25,
-    marginLeft: 300,
+    marginLeft: 350,
+    marginTop: 10,
+
   }
 });

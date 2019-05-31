@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import { CheckBox } from 'react-native-elements';
-import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 global.sumaTramites = 0;
 global.listaTramites = [null];
@@ -76,32 +76,22 @@ const styles = StyleSheet.create({
     },
     seleccionar: {
         justifyContent: 'center',
-        height: 110,
+        height: hp('16%'),
         width: wp('25%'),
         borderTopLeftRadius: 10,
         borderBottomLeftRadius: 10,
         backgroundColor: '#ffffff',
         flexDirection: 'column',
-        shadowColor: 'grey',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.9,
-        shadowRadius: 2,
-        elevation: 4,
     },
     precio: {
-        height: 30,
+        height: hp('4%'),
         width: wp('66%'),
         borderTopRightRadius: 10,
         backgroundColor: '#666666',
         flexDirection: 'column',
-        shadowColor: 'grey',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.9,
-        shadowRadius: 2,
-        elevation: 4,
     },
     info: {
-        height: 80,
+        height: hp('12%'),
         width: wp('66%'),
         borderBottomRightRadius: 10,
         backgroundColor: '#f2f2f2',
