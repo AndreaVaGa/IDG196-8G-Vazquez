@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View, StyleSheet, AsyncStorage, TouchableOpacity, Image, FlatList, ActivityIndicator } from 'react-native';
-import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import ReciboRow from '../Utils/recibo_row';
 
 class Recibo extends React.Component {
@@ -111,31 +111,21 @@ const styles = StyleSheet.create({
 
     },
     contenido: {
-        height: 400,
+        height: hp('50%'),
         width: wp('91%'),
         borderTopLeftRadius: 10,
         borderTopRightRadius: 10,
         backgroundColor: 'white',
         flexDirection: 'row',
-        shadowColor: 'grey',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.9,
-        shadowRadius: 2,
-        elevation: 4,
         marginTop: 30,
     },
     boton: {
-        height: 60,
+        height: hp('12%'),
         width: wp('91%'),
         borderBottomRightRadius: 10,
         borderBottomLeftRadius: 10,
         backgroundColor: '#f2f2f2',
         flexDirection: 'row',
-        shadowColor: 'grey',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.9,
-        shadowRadius: 2,
-        elevation: 4,
         justifyContent: 'center',
     },
     textoContenido: {
@@ -179,20 +169,6 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         fontSize: 14,
         textAlign: 'right',
-    },
-    producto: {
-        height: 30,
-        width: wp('50%'),
-        flexDirection: 'column',
-        fontSize: 14,
-        textAlign: 'center',
-    },
-    precio: {
-        height: 30,
-        width: wp('20%'),
-        flexDirection: 'column',
-        textAlign: 'right',
-        fontSize: 14,
     },
     lineStyle: {
         borderWidth: .7,

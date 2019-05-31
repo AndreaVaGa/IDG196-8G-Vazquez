@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, TextInput, AsyncStorage } from 'react-native';
 import { link } from '../src/Constantes'
-import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 class Pago extends React.Component {
 
@@ -138,41 +138,26 @@ const styles = StyleSheet.create({
     },
     precioTotal: {
         marginTop: 30,
-        height: 50,
+        height: hp('9%'),
         width: wp('91%'),
         borderTopLeftRadius: 10,
         borderTopRightRadius: 10,
         backgroundColor: '#333333',
         flexDirection: 'row',
-        shadowColor: 'grey',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.9,
-        shadowRadius: 2,
-        elevation: 4,
     },
     contenido: {
-        height: 300,
+        height: hp('45%'),
         width: wp('91%'),
         backgroundColor: '#f2f2f2',
         flexDirection: 'row',
-        shadowColor: 'grey',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.9,
-        shadowRadius: 2,
-        elevation: 4,
     },
     infoExtra: {
-        height: 80,
+        height: hp('10%'),
         width: wp('91%'),
         borderBottomRightRadius: 10,
         borderBottomLeftRadius: 10,
         backgroundColor: '#333333',
         flexDirection: 'row',
-        shadowColor: 'grey',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.9,
-        shadowRadius: 2,
-        elevation: 4,
         justifyContent: 'center',
     },
     textoPrecio: {
@@ -189,7 +174,7 @@ const styles = StyleSheet.create({
         textAlign: 'left',
         marginLeft: 18,
         color: '#333333',
-        marginTop: 10,
+        marginTop: 5,
         opacity: 1,
     },
     textoInfo: {
@@ -202,7 +187,7 @@ const styles = StyleSheet.create({
         opacity: 1,
     },
     box: {
-        height: 40,
+        height: hp('6%'),
         width: wp('61%'),
         flexDirection: 'row',
         borderRadius: 20,
@@ -224,7 +209,7 @@ const styles = StyleSheet.create({
         color: '#333333',
     },
     boxContenido: {
-        height: 40,
+        height: hp('5%'),
         width: wp('81%'),
         flexDirection: 'column',
         justifyContent: 'center',
@@ -239,7 +224,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     boxECInterno: {
-        height: 40,
+        height: hp('5%'),
         width: wp('40%'),
         flexDirection: 'column',
         fontSize: 22,
