@@ -96,11 +96,6 @@ const styles = StyleSheet.create({
         borderBottomRightRadius: 10,
         backgroundColor: '#f2f2f2',
         flexDirection: 'column',
-        shadowColor: 'grey',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.9,
-        shadowRadius: 2,
-        elevation: 4,
     },
     total: {
         backgroundColor: '#191919',
