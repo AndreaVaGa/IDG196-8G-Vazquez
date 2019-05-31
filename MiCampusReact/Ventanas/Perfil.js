@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, AsyncStorage, View, Image, ImageBackground, screenWidth, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { link } from '../src/Constantes'
+import { widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 export default class Perfil extends React.Component {
   constructor(props) {
@@ -139,7 +140,7 @@ const styles = StyleSheet.create({
   },
   portada: {
     width: screenWidth,
-    height: 200,
+    height: hp('25%'),
     alignItems: 'center',
     justifyContent: 'flex-start',
   },

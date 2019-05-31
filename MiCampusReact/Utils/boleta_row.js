@@ -70,13 +70,13 @@ const styles = StyleSheet.create({
     },
     fila: {
         marginTop: 30,
-        marginLeft: 22,
+        marginLeft: 15,
         flexDirection: 'row',
     },
     materia: {
         overflow: "hidden",
         height: hp('16%'),
-        width: wp('58%'),
+        width: wp('61%'),
         borderTopLeftRadius: 10,
         borderBottomLeftRadius: 10,
         backgroundColor: '#F5F5F5',

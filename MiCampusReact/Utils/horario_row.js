@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
   fila: {
     marginTop: 30,
     marginBottom: 5,
-    marginLeft: 22,
+    marginLeft: 15,
     flexDirection: 'row',
   },
   materia: {
