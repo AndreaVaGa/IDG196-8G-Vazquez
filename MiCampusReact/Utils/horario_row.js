@@ -2,6 +2,8 @@ import React from 'react';
 import { Text, View, TouchableOpacity, StyleSheet, AsyncStorage } from 'react-native';
 import { link } from '../src/Constantes'
 import { StatusColorPicker } from 'react-native-status-color-picker';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+
 class HorarioRow extends React.PureComponent {
   constructor(props) {
     super(props)
@@ -98,30 +100,21 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   materia: {
-    width: 240,
-    height: 100,
+    height: hp('16%'),
+    width: wp('66%'),
     justifyContent: 'center',
     borderTopLeftRadius: 10,
     borderBottomLeftRadius: 10,
     backgroundColor: '#F5F5F5',
     flexDirection: 'column',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.8,
-    shadowRadius: 2,
-    elevation: 4,
   },
   salon: {
-    width: 80,
-    height: 100,
+    height: hp('16%'),
+    width: wp('25%'),
     justifyContent: 'center',
     borderTopRightRadius: 10,
     borderBottomRightRadius: 10,
     flexDirection: 'column',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.8,
-    shadowRadius: 2,
-    elevation: 4,
   },
   headers: {
     fontSize: 20,
