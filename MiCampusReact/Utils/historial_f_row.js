@@ -1,11 +1,6 @@
 import React from 'react';
-import {
-    Text,
-    View,
-    StyleSheet,
-    TouchableOpacity
-} from 'react-native';
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
 class HistorialFRow extends React.Component {
     constructor(props) {
@@ -15,8 +10,8 @@ class HistorialFRow extends React.Component {
         };
     }
 
-     _IraRecibo = () => {
-        this.props.binder(true)
+    _IraRecibo = () => {
+        this.props.binder(true, this.props.id)
     }
 
 
@@ -33,8 +28,8 @@ class HistorialFRow extends React.Component {
                             <Text style={styles.headersPrecio}>${this.props.total}</Text>
                         </View>
                         <View style={styles.info}>
-                            {/*  <Text style={styles.texto}>Compra #{this.props.id_compra}</Text>*/}
                             <Text style={styles.headers}>Compra #{this.props.id_compra}</Text>
+                            <Text style={styles.texto}>{this.props.descripcion}...</Text>
                             <TouchableOpacity onPress={this._IraRecibo}>
                                 <Text style={[styles.reciboText]}>Ver recibo</Text>
                             </TouchableOpacity>
@@ -107,7 +102,7 @@ const styles = StyleSheet.create({
     texto: {
         fontSize: 12,
         textAlign: 'left',
-        marginLeft: 18,
+        marginLeft: 10,
         color: '#333333',
         marginTop: 7,
         opacity: 1,

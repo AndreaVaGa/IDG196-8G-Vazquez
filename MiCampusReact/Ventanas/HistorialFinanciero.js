@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-  View,
-  StyleSheet,
-  FlatList,
-  ScrollView,
-  AsyncStorage,
-  ActivityIndicator,
-  Text
-} from 'react-native';
+import { View, StyleSheet, FlatList, ScrollView, AsyncStorage, ActivityIndicator } from 'react-native';
 import HistorialFRow from '../Utils/historial_f_row';
 import { link } from '../src/Constantes'
 
@@ -21,14 +13,16 @@ class HistorialFinanciero extends React.Component {
       seed: 1,
       error: null,
       refreshing: false,
-      recibo: false
+      recibo: false,
+      id:0
     };
     this.handler = this.handler.bind(this);
 
   }
 
-  handler(ver) {
-    this.setState({ recibo: ver })
+  handler(ver, identificador) {
+    this.setState({ recibo: ver });
+    this.setState({ id: identificador })
   }
 
   componentDidMount() {
@@ -43,7 +37,7 @@ class HistorialFinanciero extends React.Component {
 
 
   _loadInitionState = async () => {
-    
+
     var value = await AsyncStorage.getItem('usuario');
     if (value !== undefined) {
       var alumno = JSON.parse(value)
@@ -54,7 +48,7 @@ class HistorialFinanciero extends React.Component {
       .then((response) => response.json())
       .then((responseJson) => {
         if (responseJson !== undefined) {
-          var response= JSON.stringify(responseJson)
+          var response = JSON.stringify(responseJson)
           var historialF = JSON.parse(response)
           this.setState({ data: historialF.historial })
         }
@@ -63,6 +57,20 @@ class HistorialFinanciero extends React.Component {
         console.error(error);
       });
 
+  }
+  _IraRecibo = () => {
+    return fetch(link.recibo.replace('{matricula}', this.state.matricula, '{id}', this.state.id))
+
+      .then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson !== undefined) {
+          AsyncStorage.setItem('recibo', JSON.stringify(responseJson))
+          this.props.navigation.navigate('Recibo')
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   _renderItem = ({ item }) => (
@@ -73,15 +81,15 @@ class HistorialFinanciero extends React.Component {
       fecha={item.date.slice(0, 11)}
       id_compra={item.id_compra}
       total={item.total}
-      descripcion={item.name}
+      descripcion={item.descripcion}
       binder={this.handler}
     />
   );
 
   render() {
 
-    if(this.state.recibo){
-        this.props.navigation.navigate('Recibo')
+    if (this.state.recibo) {
+      this._IraRecibo();
     }
 
     {

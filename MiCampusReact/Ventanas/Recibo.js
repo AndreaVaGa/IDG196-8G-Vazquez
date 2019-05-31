@@ -42,10 +42,10 @@ class Recibo extends React.Component {
         var value2 = await AsyncStorage.getItem('recibo');
         if (value2 !== null) {
             var recibo = JSON.parse(value2)
-            this.setState({ data: recibo.compra })
-            this.setState({id_compra: recibo.compra[0].id_compra})
+            this.setState({ data: recibo.recibo })
+            this.setState({id_compra: recibo.recibo[0].id_compra})
+            this.setState({total: recibo.recibo[0].total })
         }
-
     }
     _renderItem = ({ item }) => (
         <ReciboRow
@@ -80,7 +80,7 @@ class Recibo extends React.Component {
 
                         <View style={styles.lineStyle} />
                         <View>
-                            <Text style={styles.total}>Total: ${global.sumaTramites}MXN</Text>
+                            <Text style={styles.total}>Total: ${this.state.total}MXN</Text>
                         </View>
                         <View style={[styles.filaBox]}>
                             <FlatList

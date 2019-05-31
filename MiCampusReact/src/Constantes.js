@@ -8,10 +8,11 @@ export const link = {
     tramites: apiRoot + '/alumnos/tramites',
     tutores: apiRoot + '/alumnos/{matricula}/tutores',
     tutores: apiRoot + '/alumnos/{matricula}/tutores',
-    historialFinanciero: 'http://0.0.0.0:8080/api/micampus/public/v1' + '/alumnos/{matricula}/historial/financiero',
+    historialFinanciero: 'http://0.0.0.0:8080/api/micampus/public/v1'+ '/alumnos/{matricula}/historial/financiero',
     cursando: apiRoot + '/alumnos/{matricula}/historial/academico/materias/cursando',
     aprobadas: apiRoot + '/alumnos/{matricula}/historial/academico/materias/aprobadas',
     porCursar: apiRoot + '/alumnos/{matricula}/historial/academico/materias/porCursar',
-    promedioGeneral: apiRoot + '/alumnos/{matricula}/historial/academico/promedioGeneral'
+    promedioGeneral: apiRoot + '/alumnos/{matricula}/historial/academico/promedioGeneral',
+    recibo: 'http://0.0.0.0:8080/api/micampus/public/v1' + '/alumnos/{matricula}/historial/financiero/recibo/{id}'
 }
 
