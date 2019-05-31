@@ -47,6 +47,7 @@ export default class Login extends React.Component {
 
       })
       .catch((error) => {
+        alert(error);
         //alert('Usuario o contraseña incorrecta')
         alert(error.message)
       });
