@@ -59,7 +59,7 @@ class HistorialFinanciero extends React.Component {
 
   }
   _IraRecibo = () => {
-    return fetch(link.recibo.replace('{matricula}', this.state.matricula, '{id}', this.state.id))
+    return fetch(link.recibo.replace('{matricula}', this.state.matricula).replace('{id}', this.state.id))
 
       .then((response) => response.json())
       .then((responseJson) => {

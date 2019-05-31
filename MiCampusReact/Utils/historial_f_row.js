@@ -11,7 +11,7 @@ class HistorialFRow extends React.Component {
     }
 
     _IraRecibo = () => {
-        this.props.binder(true, this.props.id)
+        this.props.binder(true, this.props.id_compra)
     }
 
 
