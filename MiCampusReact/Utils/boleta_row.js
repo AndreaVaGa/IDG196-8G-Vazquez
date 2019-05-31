@@ -11,14 +11,14 @@ class BoletaRow extends React.PureComponent {
     }
     _changeHeight = () => {
         if (this.state.collapsed) {
-            this._height.setNativeProps({ height: 200 });
-            this._height2.setNativeProps({ height: 200 });
-            this._height3.setNativeProps({ height: 200 });
+            this._height.setNativeProps({ height: hp('30%') });
+            this._height2.setNativeProps({ height: hp('30%') });
+            this._height3.setNativeProps({ height: hp('30%') });
         }
         else {
-            this._height.setNativeProps({ height: 100 });
-            this._height2.setNativeProps({ height: 100 });
-            this._height3.setNativeProps({ height: 100 });
+            this._height.setNativeProps({ height: hp('16%') });
+            this._height2.setNativeProps({ height: hp('16%') });
+            this._height3.setNativeProps({ height: hp('16%') });
         }
         this.state.collapsed = !this.state.collapsed;
     }

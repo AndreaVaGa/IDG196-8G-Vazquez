@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity, AsyncStorage, FlatList, ScrollView, ActivityIndicator } from 'react-native';
 import Collapsible from 'react-native-collapsible';
-import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { link } from '../src/Constantes'
 
 export default class Historial extends React.Component {
@@ -141,7 +141,7 @@ export default class Historial extends React.Component {
                   <View style={[styles.colorBox, { backgroundColor: '#4481c2' }]}>
                   </View>
                   <View style={styles.info}>
-                    <Text style={styles.headers}>Cursando</Text>
+                    <Text style={styles.titulo}>Cursando</Text>
                   </View>
 
                   <View style={styles.rowIcon}>
@@ -192,7 +192,7 @@ export default class Historial extends React.Component {
                   <View style={[styles.colorBox, { backgroundColor: '#87c540' }]}>
                   </View>
                   <View style={styles.info}>
-                    <Text style={styles.headers}> Puede Cursar</Text>
+                    <Text style={styles.titulo}> Puede Cursar</Text>
                   </View>
 
                   <View style={styles.rowIcon}>
@@ -241,7 +241,7 @@ export default class Historial extends React.Component {
                   <View style={[styles.colorBox, { backgroundColor: '#fdd900' }]}>
                   </View>
                   <View style={styles.info}>
-                    <Text style={styles.headers}>Aprobadas</Text>
+                    <Text style={styles.titulo}>Aprobadas</Text>
                   </View>
 
                   <View style={styles.rowIcon}>
@@ -302,52 +302,41 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
+    justifyContent: 'center',
   },
   row: {
     marginTop: 30,
-    marginLeft: 22,
+    marginLeft: 15,
     flexDirection: 'row',
     alignContent: 'center',
   },
   info: {
-    height: 100,
-    width: wp('55%'),
+    height: hp('16%'),
+    width: wp('61%'),
     backgroundColor: '#F5F5F5',
     flexDirection: 'column',
     shadowColor: '#000',
-    justifyContent: 'center',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.5,
-    shadowRadius: 1,
   },
   materia: {
-    height: 100,
-    width: wp('55%'),
+    height: hp('16%'),
+    width: wp('61%'),
     borderTopLeftRadius: 10,
     borderBottomLeftRadius: 10,
     backgroundColor: '#F5F5F5',
     flexDirection: 'column',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.5,
-    shadowRadius: 1,
-    elevation: 4,
   },
 
   colorBox: {
-    height: 100,
+    height: hp('16%'),
     width: wp('15%'),
     backgroundColor: '#4481c2',
     borderTopLeftRadius: 10,
     borderBottomLeftRadius: 10,
     borderTopRightRadius: 0,
     borderBottomRightRadius: 0,
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.5,
-    shadowRadius: 1,
   },
   rowIcon: {
-    height: 100,
+    height: hp('16%'),
     width: wp('15%'),
     borderTopRightRadius: 10,
     borderBottomRightRadius: 10,
@@ -355,17 +344,24 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 0,
     backgroundColor: '#F5F5F5',
     flexDirection: 'column',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.5,
-    shadowRadius: 1,
-    justifyContent: 'center',
     alignItems: 'center',
+  },
+  titulo: {
+    fontSize: 18,
+    textAlign: 'center',
+    marginTop: 15,
+    alignContent: 'center',
+    marginLeft: 5,
+    marginRight: 5,
+    marginTop: 40,
   },
   headers: {
     fontSize: 18,
     textAlign: 'center',
     marginTop: 15,
+    alignContent: 'center',
+    marginLeft: 5,
+    marginRight: 5,
   },
   headers2: {
     fontSize: 15,
@@ -383,36 +379,28 @@ const styles = StyleSheet.create({
     width: 65,
     backgroundColor: '#ffffff',
     flexDirection: 'column',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.5,
-    shadowRadius: 1,
-    elevation: 4,
   },
   fila: {
-    height: 100,
+    height: hp('16%'),
     width: wp('15%'),
     marginBottom: 10,
     flexDirection: 'row',
   },
   promedio2: {
-    height: 100,
+    height: hp('16%'),
     width: wp('15%'),
     borderTopRightRadius: 10,
     borderBottomRightRadius: 10,
     backgroundColor: '#ffffff',
     flexDirection: 'column',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.5,
-    shadowRadius: 1,
-    elevation: 4,
   },
   texto: {
     fontSize: 12,
     textAlign: 'center',
     color: '#333333',
     marginTop: 5,
-    marginBottom: 15
+    marginBottom: 15,
+    marginLeft: 5,
+    marginRight: 5,
   }
 });

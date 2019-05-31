@@ -105,13 +105,18 @@ class Recibo extends React.Component {
 export default Recibo;
 
 const styles = StyleSheet.create({
+    cargar: {
+        flex: 1,
+        alignContent: 'center',
+        justifyContent: 'center',
+      },
     container: {
         flex: 1,
         marginLeft: 15,
 
     },
     contenido: {
-        height: hp('50%'),
+        height: hp('55%'),
         width: wp('91%'),
         borderTopLeftRadius: 10,
         borderTopRightRadius: 10,
@@ -120,7 +125,7 @@ const styles = StyleSheet.create({
         marginTop: 30,
     },
     boton: {
-        height: hp('12%'),
+        height: hp('10%'),
         width: wp('91%'),
         borderBottomRightRadius: 10,
         borderBottomLeftRadius: 10,
