@@ -57,6 +57,9 @@ class Tramites extends React.Component {
     if (this.state.total > 0) {
       this.props.navigation.navigate('Pago');
     }
+    if (this.state.total==0) {
+            this._opacity.setNativeProps({ opacity: .5 })
+        }
   }
 
   handler(amount) {
@@ -79,6 +82,10 @@ class Tramites extends React.Component {
   );
 
   render() {
+    if (this.state.total > 0) {
+            this._opacity.setNativeProps({ opacity: 1 })
+        }
+        
     {
       if (this.state.loading) {
         return (
@@ -109,7 +116,7 @@ class Tramites extends React.Component {
               </View>
 
               <View style={{ flexDirection: 'column', marginLeft: 7 }}>
-                <TouchableOpacity style={[styles.box]} onPress={(this._IraPago)}>
+                <TouchableOpacity style={[styles.box]} onPress={(this._IraPago)} ref={component => this._opacity = component}>
                   <Text style={[styles.boxText]} >Pagar</Text>
                 </TouchableOpacity>
               </View>
@@ -161,6 +168,7 @@ const styles = StyleSheet.create({
     elevation: 4,
     backgroundColor: '#ffd700',
     justifyContent: 'center',
+    opacity: .5
   },
   boxText: {
     fontSize: 18,
