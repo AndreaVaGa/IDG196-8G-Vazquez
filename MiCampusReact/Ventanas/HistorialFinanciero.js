@@ -5,7 +5,8 @@ import {
   FlatList,
   ScrollView,
   AsyncStorage,
-  ActivityIndicator
+  ActivityIndicator,
+  Text
 } from 'react-native';
 import HistorialFRow from '../Utils/historial_f_row';
 import { link } from '../src/Constantes'
@@ -20,7 +21,14 @@ class HistorialFinanciero extends React.Component {
       seed: 1,
       error: null,
       refreshing: false,
+      recibo: false
     };
+    this.handler = this.handler.bind(this);
+
+  }
+
+  handler(ver) {
+    this.setState({ recibo: ver })
   }
 
   componentDidMount() {
@@ -32,6 +40,7 @@ class HistorialFinanciero extends React.Component {
     },
       300)
   }
+
 
   _loadInitionState = async () => {
     
@@ -56,7 +65,6 @@ class HistorialFinanciero extends React.Component {
 
   }
 
-
   _renderItem = ({ item }) => (
     <HistorialFRow
       onPressItem={this._onPressItem}
@@ -66,10 +74,16 @@ class HistorialFinanciero extends React.Component {
       id_compra={item.id_compra}
       total={item.total}
       descripcion={item.name}
+      binder={this.handler}
     />
   );
 
   render() {
+
+    if(this.state.recibo){
+        this.props.navigation.navigate('Recibo')
+    }
+
     {
       if (this.state.loading) {
         return (

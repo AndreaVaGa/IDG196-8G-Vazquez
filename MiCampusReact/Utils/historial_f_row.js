@@ -14,9 +14,11 @@ class HistorialFRow extends React.Component {
             matricula: ''
         };
     }
-    _IraRecibo = () => {
-        this.props.navigation.navigate('Recibo');
+
+     _IraRecibo = () => {
+        this.props.binder(true)
     }
+
 
     render() {
         return (
@@ -33,7 +35,7 @@ class HistorialFRow extends React.Component {
                         <View style={styles.info}>
                             {/*  <Text style={styles.texto}>Compra #{this.props.id_compra}</Text>*/}
                             <Text style={styles.headers}>Compra #{this.props.id_compra}</Text>
-                            <TouchableOpacity onPress={(this._IraRecibo)}>
+                            <TouchableOpacity onPress={this._IraRecibo}>
                                 <Text style={[styles.reciboText]}>Ver recibo</Text>
                             </TouchableOpacity>
                         </View>
