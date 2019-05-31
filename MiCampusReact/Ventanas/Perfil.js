@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
   confi: {
     resizeMode: 'contain',
     marginBottom: 25,
-    marginLeft: 350,
+    marginLeft: '80%',
     marginTop: 10,
 
   }

@@ -33,7 +33,7 @@ export default class App extends React.Component {
     }
   }
 
-  _IraPerfil = () => {
+  _IraMenu = () => {
     return fetch(link.perfil.replace('{matricula}', this.state.matricula), {
 
       method: 'PUT',
@@ -50,7 +50,7 @@ export default class App extends React.Component {
       .then((responseJson) => {
         if (responseJson !== undefined) {
           AsyncStorage.setItem('perfil', JSON.stringify(responseJson))
-          this.props.navigation.navigate('Perfil');
+          this.props.navigation.navigate('Menu');
 
         }
       })
@@ -129,7 +129,7 @@ export default class App extends React.Component {
           </View>
         </ScrollView>
         <View style={styles.cuadro}>
-          <TouchableOpacity style={[styles.boton]} onPress={this._IraPerfil}>
+          <TouchableOpacity style={[styles.boton]} onPress={this._IraMenu}>
             <Text style={[styles.botonText]}>Cambiar fondo</Text>
           </TouchableOpacity>
         </View>
