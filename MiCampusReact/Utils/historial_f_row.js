@@ -122,14 +122,14 @@ const styles = StyleSheet.create({
         opacity: 1,
     },
     headersPrecio: {
-        fontSize: 14,
+        fontSize: 12,
         textAlign: 'right',
         marginRight: 15,
         color: 'white',
         marginTop: 2,
     },
     headers: {
-        fontSize: 14,
+        fontSize: 12,
         fontWeight: 'bold',
         textAlign: 'left',
         marginLeft: 15,
@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
         color: 'grey',
     },
     fecha: {
-        fontSize: 14,
+        fontSize: 11,
         textAlign: 'center',
         color: 'white',
     },
