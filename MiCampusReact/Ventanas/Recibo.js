@@ -110,13 +110,11 @@ export default Recibo;
 const styles = StyleSheet.create({
     cargar: {
         flex: 1,
-        alignContent: 'center',
         justifyContent: 'center',
       },
     container: {
         flex: 1,
         marginLeft: 15,
-
     },
     contenido: {
         height: hp('55%'),
@@ -128,7 +126,7 @@ const styles = StyleSheet.create({
         marginTop: 30,
     },
     boton: {
-        height: hp('7%'),
+        height: hp('10%'),
         width: wp('91%'),
         borderBottomRightRadius: 10,
         borderBottomLeftRadius: 10,
@@ -187,9 +185,10 @@ const styles = StyleSheet.create({
         borderColor: '#ffd700',
     },
     img: {
+        margin: 5,
         height: hp('12%'),
         width: wp('10%'),
-        marginLeft: 40,
+        marginLeft: 120,
     },
 
 });
