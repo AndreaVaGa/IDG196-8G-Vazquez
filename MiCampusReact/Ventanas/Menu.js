@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, ScrollView, Text, View, ImageBackground, AsyncStorage, screenWidth, screenHeight, Image, TouchableOpacity, ActivityIndicator } from 'react-native';
-import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 export default class Menu extends React.Component {
   constructor(props) {
@@ -61,7 +61,7 @@ export default class Menu extends React.Component {
                 <Text style={styles.title}>Académico</Text>
               </View>
 
-              <View style={styles.container}>
+              <View style={styles.fila}>
                 <TouchableOpacity style={styles.Boton} onPress={(this._getBoleta)} title='Boleta'>
                   <Image source={require("../src/imgs/boleta.png")}></Image>
                   <Text style={styles.texto}>Boleta</Text>
@@ -82,7 +82,7 @@ export default class Menu extends React.Component {
               <Text style={styles.title}>Financiero</Text>
             </View>
 
-            <View style={styles.container}>
+            <View style={styles.fila}>
               <TouchableOpacity style={styles.Boton} onPress={(this._getHistorialFinanciero)} title='HistorialFinanciero'>
                 <Image source={require("../src/imgs/hfinanciero.png")}></Image>
                 <Text style={styles.texto}>Historial</Text>
@@ -108,11 +108,12 @@ const styles = StyleSheet.create({
   perfilContainer: {
     flex: 1,
   },
-  container: {
+  fila: {
     flex: 3,
     flexDirection: 'row',
     justifyContent: 'flex-start',
     margin: 5,
+    marginLeft: 10,
   },
   title: {
     fontSize: 25,
@@ -124,12 +125,11 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   texto: {
-    fontSize: 15,
-    textAlign: 'left',
+    fontSize: 14,
     color: 'white',
-    marginLeft: 8.5,
-    marginTop: 7,
-    marginBottom: 5,
+    marginTop: 5,
+    textAlign: 'left',
+    marginLeft: 5,
   },
   lineStyle: {
     borderWidth: .9,
@@ -145,10 +145,12 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   Boton: {
-    height: hp('18%'),
+    height: hp('20%'),
+    width: wp('30%'),
     borderRadius: 20,
     padding: 10,
     marginBottom: 10,
+    justifyContent: 'center',
   },
   Boton2: {
     height: 100,

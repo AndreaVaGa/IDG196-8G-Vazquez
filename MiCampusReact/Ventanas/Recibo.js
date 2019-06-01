@@ -73,7 +73,10 @@ class Recibo extends React.Component {
             <View style={styles.container}>
                 <View style={[styles.contenido]}>
                     <View style={styles.textoContenido}>
+                        <View style={{justifyContent: 'center'}}>
                         <Image style={styles.img} source={require('../src/imgs/flamaAmarilla.png')} />
+                        </View>
+                        
                         <View>
                             <Text style={styles.boxText}>Folio: {this.state.id_compra} </Text>
                         </View>
@@ -125,7 +128,7 @@ const styles = StyleSheet.create({
         marginTop: 30,
     },
     boton: {
-        height: hp('10%'),
+        height: hp('7%'),
         width: wp('91%'),
         borderBottomRightRadius: 10,
         borderBottomLeftRadius: 10,
@@ -184,11 +187,9 @@ const styles = StyleSheet.create({
         borderColor: '#ffd700',
     },
     img: {
-        resizeMode: 'contain',
-        aspectRatio: 3,
-        marginBottom: 3,
-        marginTop: 3,
-
+        height: hp('12%'),
+        width: wp('10%'),
+        marginLeft: 40,
     },
 
 });
