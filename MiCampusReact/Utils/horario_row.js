@@ -29,6 +29,7 @@ class HorarioRow extends React.PureComponent {
   ok = data => {
     this.setState({ selectedColor: data.selectedColor });
     this.close();
+    AsyncStorage.setItem(this.props.materia, data.selectedColor);
     return fetch(link.horario.replace('{matricula}', this.state.matricula), {
 
       method: 'PUT',
