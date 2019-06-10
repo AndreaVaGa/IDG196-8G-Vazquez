@@ -1,7 +1,8 @@
 import React from 'react';
-import { Text, View, StyleSheet, TouchableOpacity, TextInput, AsyncStorage } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity, TextInput, AsyncStorage} from 'react-native';
 import { link } from '../src/Constantes'
 import { widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import { Dropdown } from 'react-native-material-dropdown';
 
 class Pago extends React.Component {
 
@@ -11,7 +12,6 @@ class Pago extends React.Component {
             loading: false,
             matricula: '',
             textoTarjeta: '',
-            textoExpiracion: '',
             textoCVV: ''
         };
     }
@@ -32,7 +32,7 @@ class Pago extends React.Component {
 
     _IraRecibo = () => {
         this.setState({ loading: true })
-        if (this.state.textoTarjeta.length == 16 && this.state.textoExpiracion.length == 5 && this.state.textoCVV.length >= 2) {
+        if (this.state.textoTarjeta.length == 16 && this.state.textoCVV.length >= 2) {
             return fetch(link.historialFinanciero.replace('{matricula}', this.state.matricula), {
 
                 method: 'POST',
@@ -66,18 +66,23 @@ class Pago extends React.Component {
 
     render() {
 
-        if (this.state.textoTarjeta.length == 16 && this.state.textoExpiracion.length == 5 && this.state.textoCVV.length >= 3) {
+        if (this.state.textoTarjeta.length == 16 && this.state.textoCVV.length >= 3) {
             this._opacity.setNativeProps({ opacity: 1 })
         }
         if (this.state.textoTarjeta.length < 16 && this.state.textoTarjeta.length > 0) {
             this._opacity.setNativeProps({ opacity: .5 })
         }
-        if (this.state.textoExpiracion.length < 5 && this.state.textoExpiracion.length > 0) {
+        if (this.state.textoCVV.length < 3 && this.state.textoCVV.length > 0) {
             this._opacity.setNativeProps({ opacity: .5 })
         }
-        if (this.state.textoCVV.length < 3 && this.state.textoExpiracion.length > 0) {
-            this._opacity.setNativeProps({ opacity: .5 })
-        }
+
+        let data = [{
+        value: '10/20',
+        }, {
+        value: '11/20',
+        }, {
+        value: '12/20',
+        }];
 
 
         return (
@@ -96,13 +101,8 @@ class Pago extends React.Component {
                                     maxLength={16}
                                 />
                             </View>
+                            <Dropdown label='Expira' data={data}/>
                             <View style={[styles.boxEC]}>
-                                <TextInput style={[styles.boxECInterno]}
-                                    placeholder="Expira"
-                                    placeholderTextColor='grey'
-                                    onChangeText={(textoExpiracion) => this.setState({ textoExpiracion })}
-                                    maxLength={5}
-                                />
                                 <TextInput style={[styles.boxECInterno]} keyboardType={'numeric'}
                                     placeholder="CVV"
                                     placeholderTextColor='grey'
