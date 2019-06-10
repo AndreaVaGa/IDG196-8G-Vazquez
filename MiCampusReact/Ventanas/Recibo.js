@@ -71,11 +71,13 @@ class Recibo extends React.Component {
         }
         return (
             <View style={styles.container}>
-                <View style={[styles.contenido]}>
-                    <View style={styles.textoContenido}>
-                        <View style={{justifyContent: 'center'}}>
+                <View style={[styles.flama]}>
+                <View style={{justifyContent: 'center'}}>
                         <Image style={styles.img} source={require('../src/imgs/flamaAmarilla.png')} />
                         </View>
+                </View>
+                <View style={[styles.contenido]}>
+                    <View style={styles.textoContenido}>
                         
                         <View>
                             <Text style={styles.boxText}>Folio: {this.state.id_compra} </Text>
@@ -116,23 +118,32 @@ const styles = StyleSheet.create({
         flex: 1,
         marginLeft: 15,
     },
-    contenido: {
-        height: hp('55%'),
+    flama: {
+        marginTop: 30,
+        height: hp('12%'),
         width: wp('91%'),
         borderTopLeftRadius: 10,
         borderTopRightRadius: 10,
         backgroundColor: 'white',
         flexDirection: 'row',
-        marginTop: 30,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    contenido: {
+        height: hp('35%'),
+        width: wp('91%'),
+        backgroundColor: 'white',
+        flexDirection: 'row',
     },
     boton: {
-        height: hp('10%'),
+        height: hp('7%'),
         width: wp('91%'),
         borderBottomRightRadius: 10,
         borderBottomLeftRadius: 10,
         backgroundColor: '#f2f2f2',
         flexDirection: 'row',
         justifyContent: 'center',
+        alignItems: 'center',
     },
     textoContenido: {
         fontSize: 16,
@@ -145,7 +156,6 @@ const styles = StyleSheet.create({
         fontSize: 18,
         textAlign: 'center',
         color: '#b3b3b3',
-        marginTop: 18,
         opacity: 1,
     },
     filaBox: {
@@ -185,10 +195,9 @@ const styles = StyleSheet.create({
         borderColor: '#ffd700',
     },
     img: {
-        margin: 5,
-        height: hp('12%'),
-        width: wp('10%'),
-        marginLeft: 120,
+        flexGrow:1,
+        marginTop: 10,
+        resizeMode: 'contain',
     },
 
 });

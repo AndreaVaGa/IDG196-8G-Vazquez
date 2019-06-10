@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     infoExtra: {
-        height: hp('10%'),
+        height: hp('5%'),
         width: wp('91%'),
         borderBottomRightRadius: 10,
         borderBottomLeftRadius: 10,
@@ -187,7 +187,7 @@ const styles = StyleSheet.create({
         opacity: 1,
     },
     box: {
-        height: hp('6%'),
+        height: hp('5%'),
         width: wp('61%'),
         flexDirection: 'row',
         borderRadius: 20,
@@ -198,14 +198,12 @@ const styles = StyleSheet.create({
         elevation: 4,
         backgroundColor: '#ffd700',
         justifyContent: 'center',
-        marginTop: 35,
+        alignItems: 'center',
         marginLeft: 38,
         opacity: .5,
     },
     boxText: {
-        marginTop: 5,
         fontSize: 20,
-        textAlign: 'center',
         color: '#333333',
     },
     boxContenido: {
