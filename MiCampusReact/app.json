@@ -1,6 +1,12 @@
 {
-  "expo": {
-    "sdkVersion": "33.0.0",
-    "orientation": "portrait"
-  }
+    "expo": {
+        "name": "mi-campus",
+        "version": "1.0.0",
+        "slug": "mi-campus",
+        "android": {
+            "package": "mx.edu.cetys.micampus"
+        },
+        "sdkVersion": "28.0.0",
+        "orientation": "portrait"
+    }
 }

@@ -27,13 +27,11 @@ class HorarioRow extends React.PureComponent {
   }
 
   ok = data => {
+    AsyncStorage.setItem(this.props.materia, data.selectedColor);
     this.setState({ selectedColor: data.selectedColor });
     this.close();
-    AsyncStorage.setItem(this.props.materia, data.selectedColor);
-    var colores = AsyncStorage.getItem(this.props.materia);
-    this.setState({ selectedColor: colores });
     return fetch(link.horario.replace('{matricula}', this.state.matricula), {
-
+    
       method: 'PUT',
       headers: {
         Accept: 'application/json',
@@ -61,12 +59,12 @@ class HorarioRow extends React.PureComponent {
   };
 
   _onPress = () => {
-    this.setState({ visible: true })
-
+    this.setState({ visible: true });
   };
 
 
   render() {
+
     return (
       <View>
         <TouchableOpacity onPress={this._onPress}>

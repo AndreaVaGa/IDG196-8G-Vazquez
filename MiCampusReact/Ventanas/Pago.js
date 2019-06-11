@@ -187,7 +187,7 @@ const styles = StyleSheet.create({
         opacity: 1,
     },
     box: {
-        height: hp('5%'),
+        height: hp('7%'),
         width: wp('61%'),
         flexDirection: 'row',
         borderRadius: 20,

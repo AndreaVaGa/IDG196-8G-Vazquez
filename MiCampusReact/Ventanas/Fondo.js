@@ -10,7 +10,8 @@ export default class App extends React.Component {
     this.state = {
       loading: true,
       foto: '',
-      matricula: ''
+      matricula: '',
+      letra: ''
     };
   }
   componentDidMount() {
@@ -64,7 +65,8 @@ export default class App extends React.Component {
     }
 
     _onPress = () => {
-        this._changeOpacity()
+        this._changeOpacity();
+        this.setState({ foto: "a" })
     };
 
    
@@ -83,7 +85,7 @@ export default class App extends React.Component {
           <View style={styles.container}>
             <View style={styles.fila}>
               <View style={styles.columna}>
-                <TouchableOpacity onPress={() => { this.setState({ foto: "a" })}}>
+                <TouchableOpacity onPress={this._onPress}>
                   <Image source={require("../src/imgs/portada/a.jpg")} style={styles.imagenPortada} ref={component => this._opacity = component}/>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => { this.setState({ foto: "b" }) }}>

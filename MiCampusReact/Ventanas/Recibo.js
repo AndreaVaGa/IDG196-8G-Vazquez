@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
     },
     flama: {
         marginTop: 30,
-        height: hp('12%'),
+        height: hp('18%'),
         width: wp('91%'),
         borderTopLeftRadius: 10,
         borderTopRightRadius: 10,
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     contenido: {
-        height: hp('35%'),
+        height: hp('40%'),
         width: wp('91%'),
         backgroundColor: 'white',
         flexDirection: 'row',
