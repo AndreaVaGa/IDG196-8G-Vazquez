@@ -59,6 +59,15 @@ export default class App extends React.Component {
       })
   }
 
+    _changeOpacity = () => {
+            this._opacity.setNativeProps({ opacity: .25 });
+    }
+
+    _onPress = () => {
+        this._changeOpacity()
+    };
+
+   
   render() {
     {
       if (this.state.loading) {
@@ -74,8 +83,8 @@ export default class App extends React.Component {
           <View style={styles.container}>
             <View style={styles.fila}>
               <View style={styles.columna}>
-                <TouchableOpacity onPress={() => { this.setState({ foto: "a" }) }}>
-                  <Image source={require("../src/imgs/portada/a.jpg")} style={styles.imagenPortada} />
+                <TouchableOpacity onPress={() => { this.setState({ foto: "a" })}}>
+                  <Image source={require("../src/imgs/portada/a.jpg")} style={styles.imagenPortada} ref={component => this._opacity = component}/>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => { this.setState({ foto: "b" }) }}>
                   <Image source={require("../src/imgs/portada/b.jpg")} style={styles.imagenPortada} />
@@ -157,6 +166,7 @@ const styles = StyleSheet.create({
     margin: 5,
     borderWidth: 2,
     borderColor: 'black',
+    opacity: 1
   },
   fila: {
     flexDirection: 'row',
@@ -185,11 +195,11 @@ const styles = StyleSheet.create({
     elevation: 4,
     backgroundColor: '#ffd700',
     justifyContent: 'center',
+    alignItems: 'center',
     marginTop: 10,
     marginBottom: 10,
   },
   botonText: {
-    marginTop: 5,
     fontSize: 20,
     textAlign: 'center',
     color: '#333333',
